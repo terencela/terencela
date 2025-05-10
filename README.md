@@ -1,12 +1,12 @@
 ## Hi there! <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px"> !
 
 
-- 📊  I'm a 4x founder, 4x prize winner at hackathons, and winner of 10 business/case competitions.
-- 📚 I hold a master in business innovation at the University of St.Gallen.
-- 🌱  I had 6 years of experience in finance and tech (among others at Credit Suisse and PwC).
-- 🎯  If you need help with advanced winning growth and business strategies, hit me up!
+- 📊  I'm a tech founder, won 6 prizes in 11 hackathons and 10 other business/case competitions.
+- 📚  Previously, I hold a master in business innovation at the University of St.Gallen.
+- 🌱  With 9 years of experience in finance and tech (UBS, PwC, PE), I recently held a few executive positions in the AI space.
+- 🎯  If you need help with growth and business strategies which will win, hit me up!
 
-Hit me up if you think we should collaborate.
+
 
 ## I have used these languages in my past:
 
@@ -29,6 +29,8 @@ Hit me up if you think we should collaborate.
 - 2021, HackZurich, 3rd Prize Overall Winner, **Europe's largest Hackathon** with 1600 hackers
 - 2021, HackZurich, 1st Prize Winner of the Migros Challenge
 - 2021, HackWinterthur, 2nd Prize Winner
+- 2022, HackThurgau, 3rd Prize Winner
+- 2023, START Hack, Prize Winner for the blockchain challenge
 
 ## Me contacter
 - [![Linkedin Badge](https://img.shields.io/badge/-terencela-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://linkedin.com/in/terencela)](https://www.linkedin.com/in/terencela)
