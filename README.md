@@ -6,7 +6,7 @@
 - 🌱  With 9 years of experience in finance and tech (UBS, PwC, PE), I recently held executive positions in AI.
 - 🎯  If you need help with growth and business strategies which will win, hit me up!
 
-Almost all of my projects are private. My goal is nowadays to launch 4 projects per year.
+Almost all my projects are private. My goal is to launch 4 projects from 2025-2026.
 
 
 ## I have used these languages in my past:
