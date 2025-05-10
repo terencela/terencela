@@ -33,6 +33,6 @@ Almost all of my projects are private. My goal is nowadays to launch 4 projects 
 - 2022, HackThurgau, 3rd Prize Winner
 - 2023, START Hack, Prize Winner for the blockchain challenge
 
-## Me contacter
+## Contact me
 - [![Linkedin Badge](https://img.shields.io/badge/-terencela-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://linkedin.com/in/terencela)](https://www.linkedin.com/in/terencela)
 - terence@perseedu.com
