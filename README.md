@@ -23,7 +23,7 @@ Hit me up if you think we should collaborate.
 
 <br clear="all"/>
 
-## Price
+## Prizes
 
 - 2017, START Hack, 3rd Prize Overall Winner, out of 89 groups
 - 2021, HackZurich, 3rd Prize Overall Winner, **Europe's largest Hackathon** with 1600 hackers
