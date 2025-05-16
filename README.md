@@ -1,10 +1,10 @@
-## Hi there, I'm Terence! <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px"> 
+## Hi, I'm Terence! <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px"> 
 
 
 - 📊  I'm a tech founder, won 6 prizes in 11 hackathons and 10 other business/case competitions.
-- 📚  Previously, I hold a master in business innovation at the University of St.Gallen.
-- 🌱  With 9 years of experience in finance and tech (UBS, PwC, PE), I recently held executive positions in AI.
-- 🎯  If you need help with growth and business strategies which will win, hit me up!
+- - 🌱  With 9 years of experience in finance and tech (UBS, PwC, PE), I recently held 2 executive positions in AI.
+- 📚  Previously, I hold a master in Business Innovation at the University of St.Gallen.
+- 🎯  If you need help with implementing growth and business strategies which will win, hit me up!
 
 Almost all my projects are private. My goal is to launch 4 projects from 2025-2026.
 
