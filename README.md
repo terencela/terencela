@@ -1,4 +1,4 @@
-## Hi, I'm Terence! <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px"> 
+## Hi, I'm Terence La! <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px"> 
 
 
 - 📊  I'm a tech founder, won 6 prizes in 11 hackathons and 7+ prizes in business/case competitions.
