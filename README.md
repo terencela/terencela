@@ -2,7 +2,7 @@
 
 
 - 📊  I'm a tech founder, won 6 prizes in 11 hackathons and 10 other business/case competitions.
-- - 🌱  With 9 years of experience in finance and tech (UBS, PwC, PE), I recently held 2 executive positions in AI.
+- 🌱  With 9 years of experience in finance and tech (UBS, PwC, PE), I recently held 2 executive positions in AI.
 - 📚  Previously, I hold a master in Business Innovation at the University of St.Gallen.
 - 🎯  If you need help with implementing growth and business strategies which will win, hit me up!
 
