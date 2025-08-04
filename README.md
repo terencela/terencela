@@ -2,10 +2,10 @@
 
 ## Terence La | terencela
 
-- 📊  I'm a tech founder, won 6 prizes in 11 hackathons and 7+ prizes in business/case competitions.
-- 🌱  With 10 years of experience in finance (UBS, PwC, PE) and tech (startups), I recently held 2 corporate Head of AI positions.
-- 📚  Previously, I received a master in Business Innovation at the University of St.Gallen.
-- 🎯  If you need help with implementing growth and business strategies which will win, hit me up!
+-  I'm a tech founder, won 6 prizes in 11 hackathons and 7+ prizes in business/case competitions.
+-  With 10 years of experience in finance (UBS, PwC, PE) and tech (startups), I recently held 2 corporate Head of AI positions.
+-  Previously, I received a master in Business Innovation at the University of St.Gallen.
+-  If you need help with implementing growth and business strategies which will win, hit me up!
 
 Currently, all my most active projects are private. 
 My goal is to launch 4 projects from 2025-2026.
