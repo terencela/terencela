@@ -31,7 +31,7 @@ Find more about me here:
 
 ## Prizes
 
-Hackathons
+**Hackathons**
 - 2017, START Hack (MLH), 3rd Prize Overall Winner, out of 89 groups
 - 2021, HackZurich, 3rd Prize Overall Winner, **Europe's largest Hackathon** with 1600 hackers
 - 2021, HackZurich, 1st Prize Winner of the Migros Challenge: bit.ly/ZooMaaniia
@@ -40,7 +40,7 @@ Hackathons
 - 2023, START Hack, Prize Winner for the blockchain challenge
 
 
-Business/Case
+**Business/Case**
 - 2014, IVE Business Plan, Magna Cum Laude
 - 2016, BestStudentChallenge 2016, very good
 - 2018, Business Game St.Gallen, Covestro 1st Prize winner out of 50 teams
