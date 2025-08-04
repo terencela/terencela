@@ -32,19 +32,24 @@ Find more about me here:
 ## Prizes
 
 Hackathons
-- 2017, START Hack, 3rd Prize Overall Winner, out of 89 groups
+- 2017, START Hack (MLH), 3rd Prize Overall Winner, out of 89 groups
 - 2021, HackZurich, 3rd Prize Overall Winner, **Europe's largest Hackathon** with 1600 hackers
-- 2021, HackZurich, 1st Prize Winner of the Migros Challenge
+- 2021, HackZurich, 1st Prize Winner of the Migros Challenge: bit.ly/ZooMaaniia
 - 2021, HackWinterthur, 2nd Prize Winner
 - 2022, HackThurgau, 3rd Prize Winner
 - 2023, START Hack, Prize Winner for the blockchain challenge
 
+
 Business/Case
-- 2018, Business Game St.Gallen, Covestro 1st Prize winner
-- 2018, Business Game St.Gallen, Daimler 1st Prize winner
+- 2014, IVE Business Plan, Magna Cum Laude
+- 2016, BestStudentChallenge 2016, very good
+- 2018, Business Game St.Gallen, Covestro 1st Prize winner out of 50 teams
+- 2018, Business Game St.Gallen, Daimler 1st Prize winner out of 50 teams
 - 2020, Bain FinTech Challenge Winner
-- 2021, Leader of Tomorrow
-- 2021, HSG Entrepreneurial Talent
+- 2021, St.Gallen Symposium, Leader of Tomorrow awardee
+- 2021, HSG Entrepreneurial Talent at Startup@HSG
+- 2021, Toastmasters International, 3rd Prize in Impromptu Speech (Zurich & St.Gallen)
+- 2023, Lucerne Dialogue, 45 European Leaders under 45
 
 ## Contact me
 - [![Linkedin Badge](https://img.shields.io/badge/-terencela-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://linkedin.com/in/terencela)](https://www.linkedin.com/in/terencela)
