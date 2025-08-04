@@ -17,17 +17,14 @@ Find more about me here:
 ## I have used these languages in my past:
 
 <img align="left" alt="Python" width="26px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/768px-Python-logo-notext.svg.png" />
-
 <img align="left" alt="HTML" width="26px" src="https://user-images.githubusercontent.com/31972485/198826531-2bdbd3d4-89ff-463c-a2d8-1ef64943527c.png" />
-
-
 <img align="left" alt="R" width="26px" src="https://user-images.githubusercontent.com/31972485/198826702-5454faae-2c2e-4f56-8075-8680047fde0b.png"/>
-
 <img align="left" alt="R" width="26px" src="https://cdn-icons-png.flaticon.com/512/6132/6132221.png"/>
-
-
+<img align="left" alt="React" width="26px" src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" />
+<img align="left" alt="JavaScript" width="26px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" />
 
 <br clear="all"/>
+
 
 ## Prizes
 
