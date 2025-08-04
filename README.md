@@ -7,9 +7,9 @@
 -  Previously, I received a master in Business Innovation at the University of St.Gallen.
 -  If you need help with implementing growth and business strategies which will win, hit me up!
 
-Currently, all my most active projects are private. 
-My goal is to launch 4 projects from 2025-2026.
-Oh, and vibe coding/engineering really accelerates my product development.
+Currently, all my most active projects are private.
+*My goal is to launch 4 projects from 2025-2026.*
+*Oh, and vibe coding/engineering really accelerates my product development.*
 
 Find more about me here:
 [terencela.com](https://terencela.com)
