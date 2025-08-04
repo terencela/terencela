@@ -50,7 +50,8 @@ Find more about me here:
 - 2021, HSG Entrepreneurial Talent at Startup@HSG
 - 2021, Toastmasters International, 3rd Prize in Impromptu Speech (Zurich & St.Gallen)
 - 2023, Lucerne Dialogue, 45 European Leaders under 45
+- 2023, Nova Talents, Fellow
 
 ## Contact me
 - [![Linkedin Badge](https://img.shields.io/badge/-terencela-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://linkedin.com/in/terencela)](https://www.linkedin.com/in/terencela)
-- terence@perseedu.com
+- terencela93@gmail.com
