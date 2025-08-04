@@ -10,6 +10,7 @@
 Currently, all my most active projects are private.
 
 *My goal is to launch 4 projects from 2025-2026.*
+
 *Oh, and vibe coding/engineering really accelerates my product development.*
 
 Find more about me here:
