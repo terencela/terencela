@@ -37,6 +37,8 @@ Find more about me here:
 - 2021, HackWinterthur, 2nd Prize Winner
 - 2022, HackThurgau, 3rd Prize Winner
 - 2023, START Hack, Prize Winner for the blockchain challenge
+- 2026, Funding The Commons in SF, 1st Prize Winner
+- 2026, GenAI Zurich
 
 
 **Business/Case**
