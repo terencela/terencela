@@ -11,9 +11,6 @@ Currently, all my most active projects are private.
 
 *My goal is to launch 4 projects from 2025-2026.*
 
-*Oh, and agentic engineering really accelerates product development.
-In 2026 alone, I bult 8 projects until April.*
-
 Find more about me here:
 [terencela.com](https://terencela.com)
 
