@@ -2,13 +2,13 @@
 
 ### I turn ambiguous enterprise AI problems into working products.
 
-I'm a **Senior Manager, AI & Conversational Products at Zurich Airport** and the founder of **KI Unlocked**.
+I'm a **Senior Manager, AI & Conversational Products at Zurich Airport** (30M+ passengers/year) and the founder of **KI Unlocked**.
 
 My lane is the gap between the strategy deck and production: finding the use case, shaping the workflow, shipping the first useful loop, and getting people to actually use it.
 
 [![Website](https://img.shields.io/badge/terencela.com-111111?style=flat-square&logo=safari&logoColor=white)](https://terencela.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-terencela-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/terencela)
-[![Email](https://img.shields.io/badge/Email-terencela93%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:terencela93@gmail.com)
+[![Email](https://img.shields.io/badge/Email-future%40terencela.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:future@terencela.com)
 
 ## Selected builds
 
@@ -48,4 +48,4 @@ Typical tools: **TypeScript, React/Next.js, Python, PostgreSQL/Supabase, Chrome 
 
 I'm most interested in AI deployments where the model is only 20% of the problem—and workflow, trust, speed, and adoption determine the other 80%.
 
-[Website](https://terencela.com) · [LinkedIn](https://www.linkedin.com/in/terencela) · [Email](mailto:terencela93@gmail.com)
+[Website](https://terencela.com) · [LinkedIn](https://www.linkedin.com/in/terencela) · [Email](mailto:future@terencela.com)
