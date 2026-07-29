@@ -7,11 +7,11 @@
 -  Previously, I received a master in Business Innovation at the University of St.Gallen.
 -  If you need help with implementing growth and business strategies which will win, hit me up!
 
-Currently, all my most active projects are private.
+Currently, most of my active projects are private. I want to soon play the open source game as well.
 
 *My goal is to launch 4 projects from 2025-2026.*
 
-*Started coding before it was called vibecoding. The last two years I've been building agentic engineering systems (my keyboard still does most of the typing). Portfolio of 10+ digital solutions on [xp.terencela.com](https://xp.terencela.com) since 2024.*
+*Started coding before it was called vibecoding. The last two years I've been building agentic engineering systems (my keyboard still does a lot of the typing). Portfolio of 10+ new digital solutions on [xp.terencela.com](https://xp.terencela.com) since 2024.*
 
 Find more about me here:
 [terencela.com](https://terencela.com)
