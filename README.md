@@ -9,7 +9,7 @@
 
 Currently, most of my active projects are private. I want to soon play the open source game as well.
 
-*My goal is to launch 4 projects from 2025-2026.*
+~~*My goal is to launch 4 projects from 2025-2026.*~~ *Update: goal far surpassed.*
 
 *Started coding before it was called vibecoding. The last two years I've been building agentic engineering systems (my keyboard still does a lot of the typing). Portfolio of 10+ new digital solutions on [xp.terencela.com](https://xp.terencela.com) since 2024.*
 
