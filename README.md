@@ -1,60 +1,51 @@
-# Hi, I'm Terence La from Zurich! <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px"> 
+# Terence La
 
-## Terence La | terencela
+### I turn ambiguous enterprise AI problems into working products.
 
--  I'm a tech founder, won 6 prizes in 11 hackathons and 9+ prizes in business/case competitions. (update: 8 prizes in 17 hackathons, mostly solo)
--  With 10 years of experience in finance (UBS, PwC, PE) and tech (startups), I recently held 2 corporate Head of AI positions.
--  Previously, I received a master in Business Innovation at the University of St.Gallen.
--  If you need help with implementing growth and business strategies which will win, hit me up!
+I'm a **Senior Manager, AI & Conversational Products at Zurich Airport** and the founder of **KI Unlocked**.
 
-Currently, all my most active projects are private.
+My lane is the gap between the strategy deck and production: finding the use case, shaping the workflow, shipping the first useful loop, and getting people to actually use it.
 
-*My goal is to launch 4 projects from 2025-2026.*
+[![Website](https://img.shields.io/badge/terencela.com-111111?style=flat-square&logo=safari&logoColor=white)](https://terencela.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-terencela-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/terencela)
+[![Email](https://img.shields.io/badge/Email-terencela93%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:terencela93@gmail.com)
 
-*Oh, and agentic engineering really accelerates product development.
-In 2026 alone, I bult 8 projects until April.*
+## Selected builds
 
-Find more about me here:
-[terencela.com](https://terencela.com)
+| Project | What it does | Stack | Links |
+|---|---|---|---|
+| **PrivacyLayer** | Protects sensitive data before it reaches an LLM. Detection, tokenization, encrypted vault, and restoration all run locally in the browser. | TypeScript, Next.js, Chrome MV3, BERT NER, Web Crypto | [Code](https://github.com/terencela/privacylayer) · [Demo](https://privacylayer-main.vercel.app) |
+| **2D-to-LLM** | Compiles airport floor plans into a navigable graph and serves route guidance through voice and text. ~59 generated segments produce ~464 searchable routes. | Python, VLMs, graph search, ChromaDB, Whisper | [Code](https://github.com/terencela/2d-to-llm) |
+| **Frontier Agent** | A voice-enabled AI concierge for a 16-floor, 700+ member community, with live events, onboarding, resource discovery, and governance guidance. | Next.js, Claude, ElevenLabs, live data tools | [Code](https://github.com/terencela/frontier-agent) · [Demo](https://frontier-agent.vercel.app) |
+| **Decoded** | A local-first Chrome extension that translates corporate-speak and AI-generated content on LinkedIn and X into plain English. | TypeScript, React, Chrome MV3, Gemini Nano | [Code](https://github.com/terencela/decoded-extension) |
 
-## I have used these languages in my past:
+## What I work on
 
-<img align="left" alt="Python" width="26px"
-     src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" />
-<img align="left" alt="HTML" width="26px" src="https://user-images.githubusercontent.com/31972485/198826531-2bdbd3d4-89ff-463c-a2d8-1ef64943527c.png" />
-<img align="left" alt="R" width="26px" src="https://user-images.githubusercontent.com/31972485/198826702-5454faae-2c2e-4f56-8075-8680047fde0b.png"/>
-<img align="left" alt="R" width="26px" src="https://cdn-icons-png.flaticon.com/512/6132/6132221.png"/>
-<img align="left" alt="React" width="26px" src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" />
-<img align="left" alt="JavaScript" width="26px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" />
+- **Enterprise agents:** copilots and autonomous workflows that connect to real operations
+- **Conversational products:** voice, chat, proactive assistance, and guided UX
+- **Trustworthy AI:** privacy, governance, local-first inference, and human control
+- **Deployment:** discovery, rapid prototyping, pilot design, adoption, and measurable rollout
 
-<br clear="all"/>
+## How I build
 
+1. Find the expensive decision or repeated workflow—not the flashiest demo.
+2. Reduce it to one useful end-to-end loop.
+3. Put a working version in front of real users fast.
+4. Treat UX, incentives, permissions, and adoption as part of the system.
+5. Expand only after the loop earns the right to scale.
 
-## Prizes
+Typical tools: **TypeScript, React/Next.js, Python, PostgreSQL/Supabase, Chrome extensions, Docker, OpenAI, Anthropic, Gemini, voice AI, retrieval, and vision models.**
 
-**Hackathons**
-- 2017, START Hack (MLH), 3rd Prize Overall Winner, out of 89 groups
-- 2021, HackZurich, 3rd Prize Overall Winner, **Europe's largest Hackathon** with 1600 hackers
-- 2021, HackZurich, 1st Prize Winner of the Migros Challenge: bit.ly/ZooMaaniia
-- 2021, HackWinterthur, 2nd Prize Winner
-- 2022, HackThurgau, 3rd Prize Winner
-- 2023, START Hack, Prize Winner for the blockchain challenge
-- 2026, Funding The Commons in SF, 1st Prize Winner
-- 2026, GenAI Zurich
+## A few receipts
 
+- **Forbes 30 Under 30** alumnus
+- **2× TEDx speaker**
+- **9+ prizes and finalist placements across 18 hackathons**, often building solo
+- **St. Gallen Symposium — Leader of Tomorrow**
+- Background spanning startups, finance, enterprise transformation, and AI product delivery
 
-**Business/Case**
-- 2014, IVE Business Plan, Magna Cum Laude
-- 2016, BestStudentChallenge 2016, very good
-- 2018, Business Game St.Gallen, Covestro 1st Prize winner out of 50 teams
-- 2018, Business Game St.Gallen, Daimler 1st Prize winner out of 50 teams
-- 2020, Bain FinTech Challenge Winner
-- 2021, St.Gallen Symposium, Leader of Tomorrow awardee
-- 2021, HSG Entrepreneurial Talent at Startup@HSG
-- 2021, Toastmasters International, 3rd Prize in Impromptu Speech (Zurich & St.Gallen)
-- 2023, Lucerne Dialogue, 45 European Leaders under 45
-- 2023, Nova Talents, Fellow
+## Let's build
 
-## Contact me
-- [![Linkedin Badge](https://img.shields.io/badge/-terencela-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://linkedin.com/in/terencela)](https://www.linkedin.com/in/terencela)
-- terencela93@gmail.com
+I'm most interested in AI deployments where the model is only 20% of the problem—and workflow, trust, speed, and adoption determine the other 80%.
+
+[Website](https://terencela.com) · [LinkedIn](https://www.linkedin.com/in/terencela) · [Email](mailto:terencela93@gmail.com)
