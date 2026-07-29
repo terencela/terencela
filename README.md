@@ -11,6 +11,8 @@ Currently, all my most active projects are private.
 
 *My goal is to launch 4 projects from 2025-2026.*
 
+*Started coding before it was called vibecoding. The last two years I've been building agentic engineering systems (my keyboard still does most of the typing). Portfolio of 10+ digital solutions on [xp.terencela.com](https://xp.terencela.com) since 2024.*
+
 Find more about me here:
 [terencela.com](https://terencela.com)
 
