@@ -46,7 +46,6 @@ extensions, and whatever AI model or tool best fits the problem.
 [Website](https://terencela.com) ·
 [Product portfolio](https://xp.terencela.com) ·
 [LinkedIn](https://www.linkedin.com/in/terencela)
-[![Linkedin Badge](https://img.shields.io/badge/-terencela-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://linkedin.com/in/terencela)](https://www.linkedin.com/in/terencela)
 
 ## Prizes
 
