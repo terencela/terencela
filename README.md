@@ -2,32 +2,51 @@
 
 ## Terence La | terencela
 
--  I'm a tech founder, won 8 prizes in 17 hackathons (mostly solo) and 9+ prizes in business/case competitions.
--  With 10 years of experience in finance (UBS, PwC, PE) and tech (startups), I recently held 3 corporate Head of AI positions.
--  Previously, I received a master in Business Innovation at the University of St.Gallen.
--  If you need help with implementing growth and business strategies which will win, hit me up!
+I'm a founder and AI product person from Zurich.
 
-Currently, most of my active projects are private. I want to soon play the open source game as well.
+At the moment, I lead AI initiatives at Zurich Airport.
+Outside of that, I build things around AI, privacy, communication, and
+products that people might actually use more than once.
 
-~~*My goal is to launch 4 projects from 2025-2026.*~~ *Update: goal far surpassed.*
+Before this, I led AI in two corporate roles and spent a lot of time in
+startups, finance, growth, and product.
 
-*Started coding before it was called vibecoding. The last two years I've been building agentic engineering systems (my keyboard still does a lot of the typing). Portfolio of 10+ new digital solutions on [xp.terencela.com](https://xp.terencela.com) since 2024.*
+## What I'm working on
+I've gone from 1 startup per year (2013-2024) to 10 useful digital products since 2025.
+Here are rough descriptions of what keeps me busy.
 
-Find more about me here:
-[terencela.com](https://terencela.com)
+**B2C**
+A suite of communication tools that makes people become better communicators, e.g.
+- **Vibe Translator**  
+  Transforms every time you ask "what does she mean?" into communication fixed.
+- **Rehearse**  
+  Prepares you for tough conversations.
+- **Asia Bridge**
+  Teaches you how to understand different cultures in Asia.
+and more...
 
-## I have used these languages in my past:
+**B2B**
+A suite of tools to make companies more safe and strong:
+- new monetization layer for companies
+- privacy tool
+- an AI OS for engineering
 
-<img align="left" alt="Python" width="26px"
-     src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" />
-<img align="left" alt="HTML" width="26px" src="https://user-images.githubusercontent.com/31972485/198826531-2bdbd3d4-89ff-463c-a2d8-1ef64943527c.png" />
-<img align="left" alt="R" width="26px" src="https://user-images.githubusercontent.com/31972485/198826702-5454faae-2c2e-4f56-8075-8680047fde0b.png"/>
-<img align="left" alt="R" width="26px" src="https://cdn-icons-png.flaticon.com/512/6132/6132221.png"/>
-<img align="left" alt="React" width="26px" src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" />
-<img align="left" alt="JavaScript" width="26px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" />
+Most current products are private while I test and improve them. I’m planning
+to open-source more reusable parts, reference implementations, and build notes
+over time.
 
-<br clear="all"/>
 
+## Background
+
+Forbes 30 Under 30 · 2× TEDx speaker · 8 prizes in 17 hackathons, 11 other innovation awards · HSG Business Innovation
+
+I build mainly with TypeScript, React/Next.js, Python, Supabase, Chrome
+extensions, and whatever AI model or tool best fits the problem.
+
+[Website](https://terencela.com) ·
+[Product portfolio](https://xp.terencela.com) ·
+[LinkedIn](https://www.linkedin.com/in/terencela)
+[![Linkedin Badge](https://img.shields.io/badge/-terencela-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://linkedin.com/in/terencela)](https://www.linkedin.com/in/terencela)
 
 ## Prizes
 
@@ -54,6 +73,4 @@ Find more about me here:
 - 2023, Lucerne Dialogue, 45 European Leaders under 45
 - 2023, Nova Talents, Fellow
 
-## Contact me
-- [![Linkedin Badge](https://img.shields.io/badge/-terencela-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://linkedin.com/in/terencela)](https://www.linkedin.com/in/terencela)
-- terencela93@gmail.com
+terencela93@gmail.com
