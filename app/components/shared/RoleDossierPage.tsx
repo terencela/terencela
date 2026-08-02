@@ -296,9 +296,19 @@ export function RoleDossierPage({
       ({
         "--accent-color": accentColor,
         "--hero-accent": accentColor,
+        backgroundColor: "#fafaf8",
       }) as CSSProperties,
     [accentColor]
   );
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-dossier", "true");
+    document.body.setAttribute("data-dossier", "true");
+    return () => {
+      document.documentElement.removeAttribute("data-dossier");
+      document.body.removeAttribute("data-dossier");
+    };
+  }, []);
 
   const ctaItems = [
     {

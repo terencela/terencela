@@ -13,7 +13,11 @@ export function DossierBackground({ accentColor }: DossierBackgroundProps) {
 
   return (
     <>
-      <div className="dossier-bg-base" aria-hidden="true" />
+      <div
+        className="dossier-bg-base"
+        style={{ backgroundColor: "#fafaf8" }}
+        aria-hidden="true"
+      />
       <div className="dossier-grain" aria-hidden="true" />
       <div className="dossier-dot-grid" aria-hidden="true" />
       <motion.div

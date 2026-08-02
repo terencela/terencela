@@ -29,17 +29,17 @@ export function SubpageHeader({
   const backgroundOpacity = useTransform(
     scrollY,
     DOSSIER_HEADER_SCROLL_RANGE,
-    reduceMotion ? [0.82, 0.82] : [0, 0.82]
+    reduceMotion ? [0.88, 0.92] : [0.82, 0.92]
   );
   const blurAmount = useTransform(
     scrollY,
     DOSSIER_HEADER_SCROLL_RANGE,
-    reduceMotion ? [16, 16] : [0, 16]
+    reduceMotion ? [16, 16] : [12, 16]
   );
   const borderOpacity = useTransform(
     scrollY,
     DOSSIER_HEADER_SCROLL_RANGE,
-    reduceMotion ? [1, 1] : [0, 1]
+    reduceMotion ? [1, 1] : [0.6, 1]
   );
 
   const backgroundColor = useTransform(

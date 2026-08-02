@@ -427,13 +427,17 @@ footer h2 { margin: 0; font-size: clamp(45px, 5vw, 80px); line-height: 1; letter
 }
 
 /* External dossier page utilities (light editorial theme) */
-html:has(.dossier-page) {
-  background: #fafaf8;
+html:has(.dossier-page),
+html[data-dossier="true"] {
+  background: #fafaf8 !important;
+  --ink: #fafaf8;
 }
 
-html:has(.dossier-page) body {
-  background: #fafaf8;
-  color: #4a4a4a;
+html:has(.dossier-page) body,
+html[data-dossier="true"] body {
+  background: #fafaf8 !important;
+  color: #4a4a4a !important;
+  --ink: #fafaf8;
 }
 
 .dossier-page {
@@ -448,8 +452,9 @@ html:has(.dossier-page) body {
   --dossier-dark: #07080b;
   --dossier-dark-muted: #a9aab2;
   --dossier-ease: cubic-bezier(0.23, 1, 0.32, 1);
-  background: var(--dossier-bg);
-  color: var(--dossier-body);
+  --ink: #fafaf8;
+  background: #fafaf8 !important;
+  color: #1a1a1a !important;
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   font-size: 1rem;
   line-height: 1.625;
@@ -461,7 +466,7 @@ html:has(.dossier-page) body {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: var(--dossier-bg);
+  background: #fafaf8 !important;
 }
 
 .dossier-grain {
