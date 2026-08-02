@@ -9,6 +9,9 @@ interface InterviewTeaserModalProps {
   companyName: string;
   roleTitle: string;
   blueprintItems: string[];
+  pitch: string;
+  pitchSub: string;
+  blueprintLabel?: string;
   accentColor?: string;
 }
 
@@ -26,6 +29,9 @@ export function InterviewTeaserModal({
   companyName,
   roleTitle,
   blueprintItems,
+  pitch,
+  pitchSub,
+  blueprintLabel = "First 90 days",
   accentColor = "#10a37f",
 }: InterviewTeaserModalProps) {
   if (!isOpen) return null;
@@ -52,21 +58,18 @@ export function InterviewTeaserModal({
           style={{ color: accentColor }}
         >
           <ShieldCheck className="w-4 h-4" />
-          <span>Gated Candidate Brief</span>
+          <span>Why me for {companyName}</span>
         </div>
 
         <h3 className="mb-2 text-2xl font-semibold tracking-tight text-white md:text-3xl">
-          The First Step: {companyName} {roleTitle}
+          {roleTitle}
         </h3>
 
-        <p className="mb-6 text-sm leading-relaxed text-zinc-400">
-          This is the first execution slice for {companyName} in Zurich. If this direction fits, I can walk you through the full architecture and rollout plan.
-        </p>
+        <p className="mb-3 text-sm leading-relaxed text-zinc-300">{pitch}</p>
+        <p className="mb-6 text-sm leading-relaxed text-zinc-400">{pitchSub}</p>
 
         <div className="space-y-3 mb-8">
-          <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">
-            Initial 60-day focus
-          </p>
+          <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">{blueprintLabel}</p>
           {blueprintItems.map((item) => (
             <div key={item} className="flex items-start gap-3 rounded-xl border border-zinc-800 bg-zinc-900/60 p-3">
               <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" style={{ color: accentColor }} />
@@ -81,7 +84,7 @@ export function InterviewTeaserModal({
         >
           <div>
             <div className="text-sm font-bold text-white">Ready for the deep dive?</div>
-            <div className="text-xs text-zinc-400">Direct access to Terence La (Zurich, CH)</div>
+            <div className="text-xs text-zinc-400">Terence La · Zurich, Switzerland</div>
           </div>
 
           <div className="flex items-center gap-2 shrink-0">
@@ -99,7 +102,7 @@ export function InterviewTeaserModal({
               <span>Connect on LinkedIn</span>
             </a>
             <a
-              href="mailto:terencela93@gmail.com?subject=Interview%20Invitation%20-%20Terence%20La"
+              href={`mailto:terencela93@gmail.com?subject=Interview%20-%20Terence%20La%20-%20${encodeURIComponent(companyName)}`}
               className="px-3 py-2.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white font-medium text-xs transition-all border border-zinc-700 flex items-center gap-1.5"
             >
               <Mail className="w-4 h-4 text-zinc-400" />

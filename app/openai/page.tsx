@@ -8,62 +8,64 @@ import { RoleDossierPage } from "@/app/components/shared/RoleDossierPage";
 export default function OpenAIPage() {
   return (
     <RoleDossierPage
+      companyKey="openai"
       companyName="OpenAI"
       roleTitle="Forward Deployed Engineer (Zurich)"
       accentColor="#10a37f"
       heroEyebrow="Zurich · Forward Deployed Engineer"
       heroTitle={
         <>
-          I deploy frontier models in Swiss enterprise production with <em>speed and discipline.</em>
+          Your Zurich customers do not fail on model quality. They fail on the path from{" "}
+          <em>pilot to production.</em>
         </>
       }
-      heroSummary="I lead AI execution at Zurich Airport for 30M+ passengers each year. I build under real privacy constraints, convert field feedback into model improvements, and ship production systems that hold up when stakes are high."
-      primaryCtaLabel="Open 60-day execution blueprint"
+      heroSummary="I am Head of AI at Zurich Airport, where 30 million passengers a year expose every gap in eval coverage, latency, and data handling. I sit with CTOs and security teams, ship Python and TypeScript integrations, and turn field failures into measurable model improvements. That is the job your FDE team does for UBS, Swiss Re, and every DACH account stuck between a great demo and a signed production contract."
+      primaryCtaLabel="See my 90-day plan for Zurich accounts"
       blueprintItems={[
-        "Assess tier-1 Swiss deployment pipelines for latency, cost, and nDSG readiness.",
-        "Ship production prototypes in Python and TypeScript with structured output guarantees.",
-        "Run automated eval loops to continuously improve model accuracy from field signals.",
+        "Shadow two active DACH deployments and document where pilots stall: eval gaps, latency under load, or nDSG data path objections.",
+        "Build a reusable eval template for one priority vertical (banking or critical infrastructure) that your Zurich team can deploy on the next account.",
+        "Co-own a first production go-live with customer engineering, then write the playbook so the pattern scales without me in every meeting.",
       ]}
       metrics={[
         {
-          label: "Passenger scale",
+          label: "Production AI tools shipped",
+          value: "12+",
+          note: "Internal tools in Python and TypeScript.",
+        },
+        {
+          label: "Passenger scale in scope",
           value: "30M+",
-          note: "High concurrency, multilingual demand.",
+          note: "Same operational pressure as tier-1 accounts.",
         },
         {
-          label: "LLM history",
-          value: "2020",
-          note: "GPT workflows since early production.",
-        },
-        {
-          label: "First 60 days",
-          value: "4 tracks",
-          note: "Delivery, evals, guardrails, enablement.",
+          label: "Languages for workshops",
+          value: "5",
+          note: "Swiss German, DE, EN, Cantonese, FR.",
         },
       ]}
-      fitHeading="Why I match OpenAI Zurich"
+      fitHeading="Mapped to what OpenAI FDE hires for"
       fitPoints={[
         {
           icon: Cpu,
-          title: "Technical execution",
+          title: "Customer-embedded engineering",
           description:
-            "Production-grade engineering across full-stack systems, eval infrastructure, and model orchestration.",
+            "FDE means living inside the customer's architecture. I do this daily at Zurich Airport: debugging integrations, tuning prompts under load, and shipping fixes while ops teams are watching.",
         },
         {
           icon: ShieldCheck,
-          title: "Regulated deployment",
+          title: "Eval-driven reliability",
           description:
-            "Proven nDSG-conscious architecture design with strict data handling and operational accountability.",
+            "OpenAI's enterprise motion depends on measurable quality gates before rollout. I built post-interaction eval loops that compare model output against operational ground truth, not synthetic benchmarks.",
         },
         {
           icon: Zap,
-          title: "Adoption velocity",
+          title: "Regulated account credibility",
           description:
-            "Founder-level speed combined with enterprise clarity to move from pilot to active usage quickly.",
+            "Swiss banks and infrastructure operators share the same blockers I solve every week: nDSG data residency, audit trails, and legal sign-off on token paths. I speak their language because I am one of them.",
         },
       ]}
-      demoTitle="Production model eval workbench"
-      demoSummary="Evaluate latency, cost, compliance, and output behavior in a realistic Swiss enterprise setup."
+      demoTitle="Eval workbench: de-risking a first production deployment"
+      demoSummary="This is how I would structure eval gates, latency budgets, and compliance checks for a Swiss bank's first OpenAI workload. Adjust the parameters to see where a pilot passes demo stage but fails production review."
       interactiveDemo={<ProductionEvalWorkbench />}
     />
   );

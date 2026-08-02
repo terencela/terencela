@@ -13,7 +13,11 @@ import { EnterpriseAdoptionToolkit } from "@/app/components/shared/EnterpriseAdo
 import { SideProjectsGrid } from "@/app/components/shared/SideProjectsGrid";
 import { LinkedInCTA } from "@/app/components/shared/LinkedInCTA";
 import { InterviewTeaserModal } from "@/app/components/shared/InterviewTeaserModal";
-import { isExternalDossier } from "@/app/lib/dossier-config";
+import {
+  companyDossierSupport,
+  isExternalDossier,
+  type DossierCompany,
+} from "@/app/lib/dossier-config";
 
 type ExecutionMetric = {
   label: string;
@@ -28,6 +32,7 @@ type FitPoint = {
 };
 
 type RoleDossierPageProps = {
+  companyKey: DossierCompany;
   companyName: string;
   roleTitle: string;
   accentColor: string;
@@ -64,6 +69,7 @@ const itemVariants = {
 };
 
 export function RoleDossierPage({
+  companyKey,
   companyName,
   roleTitle,
   accentColor,
@@ -83,6 +89,7 @@ export function RoleDossierPage({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const reduceMotion = useReducedMotion();
   const external = isExternalDossier();
+  const support = companyDossierSupport[companyKey];
 
   const accentStyles = useMemo(
     () =>
@@ -208,7 +215,11 @@ export function RoleDossierPage({
         </div>
       </section>
 
-      <CareerProofBanner accentColor={accentColor} />
+      <CareerProofBanner
+        accentColor={accentColor}
+        intro={support.careerProofIntro}
+        items={support.careerProofItems}
+      />
 
       <section className="dossier-section relative z-[2]">
         <div className="mx-auto max-w-[1200px] px-4 md:px-8">
@@ -291,8 +302,10 @@ export function RoleDossierPage({
 
           <div className="mt-16">
             <EnterpriseAdoptionToolkit
-              companyName={companyName}
-              roleTitle={roleTitle}
+              title={support.toolkitTitle}
+              subtitle={support.toolkitSubtitle}
+              adoptionPillars={support.adoptionPillars}
+              useCases={support.useCases}
               accentColor={accentColor}
             />
           </div>
@@ -300,7 +313,12 @@ export function RoleDossierPage({
       </section>
 
       <SideProjectsGrid accentColor={accentColor} />
-      <LinkedInCTA companyName={companyName} roleTitle={roleTitle} accentColor={accentColor} />
+      <LinkedInCTA
+        companyName={companyName}
+        roleTitle={roleTitle}
+        body={support.linkedInCtaBody}
+        accentColor={accentColor}
+      />
 
       <InterviewTeaserModal
         isOpen={isModalOpen}
@@ -308,6 +326,9 @@ export function RoleDossierPage({
         companyName={companyName}
         roleTitle={roleTitle}
         blueprintItems={blueprintItems}
+        pitch={support.interviewPitch}
+        pitchSub={support.interviewPitchSub}
+        blueprintLabel={support.interviewBlueprintLabel}
         accentColor={accentColor}
       />
     </main>

@@ -8,6 +8,7 @@ import { motion, useReducedMotion } from "framer-motion";
 interface LinkedInCTAProps {
   companyName: string;
   roleTitle: string;
+  body?: string;
   accentColor?: string;
 }
 
@@ -22,6 +23,7 @@ function LinkedInIcon(props: React.SVGProps<SVGSVGElement>) {
 export function LinkedInCTA({
   companyName,
   roleTitle,
+  body,
   accentColor = "#10a37f",
 }: LinkedInCTAProps) {
   const reduceMotion = useReducedMotion();
@@ -58,8 +60,8 @@ export function LinkedInCTA({
             </h2>
 
             <p className="mt-5 max-w-xl text-base leading-relaxed text-[#a9aab2]">
-              I am actively speaking with teams for the {roleTitle} role. If you want a technical
-              walkthrough and a concrete 60-day plan, I would love to connect.
+              {body ??
+                `I am actively speaking with teams for the ${roleTitle} role. If you want a technical walkthrough and a concrete plan, I would love to connect.`}
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">

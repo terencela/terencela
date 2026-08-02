@@ -8,62 +8,64 @@ import { RoleDossierPage } from "@/app/components/shared/RoleDossierPage";
 export default function AnthropicPage() {
   return (
     <RoleDossierPage
+      companyKey="anthropic"
       companyName="Anthropic"
       roleTitle="Applied AI Architect, Industries (Zurich)"
       accentColor="#d97706"
-      heroEyebrow="Zurich · Applied AI Architect"
+      heroEyebrow="Zurich · Applied AI Architect, Industries"
       heroTitle={
         <>
-          I design Claude deployments teams can <em>trust, adopt,</em> and scale.
+          Swiss enterprises do not need another Claude demo. They need an architecture their{" "}
+          <em>CISO will sign.</em>
         </>
       }
-      heroSummary="I bridge C-suite context, technical architecture, and compliance reality. My work focuses on moving Swiss enterprises from exploratory interest to reliable, production-grade AI operations."
-      primaryCtaLabel="Open 60-day Claude blueprint"
+      heroSummary="I design Claude deployments that legal, IT, and the board can defend. At Zurich Airport I align C-suite priorities with technical architecture and nDSG compliance reality every week. For Anthropic Industries, that means reference architectures for banking and critical infrastructure, trust evals the compliance team understands, and workshops that resolve blockers in one room instead of six months of email."
+      primaryCtaLabel="See my 90-day Industries plan"
       blueprintItems={[
-        "Run deep technical discovery with Swiss IT, legal, and executive stakeholders.",
-        "Design nDSG and FINMA-aligned Claude integration patterns for real workloads.",
-        "Build evaluation suites that prove safety and quality improvements before rollout.",
+        "Map Anthropic's DACH priority accounts against compliance blockers I have solved in aviation and financial services contexts.",
+        "Publish two reference architectures (Swiss private banking and critical infrastructure) with eval criteria, data boundaries, and human oversight tiers.",
+        "Lead co-design sessions with customer architects and document reusable patterns for the Zurich Industries team.",
       ]}
       metrics={[
         {
-          label: "Verticals",
+          label: "Regulated verticals",
           value: "3",
-          note: "Banking, aviation, public sector.",
+          note: "Aviation, finance, public sector.",
         },
         {
-          label: "Languages",
-          value: "4+",
-          note: "Swiss German, DE, EN, Cantonese.",
+          label: "Stakeholder alignment",
+          value: "Board + legal",
+          note: "C-suite, compliance, engineering together.",
         },
         {
-          label: "Posture",
-          value: "E2E",
-          note: "Pre-sales through production.",
+          label: "Privacy frameworks",
+          value: "nDSG + FINMA",
+          note: "Designed into architecture, not bolted on.",
         },
       ]}
-      fitHeading="Why I match Anthropic Industries"
+      fitHeading="Mapped to what Industries hires for"
       fitPoints={[
         {
-          icon: Globe,
-          title: "DACH communication fluency",
-          description:
-            "Native communication in Swiss and German enterprise contexts with strong executive alignment.",
-        },
-        {
           icon: Lock,
-          title: "Compliance-first architecture",
+          title: "Reference architecture for regulated workloads",
           description:
-            "Direct experience with Swiss privacy expectations and high-assurance implementation patterns.",
+            "Industries customers need a documented data flow, model boundary, and oversight model before they expand token volume. I build these artifacts so security teams audit architecture, not slide decks.",
         },
         {
           icon: Building2,
-          title: "Cross-layer credibility",
+          title: "Constitutional AI in practice",
           description:
-            "Trusted with boards, legal teams, and engineers when decisions involve risk, cost, and velocity.",
+            "Trust is not a marketing word. I translate safety principles into eval suites covering hallucination rate, PII leakage, and refusal behavior on regulated content, with thresholds compliance teams can approve.",
+        },
+        {
+          icon: Globe,
+          title: "DACH workshop fluency",
+          description:
+            "Swiss German, High German, English, Cantonese, and working French. I run the cross-functional sessions where legal, IT, and business owners decide whether Claude graduates from lab to production.",
         },
       ]}
-      demoTitle="Swiss enterprise Claude sandbox"
-      demoSummary="Model vertical use cases, compliance constraints, language behavior, and customer value in one interactive view."
+      demoTitle="Reference architecture sandbox: Swiss bank first Claude workload"
+      demoSummary="Explore how I would map Claude capabilities to nDSG and FINMA constraints for a private banking use case. Toggle compliance requirements and language settings to see how architecture decisions change before a POC expands."
       interactiveDemo={<ClaudeEnterpriseSandbox />}
     />
   );

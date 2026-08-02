@@ -2,40 +2,19 @@
 
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import type { CareerProofItem } from "@/app/lib/dossier-config";
 
 type CareerProofBannerProps = {
   accentColor?: string;
+  intro: string;
+  items: CareerProofItem[];
 };
 
-const proofs = [
-  {
-    stat: "30M+",
-    label: "Passengers served",
-    sub: "AI Lead at Zurich Airport",
-  },
-  {
-    stat: "Since 2020",
-    label: "Building with LLMs",
-    sub: "From early GPT production cycles",
-  },
-  {
-    stat: "19+",
-    label: "Awards",
-    sub: "Hackathons, venture, product showcases",
-  },
-  {
-    stat: "4 languages",
-    label: "Swiss + global reach",
-    sub: "Swiss German, High German, English, Cantonese",
-  },
-  {
-    stat: "Forbes 30u30",
-    label: "Founder track record",
-    sub: "4 ventures built, multiple exits and pivots",
-  },
-];
-
-export function CareerProofBanner({ accentColor = "#10a37f" }: CareerProofBannerProps) {
+export function CareerProofBanner({
+  accentColor = "#10a37f",
+  intro,
+  items,
+}: CareerProofBannerProps) {
   const reduceMotion = useReducedMotion();
 
   return (
@@ -47,10 +26,7 @@ export function CareerProofBanner({ accentColor = "#10a37f" }: CareerProofBanner
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
         >
-          <p className="mb-6 max-w-xl text-[15px] leading-relaxed text-[#a9aab2]">
-            I am Terence. I have spent the last years shipping AI where failure is visible: airports,
-            enterprise teams, and regulated Swiss environments.
-          </p>
+          <p className="mb-6 max-w-xl text-[15px] leading-relaxed text-[#a9aab2]">{intro}</p>
         </motion.div>
       </div>
 
@@ -61,7 +37,7 @@ export function CareerProofBanner({ accentColor = "#10a37f" }: CareerProofBanner
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.08 }}
       >
-        {proofs.map((item, index) => (
+        {items.map((item, index) => (
           <motion.div
             key={item.label}
             className="dossier-proof-item"
@@ -72,7 +48,7 @@ export function CareerProofBanner({ accentColor = "#10a37f" }: CareerProofBanner
           >
             <b style={{ color: index === 0 ? accentColor : "#f7f6f2" }}>{item.stat}</b>
             <span>
-              <strong className="block text-[#f7f6f2] font-medium">{item.label}</strong>
+              <strong className="block font-medium text-[#f7f6f2]">{item.label}</strong>
               {item.sub}
             </span>
           </motion.div>
