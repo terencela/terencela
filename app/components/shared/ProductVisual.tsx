@@ -5,32 +5,34 @@ import React from "react";
 export function ProductVisual({ type }: { type: string }) {
   if (type === "messages") {
     return (
-      <div className="phone-pair" aria-hidden="true">
-        <div className="mini-phone phone-back">
-          <span className="phone-kicker">VIBE PROFILE</span>
-          <b>How they communicate</b>
-          <div className="score-row">
-            <span>Directness</span>
-            <i style={{ width: "78%" }} />
+      <div className="project-visual visual-messages" aria-hidden="true">
+        <div className="phone-pair">
+          <div className="mini-phone phone-back">
+            <span className="phone-kicker">VIBE PROFILE</span>
+            <b>How they communicate</b>
+            <div className="score-row">
+              <span>Directness</span>
+              <i style={{ width: "78%" }} />
+            </div>
+            <div className="score-row">
+              <span>Warmth</span>
+              <i style={{ width: "62%" }} />
+            </div>
+            <div className="score-row">
+              <span>Context</span>
+              <i style={{ width: "88%" }} />
+            </div>
           </div>
-          <div className="score-row">
-            <span>Warmth</span>
-            <i style={{ width: "62%" }} />
+          <div className="mini-phone phone-front">
+            <span className="phone-kicker">DECODER</span>
+            <div className="chat received">&ldquo;Sure, we can do that.&rdquo;</div>
+            <div className="decode-card">
+              <small>What it likely means</small>
+              <b>Agreement: with hesitation.</b>
+              <p>Ask what would make the plan feel safer.</p>
+            </div>
+            <button type="button">Draft a response</button>
           </div>
-          <div className="score-row">
-            <span>Context</span>
-            <i style={{ width: "88%" }} />
-          </div>
-        </div>
-        <div className="mini-phone phone-front">
-          <span className="phone-kicker">DECODER</span>
-          <div className="chat received">&ldquo;Sure, we can do that.&rdquo;</div>
-          <div className="decode-card">
-            <small>What it likely means</small>
-            <b>Agreement: with hesitation.</b>
-            <p>Ask what would make the plan feel safer.</p>
-          </div>
-          <button type="button">Draft a response</button>
         </div>
       </div>
     );

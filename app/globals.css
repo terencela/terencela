@@ -1036,6 +1036,124 @@ html[data-dossier="true"] body {
   background:
     radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 62%),
     #f5f5f2;
+  color: var(--dossier-ink);
+}
+
+/* Light dossier: fix dark-theme ProductVisual mockups (inherit was black-on-black) */
+.dossier-page .project-visual .visual-title {
+  color: var(--dossier-ink);
+}
+
+.dossier-page .project-visual .visual-copy {
+  color: var(--dossier-muted);
+}
+
+.dossier-page .project-visual .ui-top {
+  color: var(--dossier-muted);
+}
+
+.dossier-page .project-visual .node-map span {
+  color: var(--dossier-body);
+}
+
+.dossier-page .project-visual .node-map b {
+  background: var(--dossier-ink);
+  color: #f4f2ec;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.dossier-page .project-visual .ui-answer {
+  background: var(--dossier-ink);
+  border-color: color-mix(in srgb, var(--dossier-ink) 80%, var(--accent));
+  color: #e8e6e0;
+}
+
+.dossier-page .project-visual .route-line {
+  color: var(--dossier-ink);
+}
+
+.dossier-page .project-visual .route-line i:nth-of-type(2) {
+  background: linear-gradient(90deg, var(--accent), var(--dossier-line-strong));
+}
+
+.dossier-page .project-visual .privacy-list span {
+  border-top-color: var(--dossier-line-strong);
+  color: var(--dossier-body);
+}
+
+.dossier-page .project-visual .feedback-pills span {
+  border-color: var(--dossier-line-strong);
+  color: var(--dossier-ink);
+  background: #fff;
+}
+
+.dossier-page .project-visual .avatar-ring span {
+  background: color-mix(in srgb, var(--accent) 14%, #fff);
+  color: var(--dossier-ink);
+}
+
+.dossier-page .project-visual .funnel span {
+  background: color-mix(in srgb, var(--accent) 10%, #fff);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--dossier-line-strong));
+  color: var(--dossier-ink);
+}
+
+.dossier-page .project-visual .culture-chat {
+  background: var(--dossier-ink);
+  color: #ececf0;
+}
+
+.dossier-page .project-visual .culture-meaning {
+  background: color-mix(in srgb, var(--accent) 10%, #fff);
+}
+
+.dossier-page .project-visual .culture-meaning b {
+  color: var(--dossier-ink);
+}
+
+.dossier-page .project-visual .book-lines {
+  background: #fff;
+  border-color: var(--dossier-line-strong);
+  box-shadow: 8px 8px 0 color-mix(in srgb, var(--accent) 22%, #e0dcd3);
+}
+
+.dossier-page .project-visual .book-lines i {
+  background: var(--dossier-line-strong);
+}
+
+.dossier-page .project-visual .twin-orbits i {
+  background: #fff;
+  color: var(--dossier-ink);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Phone mockups stay dark — reset inherited dossier ink */
+.dossier-page .project-visual .mini-phone {
+  color: #ececf0;
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.dossier-page .project-visual .mini-phone > b {
+  color: #fff;
+}
+
+.dossier-page .project-visual .mini-phone .chat {
+  color: #e4e5ea;
+}
+
+.dossier-page .project-visual .mini-phone .decode-card b {
+  color: #fff;
+}
+
+.dossier-project-card .project-visual.visual-messages {
+  padding: 24px 12px;
+  overflow: hidden;
+}
+
+.dossier-project-card .project-visual.visual-messages .phone-pair {
+  margin: 0 auto;
+  transform: scale(0.82);
+  transform-origin: center center;
 }
 
 .dossier-loom-panel {
