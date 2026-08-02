@@ -427,6 +427,15 @@ footer h2 { margin: 0; font-size: clamp(45px, 5vw, 80px); line-height: 1; letter
 }
 
 /* External dossier page utilities (light editorial theme) */
+html:has(.dossier-page) {
+  background: #fafaf8;
+}
+
+html:has(.dossier-page) body {
+  background: #fafaf8;
+  color: #4a4a4a;
+}
+
 .dossier-page {
   --dossier-bg: #fafaf8;
   --dossier-ink: #1a1a1a;
@@ -444,14 +453,23 @@ footer h2 { margin: 0; font-size: clamp(45px, 5vw, 80px); line-height: 1; letter
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   font-size: 1rem;
   line-height: 1.625;
+  isolation: isolate;
+}
+
+.dossier-bg-base {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--dossier-bg);
 }
 
 .dossier-grain {
   position: fixed;
   inset: 0;
-  z-index: 50;
+  z-index: 1;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.025;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 180px 180px;
@@ -462,8 +480,8 @@ footer h2 { margin: 0; font-size: clamp(45px, 5vw, 80px); line-height: 1; letter
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.45;
-  background-image: radial-gradient(rgba(16, 17, 20, 0.06) 1px, transparent 1px);
+  opacity: 0.35;
+  background-image: radial-gradient(rgba(26, 26, 26, 0.07) 1px, transparent 1px);
   background-size: 28px 28px;
   mask-image: radial-gradient(ellipse 85% 55% at 50% 0%, black 15%, transparent 72%);
 }
@@ -475,7 +493,8 @@ footer h2 { margin: 0; font-size: clamp(45px, 5vw, 80px); line-height: 1; letter
   left: 38%;
   top: -300px;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
+  opacity: 0.55;
 }
 
 .dossier-accent-orb-secondary {
@@ -740,7 +759,7 @@ footer h2 { margin: 0; font-size: clamp(45px, 5vw, 80px); line-height: 1; letter
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 58%, rgba(16, 17, 20, 0.72) 100%);
+  background: linear-gradient(180deg, transparent 62%, rgba(250, 250, 248, 0.92) 100%);
   z-index: 1;
   pointer-events: none;
 }
@@ -948,7 +967,9 @@ footer h2 { margin: 0; font-size: clamp(45px, 5vw, 80px); line-height: 1; letter
 .dossier-project-card .project-visual {
   margin: 0;
   border-right: 1px solid var(--dossier-line-strong);
-  background: #0a0b0f;
+  background:
+    radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 62%),
+    #f5f5f2;
 }
 
 .dossier-loom-panel {
@@ -980,7 +1001,7 @@ footer h2 { margin: 0; font-size: clamp(45px, 5vw, 80px); line-height: 1; letter
 
 .dossier-featured-visual {
   min-height: 420px;
-  background: #0a0b0f;
+  background: #f5f5f2;
   border-left: 1px solid var(--dossier-line-strong);
   position: relative;
   overflow: hidden;

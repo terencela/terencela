@@ -52,7 +52,7 @@ export function LoomVideoFrame({
       transition={{ duration: 0.5, ease: EASE_OUT }}
     >
       <div className="grid grid-cols-1 lg:grid-cols-12">
-        <div className="relative min-h-[300px] border-b border-[var(--dossier-line-strong)] bg-[#0a0b0f] lg:col-span-7 lg:min-h-[400px] lg:border-b-0 lg:border-r">
+        <div className="relative min-h-[300px] border-b border-[var(--dossier-line-strong)] bg-[#f5f5f2] lg:col-span-7 lg:min-h-[400px] lg:border-b-0 lg:border-r">
           {loomUrl && isPlaying ? (
             <iframe
               src={loomUrl}
@@ -67,17 +67,17 @@ export function LoomVideoFrame({
                 alt="Terence La"
                 fill
                 sizes="(max-width: 1024px) 100vw, 60vw"
-                className="object-cover object-top opacity-50"
+                className="object-cover object-top opacity-80"
               />
               <div
                 className="absolute inset-0"
                 style={{
-                  background: `linear-gradient(165deg, rgba(10,11,15,0.1), rgba(10,11,15,0.88) 70%), radial-gradient(circle at 20% 15%, ${accentColor}44, transparent 50%)`,
+                  background: `linear-gradient(165deg, rgba(250,250,248,0.15), rgba(250,250,248,0.92) 72%), radial-gradient(circle at 20% 15%, ${accentColor}22, transparent 50%)`,
                 }}
               />
 
               <div className="relative z-10 flex h-full flex-col justify-between p-6 md:p-8">
-                <div className="flex items-center gap-3 text-xs text-[#8f9098]">
+                <div className="flex items-center gap-3 text-xs text-[var(--dossier-muted)]">
                   <span className="inline-flex items-center gap-1.5">
                     <Clock3 className="h-3.5 w-3.5" style={{ color: accentColor }} />
                     90 seconds
@@ -85,10 +85,10 @@ export function LoomVideoFrame({
                 </div>
 
                 <div className="py-6">
-                  <h4 className="max-w-lg text-xl font-semibold tracking-tight text-[#f7f6f2] md:text-2xl">
+                  <h4 className="max-w-lg text-xl font-semibold tracking-tight text-[var(--dossier-ink)] md:text-2xl">
                     {videoTitle}
                   </h4>
-                  <p className="mt-2 text-sm text-[#a9aab2]">
+                  <p className="mt-2 text-sm text-[var(--dossier-body)]">
                     A direct pitch for the {roleTitle} role in Zurich.
                   </p>
                 </div>
@@ -99,7 +99,7 @@ export function LoomVideoFrame({
                   className="dossier-pressable inline-flex h-14 w-14 items-center justify-center rounded-full md:h-16 md:w-16"
                   style={{
                     backgroundColor: accentColor,
-                    color: "#101114",
+                    color: "#1a1a1a",
                     boxShadow: `0 14px 48px ${accentColor}44`,
                   }}
                   aria-label="Play video pitch"

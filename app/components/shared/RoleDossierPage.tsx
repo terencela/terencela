@@ -221,8 +221,8 @@ export function RoleDossierPage({
                   priority
                 />
                 <div className="absolute inset-x-0 bottom-0 z-[2] p-5">
-                  <p className="text-sm font-medium text-[#f7f6f2]">Terence La</p>
-                  <p className="text-xs text-[#d8d4cb]">Senior Manager AI · Zurich Airport</p>
+                  <p className="text-sm font-medium text-[var(--dossier-ink)]">Terence La</p>
+                  <p className="text-xs text-[var(--dossier-muted)]">Senior Manager AI · Zurich Airport</p>
                 </div>
               </motion.div>
 

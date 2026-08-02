@@ -12,13 +12,14 @@ export function DossierBackground({ accentColor }: DossierBackgroundProps) {
 
   return (
     <>
+      <div className="dossier-bg-base" aria-hidden="true" />
       <div className="dossier-grain" aria-hidden="true" />
       <div className="dossier-dot-grid" aria-hidden="true" />
       <motion.div
         className="dossier-accent-orb"
         aria-hidden="true"
         style={{
-          background: `radial-gradient(circle, ${accentColor}22 0%, transparent 68%)`,
+          background: `radial-gradient(circle, ${accentColor}18 0%, transparent 68%)`,
         }}
         initial={reduceMotion ? false : { opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -28,7 +29,7 @@ export function DossierBackground({ accentColor }: DossierBackgroundProps) {
         className="dossier-accent-orb dossier-accent-orb-secondary"
         aria-hidden="true"
         style={{
-          background: `radial-gradient(circle, ${accentColor}12 0%, transparent 70%)`,
+          background: `radial-gradient(circle, ${accentColor}0d 0%, transparent 70%)`,
         }}
         initial={reduceMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
