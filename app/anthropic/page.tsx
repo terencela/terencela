@@ -19,7 +19,7 @@ export default function AnthropicPage() {
           <em>CISO will sign.</em>
         </>
       }
-      heroSummary="I design Claude deployments that legal, IT, and the board can defend. At Zurich Airport I align C-suite priorities with technical architecture and nDSG compliance reality every week. For Anthropic Industries, that means reference architectures for banking and critical infrastructure, trust evals the compliance team understands, and workshops that resolve blockers in one room instead of six months of email."
+      heroSummary="I design Claude deployments that legal, IT, and the board can defend. At Zurich Airport I align C-suite priorities with technical architecture and nDSG compliance reality every week. For Anthropic Industries, that means reference architectures for banking and critical infrastructure, trust evals compliance teams understand, and workshops that resolve blockers in one room instead of six months of email."
       primaryCtaLabel="See my 90-day Industries plan"
       blueprintItems={[
         "Map Anthropic's DACH priority accounts against compliance blockers I have solved in aviation and financial services contexts.",

@@ -19,7 +19,7 @@ export default function SalesforcePage() {
           <em>already trusts.</em>
         </>
       }
-      heroSummary="I deploy autonomous workflows inside existing operations, not beside them. At Zurich Airport I built service routing and escalation paths where a wrong answer is visible to 30 million passengers. For Salesforce FDE, that means agents embedded in Customer 360 flows, Data Cloud boundaries defined before the first write, and human handoff when confidence drops below threshold."
+      heroSummary="I deploy autonomous workflows inside existing operations, not beside them. At Zurich Airport I built service routing and escalation paths where a wrong answer is visible to 32 million passengers. For Salesforce FDE, that means agents embedded in Customer 360 flows, Data Cloud boundaries defined before the first write, and human handoff when confidence drops below threshold."
       primaryCtaLabel="See my 90-day Agentforce plan"
       blueprintItems={[
         "Audit two enterprise Agentforce deployments for data boundary gaps, escalation failures, and ops team adoption blockers.",
@@ -29,7 +29,7 @@ export default function SalesforcePage() {
       metrics={[
         {
           label: "Operational touchpoints",
-          value: "30M+",
+          value: "32M+",
           note: "High-volume service with public failure visibility.",
         },
         {

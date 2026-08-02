@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { Mail, ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
+import { EASE_OUT } from "@/app/lib/motion";
 
 interface LinkedInCTAProps {
   companyName: string;
@@ -29,18 +30,18 @@ export function LinkedInCTA({
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="dossier-footer-cta dossier-section">
+    <section className="dossier-footer-cta dossier-section" style={{ ["--hero-accent" as string]: accentColor }}>
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
         <motion.div
-          className="grid gap-10 border border-[var(--line)] bg-[#0a0b0f] p-8 md:grid-cols-[1fr_auto] md:items-end md:p-12"
-          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="grid gap-10 md:grid-cols-[1fr_auto] md:items-end"
+          initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.5, ease: EASE_OUT }}
         >
           <div>
             <div className="mb-8 flex items-center gap-4">
-              <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-[var(--line)]">
+              <div className="relative h-16 w-16 shrink-0 overflow-hidden border border-white/15">
                 <Image
                   src="/images/terence-la-profile.png"
                   alt="Terence La"
@@ -59,7 +60,7 @@ export function LinkedInCTA({
               Let&apos;s talk about <em>{companyName}</em> in Zurich.
             </h2>
 
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-[#a9aab2]">
+            <p className="mt-5 max-w-[65ch] text-base leading-relaxed text-[#a9aab2]">
               {body ??
                 `I am actively speaking with teams for the ${roleTitle} role. If you want a technical walkthrough and a concrete plan, I would love to connect.`}
             </p>
@@ -72,7 +73,7 @@ export function LinkedInCTA({
                 className="dossier-pressable inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold"
                 style={{
                   backgroundColor: accentColor,
-                  color: "#07080b",
+                  color: "#101114",
                   boxShadow: `0 12px 45px ${accentColor}40`,
                 }}
               >
@@ -83,7 +84,7 @@ export function LinkedInCTA({
 
               <a
                 href={`mailto:terencela93@gmail.com?subject=Terence%20La%20-%20${encodeURIComponent(companyName)}`}
-                className="dossier-pressable inline-flex items-center gap-2 border border-[var(--line)] bg-transparent px-6 py-3.5 text-sm font-medium text-[#f7f6f2] transition-colors hover:bg-[#101117]"
+                className="dossier-pressable inline-flex items-center gap-2 border border-white/15 bg-transparent px-6 py-3.5 text-sm font-medium text-[#f7f6f2] transition-colors hover:bg-white/5"
               >
                 <Mail className="h-4 w-4 text-[#8f9098]" />
                 terencela93@gmail.com
@@ -93,7 +94,8 @@ export function LinkedInCTA({
 
           <div className="hidden text-right text-xs leading-relaxed text-[#6f7078] md:block">
             <p>Notice period: immediate / flexible</p>
-            <p className="mt-2">Based in Zurich</p>
+            <p className="mt-2">Swiss German · English · Cantonese · French</p>
+            <p className="mt-6 text-[#55565e]">© {new Date().getFullYear()} Terence La</p>
           </div>
         </motion.div>
       </div>

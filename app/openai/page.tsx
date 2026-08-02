@@ -19,7 +19,7 @@ export default function OpenAIPage() {
           <em>pilot to production.</em>
         </>
       }
-      heroSummary="I am Head of AI at Zurich Airport, where 30 million passengers a year expose every gap in eval coverage, latency, and data handling. I sit with CTOs and security teams, ship Python and TypeScript integrations, and turn field failures into measurable model improvements. That is the job your FDE team does for UBS, Swiss Re, and every DACH account stuck between a great demo and a signed production contract."
+      heroSummary="I lead AI at Zurich Airport, where 32 million passengers a year expose every gap in eval coverage, latency, and data handling. I sit with CTOs and security teams, ship Python and TypeScript integrations, and turn field failures into measurable improvements. That is the job your FDE team does for UBS, Swiss Re, and every DACH account stuck between a great demo and a signed production contract."
       primaryCtaLabel="See my 90-day plan for Zurich accounts"
       blueprintItems={[
         "Shadow two active DACH deployments and document where pilots stall: eval gaps, latency under load, or nDSG data path objections.",
@@ -34,7 +34,7 @@ export default function OpenAIPage() {
         },
         {
           label: "Passenger scale in scope",
-          value: "30M+",
+          value: "32M+",
           note: "Same operational pressure as tier-1 accounts.",
         },
         {

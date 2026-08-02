@@ -4,6 +4,7 @@ import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ProductVisual } from "@/app/components/shared/ProductVisual";
+import { EASE_OUT } from "@/app/lib/motion";
 
 type SideProjectsGridProps = {
   accentColor?: string;
@@ -76,20 +77,20 @@ export function SideProjectsGrid({ accentColor = "#10a37f" }: SideProjectsGridPr
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="dossier-section !pt-16 !pb-0">
+    <section className="dossier-section !pb-0 !pt-16">
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 16, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.45, ease: "easeOut" }}
+          transition={{ duration: 0.45, ease: EASE_OUT }}
           className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
         >
           <div>
             <h3 className="dossier-hero-title !text-[clamp(32px,4vw,56px)]">
               Projects that show <em>how I build</em>
             </h3>
-            <p className="mt-4 max-w-lg text-sm leading-relaxed text-[#9a9ba4]">
+            <p className="mt-4 max-w-[55ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
               Side systems I designed and shipped to prove execution depth beyond one employer context.
             </p>
           </div>
@@ -98,43 +99,38 @@ export function SideProjectsGrid({ accentColor = "#10a37f" }: SideProjectsGridPr
             href="https://github.com/terencela"
             target="_blank"
             rel="noopener noreferrer"
-            className="dossier-pressable inline-flex items-center gap-2 text-sm text-[#a9aab2] transition-colors hover:text-white"
+            className="dossier-text-link dossier-pressable inline-flex items-center gap-2"
           >
             github.com/terencela
             <ArrowUpRight className="h-4 w-4" />
           </a>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-0 border border-[var(--line)] md:grid-cols-2">
+        <div className="dossier-project-grid">
           {projects.map((project, index) => (
             <motion.article
               key={project.name}
               className={`dossier-project-card accent-${project.accent}`}
-              initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.05 }}
-              style={
-                index % 2 === 0
-                  ? { borderRight: "1px solid var(--line)" }
-                  : undefined
-              }
+              initial={reduceMotion ? false : { opacity: 0, y: 14, scale: 0.98 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.12 }}
+              transition={{ duration: 0.4, ease: EASE_OUT, delay: index * 0.05 }}
             >
               <ProductVisual type={project.visual} />
               <div className="flex flex-col p-6 md:p-7">
                 <div className="mb-3 flex items-center justify-between gap-3">
-                  <span className="text-[11px]" style={{ color: accentColor }}>
+                  <span className="text-[11px] font-medium" style={{ color: accentColor }}>
                     {project.category}
                   </span>
-                  <span className="text-[11px] text-[#6f7078]">{project.stage}</span>
+                  <span className="text-[11px] text-[var(--dossier-subtle)]">{project.stage}</span>
                 </div>
-                <h4 className="text-xl font-semibold tracking-tight text-[#f7f6f2]">
+                <h4 className="text-xl font-semibold tracking-tight text-[var(--dossier-ink)]">
                   {project.name}
                 </h4>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-[#9a9ba4]">
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--dossier-muted)]">
                   {project.description}
                 </p>
-                <p className="mt-5 border-t border-[var(--line)] pt-4 text-xs text-[#6f7078]">
+                <p className="mt-5 border-t border-[var(--dossier-line-strong)] pt-4 text-xs text-[var(--dossier-subtle)]">
                   {project.evidence}
                 </p>
               </div>

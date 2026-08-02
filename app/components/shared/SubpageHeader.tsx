@@ -21,9 +21,9 @@ export function SubpageHeader({
     <header className="dossier-glass-header sticky top-0 z-[60]">
       <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-4 py-4 md:px-8">
         <div className="min-w-0">
-          <p className="truncate text-sm text-[#f7f6f2]">
+          <p className="truncate text-sm text-[var(--dossier-ink)]">
             <span className="font-semibold">{companyName}</span>
-            <span className="text-[#8f9098]"> · {roleTitle}</span>
+            <span className="text-[var(--dossier-muted)]"> · {roleTitle}</span>
           </p>
         </div>
 
@@ -37,10 +37,10 @@ export function SubpageHeader({
             href="https://www.linkedin.com/in/terencela"
             target="_blank"
             rel="noopener noreferrer"
-            className="dossier-glass-pill dossier-pressable transition-colors hover:text-white"
+            className="dossier-glass-pill dossier-pressable transition-colors hover:text-[var(--dossier-ink)]"
           >
             LinkedIn
-            <ArrowUpRight className="h-3.5 w-3.5 text-[#8f9098]" />
+            <ArrowUpRight className="h-3.5 w-3.5 text-[var(--dossier-subtle)]" />
           </a>
         </div>
       </div>

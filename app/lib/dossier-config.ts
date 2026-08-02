@@ -52,10 +52,10 @@ export type CompanyDossierSupport = {
 export const companyDossierSupport: Record<DossierCompany, CompanyDossierSupport> = {
   openai: {
     careerProofIntro:
-      "I run AI inside Zurich Airport, where 30 million passengers a year see every failure. That is the same pressure your Zurich FDE team faces when a UBS or Swiss Re pilot goes live.",
+      "I run AI inside Zurich Airport, where 32 million passengers a year see every failure. That is the same pressure your Zurich FDE team faces when a UBS or Swiss Re pilot goes live.",
     careerProofItems: [
       {
-        stat: "30M+",
+        stat: "32M+",
         label: "Passengers in production AI scope",
         sub: "Same operational stakes as your tier-1 DACH accounts",
       },
@@ -247,7 +247,7 @@ export const companyDossierSupport: Record<DossierCompany, CompanyDossierSupport
         sub: "Know the questions Swiss procurement actually asks",
       },
       {
-        stat: "30M+",
+        stat: "32M+",
         label: "Enterprise AI at scale",
         sub: "Credible reference for workload and compliance discussions",
       },
@@ -328,7 +328,7 @@ export const companyDossierSupport: Record<DossierCompany, CompanyDossierSupport
       "Agentforce only delivers value when agents act on CRM data your customer already trusts. I deploy autonomous workflows inside existing operations, with nDSG guardrails at every decision point.",
     careerProofItems: [
       {
-        stat: "30M+",
+        stat: "32M+",
         label: "Operational touchpoints/year",
         sub: "High-volume service workflows with public failure visibility",
       },

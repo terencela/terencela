@@ -7,6 +7,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { SubpageHeader } from "@/app/components/shared/SubpageHeader";
 import { DossierBackground } from "@/app/components/shared/DossierBackground";
+import { CredibilityStrip } from "@/app/components/shared/CredibilityStrip";
 import { CareerProofBanner } from "@/app/components/shared/CareerProofBanner";
 import { LoomVideoFrame } from "@/app/components/shared/LoomVideoFrame";
 import { EnterpriseAdoptionToolkit } from "@/app/components/shared/EnterpriseAdoptionToolkit";
@@ -18,6 +19,7 @@ import {
   isExternalDossier,
   type DossierCompany,
 } from "@/app/lib/dossier-config";
+import { dossierItem, dossierStagger, EASE_OUT } from "@/app/lib/motion";
 
 type ExecutionMetric = {
   label: string;
@@ -51,23 +53,6 @@ type RoleDossierPageProps = {
   loomUrl?: string;
 };
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.07, delayChildren: 0.05 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.45, ease: "easeOut" as const },
-  },
-};
-
 export function RoleDossierPage({
   companyKey,
   companyName,
@@ -95,118 +80,120 @@ export function RoleDossierPage({
     () =>
       ({
         "--accent-color": accentColor,
+        "--hero-accent": accentColor,
       }) as CSSProperties,
     [accentColor]
   );
 
   return (
     <main
-      className="dossier-page relative min-h-[100dvh] overflow-x-hidden selection:bg-white selection:text-black"
+      className="dossier-page relative min-h-[100dvh] overflow-x-hidden selection:bg-[color-mix(in_srgb,var(--hero-accent)_25%,white)] selection:text-[#101114]"
       style={accentStyles}
       data-dossier-mode={external ? "external" : "internal"}
     >
       <DossierBackground accentColor={accentColor} />
       <SubpageHeader companyName={companyName} roleTitle={roleTitle} accentColor={accentColor} />
 
-      <section className="dossier-section relative z-[2] !pb-20 !pt-16 md:!pt-24">
+      <section className="dossier-section relative z-[2] !pb-16 !pt-14 md:!pt-20">
         <div className="mx-auto max-w-[1200px] px-4 md:px-8">
           <motion.div
-            className="grid items-end gap-12 lg:grid-cols-[minmax(0,1fr)_340px]"
-            variants={reduceMotion ? undefined : containerVariants}
+            className="grid items-end gap-12 lg:grid-cols-[minmax(0,1fr)_300px]"
+            variants={reduceMotion ? undefined : dossierStagger}
             initial={reduceMotion ? false : "hidden"}
             animate="visible"
           >
             <div>
               {heroEyebrow ? (
-                <motion.p
-                  variants={reduceMotion ? undefined : itemVariants}
-                  className="mb-6 text-sm text-[#8f9098]"
-                >
+                <motion.p variants={reduceMotion ? undefined : dossierItem} className="dossier-eyebrow">
+                  <span aria-hidden="true" />
                   {heroEyebrow}
                 </motion.p>
               ) : null}
 
-              <motion.h1
-                variants={reduceMotion ? undefined : itemVariants}
-                className="dossier-hero-title"
-                style={{ ["--hero-accent" as string]: accentColor }}
-              >
+              <motion.h1 variants={reduceMotion ? undefined : dossierItem} className="dossier-hero-title">
                 {heroTitle}
               </motion.h1>
 
               <motion.p
-                variants={reduceMotion ? undefined : itemVariants}
-                className="mt-8 max-w-2xl text-lg leading-relaxed text-[#a9aab2]"
+                variants={reduceMotion ? undefined : dossierItem}
+                className="mt-8 max-w-[65ch] text-lg leading-relaxed text-[var(--dossier-muted)]"
               >
                 {heroSummary}
               </motion.p>
 
               <motion.div
-                variants={reduceMotion ? undefined : itemVariants}
-                className="mt-10 flex flex-wrap items-center gap-4"
+                variants={reduceMotion ? undefined : dossierItem}
+                className="mt-10 flex flex-wrap items-center gap-6"
               >
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(true)}
-                  className="dossier-pressable inline-flex cursor-pointer items-center gap-3 px-5 py-3.5 text-sm font-semibold"
-                  style={{
-                    backgroundColor: "#f4f2ec",
-                    color: "#07080b",
-                  }}
+                  className="dossier-button-primary dossier-pressable"
+                  style={{ backgroundColor: accentColor, color: "#101114" }}
                 >
                   {primaryCtaLabel}
                   <ArrowUpRight className="h-4 w-4" />
                 </button>
 
                 <a
+                  href="https://github.com/terencela"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="dossier-text-link dossier-pressable"
+                >
+                  github.com/terencela ↗
+                </a>
+
+                <a
                   href="https://www.linkedin.com/in/terencela"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="dossier-pressable text-sm text-[#a9aab2] transition-colors hover:text-white"
-                  style={{ borderBottom: "1px solid #55565e", paddingBottom: 4 }}
+                  className="dossier-text-link dossier-pressable"
                 >
-                  LinkedIn profile ↗
+                  LinkedIn ↗
                 </a>
+              </motion.div>
+
+              <motion.div
+                variants={reduceMotion ? undefined : dossierItem}
+                className="dossier-hero-index mt-12 lg:hidden"
+                aria-label="Key metrics"
+              >
+                {metrics.map((metric) => (
+                  <div key={metric.label}>
+                    <b style={{ color: accentColor }}>{metric.value}</b>
+                    <span>{metric.label}</span>
+                  </div>
+                ))}
               </motion.div>
             </div>
 
-            <motion.aside
-              variants={reduceMotion ? undefined : itemVariants}
-              className="relative"
-            >
-              <div className="dossier-profile-frame aspect-[3/4] w-full max-w-[340px] lg:ml-auto">
+            <motion.aside variants={reduceMotion ? undefined : dossierItem} className="relative lg:ml-auto">
+              <motion.div
+                initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.55, ease: EASE_OUT, delay: 0.12 }}
+                className="dossier-profile-frame aspect-[3/4] w-full max-w-[300px] lg:ml-auto"
+              >
                 <Image
                   src="/images/terence-la-profile.png"
-                  alt="Terence La, Zurich-based AI leader"
+                  alt="Terence La, Zurich-based AI leader and builder"
                   fill
-                  sizes="340px"
+                  sizes="300px"
                   className="object-cover object-top"
                   priority
                 />
                 <div className="absolute inset-x-0 bottom-0 z-[2] p-5">
                   <p className="text-sm font-medium text-[#f7f6f2]">Terence La</p>
-                  <p className="text-xs text-[#a9aab2]">Senior Manager AI · Zurich Airport</p>
+                  <p className="text-xs text-[#d8d4cb]">Senior Manager AI · Zurich Airport</p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="mt-4 grid grid-cols-3 gap-0 border border-[var(--line)] bg-[#0a0b0f]">
-                {metrics.map((metric, index) => (
-                  <div
-                    key={metric.label}
-                    className="px-3 py-4 text-center"
-                    style={
-                      index < metrics.length - 1
-                        ? { borderRight: "1px solid var(--line)" }
-                        : undefined
-                    }
-                  >
-                    <p
-                      className="text-lg font-semibold tracking-tight"
-                      style={{ color: index === 0 ? accentColor : "#f7f6f2" }}
-                    >
-                      {metric.value}
-                    </p>
-                    <p className="mt-1 text-[10px] leading-snug text-[#8f9098]">{metric.label}</p>
+              <div className="dossier-hero-index mt-6 hidden lg:block" aria-label="Key metrics">
+                {metrics.map((metric) => (
+                  <div key={metric.label}>
+                    <b style={{ color: accentColor }}>{metric.value}</b>
+                    <span>{metric.label}</span>
                   </div>
                 ))}
               </div>
@@ -215,24 +202,29 @@ export function RoleDossierPage({
         </div>
       </section>
 
+      <CredibilityStrip />
+
       <CareerProofBanner
         accentColor={accentColor}
         intro={support.careerProofIntro}
         items={support.careerProofItems}
       />
 
-      <section className="dossier-section relative z-[2]">
+      <section className="dossier-section relative z-[2] !py-16">
         <div className="mx-auto max-w-[1200px] px-4 md:px-8">
           <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 16, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
+            transition={{ duration: 0.45, ease: EASE_OUT }}
             className="mb-10"
           >
             <h2 className="dossier-hero-title !text-[clamp(32px,4vw,56px)]">
               Hear it <em>directly</em> from me
             </h2>
+            <p className="mt-4 max-w-[55ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
+              TEDx speaker, Forbes 30 Under 30, and the person who ships the code behind the strategy.
+            </p>
           </motion.div>
 
           <LoomVideoFrame
@@ -244,50 +236,53 @@ export function RoleDossierPage({
         </div>
       </section>
 
-      <section className="dossier-section relative z-[2]">
+      <section className="dossier-section relative z-[2] !py-16">
         <div className="mx-auto max-w-[1200px] px-4 md:px-8">
           <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 20, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.5, ease: EASE_OUT }}
             className="dossier-demo-chrome"
           >
             <div className="dossier-demo-chrome-header">
               <span className="font-medium text-[#f7f6f2]">{demoTitle}</span>
               <span>{companyName}</span>
             </div>
-            <div className="border-b border-[var(--line)] px-5 py-4 md:px-8">
-              <p className="max-w-2xl text-sm leading-relaxed text-[#9a9ba4]">{demoSummary}</p>
+            <div className="border-b border-white/10 px-5 py-4 md:px-8">
+              <p className="max-w-[65ch] text-sm leading-relaxed text-[#9a9ba4]">{demoSummary}</p>
             </div>
             <div className="p-4 md:p-6">{interactiveDemo}</div>
           </motion.div>
         </div>
       </section>
 
-      <section className="dossier-section relative z-[2]">
+      <section className="dossier-section relative z-[2] !py-16">
         <div className="mx-auto max-w-[1200px] px-4 md:px-8">
           <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 16, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-            className="dossier-fit-row"
+            transition={{ duration: 0.45, ease: EASE_OUT }}
+            className="dossier-fit-featured"
           >
-            <h2 className="dossier-hero-title !text-[clamp(32px,4vw,52px)] sticky top-28 self-start">
-              {fitHeading}
-            </h2>
-            <div>
+            <div className="dossier-fit-featured-copy">
+              <h2 className="dossier-hero-title !text-[clamp(28px,3.5vw,48px)]">{fitHeading}</h2>
+              <p className="mt-4 text-sm leading-relaxed text-[var(--dossier-muted)]">
+                Built from real deployments at Zurich Airport and a decade selling into Swiss enterprise accounts.
+              </p>
+            </div>
+            <div className="dossier-fit-stack">
               {fitPoints.map((point, index) => {
                 const Icon = point.icon;
                 return (
                   <motion.div
                     key={point.title}
                     className="dossier-fit-point"
-                    initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={reduceMotion ? false : { opacity: 0, y: 12, scale: 0.98 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.06 }}
+                    transition={{ duration: 0.4, ease: EASE_OUT, delay: index * 0.06 }}
                   >
                     <div className="mb-2 flex items-center gap-2">
                       <Icon className="h-4 w-4" style={{ color: accentColor }} />

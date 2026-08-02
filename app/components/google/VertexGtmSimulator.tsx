@@ -160,7 +160,7 @@ export function VertexGtmSimulator() {
         {/* Results Panel (7 cols) */}
         <div className="lg:col-span-7 p-6 bg-zinc-950 flex flex-col justify-between space-y-6">
           <div>
-            <div className="text-xs font-mono uppercase tracking-wider text-zinc-400 mb-4 flex items-center justify-between">
+            <div className="mb-4 flex items-center justify-between text-xs text-zinc-400">
               <span>Projected Go-To-Market Impact (Zurich Region)</span>
               <span className="text-blue-400 flex items-center gap-1 font-mono text-xs">
                 <Target className="w-3.5 h-3.5" /> High Velocity

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Play, Clock3 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
+import { EASE_OUT } from "@/app/lib/motion";
 
 interface LoomVideoFrameProps {
   companyName: string;
@@ -33,7 +34,7 @@ export function LoomVideoFrame({
     {
       time: "0:25",
       title: "Swiss AI deployment",
-      desc: "30M+ passengers under strict data constraints.",
+      desc: "32M passengers/year under strict data constraints.",
     },
     {
       time: "0:55",
@@ -45,13 +46,13 @@ export function LoomVideoFrame({
   return (
     <motion.div
       className="dossier-loom-panel overflow-hidden"
-      initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 20, scale: 0.98 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: EASE_OUT }}
     >
       <div className="grid grid-cols-1 lg:grid-cols-12">
-        <div className="relative min-h-[300px] border-b border-[var(--line)] bg-black lg:col-span-7 lg:min-h-[400px] lg:border-b-0 lg:border-r">
+        <div className="relative min-h-[300px] border-b border-[var(--dossier-line-strong)] bg-[#0a0b0f] lg:col-span-7 lg:min-h-[400px] lg:border-b-0 lg:border-r">
           {loomUrl && isPlaying ? (
             <iframe
               src={loomUrl}
@@ -66,12 +67,12 @@ export function LoomVideoFrame({
                 alt="Terence La"
                 fill
                 sizes="(max-width: 1024px) 100vw, 60vw"
-                className="object-cover object-top opacity-40"
+                className="object-cover object-top opacity-50"
               />
               <div
                 className="absolute inset-0"
                 style={{
-                  background: `linear-gradient(165deg, rgba(7,8,11,0.15), rgba(7,8,11,0.92) 70%), radial-gradient(circle at 20% 15%, ${accentColor}44, transparent 50%)`,
+                  background: `linear-gradient(165deg, rgba(10,11,15,0.1), rgba(10,11,15,0.88) 70%), radial-gradient(circle at 20% 15%, ${accentColor}44, transparent 50%)`,
                 }}
               />
 
@@ -98,7 +99,7 @@ export function LoomVideoFrame({
                   className="dossier-pressable inline-flex h-14 w-14 items-center justify-center rounded-full md:h-16 md:w-16"
                   style={{
                     backgroundColor: accentColor,
-                    color: "#07080b",
+                    color: "#101114",
                     boxShadow: `0 14px 48px ${accentColor}44`,
                   }}
                   aria-label="Play video pitch"
@@ -110,8 +111,8 @@ export function LoomVideoFrame({
           )}
         </div>
 
-        <div className="flex flex-col justify-center bg-[#0a0b0f] p-6 lg:col-span-5 lg:p-8">
-          <p className="mb-4 text-sm text-[#8f9098]">Video chapters</p>
+        <div className="flex flex-col justify-center bg-[#faf8f4] p-6 lg:col-span-5 lg:p-8">
+          <p className="mb-4 text-sm text-[var(--dossier-muted)]">Video chapters</p>
           <div className="space-y-2">
             {chapters.map((ch, idx) => (
               <button
@@ -121,22 +122,22 @@ export function LoomVideoFrame({
                   setActiveChapter(idx);
                   setIsPlaying(true);
                 }}
-                className={`dossier-pressable w-full rounded-none border px-4 py-3.5 text-left transition-colors ${
+                className={`dossier-pressable w-full border px-4 py-3.5 text-left transition-colors ${
                   activeChapter === idx
-                    ? "border-[var(--line)] bg-[#101117]"
-                    : "border-transparent bg-transparent hover:bg-[#0d0e14]"
+                    ? "border-[var(--dossier-line-strong)] bg-white"
+                    : "border-transparent bg-transparent hover:bg-white/70"
                 }`}
                 style={
                   activeChapter === idx
-                    ? { borderLeftColor: accentColor, borderLeftWidth: 2 }
+                    ? { borderLeftColor: accentColor, borderLeftWidth: 3 }
                     : undefined
                 }
               >
                 <div className="mb-1 flex items-baseline gap-3 text-xs">
                   <span style={{ color: accentColor }}>{ch.time}</span>
-                  <span className="font-medium text-[#f7f6f2]">{ch.title}</span>
+                  <span className="font-medium text-[var(--dossier-ink)]">{ch.title}</span>
                 </div>
-                <p className="text-xs leading-relaxed text-[#8f9098]">{ch.desc}</p>
+                <p className="text-xs leading-relaxed text-[var(--dossier-muted)]">{ch.desc}</p>
               </button>
             ))}
           </div>

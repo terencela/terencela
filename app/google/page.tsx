@@ -19,7 +19,7 @@ export default function GooglePage() {
           <em>hard technical question.</em>
         </>
       }
-      heroSummary="I have been on both sides of a Swiss enterprise AI deal: as Head of AI evaluating vendors at Zurich Airport, and as a founder selling into regulated accounts. I know why a CIO chooses OpenAI over Vertex, and how to reframe the conversation around workload fit, compliance posture, and a proof-of-value that survives a 12-month procurement cycle."
+      heroSummary="I have been on both sides of a Swiss enterprise AI deal: leading AI evaluation at Zurich Airport, and selling as a founder into regulated accounts. I know why a CIO chooses OpenAI over Vertex, and how to reframe the conversation around workload fit, compliance posture, and a proof-of-value that survives a 12-month procurement cycle."
       primaryCtaLabel="See my 90-day GTM plan"
       blueprintItems={[
         "Qualify the top 20 Zurich and DACH accounts by workload fit: RAG, batch inference, agents, or fine-tuning on Vertex and Gemini.",
@@ -34,7 +34,7 @@ export default function GooglePage() {
         },
         {
           label: "Buyer-side reference",
-          value: "30M+",
+          value: "32M+",
           note: "Enterprise AI procurement from the inside.",
         },
         {
