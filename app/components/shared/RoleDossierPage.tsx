@@ -21,7 +21,6 @@ import { SubpageHeader } from "@/app/components/shared/SubpageHeader";
 import { DossierBackground } from "@/app/components/shared/DossierBackground";
 import { CredibilityStrip } from "@/app/components/shared/CredibilityStrip";
 import { CareerTimeline } from "@/app/components/shared/CareerTimeline";
-import { CareerProofBanner } from "@/app/components/shared/CareerProofBanner";
 import { LoomVideoFrame } from "@/app/components/shared/LoomVideoFrame";
 import { EnterpriseAdoptionToolkit } from "@/app/components/shared/EnterpriseAdoptionToolkit";
 import { SideProjectsGrid } from "@/app/components/shared/SideProjectsGrid";
@@ -362,9 +361,9 @@ export function RoleDossierPage({
       <DossierBackground accentColor={accentColor} />
       <SubpageHeader companyName={companyName} roleTitle={roleTitle} accentColor={accentColor} />
 
-      <section className="dossier-section relative z-[2] !pb-20 !pt-14 md:!pt-24">
+      <section className="dossier-section dossier-section-tight relative z-[2] !pb-6 !pt-10 md:!pt-14">
         <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-          <div className="grid items-end gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+          <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(220px,280px)] lg:gap-10">
             <motion.div
               variants={reduceMotion ? undefined : dossierStagger}
               initial={reduceMotion ? false : "hidden"}
@@ -388,32 +387,17 @@ export function RoleDossierPage({
 
               <motion.p
                 variants={reduceMotion ? undefined : dossierItem}
-                className="mt-8 max-w-[65ch] text-base leading-relaxed text-[var(--dossier-body)]"
+                className="mt-5 max-w-[58ch] text-base leading-relaxed text-[var(--dossier-body)]"
               >
                 {heroSummary}
               </motion.p>
 
               <motion.div
                 variants={reduceMotion ? undefined : dossierItem}
-                className="mt-10 flex flex-wrap items-center gap-6"
+                className="mt-7 flex flex-wrap items-center gap-4 md:gap-6"
               >
                 {ctaItems.map((item) => (
                   <React.Fragment key={item.key}>{item.node}</React.Fragment>
-                ))}
-              </motion.div>
-
-              <motion.div
-                variants={reduceMotion ? undefined : dossierItem}
-                className="dossier-hero-index mt-12 lg:hidden"
-                aria-label="Key metrics"
-              >
-                {metrics.map((metric, index) => (
-                  <AnimatedMetric
-                    key={metric.label}
-                    {...metric}
-                    accentColor={accentColor}
-                    highlight={index === 0}
-                  />
                 ))}
               </motion.div>
             </motion.div>
@@ -422,15 +406,15 @@ export function RoleDossierPage({
               variants={reduceMotion ? undefined : dossierProfileReveal}
               initial={reduceMotion ? false : "hidden"}
               animate="visible"
-              className="relative lg:ml-auto"
+              className="relative mx-auto w-full max-w-[260px] sm:max-w-[280px] lg:mx-0 lg:ml-auto lg:max-w-none"
             >
-              <div className="dossier-profile-frame aspect-[3/4] w-full max-w-[340px] lg:ml-auto">
+              <div className="dossier-profile-frame aspect-[4/5] w-full lg:max-w-[280px]">
                 <Image
                   src="/images/terence-la-profile.png"
                   alt="Terence La, Zurich-based AI leader and builder"
                   fill
-                  sizes="340px"
-                  className="object-cover object-top"
+                  sizes="280px"
+                  className="dossier-profile-photo object-cover object-top"
                   priority
                 />
                 <div className="dossier-profile-caption absolute inset-x-0 bottom-0 z-[2] px-5 pb-5 pt-16">
@@ -438,31 +422,31 @@ export function RoleDossierPage({
                   <p className="text-xs text-white/80">Senior Manager AI · Zurich Airport</p>
                 </div>
               </div>
-
-              <div className="dossier-hero-index mt-6 hidden lg:block" aria-label="Key metrics">
-                {metrics.map((metric, index) => (
-                  <AnimatedMetric
-                    key={metric.label}
-                    {...metric}
-                    accentColor={accentColor}
-                    highlight={index === 0}
-                  />
-                ))}
-              </div>
             </motion.aside>
           </div>
+
+          <motion.div
+            variants={reduceMotion ? undefined : dossierItem}
+            initial={reduceMotion ? false : "hidden"}
+            animate="visible"
+            className="dossier-hero-metrics"
+            aria-label="Key metrics"
+          >
+            {metrics.map((metric, index) => (
+              <AnimatedMetric
+                key={metric.label}
+                {...metric}
+                accentColor={accentColor}
+                highlight={index === 0}
+              />
+            ))}
+          </motion.div>
         </div>
       </section>
 
       <CredibilityStrip />
 
       <CareerTimeline accentColor={accentColor} />
-
-      <CareerProofBanner
-        accentColor={accentColor}
-        intro={support.careerProofIntro}
-        items={support.careerProofItems}
-      />
 
       <section className="dossier-section relative z-[2]">
         <div className="mx-auto max-w-[1200px] px-4 md:px-8">
@@ -471,10 +455,10 @@ export function RoleDossierPage({
             className="mb-10"
           >
             <h2 className="dossier-hero-title !text-[clamp(32px,4vw,56px)]">
-              Hear it <em>directly</em> from me
+              90 seconds. <em>Play it.</em>
             </h2>
-            <p className="mt-4 max-w-[55ch] text-base leading-relaxed text-[var(--dossier-body)]">
-              TEDx speaker, Forbes 30 Under 30, and the person who ships the code behind the strategy.
+            <p className="mt-3 max-w-[55ch] text-base leading-relaxed text-[var(--dossier-body)]">
+              Who I am and why I fit this role. No deck.
             </p>
           </motion.div>
 
@@ -513,9 +497,8 @@ export function RoleDossierPage({
           >
             <div className="dossier-fit-featured-copy">
               <h2 className="dossier-hero-title !text-[clamp(28px,3.5vw,48px)]">{fitHeading}</h2>
-              <p className="mt-4 text-base leading-relaxed text-[var(--dossier-body)]">
-                Range matters more than ever. Built from real deployments at Zurich Airport and a decade
-                selling into Swiss enterprise accounts.
+              <p className="mt-3 text-base leading-relaxed text-[var(--dossier-body)]">
+                Three things I actually do on FDE accounts.
               </p>
             </div>
             <motion.div

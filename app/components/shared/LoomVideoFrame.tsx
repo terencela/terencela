@@ -68,7 +68,7 @@ export function LoomVideoFrame({
                 alt="Terence La"
                 fill
                 sizes="(max-width: 1024px) 100vw, 60vw"
-                className="object-cover object-[center_18%] opacity-70"
+                className="dossier-profile-photo object-cover object-[center_18%] opacity-70"
               />
               <div
                 className="absolute inset-0"

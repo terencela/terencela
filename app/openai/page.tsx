@@ -14,12 +14,11 @@ export default function OpenAIPage() {
       accentColor="#10a37f"
       heroTitle={
         <>
-          Your DACH customers don&apos;t stall on model quality. They stall between{" "}
-          <em>pilot and production sign-off.</em>
+          Great pilots die in legal review. I&apos;m the person who <em>gets them live.</em>
         </>
       }
-      heroSummary="I lead AI at Zurich Airport inside an operator serving 30M+ passengers a year. I ship Python and TypeScript tools, run eval gates before go-live, and sit with CTOs when legal blocks the data path. That is the job your FDE team does for UBS, Swiss Re, and every account stuck after a great demo."
-      primaryCtaLabel="See my 90-day plan for Zurich accounts"
+      heroSummary="Head of AI at Zurich Airport. I write Python and TypeScript, run evals before go-live, unblock nDSG reviews. This page: who I am, one thing you can play with, and patterns you can steal for your next Zurich account."
+      primaryCtaLabel="What I'd do in 90 days"
       blueprintItems={[
         "Shadow two active DACH deployments and document where pilots stall: eval gaps, latency under load, or nDSG data path objections.",
         "Build a reusable eval template for one priority vertical (banking or critical infrastructure) that your Zurich team can deploy on the next account.",

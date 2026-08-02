@@ -3,12 +3,7 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { careerTimeline, credentialsHighlights } from "@/app/lib/dossier-config";
-import {
-  dossierTimelineStep,
-  dossierViewport,
-  EASE_OUT,
-} from "@/app/lib/motion";
-import { DossierBorderDrawIn, DossierSectionDivider } from "@/app/components/shared/DossierSectionDivider";
+import { dossierTimelineStep, dossierViewport, EASE_OUT } from "@/app/lib/motion";
 
 type CareerTimelineProps = {
   accentColor?: string;
@@ -18,27 +13,25 @@ export function CareerTimeline({ accentColor = "#10a37f" }: CareerTimelineProps)
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="dossier-section relative z-[2] !py-16">
-      <DossierSectionDivider />
-      <div className="mx-auto max-w-[1200px] px-4 md:px-8 pt-16">
+    <section className="dossier-section dossier-section-tight relative z-[2] !py-8 md:!py-10">
+      <div className="mx-auto max-w-[1200px] px-4 md:px-8">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={dossierViewport}
           transition={{ duration: 0.55, ease: EASE_OUT }}
-          className="mb-10 max-w-[65ch]"
+          className="mb-6 max-w-[65ch] md:mb-8"
         >
           <h2 className="dossier-hero-title !text-[clamp(28px,3.5vw,48px)]">
             PwC to Credit Suisse to <em>two Head of AI roles</em> to Zurich Airport
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-[var(--dossier-body)]">
-            Entrepreneurship since 19. A decade in sales. I spot trends early, build things fast, and help
-            people navigate new tech.
+          <p className="mt-3 text-base leading-relaxed text-[var(--dossier-body)]">
+            Builder since 19. I ship fast and sell into enterprise.
           </p>
         </motion.div>
 
         <div className="dossier-career-timeline border-t-0">
-          <DossierBorderDrawIn className="h-px bg-[var(--dossier-line-strong)]" />
+          <div className="h-px bg-[var(--dossier-line-strong)]" />
           <div className="dossier-career-track" role="list" aria-label="Career timeline">
             {careerTimeline.map((step) => (
               <motion.article
