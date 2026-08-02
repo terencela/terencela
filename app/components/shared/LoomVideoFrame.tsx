@@ -34,7 +34,7 @@ export function LoomVideoFrame({
     {
       time: "0:25",
       title: "Swiss AI deployment",
-      desc: "32M passengers/year under strict data constraints.",
+      desc: "30M passengers/year under strict data constraints.",
     },
     {
       time: "0:55",

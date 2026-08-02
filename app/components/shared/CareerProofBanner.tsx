@@ -22,7 +22,7 @@ export function CareerProofBanner({
     <section className="dossier-section !py-0">
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
         <motion.p
-          className="mb-8 max-w-[65ch] text-[15px] leading-relaxed text-[var(--dossier-muted)]"
+          className="mb-8 max-w-[65ch] text-base leading-relaxed text-[var(--dossier-body)]"
           initial={reduceMotion ? false : { opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}

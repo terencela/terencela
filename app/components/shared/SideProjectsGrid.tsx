@@ -4,7 +4,7 @@ import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ProductVisual } from "@/app/components/shared/ProductVisual";
-import { EASE_OUT } from "@/app/lib/motion";
+import { dossierInView, EASE_OUT } from "@/app/lib/motion";
 
 type SideProjectsGridProps = {
   accentColor?: string;
@@ -12,64 +12,64 @@ type SideProjectsGridProps = {
 
 const projects = [
   {
-    name: "Vibe Decoder",
-    category: "Human context AI",
-    stage: "Prototype",
+    name: "KI Unlocked",
+    category: "AI workflow platform",
+    stage: "Active",
     description:
-      "Decodes tone, personality, culture and relationship dynamics before helping you respond.",
-    evidence: "Interactive product built",
-    visual: "messages",
+      "Enterprise AI workflows with measurable ROI. 40% workflow reduction across client deployments.",
+    evidence: "8+ enterprise clients",
+    visual: "knowledge",
+    accent: "green",
+  },
+  {
+    name: "perseedU",
+    category: "Web3 charity",
+    stage: "Venture",
+    description:
+      "Transparent donation infrastructure with personal tokens. Top 10 at venture.ch in finance.",
+    evidence: "1,100+ community members",
+    visual: "gtm",
     accent: "violet",
   },
   {
-    name: "Engineering Office OS",
-    category: "Enterprise AI",
-    stage: "System design",
+    name: "ZooMania",
+    category: "Sustainability",
+    stage: "HackZurich 2021",
     description:
-      "Connects project history, structural decisions, and expertise across engineering offices.",
-    evidence: "Vertical RAG architecture",
-    visual: "knowledge",
-    accent: "blue",
-  },
-  {
-    name: "AirCompanion",
-    category: "Aviation AI",
-    stage: "Venture",
-    description:
-      "Contextual AI guiding airport passengers before, during and after travel.",
-    evidence: "Tested in Zurich Airport context",
+      "Gamified eco-purchases for families. Winner at Europe's largest hackathon.",
+    evidence: "HackZurich winner",
     visual: "travel",
     accent: "cyan",
   },
   {
-    name: "Rehearse",
-    category: "Simulation",
-    stage: "Prototype",
+    name: "NeverAlone.ch",
+    category: "E-commerce",
+    stage: "Exit",
     description:
-      "Practice complex enterprise sales calls and negotiations with realistic AI feedback.",
-    evidence: "Interactive audio roleplay",
-    visual: "rehearse",
+      "Emergency marketplace for small businesses during COVID. Built and exited in weeks.",
+    evidence: "50 vendors onboarded in 4 weeks",
+    visual: "messages",
     accent: "coral",
   },
   {
-    name: "Privacy Layer",
-    category: "AI infrastructure",
-    stage: "Architecture",
+    name: "TL Innovations",
+    category: "Sales & GTM",
+    stage: "Agency",
     description:
-      "Control layer for using frontier AI with sensitive enterprise data without raw storage.",
-    evidence: "In-memory PII masking",
-    visual: "privacy",
-    accent: "green",
+      "Sales funnels, copywriting, and outbound for Swiss enterprise clients including HSG Family Institute.",
+    evidence: "$0.5M revenue, 10 clients",
+    visual: "rehearse",
+    accent: "lime",
   },
   {
-    name: "GTM AI",
-    category: "Growth",
-    stage: "Built",
+    name: "SmartCredit.io",
+    category: "DeFi lending",
+    stage: "Funded",
     description:
-      "Researches markets, sharpens positioning, and turns insights into automated outbound.",
-    evidence: "$1M+ revenue generated",
-    visual: "gtm",
-    accent: "lime",
+      "Decentralized lending platform. CMO role leading to major funding milestone.",
+    evidence: "Raised 1,200 ETH",
+    visual: "privacy",
+    accent: "blue",
   },
 ];
 
@@ -77,21 +77,19 @@ export function SideProjectsGrid({ accentColor = "#10a37f" }: SideProjectsGridPr
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="dossier-section !pb-0 !pt-16">
+    <section className="dossier-section !pb-0">
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 16, scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.45, ease: EASE_OUT }}
+          {...(reduceMotion ? {} : dossierInView)}
           className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
         >
           <div>
             <h3 className="dossier-hero-title !text-[clamp(32px,4vw,56px)]">
-              Projects that show <em>how I build</em>
+              Projects with <em>real outcomes</em>
             </h3>
-            <p className="mt-4 max-w-[55ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
-              Side systems I designed and shipped to prove execution depth beyond one employer context.
+            <p className="mt-4 max-w-[55ch] text-base leading-relaxed text-[var(--dossier-body)]">
+              I spot trends early, build things fast. Side ventures that prove execution depth beyond one
+              employer context.
             </p>
           </div>
 
@@ -111,8 +109,8 @@ export function SideProjectsGrid({ accentColor = "#10a37f" }: SideProjectsGridPr
             <motion.article
               key={project.name}
               className={`dossier-project-card accent-${project.accent}`}
-              initial={reduceMotion ? false : { opacity: 0, y: 14, scale: 0.98 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.12 }}
               transition={{ duration: 0.4, ease: EASE_OUT, delay: index * 0.05 }}
             >
@@ -122,15 +120,15 @@ export function SideProjectsGrid({ accentColor = "#10a37f" }: SideProjectsGridPr
                   <span className="text-[11px] font-medium" style={{ color: accentColor }}>
                     {project.category}
                   </span>
-                  <span className="text-[11px] text-[var(--dossier-subtle)]">{project.stage}</span>
+                  <span className="text-[11px] text-[var(--dossier-muted)]">{project.stage}</span>
                 </div>
                 <h4 className="text-xl font-semibold tracking-tight text-[var(--dossier-ink)]">
                   {project.name}
                 </h4>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--dossier-muted)]">
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--dossier-body)]">
                   {project.description}
                 </p>
-                <p className="mt-5 border-t border-[var(--dossier-line-strong)] pt-4 text-xs text-[var(--dossier-subtle)]">
+                <p className="mt-5 border-t border-[var(--dossier-line-strong)] pt-4 text-xs text-[var(--dossier-muted)]">
                   {project.evidence}
                 </p>
               </div>

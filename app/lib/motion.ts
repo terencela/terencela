@@ -2,7 +2,7 @@
 export const EASE_OUT = [0.23, 1, 0.32, 1] as const;
 
 export const dossierReveal = {
-  hidden: { opacity: 0, y: 20, scale: 0.98 },
+  hidden: { opacity: 0, y: 24, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
@@ -20,7 +20,7 @@ export const dossierStagger = {
 };
 
 export const dossierItem = {
-  hidden: { opacity: 0, y: 16, scale: 0.98 },
+  hidden: { opacity: 0, y: 24, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
@@ -30,8 +30,15 @@ export const dossierItem = {
 };
 
 export const dossierInView = {
-  initial: { opacity: 0, y: 18, scale: 0.98 },
+  initial: { opacity: 0, y: 24, scale: 0.98 },
   whileInView: { opacity: 1, y: 0, scale: 1 },
   viewport: { once: true, amount: 0.18 },
   transition: { duration: 0.45, ease: EASE_OUT },
+};
+
+export const dossierStatInView = {
+  initial: { opacity: 0, y: 16 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.4 },
+  transition: { duration: 0.35, ease: EASE_OUT },
 };

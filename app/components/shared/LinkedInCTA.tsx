@@ -94,7 +94,7 @@ export function LinkedInCTA({
 
           <div className="hidden text-right text-xs leading-relaxed text-[#6f7078] md:block">
             <p>Notice period: immediate / flexible</p>
-            <p className="mt-2">Swiss German · English · Cantonese · French</p>
+            <p className="mt-2">English · German · Swiss German · Cantonese · French</p>
             <p className="mt-6 text-[#55565e]">© {new Date().getFullYear()} Terence La</p>
           </div>
         </motion.div>

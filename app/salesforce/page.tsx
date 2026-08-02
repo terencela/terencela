@@ -12,14 +12,13 @@ export default function SalesforcePage() {
       companyName="Salesforce"
       roleTitle="Forward Deployed Engineer (Zurich)"
       accentColor="#00a1e0"
-      heroEyebrow="Zurich · Forward Deployed Engineer"
       heroTitle={
         <>
-          Agentforce only works when agents act on CRM data your compliance team{" "}
+          Agentforce works when agents act on data the compliance team{" "}
           <em>already trusts.</em>
         </>
       }
-      heroSummary="I deploy autonomous workflows inside existing operations, not beside them. At Zurich Airport I built service routing and escalation paths where a wrong answer is visible to 32 million passengers. For Salesforce FDE, that means agents embedded in Customer 360 flows, Data Cloud boundaries defined before the first write, and human handoff when confidence drops below threshold."
+      heroSummary="I deploy autonomous workflows inside existing operations, not beside them. At Zurich Airport I built service routing where a wrong answer is visible to 30M+ passengers. For Salesforce FDE, that means CRM-native integration, Data Cloud boundaries before the first write, and human handoff when confidence drops. No Salesforce cert yet, same integration discipline."
       primaryCtaLabel="See my 90-day Agentforce plan"
       blueprintItems={[
         "Audit two enterprise Agentforce deployments for data boundary gaps, escalation failures, and ops team adoption blockers.",
@@ -28,14 +27,14 @@ export default function SalesforcePage() {
       ]}
       metrics={[
         {
-          label: "Operational touchpoints",
-          value: "32M+",
-          note: "High-volume service with public failure visibility.",
+          label: "Tools shipped end-to-end",
+          value: "12+",
+          note: "Same integration discipline as CRM-native agents.",
         },
         {
-          label: "Autonomous workflows",
-          value: "Live ops",
-          note: "Routing, escalation, human handoff shipped.",
+          label: "Operational touchpoints",
+          value: "30M+",
+          note: "High-volume service with public failure visibility.",
         },
         {
           label: "Privacy in agent paths",
@@ -49,23 +48,23 @@ export default function SalesforcePage() {
           icon: Workflow,
           title: "CRM-native agent embedding",
           description:
-            "Agents that read and write through existing Salesforce objects and flows, not parallel databases. I built operational automations at Zurich Airport that plug into existing ticketing systems, which is the same integration mindset Agentforce demands.",
+            "Agents that read and write through existing Salesforce objects and flows, not parallel databases. I built operational automations at Zurich Airport that plug into existing ticketing systems.",
         },
         {
           icon: Database,
           title: "Data Cloud boundary design",
           description:
-            "Define which customer fields an agent can access, mask, or never touch before the first production action. I architected real-time data streams with field-level privacy rules under nDSG for passenger-facing AI.",
+            "Define which customer fields an agent can access, mask, or never touch before the first production action. Field-level privacy rules under nDSG for passenger-facing AI.",
         },
         {
           icon: Zap,
           title: "Escalation over automation",
           description:
-            "Agents defer to human operators when confidence is low or the action touches regulated data. I run production service AI with explicit thresholds and mandatory handoff for high-stakes queries, because wrong gate information destroys trust instantly.",
+            "Agents defer to human operators when confidence is low or the action touches regulated data. Mandatory handoff for high-stakes queries because wrong information destroys trust instantly.",
         },
       ]}
       demoTitle="Agentforce visualizer: service recovery with compliance guardrails"
-      demoSummary="Explore a disruption-response agent embedded in a service workflow. See how I design data boundary checks, confidence thresholds, and fallback to human operators before any autonomous action touches a customer record."
+      demoSummary="A disruption-response agent embedded in a service workflow. Data boundary checks, confidence thresholds, and fallback to human operators before any autonomous action touches a customer record."
       interactiveDemo={<AgentforceSimulator />}
     />
   );

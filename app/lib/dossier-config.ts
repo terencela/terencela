@@ -23,6 +23,19 @@ export type CareerProofItem = {
   sub: string;
 };
 
+export type CareerTimelineStep = {
+  period: string;
+  title: string;
+  company: string;
+  detail: string;
+  current?: boolean;
+};
+
+export type CredentialHighlight = {
+  label: string;
+  detail: string;
+};
+
 export type AdoptionPillar = {
   title: string;
   desc: string;
@@ -49,15 +62,87 @@ export type CompanyDossierSupport = {
   linkedInCtaBody: string;
 };
 
+export const careerTimeline: CareerTimelineStep[] = [
+  {
+    period: "Current",
+    title: "Senior Manager AI",
+    company: "Zurich Airport",
+    detail: "AI inside an operator serving 30M+ passengers a year. Operational scale, not a slide deck.",
+    current: true,
+  },
+  {
+    period: "Current",
+    title: "Founder & CEO",
+    company: "KI Unlocked",
+    detail: "AI workflow platform. 40% workflow reduction, 8+ enterprise clients.",
+    current: true,
+  },
+  {
+    period: "2023",
+    title: "Head of AI",
+    company: "Spadoom AG",
+    detail: "Repositioned an SAP consultancy as AI-ready with shipped integrations.",
+  },
+  {
+    period: "2022",
+    title: "Head of AI",
+    company: "Hutter Consult AG",
+    detail: "Streamlined AI strategy and eliminated delivery inefficiency.",
+  },
+  {
+    period: "2021",
+    title: "Chairman's Office",
+    company: "Credit Suisse",
+    detail: "Strategic initiatives and executive support at the highest level.",
+  },
+  {
+    period: "2019",
+    title: "Transfer Pricing Analyst",
+    company: "PwC",
+    detail: "International tax consulting. First enterprise consulting foundation.",
+  },
+  {
+    period: "2018",
+    title: "CMO",
+    company: "SmartCredit.io",
+    detail: "DeFi lending startup. Raised 1,200 ETH, $5.6M funding round.",
+  },
+  {
+    period: "2017",
+    title: "Research Associate",
+    company: "University of St. Gallen",
+    detail: "Harvard co-project on innovative business research.",
+  },
+];
+
+export const credentialsHighlights: CredentialHighlight[] = [
+  { label: "Forbes 30 Under 30", detail: "DACH, 2022" },
+  { label: "2x TEDx Speaker", detail: "HEC Paris, EDHEC" },
+  { label: "19+ wins", detail: "HackZurich, Bain FinTech, venture.ch" },
+  { label: "30+ talks", detail: "Enterprise and startup stages" },
+  { label: "Leader of Tomorrow", detail: "St. Gallen Symposium, 2021" },
+  { label: "HSG Master's", detail: "University of St. Gallen" },
+];
+
 export const companyDossierSupport: Record<DossierCompany, CompanyDossierSupport> = {
   openai: {
     careerProofIntro:
-      "I run AI inside Zurich Airport, where 32 million passengers a year see every failure. That is the same pressure your Zurich FDE team faces when a UBS or Swiss Re pilot goes live.",
+      "I run AI inside Zurich Airport, where 30M+ passengers a year expose every gap in eval coverage, latency, and data handling. That is the same pressure your Zurich FDE team faces when a UBS or Swiss Re pilot goes live.",
     careerProofItems: [
       {
-        stat: "32M+",
-        label: "Passengers in production AI scope",
-        sub: "Same operational stakes as your tier-1 DACH accounts",
+        stat: "12+",
+        label: "Internal AI tools shipped",
+        sub: "Python and TypeScript, not slide decks",
+      },
+      {
+        stat: "30M+",
+        label: "Passengers in operational scope",
+        sub: "Same stakes as tier-1 DACH accounts, not a claim I built AI for every passenger",
+      },
+      {
+        stat: "8+",
+        label: "Enterprise clients at KI Unlocked",
+        sub: "40% workflow reduction in production deployments",
       },
       {
         stat: "Since 2020",
@@ -65,23 +150,13 @@ export const companyDossierSupport: Record<DossierCompany, CompanyDossierSupport
         sub: "Evals, structured output, and field feedback loops",
       },
       {
-        stat: "12+",
-        label: "Internal AI tools shipped",
-        sub: "Python and TypeScript, not slide decks",
-      },
-      {
         stat: "5 languages",
         label: "Customer workshop ready",
-        sub: "Swiss German, High German, English, Cantonese, French",
-      },
-      {
-        stat: "nDSG",
-        label: "Live privacy architecture",
-        sub: "Data residency conversations I have weekly with legal",
+        sub: "English, German, Swiss German, Cantonese, French",
       },
     ],
     interviewPitch:
-      "I have been the customer your FDE team is trying to win. I know where pilots stall: eval gaps, latency surprises, and legal sign-off on data paths.",
+      "Your DACH customers do not stall on model quality. They stall between pilot and production sign-off. I have been the customer your FDE team is trying to win.",
     interviewPitchSub:
       "In a first conversation I would walk through how I de-risk a bank or infrastructure operator's first OpenAI production deployment, using the eval workbench on this page as the starting frame.",
     interviewBlueprintLabel: "First 90 days on your Zurich accounts",
@@ -146,9 +221,9 @@ export const companyDossierSupport: Record<DossierCompany, CompanyDossierSupport
       "Anthropic's Industries team wins when a Swiss CISO reads the architecture and says yes. I design Claude deployments that legal, IT, and the board can defend, not just admire in a sandbox.",
     careerProofItems: [
       {
-        stat: "Board + legal",
-        label: "Stakeholder alignment",
-        sub: "C-suite, compliance, and engineering in the same room",
+        stat: "Forbes 30u30",
+        label: "Executive room credibility",
+        sub: "Founder who presents architecture to decision-makers",
       },
       {
         stat: "3 verticals",
@@ -161,18 +236,18 @@ export const companyDossierSupport: Record<DossierCompany, CompanyDossierSupport
         sub: "Privacy and financial regulation as architecture inputs",
       },
       {
+        stat: "2x TEDx",
+        label: "Trust communication",
+        sub: "HEC Paris and EDHEC on AI adoption",
+      },
+      {
         stat: "Since 2020",
         label: "Production LLM systems",
         sub: "Safety and quality evals before rollout, not after incident",
       },
-      {
-        stat: "Forbes 30u30",
-        label: "Executive room credibility",
-        sub: "Founder who presents architecture to decision-makers",
-      },
     ],
     interviewPitch:
-      "Your Industries customers in Zurich do not need another Claude demo. They need a reference architecture their security team can audit and their CEO can explain to the board.",
+      "The blocker is not Claude's capability. It is the CISO's sign-off. Your Industries customers in Zurich need a reference architecture their security team can audit.",
     interviewPitchSub:
       "I would start by walking through the sandbox on this page: how I map Claude capabilities to Swiss regulatory constraints for a first production workload in banking or critical infrastructure.",
     interviewBlueprintLabel: "First 90 days with Industries accounts",
@@ -237,33 +312,33 @@ export const companyDossierSupport: Record<DossierCompany, CompanyDossierSupport
       "I have sat on both sides of a Swiss enterprise AI procurement: as the buyer building at Zurich Airport and as a founder selling into regulated accounts. That is what your Zurich GTM team needs when a CIO asks why Vertex over OpenAI.",
     careerProofItems: [
       {
-        stat: "$1M+",
-        label: "Founder revenue systems",
-        sub: "Built and sold AI services, not just consumed them",
+        stat: "$0.5M",
+        label: "Revenue via TL Innovations",
+        sub: "10 clients through sales funnels, copy, and outbound",
       },
       {
-        stat: "Buyer + builder",
-        label: "Dual perspective",
-        sub: "Know the questions Swiss procurement actually asks",
+        stat: "Decade",
+        label: "Sales background",
+        sub: "Founder who sold AI services, not just consumed them",
       },
       {
-        stat: "32M+",
-        label: "Enterprise AI at scale",
-        sub: "Credible reference for workload and compliance discussions",
+        stat: "30M+",
+        label: "Buyer-side reference",
+        sub: "Enterprise AI procurement from the inside at Zurich Airport",
+      },
+      {
+        stat: "19+",
+        label: "Competition wins",
+        sub: "HackZurich, Bain FinTech, venture.ch credibility",
       },
       {
         stat: "5 languages",
         label: "DACH deal fluency",
-        sub: "Swiss German, High German, English, Cantonese, French",
-      },
-      {
-        stat: "8k+",
-        label: "Swiss ecosystem reach",
-        sub: "Startups, enterprise circles, and innovation communities",
+        sub: "English, German, Swiss German, Cantonese, French",
       },
     ],
     interviewPitch:
-      "Swiss enterprises do not buy Vertex from a feature matrix. They buy when someone in the room can answer the hard question: why Google for this specific workload, this compliance profile, this timeline.",
+      "Swiss enterprises buy Vertex when someone in the room can answer the hard technical question. Not from a feature matrix, but from having been the buyer and the seller.",
     interviewPitchSub:
       "I would open with the discovery simulator on this page and show how I qualify a DACH account, surface technical objections early, and build a proof-of-value path that survives legal review.",
     interviewBlueprintLabel: "First 90 days on Zurich GTM",
@@ -325,10 +400,15 @@ export const companyDossierSupport: Record<DossierCompany, CompanyDossierSupport
 
   salesforce: {
     careerProofIntro:
-      "Agentforce only delivers value when agents act on CRM data your customer already trusts. I deploy autonomous workflows inside existing operations, with nDSG guardrails at every decision point.",
+      "Agentforce works when agents act on data the compliance team already trusts. I deploy autonomous workflows inside existing operations, with nDSG guardrails at every decision point.",
     careerProofItems: [
       {
-        stat: "32M+",
+        stat: "12+",
+        label: "Tools shipped end-to-end",
+        sub: "Same integration discipline as CRM-native agents",
+      },
+      {
+        stat: "30M+",
         label: "Operational touchpoints/year",
         sub: "High-volume service workflows with public failure visibility",
       },
@@ -338,23 +418,18 @@ export const companyDossierSupport: Record<DossierCompany, CompanyDossierSupport
         sub: "Routing, escalation, and human handoff in production",
       },
       {
+        stat: "No cert",
+        label: "Same integration mindset",
+        sub: "I embed in existing systems; Salesforce cert is a gap I close fast",
+      },
+      {
         stat: "nDSG",
         label: "Autonomous data paths",
         sub: "Privacy boundaries designed into every agent action",
       },
-      {
-        stat: "CAIO",
-        label: "Interim applied AI lead",
-        sub: "C-suite to developer alignment on agent rollout",
-      },
-      {
-        stat: "Founder",
-        label: "Ship speed",
-        sub: "Weeks to working prototype, not quarters to slide deck",
-      },
     ],
     interviewPitch:
-      "Your Zurich FDE customers want agents inside Salesforce, not another chatbot beside it. I embed automation where service teams already work and design escalation paths before anything touches a customer record.",
+      "Your Zurich FDE customers want agents inside Salesforce, not another chatbot beside it. I embed automation where service teams already work.",
     interviewPitchSub:
       "I would start with the Agentforce simulator on this page: a service recovery workflow with data boundary checks, fallback to human agents, and the governance template I would reuse across DACH accounts.",
     interviewBlueprintLabel: "First 90 days on Agentforce deployments",

@@ -12,14 +12,13 @@ export default function AnthropicPage() {
       companyName="Anthropic"
       roleTitle="Applied AI Architect, Industries (Zurich)"
       accentColor="#d97706"
-      heroEyebrow="Zurich · Applied AI Architect, Industries"
       heroTitle={
         <>
-          Swiss enterprises do not need another Claude demo. They need an architecture their{" "}
-          <em>CISO will sign.</em>
+          The blocker isn&apos;t Claude&apos;s capability. It&apos;s the{" "}
+          <em>CISO&apos;s sign-off.</em>
         </>
       }
-      heroSummary="I design Claude deployments that legal, IT, and the board can defend. At Zurich Airport I align C-suite priorities with technical architecture and nDSG compliance reality every week. For Anthropic Industries, that means reference architectures for banking and critical infrastructure, trust evals compliance teams understand, and workshops that resolve blockers in one room instead of six months of email."
+      heroSummary="I design Claude deployments that legal, IT, and the board can defend. At Zurich Airport I align C-suite priorities with nDSG compliance every week. For Industries, that means reference architectures for banking and critical infrastructure, trust evals compliance teams understand, and workshops that resolve blockers in one room."
       primaryCtaLabel="See my 90-day Industries plan"
       blueprintItems={[
         "Map Anthropic's DACH priority accounts against compliance blockers I have solved in aviation and financial services contexts.",
@@ -33,14 +32,14 @@ export default function AnthropicPage() {
           note: "Aviation, finance, public sector.",
         },
         {
-          label: "Stakeholder alignment",
-          value: "Board + legal",
-          note: "C-suite, compliance, engineering together.",
-        },
-        {
           label: "Privacy frameworks",
           value: "nDSG + FINMA",
           note: "Designed into architecture, not bolted on.",
+        },
+        {
+          label: "TEDx talks delivered",
+          value: "2",
+          note: "HEC Paris and EDHEC.",
         },
       ]}
       fitHeading="Mapped to what Industries hires for"
@@ -49,23 +48,23 @@ export default function AnthropicPage() {
           icon: Lock,
           title: "Reference architecture for regulated workloads",
           description:
-            "Industries customers need a documented data flow, model boundary, and oversight model before they expand token volume. I build these artifacts so security teams audit architecture, not slide decks.",
+            "Industries customers need documented data flows, model boundaries, and oversight models before they expand token volume. I build artifacts security teams audit, not slide decks.",
         },
         {
           icon: Building2,
           title: "Constitutional AI in practice",
           description:
-            "Trust is not a marketing word. I translate safety principles into eval suites covering hallucination rate, PII leakage, and refusal behavior on regulated content, with thresholds compliance teams can approve.",
+            "Trust is not a marketing word. I translate safety principles into eval suites covering hallucination rate, PII leakage, and refusal behavior on regulated content.",
         },
         {
           icon: Globe,
           title: "DACH workshop fluency",
           description:
-            "Swiss German, High German, English, Cantonese, and working French. I run the cross-functional sessions where legal, IT, and business owners decide whether Claude graduates from lab to production.",
+            "English, German, Swiss German, Cantonese, and French. I run cross-functional sessions where legal, IT, and business owners decide whether Claude graduates from lab to production.",
         },
       ]}
       demoTitle="Reference architecture sandbox: Swiss bank first Claude workload"
-      demoSummary="Explore how I would map Claude capabilities to nDSG and FINMA constraints for a private banking use case. Toggle compliance requirements and language settings to see how architecture decisions change before a POC expands."
+      demoSummary="How I map Claude capabilities to nDSG and FINMA constraints for a private banking use case. Toggle compliance requirements to see how architecture decisions change before a POC expands."
       interactiveDemo={<ClaudeEnterpriseSandbox />}
     />
   );

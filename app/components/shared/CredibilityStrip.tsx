@@ -5,12 +5,12 @@ import { motion, useReducedMotion } from "framer-motion";
 import { dossierInView } from "@/app/lib/motion";
 
 const credentials = [
+  { name: "PwC", detail: "Transfer pricing" },
+  { name: "Credit Suisse", detail: "Chairman's Office" },
   { name: "Zurich Airport", detail: "Senior Manager AI" },
-  { name: "PwC", detail: "Enterprise consulting" },
-  { name: "Credit Suisse", detail: "P3C program" },
-  { name: "Forbes", detail: "30 Under 30" },
-  { name: "TEDx", detail: "Public speaker" },
-  { name: "Founder", detail: "AI agency + 4 ventures" },
+  { name: "Forbes", detail: "30 Under 30 DACH" },
+  { name: "TEDx", detail: "2x speaker" },
+  { name: "HSG", detail: "Master's degree" },
 ];
 
 export function CredibilityStrip() {
@@ -23,7 +23,8 @@ export function CredibilityStrip() {
           className="dossier-credibility-lead"
           {...(reduceMotion ? {} : dossierInView)}
         >
-          A decade in enterprise sales and two Head of AI roles. I code, ship, and present to boards.
+          A decade in enterprise sales and two Head of AI roles. Builder who ships, not consultant who
+          advises.
         </motion.p>
       </div>
 
