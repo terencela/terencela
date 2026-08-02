@@ -469,10 +469,36 @@ html:has(.dossier-page) body {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.025;
+  opacity: 0.03;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 180px 180px;
+  animation: dossier-grain-pulse 4s ease-in-out infinite;
+}
+
+@keyframes dossier-grain-pulse {
+  0%, 100% { opacity: 0.03; }
+  50% { opacity: 0.06; }
+}
+
+@keyframes dossier-orb-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-20px) scale(1.02); }
+}
+
+@keyframes dossier-orb-float-alt {
+  0%, 100% { transform: translateY(0) scale(0.98); }
+  50% { transform: translateY(16px) scale(1.02); }
+}
+
+.dossier-accent-orb-float {
+  will-change: transform;
+  animation: dossier-orb-float 10s ease-in-out infinite;
+}
+
+.dossier-accent-orb-float-alt {
+  will-change: transform;
+  animation: dossier-orb-float-alt 12s ease-in-out infinite;
 }
 
 .dossier-dot-grid {
@@ -557,7 +583,8 @@ html:has(.dossier-page) body {
 
 .dossier-pressable {
   transition: transform 0.16s var(--dossier-ease), opacity 0.16s var(--dossier-ease),
-    background-color 0.2s var(--dossier-ease), border-color 0.2s var(--dossier-ease);
+    background-color 0.2s var(--dossier-ease), border-color 0.2s var(--dossier-ease),
+    box-shadow 0.2s var(--dossier-ease);
 }
 
 .dossier-pressable:active {
@@ -570,9 +597,7 @@ html:has(.dossier-page) body {
 }
 
 .dossier-glass-header {
-  border-bottom: 1px solid var(--dossier-line);
-  background: rgba(250, 250, 248, 0.82);
-  backdrop-filter: blur(16px);
+  border-bottom: 1px solid transparent;
 }
 
 .dossier-glass-pill {
@@ -634,23 +659,58 @@ html:has(.dossier-page) body {
   font-weight: 600;
   border: 0;
   cursor: pointer;
-  transition: transform 0.18s var(--dossier-ease), box-shadow 0.2s var(--dossier-ease);
+  transition: transform 0.16s var(--dossier-ease), box-shadow 0.2s var(--dossier-ease);
 }
 
-.dossier-button-primary:hover {
-  box-shadow: 0 12px 40px rgba(16, 17, 20, 0.18);
+@media (hover: hover) and (pointer: fine) {
+  .dossier-button-primary:hover {
+    box-shadow: 0 0 8px color-mix(in srgb, var(--hero-accent, #5a67ff) 20%, transparent);
+  }
+
+  .dossier-cta-accent:hover {
+    box-shadow:
+      0 0 8px color-mix(in srgb, var(--hero-accent, #5a67ff) 20%, transparent),
+      0 12px 45px color-mix(in srgb, var(--hero-accent, #5a67ff) 25%, transparent);
+  }
+}
+
+.dossier-cta-accent {
+  transition: transform 0.16s var(--dossier-ease), box-shadow 0.2s var(--dossier-ease);
 }
 
 .dossier-text-link {
+  position: relative;
   font-size: 13px;
   color: var(--dossier-muted);
-  border-bottom: 1px solid var(--dossier-line-strong);
   padding-bottom: 4px;
   transition: color 0.2s var(--dossier-ease);
 }
 
-.dossier-text-link:hover {
-  color: var(--dossier-ink);
+.dossier-text-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background: var(--dossier-line-strong);
+  transform-origin: left center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .dossier-text-link::after {
+    width: 0;
+    transition: width 0.25s var(--dossier-ease);
+  }
+
+  .dossier-text-link:hover {
+    color: var(--dossier-ink);
+  }
+
+  .dossier-text-link:hover::after {
+    width: 100%;
+    background: var(--dossier-ink);
+  }
 }
 
 .dossier-credibility {
@@ -959,9 +1019,10 @@ html:has(.dossier-page) body {
   transition: background 0.25s var(--dossier-ease), transform 0.25s var(--dossier-ease);
 }
 
-.dossier-project-card:hover {
-  background: #faf8f4;
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .dossier-project-card:hover {
+    background: #faf8f4;
+  }
 }
 
 .dossier-project-card .project-visual {
@@ -1104,4 +1165,13 @@ html:has(.dossier-page) body {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
+  .dossier-pressable:active {
+    transform: none;
+  }
+  .dossier-grain,
+  .dossier-accent-orb-float,
+  .dossier-accent-orb-float-alt {
+    animation: none !important;
+    opacity: 0.03;
+  }
 }

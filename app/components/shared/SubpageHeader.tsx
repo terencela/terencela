@@ -2,7 +2,14 @@
 
 import React from "react";
 import { ArrowUpRight, MapPin } from "lucide-react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { isExternalDossier } from "@/app/lib/dossier-config";
+import {
+  DOSSIER_HEADER_SCROLL_RANGE,
+  DOSSIER_LOAD_HEADER_DELAY,
+  DOSSIER_LOAD_HEADER_DURATION,
+  EASE_OUT,
+} from "@/app/lib/motion";
 
 interface SubpageHeaderProps {
   companyName: string;
@@ -16,9 +23,52 @@ export function SubpageHeader({
   accentColor,
 }: SubpageHeaderProps) {
   const external = isExternalDossier();
+  const reduceMotion = useReducedMotion();
+  const { scrollY } = useScroll();
+
+  const backgroundOpacity = useTransform(
+    scrollY,
+    DOSSIER_HEADER_SCROLL_RANGE,
+    reduceMotion ? [0.82, 0.82] : [0, 0.82]
+  );
+  const blurAmount = useTransform(
+    scrollY,
+    DOSSIER_HEADER_SCROLL_RANGE,
+    reduceMotion ? [16, 16] : [0, 16]
+  );
+  const borderOpacity = useTransform(
+    scrollY,
+    DOSSIER_HEADER_SCROLL_RANGE,
+    reduceMotion ? [1, 1] : [0, 1]
+  );
+
+  const backgroundColor = useTransform(
+    backgroundOpacity,
+    (opacity) => `rgba(250, 250, 248, ${opacity})`
+  );
+  const backdropFilter = useTransform(blurAmount, (blur) => `blur(${blur}px)`);
+  const borderBottomColor = useTransform(
+    borderOpacity,
+    (opacity) => `color-mix(in srgb, var(--dossier-line) ${opacity * 100}%, transparent)`
+  );
 
   return (
-    <header className="dossier-glass-header sticky top-0 z-[60]">
+    <motion.header
+      className="dossier-glass-header sticky top-0 z-[60]"
+      initial={reduceMotion ? false : { y: "-100%" }}
+      animate={{ y: 0 }}
+      transition={{
+        duration: DOSSIER_LOAD_HEADER_DURATION,
+        delay: DOSSIER_LOAD_HEADER_DELAY,
+        ease: EASE_OUT,
+      }}
+      style={{
+        backgroundColor,
+        backdropFilter,
+        WebkitBackdropFilter: backdropFilter,
+        borderBottomColor,
+      }}
+    >
       <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-4 py-4 md:px-8">
         <div className="min-w-0">
           <p className="truncate text-sm text-[var(--dossier-ink)]">
@@ -50,6 +100,6 @@ export function SubpageHeader({
           Internal preview mode
         </div>
       )}
-    </header>
+    </motion.header>
   );
 }

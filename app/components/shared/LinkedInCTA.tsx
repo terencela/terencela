@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Mail, ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
@@ -28,6 +28,21 @@ export function LinkedInCTA({
   accentColor = "#10a37f",
 }: LinkedInCTAProps) {
   const reduceMotion = useReducedMotion();
+  const [canHover, setCanHover] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const update = () => setCanHover(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  const tapProps = reduceMotion ? {} : { whileTap: { scale: 0.97 } };
+  const profileHover =
+    canHover && !reduceMotion
+      ? { whileHover: { scale: 1.03 }, transition: { duration: 0.2, ease: EASE_OUT } }
+      : {};
 
   return (
     <section className="dossier-footer-cta dossier-section" style={{ ["--hero-accent" as string]: accentColor }}>
@@ -41,7 +56,10 @@ export function LinkedInCTA({
         >
           <div>
             <div className="mb-8 flex items-center gap-4">
-              <div className="relative h-16 w-16 shrink-0 overflow-hidden border border-white/15">
+              <motion.div
+                className="relative h-16 w-16 shrink-0 overflow-hidden border border-white/15"
+                {...profileHover}
+              >
                 <Image
                   src="/images/terence-la-profile.png"
                   alt="Terence La"
@@ -49,7 +67,7 @@ export function LinkedInCTA({
                   sizes="64px"
                   className="object-cover object-top"
                 />
-              </div>
+              </motion.div>
               <div>
                 <p className="text-sm font-medium text-[#f7f6f2]">Terence La</p>
                 <p className="text-xs text-[#8f9098]">Zurich, Switzerland · Swiss citizen</p>
@@ -66,29 +84,31 @@ export function LinkedInCTA({
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a
+              <motion.a
                 href="https://www.linkedin.com/in/terencela"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="dossier-pressable inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold"
+                className="dossier-pressable dossier-cta-accent inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold"
                 style={{
                   backgroundColor: accentColor,
                   color: "#101114",
                   boxShadow: `0 12px 45px ${accentColor}40`,
                 }}
+                {...tapProps}
               >
                 <LinkedInIcon />
                 Connect on LinkedIn
                 <ArrowUpRight className="h-4 w-4" />
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
                 href={`mailto:terencela93@gmail.com?subject=Terence%20La%20-%20${encodeURIComponent(companyName)}`}
                 className="dossier-pressable inline-flex items-center gap-2 border border-white/15 bg-transparent px-6 py-3.5 text-sm font-medium text-[#f7f6f2] transition-colors hover:bg-white/5"
+                {...tapProps}
               >
                 <Mail className="h-4 w-4 text-[#8f9098]" />
                 terencela93@gmail.com
-              </a>
+              </motion.a>
             </div>
           </div>
 

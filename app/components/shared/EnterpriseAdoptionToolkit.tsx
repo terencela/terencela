@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   Lock,
   BarChart3,
@@ -10,7 +10,12 @@ import {
   ChevronRight,
 } from "lucide-react";
 import type { AdoptionPillar, AdoptionUseCase } from "@/app/lib/dossier-config";
-import { EASE_OUT } from "@/app/lib/motion";
+import {
+  dossierPillarItem,
+  dossierPillarStagger,
+  dossierViewport,
+  EASE_OUT,
+} from "@/app/lib/motion";
 
 const pillarIcons = [BarChart3, Lock, FileCode2, Users];
 
@@ -40,8 +45,8 @@ export function EnterpriseAdoptionToolkit({
       className="w-full overflow-hidden border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)]"
       initial={reduceMotion ? false : { opacity: 0, y: 20, scale: 0.98 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.5, ease: EASE_OUT }}
+      viewport={dossierViewport}
+      transition={{ duration: 0.55, ease: EASE_OUT }}
     >
       <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[var(--dossier-line-strong)] px-6 py-5 md:px-8">
         <div>
@@ -80,15 +85,22 @@ export function EnterpriseAdoptionToolkit({
       <div className="p-0">
         {activeTab === "framework" ? (
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_1.05fr]">
-            <div className="border-b border-[var(--dossier-line-strong)] lg:border-b-0 lg:border-r">
+            <motion.div
+              className="border-b border-[var(--dossier-line-strong)] lg:border-b-0 lg:border-r"
+              variants={reduceMotion ? undefined : dossierPillarStagger}
+              initial={reduceMotion ? false : "hidden"}
+              whileInView="visible"
+              viewport={dossierViewport}
+            >
               {adoptionPillars.map((pillar, index) => {
                 const Icon = pillarIcons[index % pillarIcons.length];
                 const isActive = activePillar === index;
                 return (
-                  <button
+                  <motion.button
                     key={pillar.title}
                     type="button"
                     onClick={() => setActivePillar(index)}
+                    variants={reduceMotion ? undefined : dossierPillarItem}
                     className={`dossier-pressable flex w-full items-start gap-3 border-b border-[var(--dossier-line-strong)] px-6 py-5 text-left transition-colors last:border-b-0 md:px-8 ${
                       isActive ? "bg-[#faf8f4]" : "hover:bg-[#faf8f4]/70"
                     }`}
@@ -107,27 +119,39 @@ export function EnterpriseAdoptionToolkit({
                       className="mt-0.5 h-4 w-4 shrink-0 text-[var(--dossier-subtle)]"
                       style={{ opacity: isActive ? 1 : 0.4 }}
                     />
-                  </button>
+                  </motion.button>
                 );
               })}
-            </div>
+            </motion.div>
 
-            <div className="px-6 py-8 md:px-10 md:py-10">
-              <div className="mb-4 flex items-center gap-2">
-                <SelectedIcon className="h-4 w-4" style={{ color: accentColor }} />
-                <span className="text-sm font-semibold" style={{ color: accentColor }}>
-                  {selected.title}
-                </span>
-              </div>
-              <p className="max-w-[55ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
-                {selected.desc}
-              </p>
-              <div className="mt-8 border-t border-[var(--dossier-line-strong)] pt-6">
-                <p className="text-xs font-medium text-[var(--dossier-ink)]">My proof</p>
-                <p className="mt-2 max-w-[55ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
-                  {selected.howTerenceSolves}
-                </p>
-              </div>
+            <div className="overflow-hidden px-6 py-8 md:px-10 md:py-10">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={activePillar}
+                  initial={reduceMotion ? false : { opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={reduceMotion ? undefined : { opacity: 0, height: 0 }}
+                  transition={
+                    reduceMotion ? { duration: 0 } : { duration: 0.55, ease: EASE_OUT }
+                  }
+                >
+                  <div className="mb-4 flex items-center gap-2">
+                    <SelectedIcon className="h-4 w-4" style={{ color: accentColor }} />
+                    <span className="text-sm font-semibold" style={{ color: accentColor }}>
+                      {selected.title}
+                    </span>
+                  </div>
+                  <p className="max-w-[55ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
+                    {selected.desc}
+                  </p>
+                  <div className="mt-8 border-t border-[var(--dossier-line-strong)] pt-6">
+                    <p className="text-xs font-medium text-[var(--dossier-ink)]">My proof</p>
+                    <p className="mt-2 max-w-[55ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
+                      {selected.howTerenceSolves}
+                    </p>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         ) : (
@@ -138,8 +162,8 @@ export function EnterpriseAdoptionToolkit({
                 className="grid gap-4 px-6 py-6 md:grid-cols-[1.1fr_1fr_auto] md:items-start md:px-8 md:py-7"
                 initial={reduceMotion ? false : { opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35, ease: EASE_OUT, delay: index * 0.05 }}
+                viewport={dossierViewport}
+                transition={{ duration: 0.5, ease: EASE_OUT, delay: index * 0.05 }}
               >
                 <div>
                   <p className="text-sm font-semibold text-[var(--dossier-ink)]">{uc.industry}</p>

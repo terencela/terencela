@@ -2,7 +2,13 @@
 
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { dossierInView } from "@/app/lib/motion";
+import {
+  dossierCredibilityItem,
+  dossierCredibilityStagger,
+  dossierInView,
+  dossierViewport,
+} from "@/app/lib/motion";
+import { DossierBorderDrawIn, DossierSectionDivider } from "@/app/components/shared/DossierSectionDivider";
 
 const credentials = [
   { name: "PwC", detail: "Transfer pricing" },
@@ -18,7 +24,8 @@ export function CredibilityStrip() {
 
   return (
     <section className="dossier-credibility" aria-label="Enterprise credentials">
-      <div className="mx-auto max-w-[1200px] px-4 md:px-8">
+      <DossierSectionDivider />
+      <div className="mx-auto max-w-[1200px] px-4 md:px-8 pt-12">
         <motion.p
           className="dossier-credibility-lead"
           {...(reduceMotion ? {} : dossierInView)}
@@ -28,24 +35,21 @@ export function CredibilityStrip() {
         </motion.p>
       </div>
 
+      <div className="mx-auto max-w-[1200px] px-4 md:px-8">
+        <DossierBorderDrawIn className="h-px bg-[var(--dossier-line-strong)]" />
+      </div>
+
       <motion.ul
-        className="dossier-credibility-list"
-        initial={reduceMotion ? false : { opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1], delay: 0.06 }}
+        className="dossier-credibility-list border-t-0"
+        variants={reduceMotion ? undefined : dossierCredibilityStagger}
+        initial={reduceMotion ? false : "hidden"}
+        whileInView="visible"
+        viewport={dossierViewport}
       >
-        {credentials.map((item, index) => (
+        {credentials.map((item) => (
           <motion.li
             key={item.name}
-            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.35,
-              ease: [0.23, 1, 0.32, 1],
-              delay: index * 0.05,
-            }}
+            variants={reduceMotion ? undefined : dossierCredibilityItem}
           >
             <b>{item.name}</b>
             <span>{item.detail}</span>

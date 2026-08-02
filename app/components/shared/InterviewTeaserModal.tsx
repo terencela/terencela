@@ -37,6 +37,7 @@ export function InterviewTeaserModal({
   accentColor = "#10a37f",
 }: InterviewTeaserModalProps) {
   const reduceMotion = useReducedMotion();
+  const tapProps = reduceMotion ? {} : { whileTap: { scale: 0.97 } };
 
   useEffect(() => {
     if (!isOpen) return;
@@ -52,31 +53,41 @@ export function InterviewTeaserModal({
       {isOpen ? (
         <motion.div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-[#101114]/70 p-4 backdrop-blur-md"
+          style={{ ["--hero-accent" as string]: accentColor }}
           initial={reduceMotion ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.22, ease: EASE_OUT }}
+          transition={{ duration: 0.2, ease: EASE_OUT }}
           onClick={onClose}
         >
           <motion.div
             className="relative w-full max-w-2xl overflow-hidden border border-[#c9c5bc] bg-[#f2efe8] p-6 text-left shadow-[0_28px_90px_rgba(16,17,20,0.22)] md:p-8"
-            initial={reduceMotion ? false : { opacity: 0, y: 16, scale: 0.97 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 12, scale: 0.97 }}
-            transition={{ duration: 0.28, ease: EASE_OUT }}
+            exit={{
+              opacity: 0,
+              scale: 0.95,
+              transition: { duration: 0.15, ease: EASE_OUT },
+            }}
+            transition={
+              reduceMotion
+                ? { duration: 0.15, ease: EASE_OUT }
+                : { type: "spring", stiffness: 300, damping: 25 }
+            }
             onClick={(e) => e.stopPropagation()}
             role="dialog"
             aria-modal="true"
             aria-labelledby="interview-modal-title"
           >
-            <button
+            <motion.button
               type="button"
               onClick={onClose}
               className="dossier-pressable absolute right-5 top-5 rounded-full p-2 text-[#6a6965] transition-colors hover:bg-[#e9e5dc] hover:text-[#101114]"
               aria-label="Close modal"
+              {...tapProps}
             >
               <X className="h-5 w-5" />
-            </button>
+            </motion.button>
 
             <div
               className="mb-2 flex items-center gap-2 text-xs font-medium"
@@ -122,26 +133,28 @@ export function InterviewTeaserModal({
               </div>
 
               <div className="flex shrink-0 items-center gap-2">
-                <a
+                <motion.a
                   href="https://www.linkedin.com/in/terencela"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="dossier-pressable flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-[#101114]"
+                  className="dossier-pressable dossier-cta-accent flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-[#101114]"
                   style={{
                     backgroundColor: accentColor,
                     boxShadow: `0 10px 35px ${accentColor}45`,
                   }}
+                  {...tapProps}
                 >
                   <LinkedInIcon />
                   <span>Connect on LinkedIn</span>
-                </a>
-                <a
+                </motion.a>
+                <motion.a
                   href={`mailto:terencela93@gmail.com?subject=Interview%20-%20Terence%20La%20-%20${encodeURIComponent(companyName)}`}
                   className="dossier-pressable flex items-center gap-1.5 border border-[#c9c5bc] bg-[#faf8f4] px-3 py-2.5 text-xs font-medium text-[#101114] transition-colors hover:bg-[#e9e5dc]"
+                  {...tapProps}
                 >
                   <Mail className="h-4 w-4 text-[#6a6965]" />
                   <span>Email</span>
-                </a>
+                </motion.a>
               </div>
             </div>
           </motion.div>

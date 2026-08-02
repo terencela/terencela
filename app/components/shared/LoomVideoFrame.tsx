@@ -4,7 +4,11 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Play, Clock3 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
-import { EASE_OUT } from "@/app/lib/motion";
+import {
+  dossierLoomChapterItem,
+  dossierLoomChapterStagger,
+  dossierLoomVideo,
+} from "@/app/lib/motion";
 
 interface LoomVideoFrameProps {
   companyName: string;
@@ -44,15 +48,12 @@ export function LoomVideoFrame({
   ];
 
   return (
-    <motion.div
-      className="dossier-loom-panel overflow-hidden"
-      initial={reduceMotion ? false : { opacity: 0, y: 20, scale: 0.98 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.5, ease: EASE_OUT }}
-    >
+    <div className="dossier-loom-panel overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-12">
-        <div className="relative min-h-[300px] border-b border-[var(--dossier-line-strong)] bg-[#f5f5f2] lg:col-span-7 lg:min-h-[400px] lg:border-b-0 lg:border-r">
+        <motion.div
+          className="relative min-h-[300px] border-b border-[var(--dossier-line-strong)] bg-[#f5f5f2] lg:col-span-7 lg:min-h-[400px] lg:border-b-0 lg:border-r"
+          {...(reduceMotion ? {} : dossierLoomVideo)}
+        >
           {loomUrl && isPlaying ? (
             <iframe
               src={loomUrl}
@@ -109,15 +110,22 @@ export function LoomVideoFrame({
               </div>
             </div>
           )}
-        </div>
+        </motion.div>
 
         <div className="flex flex-col justify-center bg-[#faf8f4] p-6 lg:col-span-5 lg:p-8">
           <p className="mb-4 text-sm text-[var(--dossier-muted)]">Video chapters</p>
-          <div className="space-y-2">
+          <motion.div
+            className="space-y-2"
+            variants={reduceMotion ? undefined : dossierLoomChapterStagger}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             {chapters.map((ch, idx) => (
-              <button
+              <motion.button
                 key={ch.title}
                 type="button"
+                variants={reduceMotion ? undefined : dossierLoomChapterItem}
                 onClick={() => {
                   setActiveChapter(idx);
                   setIsPlaying(true);
@@ -138,11 +146,11 @@ export function LoomVideoFrame({
                   <span className="font-medium text-[var(--dossier-ink)]">{ch.title}</span>
                 </div>
                 <p className="text-xs leading-relaxed text-[var(--dossier-muted)]">{ch.desc}</p>
-              </button>
+              </motion.button>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

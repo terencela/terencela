@@ -3,7 +3,12 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { careerTimeline, credentialsHighlights } from "@/app/lib/dossier-config";
-import { EASE_OUT } from "@/app/lib/motion";
+import {
+  dossierTimelineStep,
+  dossierViewport,
+  EASE_OUT,
+} from "@/app/lib/motion";
+import { DossierBorderDrawIn, DossierSectionDivider } from "@/app/components/shared/DossierSectionDivider";
 
 type CareerTimelineProps = {
   accentColor?: string;
@@ -14,12 +19,13 @@ export function CareerTimeline({ accentColor = "#10a37f" }: CareerTimelineProps)
 
   return (
     <section className="dossier-section relative z-[2] !py-16">
-      <div className="mx-auto max-w-[1200px] px-4 md:px-8">
+      <DossierSectionDivider />
+      <div className="mx-auto max-w-[1200px] px-4 md:px-8 pt-16">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.45, ease: EASE_OUT }}
+          viewport={dossierViewport}
+          transition={{ duration: 0.55, ease: EASE_OUT }}
           className="mb-10 max-w-[65ch]"
         >
           <h2 className="dossier-hero-title !text-[clamp(28px,3.5vw,48px)]">
@@ -31,17 +37,18 @@ export function CareerTimeline({ accentColor = "#10a37f" }: CareerTimelineProps)
           </p>
         </motion.div>
 
-        <div className="dossier-career-timeline">
+        <div className="dossier-career-timeline border-t-0">
+          <DossierBorderDrawIn className="h-px bg-[var(--dossier-line-strong)]" />
           <div className="dossier-career-track" role="list" aria-label="Career timeline">
-            {careerTimeline.map((step, index) => (
+            {careerTimeline.map((step) => (
               <motion.article
                 key={`${step.company}-${step.title}`}
                 className="dossier-career-step"
                 role="listitem"
-                initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.35, ease: EASE_OUT, delay: index * 0.05 }}
+                variants={reduceMotion ? undefined : dossierTimelineStep}
+                initial={reduceMotion ? false : "hidden"}
+                whileInView="visible"
+                viewport={dossierViewport}
               >
                 <span style={{ color: step.current ? accentColor : "var(--dossier-muted)" }}>
                   {step.period}
@@ -58,8 +65,8 @@ export function CareerTimeline({ accentColor = "#10a37f" }: CareerTimelineProps)
           className="dossier-credentials-row"
           initial={reduceMotion ? false : { opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.45, ease: EASE_OUT, delay: 0.08 }}
+          viewport={dossierViewport}
+          transition={{ duration: 0.55, ease: EASE_OUT, delay: 0.08 }}
           aria-label="Credentials and recognition"
         >
           {credentialsHighlights.map((item) => (
