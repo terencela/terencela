@@ -433,9 +433,9 @@ export function RoleDossierPage({
                   className="object-cover object-top"
                   priority
                 />
-                <div className="absolute inset-x-0 bottom-0 z-[2] p-5">
-                  <p className="text-sm font-medium text-[var(--dossier-ink)]">Terence La</p>
-                  <p className="text-xs text-[var(--dossier-muted)]">Senior Manager AI · Zurich Airport</p>
+                <div className="dossier-profile-caption absolute inset-x-0 bottom-0 z-[2] px-5 pb-5 pt-16">
+                  <p className="text-sm font-medium text-white">Terence La</p>
+                  <p className="text-xs text-white/80">Senior Manager AI · Zurich Airport</p>
                 </div>
               </div>
 

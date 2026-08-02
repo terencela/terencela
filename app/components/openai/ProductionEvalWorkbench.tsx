@@ -72,23 +72,25 @@ export function ProductionEvalWorkbench() {
         </div>
 
         {/* View Switcher */}
-        <div className="flex rounded-lg bg-zinc-950 p-1 border border-zinc-800 text-xs font-mono">
+        <div className="flex rounded-lg bg-zinc-950 p-1 border border-zinc-800 text-xs font-mono demo-tab-bar">
           <button
+            type="button"
             onClick={() => setActiveTab("interactive")}
             className={`px-3 py-1.5 rounded-md transition-all ${
               activeTab === "interactive"
-                ? "bg-emerald-500 text-black font-bold shadow"
-                : "text-zinc-400 hover:text-white"
+                ? "!bg-emerald-500 !text-black font-bold shadow"
+                : "demo-tab-inactive"
             }`}
           >
             Eval & Latency Simulator
           </button>
           <button
+            type="button"
             onClick={() => setActiveTab("architecture")}
             className={`px-3 py-1.5 rounded-md transition-all ${
               activeTab === "architecture"
-                ? "bg-emerald-500 text-black font-bold shadow"
-                : "text-zinc-400 hover:text-white"
+                ? "!bg-emerald-500 !text-black font-bold shadow"
+                : "demo-tab-inactive"
             }`}
           >
             Zurich Airport Production Architecture
@@ -108,11 +110,12 @@ export function ProductionEvalWorkbench() {
                 {(["gpt-4o", "gpt-4o-mini", "o3-mini"] as const).map((m) => (
                   <button
                     key={m}
+                    type="button"
                     onClick={() => setModel(m)}
-                    className={`p-2.5 rounded-lg border text-xs font-mono text-center transition-all ${
+                    className={`demo-model-btn p-2.5 rounded-lg border text-xs font-mono text-center transition-all ${
                       model === m
-                        ? "bg-emerald-950/60 border-emerald-500 text-emerald-300 font-bold"
-                        : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-zinc-700"
+                        ? "is-selected !bg-emerald-500/20 !border-emerald-400 font-bold shadow-[0_0_0_1px_rgba(52,211,153,0.35)]"
+                        : "!bg-zinc-900 !border-zinc-700 hover:!border-zinc-600"
                     }`}
                   >
                     {m}

@@ -68,19 +68,19 @@ export function LoomVideoFrame({
                 alt="Terence La"
                 fill
                 sizes="(max-width: 1024px) 100vw, 60vw"
-                className="object-cover object-top opacity-80"
+                className="object-cover object-[center_18%] opacity-70"
               />
               <div
                 className="absolute inset-0"
                 style={{
-                  background: `linear-gradient(165deg, rgba(250,250,248,0.15), rgba(250,250,248,0.92) 72%), radial-gradient(circle at 20% 15%, ${accentColor}22, transparent 50%)`,
+                  background: `linear-gradient(165deg, rgba(250,250,248,0.35) 0%, rgba(250,250,248,0.88) 68%), radial-gradient(circle at 20% 15%, ${accentColor}18, transparent 52%)`,
                 }}
               />
 
               <div className="relative z-10 flex h-full flex-col justify-between p-6 md:p-8">
-                <div className="flex items-center gap-3 text-xs text-[var(--dossier-muted)]">
+                <div className="flex items-center gap-3 text-xs font-medium" style={{ color: accentColor }}>
                   <span className="inline-flex items-center gap-1.5">
-                    <Clock3 className="h-3.5 w-3.5" style={{ color: accentColor }} />
+                    <Clock3 className="h-3.5 w-3.5" />
                     90 seconds
                   </span>
                 </div>
@@ -132,8 +132,8 @@ export function LoomVideoFrame({
                 }}
                 className={`dossier-pressable w-full border px-4 py-3.5 text-left transition-colors ${
                   activeChapter === idx
-                    ? "border-[var(--dossier-line-strong)] bg-white"
-                    : "border-transparent bg-transparent hover:bg-white/70"
+                    ? "border-[var(--dossier-line-strong)] bg-white shadow-sm"
+                    : "border-[var(--dossier-line)] bg-white/40 hover:bg-white/80"
                 }`}
                 style={
                   activeChapter === idx
