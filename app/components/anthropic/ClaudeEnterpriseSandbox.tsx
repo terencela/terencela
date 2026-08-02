@@ -3,25 +3,20 @@
 import React, { useState } from "react";
 import {
   ShieldCheck,
-  Building,
   Globe,
-  CheckCircle2,
   Brain,
-  Sliders,
-  Sparkles,
   Lock,
-  BarChart2,
-  FileText,
 } from "lucide-react";
 
+type Industry = "banking" | "aviation" | "pharma" | "public";
+type ClaudeModel = "sonnet" | "haiku" | "opus";
+
 export function ClaudeEnterpriseSandbox() {
-  const [industry, setIndustry] = useState<"banking" | "aviation" | "pharma" | "public">(
-    "banking"
-  );
-  const [model, setModel] = useState<"sonnet" | "haiku" | "opus">("sonnet");
+  const [industry, setIndustry] = useState<Industry>("banking");
+  const [model, setModel] = useState<ClaudeModel>("sonnet");
   const [finmaMode, setFinmaMode] = useState(true);
   const [lang, setLanguage] = useState<"en" | "de" | "fr" | "ch">("de");
-  const [tokenBudget, setTokenBudget] = useState(50); // k tokens per query
+  const [tokenBudget] = useState(50); // k tokens per query
 
   const industryProfiles = {
     banking: {
@@ -55,6 +50,18 @@ export function ClaudeEnterpriseSandbox() {
   };
 
   const activeProfile = industryProfiles[industry];
+  const industryOptions: { id: Industry; label: string }[] = [
+    { id: "banking", label: "Wealth & Banking" },
+    { id: "aviation", label: "Aviation & Travel" },
+    { id: "pharma", label: "Pharma & Life Sci" },
+    { id: "public", label: "Swiss Public Sector" },
+  ];
+
+  const modelOptions: { id: ClaudeModel; name: string; desc: string }[] = [
+    { id: "sonnet", name: "3.5 Sonnet", desc: "Best Reasoning" },
+    { id: "haiku", name: "3.5 Haiku", desc: "Ultra Fast" },
+    { id: "opus", name: "3 Opus", desc: "Complex Deep Work" },
+  ];
 
   const translations = {
     en: "Claude 3.5 Sonnet provides unmatched enterprise accuracy and safety for Swiss organizations.",
@@ -114,15 +121,10 @@ export function ClaudeEnterpriseSandbox() {
               1. Select Swiss Enterprise Vertical
             </label>
             <div className="grid grid-cols-2 gap-2">
-              {[
-                { id: "banking", label: "Wealth & Banking" },
-                { id: "aviation", label: "Aviation & Travel" },
-                { id: "pharma", label: "Pharma & Life Sci" },
-                { id: "public", label: "Swiss Public Sector" },
-              ].map((item) => (
+              {industryOptions.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => setIndustry(item.id as any)}
+                  onClick={() => setIndustry(item.id)}
                   className={`p-2.5 rounded-lg border text-xs font-mono text-left transition-all ${
                     industry === item.id
                       ? "bg-amber-950/60 border-amber-500 text-amber-300 font-bold"
@@ -141,22 +143,18 @@ export function ClaudeEnterpriseSandbox() {
               2. Choose Claude Model Tier
             </label>
             <div className="grid grid-cols-3 gap-2">
-              {[
-                { id: "sonnet", name: "3.5 Sonnet", desc: "Best Reasoning" },
-                { id: "haiku", name: "3.5 Haiku", desc: "Ultra Fast" },
-                { id: "opus", name: "3 Opus", desc: "Complex Deep Work" },
-              ].map((m) => (
+              {modelOptions.map((option) => (
                 <button
-                  key={m.id}
-                  onClick={() => setModel(m.id as any)}
+                  key={option.id}
+                  onClick={() => setModel(option.id)}
                   className={`p-2 rounded-lg border text-xs font-mono text-center transition-all ${
-                    model === m.id
+                    model === option.id
                       ? "bg-amber-950/60 border-amber-500 text-amber-300 font-bold"
                       : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-zinc-700"
                   }`}
                 >
-                  <div className="font-bold">{m.name}</div>
-                  <div className="text-[9px] text-zinc-500 mt-0.5">{m.desc}</div>
+                  <div className="font-bold">{option.name}</div>
+                  <div className="text-[9px] text-zinc-500 mt-0.5">{option.desc}</div>
                 </button>
               ))}
             </div>
@@ -244,7 +242,9 @@ export function ClaudeEnterpriseSandbox() {
             <div className="grid grid-cols-3 gap-3">
               <div className="p-3 rounded-xl bg-zinc-900 border border-zinc-800">
                 <div className="text-[10px] font-mono text-zinc-500 uppercase">Context Window</div>
-                <div className="text-lg font-bold font-mono text-white mt-1">200k Tokens</div>
+                <div className="text-lg font-bold font-mono text-white mt-1">
+                  {tokenBudget}k Tokens
+                </div>
                 <div className="text-[9px] text-zinc-400 font-mono mt-0.5">Full financial reports</div>
               </div>
 

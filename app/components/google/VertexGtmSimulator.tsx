@@ -5,23 +5,28 @@ import {
   TrendingUp,
   Target,
   Zap,
-  DollarSign,
-  PieChart,
-  Users,
-  Compass,
-  ArrowRight,
-  ShieldAlert,
 } from "lucide-react";
 
+type MarketSegment = "startups" | "enterprise" | "fintech";
+type MigrationSource = "openai" | "azure" | "aws";
+
 export function VertexGtmSimulator() {
-  const [segment, setSegment] = useState<"startups" | "enterprise" | "fintech">(
-    "startups"
-  );
+  const [segment, setSegment] = useState<MarketSegment>("startups");
   const [targetAccounts, setTargetAccounts] = useState(25);
   const [avgDealARR, setAvgDealARR] = useState(120); // in k CHF
-  const [migrationSource, setMigrationSource] = useState<"openai" | "azure" | "aws">(
-    "openai"
-  );
+  const [migrationSource, setMigrationSource] = useState<MigrationSource>("openai");
+
+  const marketSegments: { id: MarketSegment; label: string }[] = [
+    { id: "startups", label: "AI Startups" },
+    { id: "fintech", label: "Zurich FinTech" },
+    { id: "enterprise", label: "Large Enterprise" },
+  ];
+
+  const migrationTargets: { id: MigrationSource; label: string }[] = [
+    { id: "openai", label: "OpenAI Direct" },
+    { id: "azure", label: "Azure AI" },
+    { id: "aws", label: "AWS Bedrock" },
+  ];
 
   const calculateGTM = () => {
     const rawPipeline = (targetAccounts * avgDealARR) / 1000; // in M CHF
@@ -74,14 +79,10 @@ export function VertexGtmSimulator() {
               1. Target Market Segment in Zurich
             </label>
             <div className="grid grid-cols-3 gap-2">
-              {[
-                { id: "startups", label: "AI Startups" },
-                { id: "fintech", label: "Zurich FinTech" },
-                { id: "enterprise", label: "Large Enterprise" },
-              ].map((s) => (
+              {marketSegments.map((s) => (
                 <button
                   key={s.id}
-                  onClick={() => setSegment(s.id as any)}
+                  onClick={() => setSegment(s.id)}
                   className={`p-2.5 rounded-lg border text-xs font-mono text-center transition-all ${
                     segment === s.id
                       ? "bg-blue-950/60 border-blue-500 text-blue-300 font-bold"
@@ -139,14 +140,10 @@ export function VertexGtmSimulator() {
               3. Displacement Target (Competitive Win)
             </label>
             <div className="grid grid-cols-3 gap-2">
-              {[
-                { id: "openai", label: "OpenAI Direct" },
-                { id: "azure", label: "Azure AI" },
-                { id: "aws", label: "AWS Bedrock" },
-              ].map((m) => (
+              {migrationTargets.map((m) => (
                 <button
                   key={m.id}
-                  onClick={() => setMigrationSource(m.id as any)}
+                  onClick={() => setMigrationSource(m.id)}
                   className={`p-2.5 rounded-lg border text-xs font-mono text-center transition-all ${
                     migrationSource === m.id
                       ? "bg-blue-950/60 border-blue-500 text-blue-300 font-bold"

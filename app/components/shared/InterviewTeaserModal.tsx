@@ -9,6 +9,7 @@ interface InterviewTeaserModalProps {
   companyName: string;
   roleTitle: string;
   blueprintItems: string[];
+  accentColor?: string;
 }
 
 function LinkedInIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -25,13 +26,17 @@ export function InterviewTeaserModal({
   companyName,
   roleTitle,
   blueprintItems,
+  accentColor = "#10a37f",
 }: InterviewTeaserModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md"
+      onClick={onClose}
+    >
       <div
-        className="relative w-full max-w-2xl bg-zinc-950 border border-zinc-800 rounded-2xl p-6 md:p-8 shadow-2xl overflow-hidden text-left"
+        className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-zinc-800 bg-[#070c16] p-6 text-left shadow-[0_28px_90px_rgba(0,0,0,0.7)] md:p-8"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -42,32 +47,38 @@ export function InterviewTeaserModal({
           <X className="w-5 h-5" />
         </button>
 
-        <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest mb-2">
+        <div
+          className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.17em]"
+          style={{ color: accentColor }}
+        >
           <ShieldCheck className="w-4 h-4" />
           <span>Gated Candidate Brief</span>
         </div>
 
-        <h3 className="text-2xl md:text-3xl font-bold font-sans text-white tracking-tight mb-2">
+        <h3 className="mb-2 text-2xl font-semibold tracking-tight text-white md:text-3xl">
           The First Step: {companyName} {roleTitle}
         </h3>
 
-        <p className="text-sm text-zinc-400 font-sans leading-relaxed mb-6">
-          Here is a teaser of what I will bring to {companyName} in Zurich from Day 1. If this aligns with your team&apos;s goals, let&apos;s schedule a 20-minute conversation.
+        <p className="mb-6 text-sm leading-relaxed text-zinc-400">
+          This is the first execution slice for {companyName} in Zurich. If this direction fits, I can walk you through the full architecture and rollout plan.
         </p>
 
         <div className="space-y-3 mb-8">
-          <p className="text-xs font-mono uppercase tracking-wider text-zinc-500">
-            Initial 60-Day Strategic Focus:
+          <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">
+            Initial 60-day focus
           </p>
-          {blueprintItems.map((item, idx) => (
-            <div key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-zinc-900/60 border border-zinc-800">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-              <span className="text-xs text-zinc-300 font-mono leading-relaxed">{item}</span>
+          {blueprintItems.map((item) => (
+            <div key={item} className="flex items-start gap-3 rounded-xl border border-zinc-800 bg-zinc-900/60 p-3">
+              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" style={{ color: accentColor }} />
+              <span className="text-xs leading-relaxed text-zinc-300">{item}</span>
             </div>
           ))}
         </div>
 
-        <div className="p-4 rounded-xl bg-gradient-to-r from-emerald-950/40 via-zinc-900 to-zinc-900 border border-emerald-800/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div
+          className="flex flex-col items-center justify-between gap-4 rounded-2xl border bg-gradient-to-r from-zinc-900 via-zinc-900 to-zinc-900 p-4 sm:flex-row"
+          style={{ borderColor: `${accentColor}55` }}
+        >
           <div>
             <div className="text-sm font-bold text-white">Ready for the deep dive?</div>
             <div className="text-xs text-zinc-400">Direct access to Terence La (Zurich, CH)</div>
@@ -78,7 +89,11 @@ export function InterviewTeaserModal({
               href="https://www.linkedin.com/in/terencela"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs transition-all flex items-center gap-2 shadow-lg shadow-emerald-950"
+              className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold text-[#05070d] transition-transform duration-200 hover:-translate-y-0.5"
+              style={{
+                backgroundColor: accentColor,
+                boxShadow: `0 10px 35px ${accentColor}45`,
+              }}
             >
               <LinkedInIcon />
               <span>Connect on LinkedIn</span>

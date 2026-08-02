@@ -3,22 +3,17 @@
 import React, { useState } from "react";
 import {
   Bot,
-  Database,
-  Workflow,
   CheckCircle,
   Zap,
   Activity,
-  ArrowRight,
-  Shield,
 } from "lucide-react";
 
+type WorkflowType = "customer" | "ops" | "sales";
+type AutonomyLevel = "assisted" | "autonomous";
+
 export function AgentforceSimulator() {
-  const [activeWorkflow, setActiveWorkflow] = useState<"customer" | "ops" | "sales">(
-    "customer"
-  );
-  const [autonomyLevel, setActiveAutonomyLevel] = useState<"assisted" | "autonomous">(
-    "autonomous"
-  );
+  const [activeWorkflow, setActiveWorkflow] = useState<WorkflowType>("customer");
+  const [autonomyLevel, setActiveAutonomyLevel] = useState<AutonomyLevel>("autonomous");
 
   const workflows = {
     customer: {
@@ -57,6 +52,11 @@ export function AgentforceSimulator() {
   };
 
   const currentWF = workflows[activeWorkflow];
+  const workflowOptions: { id: WorkflowType; label: string }[] = [
+    { id: "customer", label: "Passenger & Customer Service Recovery" },
+    { id: "ops", label: "Airport Ground Ops & Vendor Dispatch" },
+    { id: "sales", label: "Enterprise Deal Qualification & Routing" },
+  ];
 
   return (
     <div className="w-full bg-zinc-950 border border-sky-900/40 rounded-2xl overflow-hidden shadow-2xl font-sans">
@@ -90,14 +90,10 @@ export function AgentforceSimulator() {
               1. Select Autonomous Agent Use Case
             </label>
             <div className="space-y-2">
-              {[
-                { id: "customer", label: "Passenger & Customer Service Recovery" },
-                { id: "ops", label: "Airport Ground Ops & Vendor Dispatch" },
-                { id: "sales", label: "Enterprise Deal Qualification & Routing" },
-              ].map((w) => (
+              {workflowOptions.map((w) => (
                 <button
                   key={w.id}
-                  onClick={() => setActiveWorkflow(w.id as any)}
+                  onClick={() => setActiveWorkflow(w.id)}
                   className={`w-full p-3 rounded-lg border text-xs font-mono text-left transition-all ${
                     activeWorkflow === w.id
                       ? "bg-sky-950/60 border-sky-500 text-sky-300 font-bold"

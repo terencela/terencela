@@ -2,14 +2,8 @@
 
 import React, { useState } from "react";
 import {
-  ShieldCheck,
-  Zap,
-  Layers,
-  Brain,
-  CheckCircle2,
   Lock,
   BarChart3,
-  Sliders,
   FileCode2,
   Users,
 } from "lucide-react";
@@ -17,95 +11,103 @@ import {
 interface EnterpriseAdoptionToolkitProps {
   companyName: string;
   roleTitle: string;
+  accentColor?: string;
 }
 
 export function EnterpriseAdoptionToolkit({
   companyName,
   roleTitle,
+  accentColor = "#10a37f",
 }: EnterpriseAdoptionToolkitProps) {
-  const [activeTab, setActiveTab] = useState<"framework" | "toolkit" | "case_analysis">(
-    "framework"
-  );
+  const [activeTab, setActiveTab] = useState<"framework" | "case_analysis">("framework");
 
   const adoptionPillars = [
     {
-      title: "1. Systematic Eval & Hallucination Guardrails",
+      title: "Systematic eval and quality guardrails",
       icon: BarChart3,
-      desc: "Establishing rigorous precision, recall, and faithfulness benchmarks before production deployment.",
+      desc: "Set measurable precision, recall, and faithfulness targets before rollout.",
       howTerenceSolves:
-        "At Zurich Airport, I built automated post-interaction evaluation loops that continuously measure model output accuracy against flight datasets and operational rules.",
+        "Built post-interaction evaluation loops at Zurich Airport to measure output quality against operational ground truth.",
     },
     {
-      title: "2. Swiss nDSG & FINMA Privacy Architecture",
+      title: "Swiss privacy architecture that ships",
       icon: Lock,
-      desc: "Architecting zero raw data retention, local VPC endpoints, and in-memory PII sanitization.",
+      desc: "Design data handling around least exposure, strong auditability, and local constraints.",
       howTerenceSolves:
-        "Navigated Swiss data residency laws for 30M+ passengers/year and UBS/Credit Suisse Chairman's Office standards.",
+        "Applied nDSG-conscious standards in high-volume environments with executive visibility.",
     },
     {
-      title: "3. Deterministic Structured Output Fallbacks",
+      title: "Structured output and fallback reliability",
       icon: FileCode2,
-      desc: "Enforcing strict JSON Schema validation for seamless ERP, CRM, and API integration.",
+      desc: "Protect integrations with schema validation, fallback chains, and deterministic parsing.",
       howTerenceSolves:
-        "Pioneered structured LLM pipelines since GPT-3 in Aug 2020, preventing API breakdown during model updates.",
+        "Long-term production experience with structured LLM pipelines to avoid API regressions.",
     },
     {
-      title: "4. C-Suite to Developer Alignment",
+      title: "C-suite to developer alignment",
       icon: Users,
-      desc: "Translating technical frontier model capabilities into clear business ROI for C-level buyers.",
+      desc: "Translate technical options into business-impact decisions teams can commit to.",
       howTerenceSolves:
-        "2x TEDx speaker, WEF presenter, ZHAW/FHNW AI Lecturer, and 4x founder who generated $1M+ client revenue.",
+        "Founder and enterprise leadership background that connects architecture detail with executive outcomes.",
     },
   ];
 
   const useCases = [
     {
       industry: "Swiss Financial Services (Banking / Wealth)",
-      friction: "Strict FINMA Circular 2018/3 & Swiss Bank Secrecy compliance fears.",
-      solution: "In-memory PII redaction + private cloud VPC deployment with zero model training on customer data.",
-      adoptionImpact: "Reduces procurement security review cycle from 6 months to 3 weeks.",
+      friction: "High compliance friction and long procurement cycles.",
+      solution:
+        "In-memory sanitization, controlled access architecture, and explicit deployment governance.",
+      adoptionImpact: "Shorter security review path and faster technical sign-off.",
     },
     {
       industry: "Aviation & Infrastructure (Zurich Airport)",
-      friction: "High concurrency during flight disruptions & multi-lingual passenger needs (DE/EN/FR).",
-      solution: "Structured tool-calling pipeline routing flight status, baggage claim, and gate updates in real time.",
-      adoptionImpact: "Handled call center volume spikes while reducing agent handle time by 65%.",
+      friction: "High concurrency events with multilingual service pressure.",
+      solution:
+        "Structured tool-calling and routing for status, baggage, and gate operations in real time.",
+      adoptionImpact: "Stable customer support behavior during disruption peaks.",
     },
     {
-      industry: "Enterprise SaaS & B2B GTM (Spadoom AG)",
-      friction: "Legacy CRM/ERP data silos & low employee adoption of complex AI tools.",
-      solution: "Embedded autonomous agents (Agentforce / Vertex AI) directly inside daily workflows.",
-      adoptionImpact: "Accelerated sales qualification from 2 days to under 60 seconds.",
+      industry: "Enterprise SaaS and B2B GTM",
+      friction: "Siloed systems and low internal adoption.",
+      solution: "Embed AI where teams already work instead of forcing new parallel interfaces.",
+      adoptionImpact: "Lower onboarding friction and better early retention.",
     },
   ];
 
   return (
-    <div className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl font-sans my-10">
-      {/* Header */}
-      <div className="bg-zinc-900/90 px-6 py-4 border-b border-zinc-800 flex flex-wrap items-center justify-between gap-4">
+    <div className="my-10 w-full overflow-hidden rounded-3xl border border-zinc-800 bg-[#080d18]/90 shadow-[0_24px_80px_rgba(2,6,23,0.65)]">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-zinc-800 bg-[#0a0f1d] px-6 py-4">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-lg font-bold text-white font-mono">
-              Enterprise AI Adoption Toolkit & Use Case Framework
+            <h3 className="text-lg font-semibold text-white">
+              Enterprise adoption toolkit
             </h3>
-            <span className="px-2.5 py-0.5 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-              METHODOLOGY
+            <span
+              className="rounded-full border px-2.5 py-0.5 text-[10px] uppercase tracking-[0.14em]"
+              style={{
+                borderColor: `${accentColor}66`,
+                color: accentColor,
+                backgroundColor: `${accentColor}14`,
+              }}
+            >
+              Method
             </span>
           </div>
-          <p className="text-xs text-zinc-400 font-mono mt-0.5">
-            How Terence La accelerates AI adoption rates and solves enterprise implementation friction in Zurich
+          <p className="mt-0.5 text-xs text-zinc-400">
+            Framework for turning AI pilots into sustained enterprise usage for {companyName} ({roleTitle}).
           </p>
         </div>
 
-        {/* Navigation Tabs */}
-        <div className="flex rounded-lg bg-zinc-950 p-1 border border-zinc-800 text-xs font-mono">
+        <div className="flex rounded-xl border border-zinc-800 bg-[#040912] p-1 text-xs">
           <button
             onClick={() => setActiveTab("framework")}
             className={`px-3 py-1.5 rounded-md transition-all ${
               activeTab === "framework"
-                ? "bg-emerald-500 text-black font-bold shadow"
+                ? "text-[#05070d] font-semibold"
                 : "text-zinc-400 hover:text-white"
             }`}
+            style={activeTab === "framework" ? { backgroundColor: accentColor } : undefined}
           >
             Adoption Pillars
           </button>
@@ -113,34 +115,35 @@ export function EnterpriseAdoptionToolkit({
             onClick={() => setActiveTab("case_analysis")}
             className={`px-3 py-1.5 rounded-md transition-all ${
               activeTab === "case_analysis"
-                ? "bg-emerald-500 text-black font-bold shadow"
+                ? "text-[#05070d] font-semibold"
                 : "text-zinc-400 hover:text-white"
             }`}
+            style={activeTab === "case_analysis" ? { backgroundColor: accentColor } : undefined}
           >
-            Swiss Use Case Analysis
+            Swiss Use Cases
           </button>
         </div>
       </div>
 
-      <div className="p-6 md:p-8 bg-zinc-950">
+      <div className="bg-[#070b15] p-6 md:p-8">
         {activeTab === "framework" ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {adoptionPillars.map((pillar, idx) => {
+            {adoptionPillars.map((pillar) => {
               const Icon = pillar.icon;
               return (
                 <div
-                  key={idx}
-                  className="p-5 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700 transition-all space-y-3"
+                  key={pillar.title}
+                  className="space-y-3 rounded-2xl border border-zinc-800 bg-[#0a0f1d]/85 p-5 transition-colors hover:border-zinc-700"
                 >
-                  <div className="flex items-center gap-2.5 text-emerald-400 font-mono font-bold text-sm">
+                  <div className="flex items-center gap-2.5 text-sm font-semibold">
                     <Icon className="w-4 h-4" />
-                    <span>{pillar.title}</span>
+                    <span style={{ color: accentColor }}>{pillar.title}</span>
                   </div>
-                  <p className="text-xs text-zinc-300 font-sans leading-relaxed">
-                    {pillar.desc}
-                  </p>
-                  <div className="pt-2 border-t border-zinc-800/80 text-[11px] text-zinc-400 font-mono space-y-1">
-                    <span className="text-emerald-300 font-semibold block">Swiss Execution Proof:</span>
+                  <p className="text-xs leading-relaxed text-zinc-400">{pillar.desc}</p>
+                  <div className="space-y-1 border-t border-zinc-800 pt-2 text-[11px] text-zinc-400">
+                    <span className="block font-medium" style={{ color: accentColor }}>
+                      Execution proof
+                    </span>
                     <span>{pillar.howTerenceSolves}</span>
                   </div>
                 </div>
@@ -149,25 +152,32 @@ export function EnterpriseAdoptionToolkit({
           </div>
         ) : (
           <div className="space-y-4">
-            <div className="text-xs font-mono text-zinc-400 uppercase tracking-wider mb-2">
-              Accelerating Adoption Across Regulated Swiss Verticals
+            <div className="mb-2 text-xs uppercase tracking-[0.18em] text-zinc-500">
+              Adoption friction by vertical
             </div>
-            {useCases.map((uc, idx) => (
+            {useCases.map((uc) => (
               <div
-                key={idx}
-                className="p-5 rounded-xl bg-zinc-900/60 border border-zinc-800 space-y-2 font-sans"
+                key={uc.industry}
+                className="space-y-2 rounded-2xl border border-zinc-800 bg-[#0a0f1d]/85 p-5"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold text-white font-mono">{uc.industry}</span>
-                  <span className="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded border border-emerald-500/30">
-                    Impact: {uc.adoptionImpact}
+                  <span className="text-sm font-semibold text-white">{uc.industry}</span>
+                  <span
+                    className="rounded-full border px-2.5 py-0.5 text-[11px]"
+                    style={{
+                      borderColor: `${accentColor}66`,
+                      color: accentColor,
+                      backgroundColor: `${accentColor}14`,
+                    }}
+                  >
+                    {uc.adoptionImpact}
                   </span>
                 </div>
                 <div className="text-xs text-zinc-400">
-                  <strong className="text-zinc-300">Enterprise Friction:</strong> {uc.friction}
+                  <strong className="text-zinc-300">Friction:</strong> {uc.friction}
                 </div>
                 <div className="text-xs text-zinc-300">
-                  <strong className="text-emerald-400">Terence&apos;s Solution:</strong> {uc.solution}
+                  <strong style={{ color: accentColor }}>Solution:</strong> {uc.solution}
                 </div>
               </div>
             ))}

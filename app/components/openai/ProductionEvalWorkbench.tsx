@@ -3,11 +3,9 @@
 import React, { useState } from "react";
 import {
   Sliders,
-  Play,
   Shield,
   Zap,
   CheckCircle,
-  AlertTriangle,
   Activity,
   Layers,
   FileCode,

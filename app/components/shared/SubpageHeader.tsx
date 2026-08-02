@@ -1,67 +1,55 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { ArrowUpRight, ShieldCheck, MapPin } from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
+import { isExternalDossier } from "@/app/lib/dossier-config";
 
 interface SubpageHeaderProps {
   companyName: string;
   roleTitle: string;
-  accentColor: string; // e.g. "#10a37f" for OpenAI, "#d97706" for Anthropic, "#4285f4" for Google, "#00a1e0" for Salesforce
-  badgeText?: string;
+  accentColor: string;
 }
 
 export function SubpageHeader({
   companyName,
   roleTitle,
   accentColor,
-  badgeText = "ZURICH CANDIDATE DOSSIER",
 }: SubpageHeaderProps) {
+  const external = isExternalDossier();
+
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-black/80 border-b border-white/10 px-4 md:px-8 py-3.5 flex items-center justify-between text-sm">
-      <div className="flex items-center gap-3">
-        <Link
-          href="/"
-          className="font-mono font-bold tracking-widest text-xs text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5"
-        >
-          <span>TERENCE LA</span>
-          <span className="text-zinc-600">/</span>
-        </Link>
-        <div
-          className="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold tracking-wider flex items-center gap-1.5 border"
-          style={{
-            backgroundColor: `${accentColor}15`,
-            borderColor: `${accentColor}40`,
-            color: accentColor,
-          }}
-        >
-          <span
-            className="w-1.5 h-1.5 rounded-full animate-pulse"
-            style={{ backgroundColor: accentColor }}
-          />
-          {companyName.toUpperCase()} · {roleTitle}
+    <header className="dossier-glass-header sticky top-0 z-[60]">
+      <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-4 py-4 md:px-8">
+        <div className="min-w-0">
+          <p className="truncate text-sm text-[#f7f6f2]">
+            <span className="font-semibold">{companyName}</span>
+            <span className="text-[#8f9098]"> · {roleTitle}</span>
+          </p>
+        </div>
+
+        <div className="flex shrink-0 items-center gap-3">
+          <div className="dossier-glass-pill hidden sm:inline-flex">
+            <MapPin className="h-3.5 w-3.5" style={{ color: accentColor }} />
+            Zurich
+          </div>
+
+          <a
+            href="https://www.linkedin.com/in/terencela"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="dossier-glass-pill dossier-pressable transition-colors hover:text-white"
+          >
+            LinkedIn
+            <ArrowUpRight className="h-3.5 w-3.5 text-[#8f9098]" />
+          </a>
         </div>
       </div>
 
-      <div className="hidden sm:flex items-center gap-4 text-xs font-mono text-zinc-400">
-        <div className="flex items-center gap-1 text-zinc-300">
-          <MapPin className="w-3.5 h-3.5 text-zinc-400" />
-          <span>Zurich, Switzerland</span>
+      {external ? null : (
+        <div className="sr-only" aria-hidden="true">
+          Internal preview mode
         </div>
-        <div className="flex items-center gap-1 text-emerald-400">
-          <ShieldCheck className="w-3.5 h-3.5" />
-          <span>nDSG & Swiss Compliant</span>
-        </div>
-        <a
-          href="https://www.linkedin.com/in/terencela"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-zinc-800 hover:bg-zinc-700 text-white font-sans font-medium transition-all border border-zinc-700 hover:border-zinc-500"
-        >
-          <span>LinkedIn</span>
-          <ArrowUpRight className="w-3 h-3 text-zinc-400" />
-        </a>
-      </div>
+      )}
     </header>
   );
 }

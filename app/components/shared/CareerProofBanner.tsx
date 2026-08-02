@@ -1,80 +1,83 @@
 "use client";
 
 import React from "react";
-import { Award, Cpu, Globe, Building2, Sparkles, Trophy } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 
-export function CareerProofBanner() {
-  const proofs = [
-    {
-      icon: Building2,
-      stat: "30M+",
-      label: "Passengers/Year AI System",
-      sub: "AI Lead @ Zurich Airport",
-    },
-    {
-      icon: Cpu,
-      stat: "Aug 2020",
-      label: "LLM Pioneer",
-      sub: "Building with GPT-3 since v1",
-    },
-    {
-      icon: Trophy,
-      stat: "19+",
-      label: "Hackathon & Tech Awards",
-      sub: "3rd @ HackZurich · Bain 1st",
-    },
-    {
-      icon: Award,
-      stat: "Top 30",
-      label: "Forbes 30 under 30",
-      sub: "Swiss Citizen · M.A. HSG",
-    },
-    {
-      icon: Sparkles,
-      stat: "2x TEDx",
-      label: "Keynote Speaker",
-      sub: "WEF Speaker · 2M+ Views",
-    },
-    {
-      icon: Globe,
-      stat: "4 Languages",
-      label: "Native CH-DE, EN, Canto",
-      sub: "Intermediate FR & Mandarin",
-    },
-  ];
+type CareerProofBannerProps = {
+  accentColor?: string;
+};
+
+const proofs = [
+  {
+    stat: "30M+",
+    label: "Passengers served",
+    sub: "AI Lead at Zurich Airport",
+  },
+  {
+    stat: "Since 2020",
+    label: "Building with LLMs",
+    sub: "From early GPT production cycles",
+  },
+  {
+    stat: "19+",
+    label: "Awards",
+    sub: "Hackathons, venture, product showcases",
+  },
+  {
+    stat: "4 languages",
+    label: "Swiss + global reach",
+    sub: "Swiss German, High German, English, Cantonese",
+  },
+  {
+    stat: "Forbes 30u30",
+    label: "Founder track record",
+    sub: "4 ventures built, multiple exits and pivots",
+  },
+];
+
+export function CareerProofBanner({ accentColor = "#10a37f" }: CareerProofBannerProps) {
+  const reduceMotion = useReducedMotion();
 
   return (
-    <div className="w-full bg-zinc-950/80 border-y border-zinc-800/80 my-10 py-6 px-4 md:px-8 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto">
-        <p className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 mb-4 flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
-          VERIFIED TRACK RECORD & CREDENTIALS
-        </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {proofs.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={idx}
-                className="p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700 transition-all hover:bg-zinc-900/90 group"
-              >
-                <div className="flex items-center gap-2 text-zinc-400 group-hover:text-white transition-colors mb-1.5">
-                  <Icon className="w-4 h-4 text-emerald-400" />
-                  <span className="text-[10px] font-mono tracking-wider uppercase text-zinc-400">
-                    {item.label}
-                  </span>
-                </div>
-                <div className="text-xl md:text-2xl font-bold font-mono tracking-tight text-white group-hover:text-emerald-300 transition-colors">
-                  {item.stat}
-                </div>
-                <div className="text-[11px] text-zinc-500 font-sans mt-0.5 truncate">
-                  {item.sub}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+    <section className="dossier-section !py-0">
+      <div className="mx-auto max-w-[1200px] px-4 md:px-8">
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
+        >
+          <p className="mb-6 max-w-xl text-[15px] leading-relaxed text-[#a9aab2]">
+            I am Terence. I have spent the last years shipping AI where failure is visible: airports,
+            enterprise teams, and regulated Swiss environments.
+          </p>
+        </motion.div>
       </div>
-    </div>
+
+      <motion.div
+        className="dossier-proof-strip"
+        initial={reduceMotion ? false : { opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5, ease: "easeOut", delay: 0.08 }}
+      >
+        {proofs.map((item, index) => (
+          <motion.div
+            key={item.label}
+            className="dossier-proof-item"
+            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.06 }}
+          >
+            <b style={{ color: index === 0 ? accentColor : "#f7f6f2" }}>{item.stat}</b>
+            <span>
+              <strong className="block text-[#f7f6f2] font-medium">{item.label}</strong>
+              {item.sub}
+            </span>
+          </motion.div>
+        ))}
+      </motion.div>
+    </section>
   );
 }
