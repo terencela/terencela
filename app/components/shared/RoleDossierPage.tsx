@@ -26,6 +26,7 @@ import { EnterpriseAdoptionToolkit } from "@/app/components/shared/EnterpriseAdo
 import { SideProjectsGrid } from "@/app/components/shared/SideProjectsGrid";
 import { LinkedInCTA } from "@/app/components/shared/LinkedInCTA";
 import { InterviewTeaserModal } from "@/app/components/shared/InterviewTeaserModal";
+import { DossierThemeProvider } from "@/app/lib/dossier-theme";
 import {
   companyDossierSupport,
   isExternalDossier,
@@ -141,13 +142,13 @@ function AnimatedHeroHeadline({
           return (
             <span
               key={`${keyPrefix}-${index}`}
-              className="inline-block overflow-hidden align-bottom"
+              className="dossier-hero-word inline-block align-baseline"
               aria-hidden="false"
             >
               <motion.span
                 className="inline-block"
-                initial={{ opacity: 0, y: 16, clipPath: "inset(100% 0 0 0)" }}
-                animate={{ opacity: 1, y: 0, clipPath: "inset(0% 0 0 0)" }}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: DOSSIER_UI_DURATION,
                   ease: EASE_OUT,
@@ -254,12 +255,12 @@ function AnimatedMetric({
       transition={{ duration: DOSSIER_UI_DURATION, ease: EASE_OUT }}
     >
       <b
-        className="dossier-stat-highlight"
+        className="dossier-metric-stat dossier-stat-highlight"
         style={{ color: highlight ? accentColor : "var(--dossier-ink)" }}
       >
         <CountUpMetricValue value={value} reduceMotion={reduceMotion} isInView={isInView} />
       </b>
-      <span>{label}</span>
+      <span className="dossier-metric-label">{label}</span>
       {note ? (
         <p className="mt-1 text-[10px] leading-snug text-[var(--dossier-muted)]">{note}</p>
       ) : null}
@@ -353,11 +354,12 @@ export function RoleDossierPage({
   ] as const;
 
   return (
-    <main
-      className="dossier-page relative min-h-[100dvh] overflow-x-hidden selection:bg-[color-mix(in_srgb,var(--hero-accent)_25%,white)] selection:text-[#1a1a1a]"
-      style={accentStyles}
-      data-dossier-mode={external ? "external" : "internal"}
-    >
+    <DossierThemeProvider>
+      <main
+        className="dossier-page relative min-h-[100dvh] overflow-x-hidden selection:bg-[color-mix(in_srgb,var(--hero-accent)_25%,white)] selection:text-[#1a1a1a]"
+        style={accentStyles}
+        data-dossier-mode={external ? "external" : "internal"}
+      >
       <DossierBackground accentColor={accentColor} />
       <SubpageHeader companyName={companyName} roleTitle={roleTitle} accentColor={accentColor} />
 
@@ -567,5 +569,6 @@ export function RoleDossierPage({
         accentColor={accentColor}
       />
     </main>
+    </DossierThemeProvider>
   );
 }

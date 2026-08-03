@@ -4,6 +4,8 @@ import React from "react";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { isExternalDossier } from "@/app/lib/dossier-config";
+import { useDossierTheme } from "@/app/lib/dossier-theme";
+import { DossierThemeToggle } from "@/app/components/shared/DossierThemeToggle";
 import {
   DOSSIER_HEADER_SCROLL_RANGE,
   DOSSIER_LOAD_HEADER_DELAY,
@@ -24,7 +26,10 @@ export function SubpageHeader({
 }: SubpageHeaderProps) {
   const external = isExternalDossier();
   const reduceMotion = useReducedMotion();
+  const { theme } = useDossierTheme();
   const { scrollY } = useScroll();
+
+  const headerRgb = theme === "dark" ? "10, 11, 15" : "250, 250, 248";
 
   const backgroundOpacity = useTransform(
     scrollY,
@@ -44,7 +49,7 @@ export function SubpageHeader({
 
   const backgroundColor = useTransform(
     backgroundOpacity,
-    (opacity) => `rgba(250, 250, 248, ${opacity})`
+    (opacity) => `rgba(${headerRgb}, ${opacity})`
   );
   const backdropFilter = useTransform(blurAmount, (blur) => `blur(${blur}px)`);
   const borderBottomColor = useTransform(
@@ -54,6 +59,7 @@ export function SubpageHeader({
 
   return (
     <motion.header
+      key={theme}
       className="dossier-glass-header sticky top-0 z-[60]"
       initial={reduceMotion ? false : { y: "-100%" }}
       animate={{ y: 0 }}
@@ -77,7 +83,9 @@ export function SubpageHeader({
           </p>
         </div>
 
-        <div className="flex shrink-0 items-center gap-3">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+          <DossierThemeToggle />
+
           <div className="dossier-glass-pill hidden sm:inline-flex">
             <MapPin className="h-3.5 w-3.5" style={{ color: accentColor }} />
             Zurich

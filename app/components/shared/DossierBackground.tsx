@@ -15,7 +15,6 @@ export function DossierBackground({ accentColor }: DossierBackgroundProps) {
     <>
       <div
         className="dossier-bg-base"
-        style={{ backgroundColor: "#fafaf8" }}
         aria-hidden="true"
       />
       <div className="dossier-grain" aria-hidden="true" />
