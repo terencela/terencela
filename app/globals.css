@@ -467,6 +467,17 @@ html[data-dossier-theme="dark"] .dossier-bg-base {
   background: #0a0b0f !important;
 }
 
+html[data-dossier-theme="dark"] .dossier-glass-pill {
+  background: rgba(29, 31, 38, 0.92);
+  border-color: #3a3c47;
+  color: #d6d8e0;
+}
+
+html[data-dossier-theme="dark"] .dossier-glass-pill:hover {
+  background: #353842;
+  color: #ffffff;
+}
+
 html[data-dossier-theme="dark"] .dossier-grain {
   mix-blend-mode: screen;
   opacity: 0.05;
@@ -480,7 +491,8 @@ html[data-dossier-theme="dark"] .dossier-dot-grid {
 html[data-dossier-theme="dark"] .dossier-credibility-list li:hover,
 html[data-dossier-theme="dark"] .dossier-proof-row:hover,
 html[data-dossier-theme="dark"] .dossier-career-step:hover,
-html[data-dossier-theme="dark"] .dossier-project-card:hover {
+html[data-dossier-theme="dark"] .dossier-project-card:hover,
+html[data-dossier-theme="dark"] .dossier-fit-point:hover {
   background: #14151b;
 }
 
@@ -514,6 +526,10 @@ html[data-dossier-theme="dark"] .dossier-page .project-visual .culture-meaning {
 
 html[data-dossier-theme="dark"] .dossier-button-primary {
   color: #0a0b0f;
+}
+
+html[data-dossier-theme="dark"] .dossier-text-link {
+  color: #b6b8c4;
 }
 
 .dossier-page {
@@ -1158,6 +1174,7 @@ html[data-dossier-theme="dark"] .dossier-button-primary {
   font-size: 18px;
   letter-spacing: -0.03em;
   font-weight: 600;
+  color: var(--dossier-ink);
 }
 
 .dossier-fit-point p {

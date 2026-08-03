@@ -296,7 +296,6 @@ export function RoleDossierPage({
       ({
         "--accent-color": accentColor,
         "--hero-accent": accentColor,
-        backgroundColor: "#fafaf8",
       }) as CSSProperties,
     [accentColor]
   );

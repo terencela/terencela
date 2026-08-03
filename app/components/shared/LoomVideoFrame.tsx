@@ -9,6 +9,7 @@ import {
   dossierLoomChapterStagger,
   dossierLoomVideo,
 } from "@/app/lib/motion";
+import { useDossierTheme } from "@/app/lib/dossier-theme";
 
 interface LoomVideoFrameProps {
   companyName: string;
@@ -28,6 +29,8 @@ export function LoomVideoFrame({
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeChapter, setActiveChapter] = useState(0);
   const reduceMotion = useReducedMotion();
+  const { theme } = useDossierTheme();
+  const isDark = theme === "dark";
 
   const chapters = [
     {
@@ -51,7 +54,9 @@ export function LoomVideoFrame({
     <div className="dossier-loom-panel overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-12">
         <motion.div
-          className="relative min-h-[300px] border-b border-[var(--dossier-line-strong)] bg-[#f5f5f2] lg:col-span-7 lg:min-h-[400px] lg:border-b-0 lg:border-r"
+          className={`relative min-h-[300px] border-b border-[var(--dossier-line-strong)] lg:col-span-7 lg:min-h-[400px] lg:border-b-0 lg:border-r ${
+            isDark ? "bg-[#101116]" : "bg-[#f5f5f2]"
+          }`}
           {...(reduceMotion ? {} : dossierLoomVideo)}
         >
           {loomUrl && isPlaying ? (
@@ -68,12 +73,14 @@ export function LoomVideoFrame({
                 alt="Terence La"
                 fill
                 sizes="(max-width: 1024px) 100vw, 60vw"
-                className="dossier-profile-photo object-cover object-[center_18%] opacity-70"
+                className={`dossier-profile-photo object-cover object-[center_18%] ${isDark ? "opacity-58" : "opacity-70"}`}
               />
               <div
                 className="absolute inset-0"
                 style={{
-                  background: `linear-gradient(165deg, rgba(250,250,248,0.35) 0%, rgba(250,250,248,0.88) 68%), radial-gradient(circle at 20% 15%, ${accentColor}18, transparent 52%)`,
+                  background: isDark
+                    ? `linear-gradient(165deg, rgba(10,11,15,0.12) 0%, rgba(10,11,15,0.74) 68%), radial-gradient(circle at 20% 15%, ${accentColor}22, transparent 52%)`
+                    : `linear-gradient(165deg, rgba(250,250,248,0.35) 0%, rgba(250,250,248,0.88) 68%), radial-gradient(circle at 20% 15%, ${accentColor}18, transparent 52%)`,
                 }}
               />
 
@@ -112,7 +119,11 @@ export function LoomVideoFrame({
           )}
         </motion.div>
 
-        <div className="flex flex-col justify-center bg-[#faf8f4] p-6 lg:col-span-5 lg:p-8">
+        <div
+          className={`flex flex-col justify-center p-6 lg:col-span-5 lg:p-8 ${
+            isDark ? "bg-[#0f1014]" : "bg-[#faf8f4]"
+          }`}
+        >
           <p className="mb-4 text-sm text-[var(--dossier-muted)]">Video chapters</p>
           <motion.div
             className="space-y-2"
@@ -132,8 +143,12 @@ export function LoomVideoFrame({
                 }}
                 className={`dossier-pressable w-full border px-4 py-3.5 text-left transition-colors ${
                   activeChapter === idx
-                    ? "border-[var(--dossier-line-strong)] bg-white shadow-sm"
-                    : "border-[var(--dossier-line)] bg-white/40 hover:bg-white/80"
+                    ? isDark
+                      ? "border-[#2e313a] bg-[#1b1d25] shadow-sm"
+                      : "border-[var(--dossier-line-strong)] bg-white shadow-sm"
+                    : isDark
+                      ? "border-transparent bg-transparent hover:bg-[#171920]"
+                      : "border-[var(--dossier-line)] bg-white/40 hover:bg-white/80"
                 }`}
                 style={
                   activeChapter === idx
