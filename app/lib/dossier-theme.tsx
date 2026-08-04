@@ -25,6 +25,11 @@ const DossierThemeContext = createContext<DossierThemeContextValue>({
   toggleTheme: () => undefined,
 });
 
+function getInitialTheme(): DossierTheme {
+  if (typeof window === "undefined") return "light";
+  return window.localStorage.getItem(STORAGE_KEY) === "dark" ? "dark" : "light";
+}
+
 function applyThemeToDocument(theme: DossierTheme) {
   const root = document.documentElement;
   root.dataset.dossierTheme = theme;
@@ -36,28 +41,19 @@ function applyThemeToDocument(theme: DossierTheme) {
 }
 
 export function DossierThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<DossierTheme>("light");
+  const [theme, setThemeState] = useState<DossierTheme>(getInitialTheme);
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    const initial = stored === "dark" ? "dark" : "light";
-    setThemeState(initial);
-    applyThemeToDocument(initial);
-  }, []);
+    window.localStorage.setItem(STORAGE_KEY, theme);
+    applyThemeToDocument(theme);
+  }, [theme]);
 
   const setTheme = useCallback((next: DossierTheme) => {
     setThemeState(next);
-    window.localStorage.setItem(STORAGE_KEY, next);
-    applyThemeToDocument(next);
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setThemeState((current) => {
-      const next = current === "dark" ? "light" : "dark";
-      window.localStorage.setItem(STORAGE_KEY, next);
-      applyThemeToDocument(next);
-      return next;
-    });
+    setThemeState((current) => (current === "dark" ? "light" : "dark"));
   }, []);
 
   const value = useMemo(
