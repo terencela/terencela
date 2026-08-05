@@ -547,7 +547,7 @@ html[data-dossier-theme="dark"] .dossier-text-link {
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
-  filter: blur(32px) saturate(0.85);
+  filter: blur(26px) saturate(0.92);
   transform: scale(1.06);
   pointer-events: none;
   user-select: none;
@@ -559,9 +559,9 @@ html[data-dossier-theme="dark"] .dossier-text-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(7, 8, 11, 0.58);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(7, 8, 11, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .dossier-page {
