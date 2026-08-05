@@ -538,17 +538,18 @@ html[data-dossier-theme="dark"] .dossier-text-link {
   inset: 0;
   z-index: 99999;
   overflow: hidden;
-  background: #0a0b0f;
+  background: #fafaf8;
 }
 
 .dossier-hold-preview {
   position: absolute;
-  inset: -48px;
-  background-size: cover;
-  background-position: top center;
-  background-repeat: no-repeat;
-  filter: blur(26px) saturate(0.92);
-  transform: scale(1.06);
+  inset: -32px;
+  width: calc(100% + 64px);
+  height: calc(100% + 64px);
+  object-fit: cover;
+  object-position: top center;
+  filter: blur(18px) brightness(1.02);
+  transform: scale(1.04);
   pointer-events: none;
   user-select: none;
 }
@@ -559,9 +560,7 @@ html[data-dossier-theme="dark"] .dossier-text-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(7, 8, 11, 0.5);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(7, 8, 11, 0.42);
 }
 
 .dossier-page {

@@ -3,10 +3,12 @@ import { DOSSIER_HOLD_PREVIEW_IMAGE } from "@/app/lib/dossier-hold";
 export function DossierHoldScreen() {
   return (
     <div className="dossier-hold-root" role="alertdialog" aria-modal="true" aria-labelledby="dossier-hold-title">
-      <div
+      <img
+        src={DOSSIER_HOLD_PREVIEW_IMAGE}
+        alt=""
         className="dossier-hold-preview"
-        style={{ backgroundImage: `url(${DOSSIER_HOLD_PREVIEW_IMAGE})` }}
         aria-hidden="true"
+        draggable={false}
       />
       <div className="dossier-hold-screen">
         <div className="max-w-2xl px-6 text-center">
