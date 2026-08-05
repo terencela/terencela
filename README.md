@@ -72,4 +72,4 @@ extensions, and whatever AI model or tool best fits the problem.
 - 2023, Lucerne Dialogue, 45 European Leaders under 45
 - 2023, Nova Talents, Fellow
 
-terencela93@gmail.com
+terencela.yt@gmail.com
