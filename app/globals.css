@@ -559,7 +559,7 @@ html[data-dossier-theme="dark"] .dossier-text-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(7, 8, 11, 0.48);
+  background: rgba(7, 8, 11, 0.58);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
