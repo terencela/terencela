@@ -1,7 +1,7 @@
 export function DossierHoldScreen() {
   return (
     <div
-      className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#07080b] px-6"
+      className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#07080b]/75 px-6 backdrop-blur-sm"
       role="alertdialog"
       aria-modal="true"
       aria-labelledby="dossier-hold-title"
@@ -14,7 +14,7 @@ export function DossierHoldScreen() {
           id="dossier-hold-title"
           className="text-balance text-[clamp(28px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.03em] text-[#f7f6f2]"
         >
-          This page will be freigegeben on August 7.
+          This page goes live on August 7.
         </h1>
       </div>
     </div>
