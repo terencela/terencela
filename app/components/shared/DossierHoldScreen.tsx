@@ -1,8 +1,7 @@
 export function DossierHoldScreen() {
   return (
     <div
-      className="fixed inset-0 z-[99999] flex items-center justify-center px-6 backdrop-blur-md"
-      style={{ backgroundColor: "rgba(7, 8, 11, 0.45)" }}
+      className="dossier-hold-screen fixed inset-0 z-[99999] flex items-center justify-center px-6"
       role="alertdialog"
       aria-modal="true"
       aria-labelledby="dossier-hold-title"

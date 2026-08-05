@@ -1,10 +1,5 @@
-import { DossierHoldScreen } from "@/app/components/shared/DossierHoldScreen";
+import { DossierHoldLayout } from "@/app/components/shared/DossierHoldLayout";
 
 export default function OpenAILayout({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      {children}
-      <DossierHoldScreen />
-    </>
-  );
+  return <DossierHoldLayout>{children}</DossierHoldLayout>;
 }

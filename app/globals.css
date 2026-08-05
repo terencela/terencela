@@ -532,6 +532,24 @@ html[data-dossier-theme="dark"] .dossier-text-link {
   color: #b6b8c4;
 }
 
+/* Hold screen: dossier stays visible through the overlay */
+html.dossier-hold-active,
+html.dossier-hold-active body {
+  background: #fafaf8 !important;
+}
+
+html.dossier-hold-active .dossier-hold-behind * {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+.dossier-hold-screen {
+  background: rgba(7, 8, 11, 0.22);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
 .dossier-page {
   --dossier-bg: #fafaf8;
   --dossier-ink: #1a1a1a;
