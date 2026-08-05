@@ -57,7 +57,7 @@ export function LinkedInCTA({
           <div>
             <div className="mb-8 flex items-center gap-4">
               <motion.div
-                className="relative h-16 w-16 shrink-0 overflow-hidden border border-white/15"
+                className="dossier-footer-profile relative h-16 w-16 shrink-0 overflow-hidden"
                 {...profileHover}
               >
                 <Image
@@ -69,8 +69,8 @@ export function LinkedInCTA({
                 />
               </motion.div>
               <div>
-                <p className="text-sm font-medium text-[#f7f6f2]">Terence La</p>
-                <p className="text-xs text-[#8f9098]">Zurich, Switzerland · Swiss citizen</p>
+                <p className="dossier-footer-name text-sm font-medium">Terence La</p>
+                <p className="dossier-footer-meta text-xs">Zurich, Switzerland · Swiss citizen</p>
               </div>
             </div>
 
@@ -78,7 +78,7 @@ export function LinkedInCTA({
               Let&apos;s talk about <em>{companyName}</em> in Zurich.
             </h2>
 
-            <p className="mt-5 max-w-[65ch] text-base leading-relaxed text-[#a9aab2]">
+            <p className="dossier-footer-body mt-5 max-w-[65ch] text-base leading-relaxed">
               {body ??
                 `I am actively speaking with teams for the ${roleTitle} role. If you want a technical walkthrough and a concrete plan, I would love to connect.`}
             </p>
@@ -103,19 +103,19 @@ export function LinkedInCTA({
 
               <motion.a
                 href={`mailto:terencela93@gmail.com?subject=Terence%20La%20-%20${encodeURIComponent(companyName)}`}
-                className="dossier-pressable inline-flex items-center gap-2 border border-white/15 bg-transparent px-6 py-3.5 text-sm font-medium text-[#f7f6f2] transition-colors hover:bg-white/5"
+                className="dossier-footer-email dossier-pressable inline-flex items-center gap-2 bg-transparent px-6 py-3.5 text-sm font-medium transition-colors"
                 {...tapProps}
               >
-                <Mail className="h-4 w-4 text-[#8f9098]" />
+                <Mail className="h-4 w-4 text-[var(--dossier-muted)]" />
                 terencela93@gmail.com
               </motion.a>
             </div>
           </div>
 
-          <div className="hidden text-right text-xs leading-relaxed text-[#6f7078] md:block">
+          <div className="dossier-footer-aside hidden text-right text-xs leading-relaxed md:block">
             <p>Notice period: immediate / flexible</p>
             <p className="mt-2">English · German · Swiss German · Cantonese · French</p>
-            <p className="mt-6 text-[#55565e]">© {new Date().getFullYear()} Terence La</p>
+            <p className="dossier-footer-copy mt-6">© {new Date().getFullYear()} Terence La</p>
           </div>
         </motion.div>
       </div>

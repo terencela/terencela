@@ -1348,13 +1348,93 @@ html[data-dossier-theme="dark"] .dossier-text-link {
 }
 
 .dossier-footer-cta {
+  border-top: 1px solid var(--dossier-line-strong);
+  background: var(--dossier-panel);
+  color: var(--dossier-ink);
+}
+
+.dossier-footer-cta .dossier-hero-title {
+  color: var(--dossier-ink);
+}
+
+.dossier-footer-cta .dossier-hero-title em {
+  color: var(--hero-accent, #9098ff);
+}
+
+.dossier-footer-profile {
+  border: 1px solid var(--dossier-line-strong);
+}
+
+.dossier-footer-name {
+  color: var(--dossier-ink);
+}
+
+.dossier-footer-meta {
+  color: var(--dossier-muted);
+}
+
+.dossier-footer-body {
+  color: var(--dossier-body);
+}
+
+.dossier-footer-email {
+  border: 1px solid var(--dossier-line-strong);
+  color: var(--dossier-ink);
+}
+
+.dossier-footer-email:hover {
+  background: color-mix(in srgb, var(--dossier-ink) 4%, transparent);
+}
+
+.dossier-footer-aside {
+  color: var(--dossier-muted);
+}
+
+.dossier-footer-copy {
+  color: var(--dossier-subtle);
+}
+
+html[data-dossier-theme="dark"] .dossier-footer-cta {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   background: var(--dossier-dark);
   color: #f7f6f2;
 }
 
-.dossier-footer-cta .dossier-hero-title em {
-  color: var(--hero-accent, #9098ff);
+html[data-dossier-theme="dark"] .dossier-footer-cta .dossier-hero-title {
+  color: #f7f6f2;
+}
+
+html[data-dossier-theme="dark"] .dossier-footer-profile {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+html[data-dossier-theme="dark"] .dossier-footer-name {
+  color: #f7f6f2;
+}
+
+html[data-dossier-theme="dark"] .dossier-footer-meta {
+  color: #8f9098;
+}
+
+html[data-dossier-theme="dark"] .dossier-footer-body {
+  color: #a9aab2;
+}
+
+html[data-dossier-theme="dark"] .dossier-footer-email {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #f7f6f2;
+}
+
+html[data-dossier-theme="dark"] .dossier-footer-email:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+html[data-dossier-theme="dark"] .dossier-footer-aside {
+  color: #6f7078;
+}
+
+html[data-dossier-theme="dark"] .dossier-footer-copy {
+  color: #55565e;
 }
 
 .dossier-featured-split {
