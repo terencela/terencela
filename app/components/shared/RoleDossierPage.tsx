@@ -30,6 +30,7 @@ import { DossierThemeProvider } from "@/app/lib/dossier-theme";
 import {
   companyDossierSupport,
   isExternalDossier,
+  type CompanyDossierSupport,
   type DossierCompany,
 } from "@/app/lib/dossier-config";
 import {
@@ -77,6 +78,9 @@ type RoleDossierPageProps = {
   demoSummary: string;
   interactiveDemo: React.ReactNode;
   loomUrl?: string;
+  dossierSupport?: CompanyDossierSupport;
+  profileRole?: string;
+  fitIntro?: string;
 };
 
 type ParsedMetricValue = {
@@ -285,11 +289,14 @@ export function RoleDossierPage({
   demoSummary,
   interactiveDemo,
   loomUrl,
+  dossierSupport,
+  profileRole = "AI Lead · Zurich Airport",
+  fitIntro = "Three things I actually do on FDE accounts.",
 }: RoleDossierPageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const reduceMotion = useReducedMotion();
   const external = isExternalDossier();
-  const support = companyDossierSupport[companyKey];
+  const support = dossierSupport ?? companyDossierSupport[companyKey];
 
   const accentStyles = useMemo(
     () =>
@@ -420,7 +427,7 @@ export function RoleDossierPage({
                 />
                 <div className="dossier-profile-caption absolute inset-x-0 bottom-0 z-[2] px-5 pb-5 pt-16">
                   <p className="text-sm font-medium text-white">Terence La</p>
-                  <p className="text-xs text-white/80">Senior Manager AI · Zurich Airport</p>
+                  <p className="text-xs text-white/80">{profileRole}</p>
                 </div>
               </div>
             </motion.aside>
@@ -499,7 +506,7 @@ export function RoleDossierPage({
             <div className="dossier-fit-featured-copy">
               <h2 className="dossier-hero-title !text-[clamp(28px,3.5vw,48px)]">{fitHeading}</h2>
               <p className="mt-3 text-base leading-relaxed text-[var(--dossier-body)]">
-                Three things I actually do on FDE accounts.
+                {fitIntro}
               </p>
             </div>
             <motion.div

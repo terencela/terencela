@@ -11,7 +11,7 @@ import {
 const credentials = [
   { name: "PwC", detail: "Transfer pricing" },
   { name: "Credit Suisse", detail: "Chairman's Office" },
-  { name: "Zurich Airport", detail: "Senior Manager AI" },
+  { name: "Zurich Airport", detail: "AI Lead" },
   { name: "Forbes", detail: "30 Under 30 DACH" },
   { name: "TEDx", detail: "2x speaker" },
   { name: "HSG", detail: "Master's degree" },

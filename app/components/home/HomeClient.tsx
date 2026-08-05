@@ -327,12 +327,12 @@ export default function HomeClient() {
       {/* Main Hero */}
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="eyebrow"><span /> Senior Manager AI @ Zurich Airport · 4x Founder · Forbes 30u30</p>
+          <p className="eyebrow"><span /> AI Lead @ Zurich Airport · Founder · Forbes 30u30</p>
           <h1>
             Building AI systems that <em>understand people,</em> execute under constraint and scale in Zurich.
           </h1>
           <p className="hero-intro">
-            Interactive candidate dossier, ventures, and production prototypes by Terence La. Leading AI strategy for 30M+ passengers/year at Zurich Airport, building LLM products since 2020, and lecturing on AI Strategy.
+            I create apps — at Zurich Airport, for clients, and at terencela.com/labs. Building with GPT since 2020. 15+ products shipped. Forbes 30 Under 30. 2× TEDx.
           </p>
           <div className="hero-actions">
             <a href="#targeted-roles" className="button-primary">View Target Role Dossiers <span>↓</span></a>

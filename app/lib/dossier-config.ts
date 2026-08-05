@@ -65,9 +65,9 @@ export type CompanyDossierSupport = {
 export const careerTimeline: CareerTimelineStep[] = [
   {
     period: "Current",
-    title: "Senior Manager AI",
+    title: "AI Lead",
     company: "Zurich Airport",
-    detail: "AI inside an operator serving 30M+ passengers a year. Operational scale, not a slide deck.",
+    detail: "Enterprise AI for 32M+ passengers. Rebuilding ZRH Insider. Voice AI POC to tender in two weeks.",
     current: true,
   },
   {

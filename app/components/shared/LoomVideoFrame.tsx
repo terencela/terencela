@@ -36,17 +36,17 @@ export function LoomVideoFrame({
     {
       time: "0:00",
       title: "The unconventional fit",
-      desc: "Senior Manager AI at Zurich Airport with founder-level build speed.",
+      desc: "AI Lead at Zurich Airport. I create apps and ship them inside the company.",
     },
     {
       time: "0:25",
       title: "Swiss AI deployment",
-      desc: "30M passengers/year under strict data constraints.",
+      desc: "32M+ passengers/year. nDSG and ops constraints from day one.",
     },
     {
       time: "0:55",
       title: "Day 1 value for Zurich",
-      desc: "Structured evals, adoption velocity, implementation gaps closed.",
+      desc: "Evals, handoffs, and what I'd do in week one on a Zurich account.",
     },
   ];
 
