@@ -532,37 +532,6 @@ html[data-dossier-theme="dark"] .dossier-text-link {
   color: #b6b8c4;
 }
 
-/* Hold screen: blurred preview image only — dossier HTML is not sent while on hold */
-.dossier-hold-root {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  overflow: hidden;
-  background: #fafaf8;
-}
-
-.dossier-hold-preview {
-  position: absolute;
-  inset: -32px;
-  width: calc(100% + 64px);
-  height: calc(100% + 64px);
-  object-fit: cover;
-  object-position: top center;
-  filter: blur(18px) brightness(1.02);
-  transform: scale(1.04);
-  pointer-events: none;
-  user-select: none;
-}
-
-.dossier-hold-screen {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(7, 8, 11, 0.42);
-}
-
 .dossier-page {
   --dossier-bg: #fafaf8;
   --dossier-ink: #1a1a1a;
