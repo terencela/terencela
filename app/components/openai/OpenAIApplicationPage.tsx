@@ -546,75 +546,57 @@ export function OpenAIApplicationPage() {
             </motion.h2>
 
             <motion.article
-              initial={reduceMotion ? false : { opacity: 0, y: 32 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.08 }}
-              transition={{ duration: 0.7, ease: EASE_OUT_STRONG }}
-              className="relative mt-8 overflow-hidden rounded-2xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)]"
+              transition={{ duration: 0.6, ease: EASE_OUT_STRONG }}
+              className="mt-6 rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)]"
             >
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#10a37f]/50 to-transparent" />
+              <div className="p-5 md:p-7">
+                <h3 className="text-[clamp(20px,2.4vw,28px)] font-semibold tracking-[-0.02em] text-[var(--dossier-ink)]">
+                  {deployments[0].title}
+                </h3>
+                <p className="mt-1 max-w-[55ch] text-[13px] leading-relaxed text-[var(--dossier-muted)]">
+                  {deployments[0].subtitle}
+                </p>
 
-              <div className="p-6 md:p-8 lg:p-10">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
-                      Deployment 01
-                    </span>
-                    <h3 className="mt-2 text-[clamp(24px,3vw,36px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-                      {deployments[0].title}
-                    </h3>
-                    <p className="mt-1.5 max-w-[50ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
-                      {deployments[0].subtitle}
-                    </p>
-                  </div>
-                  <span className="hidden select-none text-[80px] font-bold leading-none text-[var(--dossier-ink)] opacity-[0.03] md:block" aria-hidden="true">
-                    01
-                  </span>
-                </div>
-
-                <div className="mt-8 flex flex-wrap gap-10 border-y border-[var(--dossier-line)] py-6">
+                <div className="mt-5 flex flex-wrap gap-8">
                   {deployments[0].stats.map((stat, i) => (
                     <motion.div
                       key={stat.label}
-                      initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+                      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.15 + i * 0.07, ease: EASE_OUT_STRONG }}
+                      transition={{ duration: 0.4, delay: 0.1 + i * 0.06, ease: EASE_OUT_STRONG }}
                     >
-                      <p className="text-[clamp(22px,2.5vw,30px)] font-semibold tracking-tight text-[#10a37f]">
+                      <p className="text-xl font-semibold tracking-tight text-[var(--dossier-ink)]">
                         {stat.value}
                       </p>
-                      <p className="mt-0.5 text-xs font-medium text-[var(--dossier-body)]">
+                      <p className="text-[11px] text-[var(--dossier-muted)]">
                         {stat.label}
                       </p>
-                      {stat.sub && (
-                        <p className="text-[11px] text-[var(--dossier-muted)]">{stat.sub}</p>
-                      )}
                     </motion.div>
                   ))}
                 </div>
 
-                <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_1fr]">
+                <div className="mt-6 grid gap-5 border-t border-[var(--dossier-line)] pt-5 lg:grid-cols-[1fr_1fr]">
                   <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-subtle)]">
+                    <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-subtle)]">
                       My role
                     </p>
-                    <ul className="mt-3 space-y-2.5 text-sm leading-relaxed text-[var(--dossier-body)]">
+                    <ul className="mt-2.5 space-y-1.5 text-[13px] leading-relaxed text-[var(--dossier-body)]">
                       {deployments[0].role.map((item) => (
-                        <li
-                          key={item}
-                          className="relative pl-4 before:absolute before:left-0 before:top-[0.62em] before:h-1.5 before:w-1.5 before:rounded-full before:bg-[#10a37f]"
-                        >
+                        <li key={item} className="relative pl-3 before:absolute before:left-0 before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:bg-[var(--dossier-subtle)]">
                           {item}
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <div className="rounded-xl border-l-2 border-[#10a37f] bg-[#10a37f]/[0.04] p-5">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#10a37f]">
+                  <div>
+                    <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-subtle)]">
                       Outcome
                     </p>
-                    <p className="mt-3 text-sm leading-relaxed text-[var(--dossier-body)]">
+                    <p className="mt-2.5 text-[13px] leading-relaxed text-[var(--dossier-body)]">
                       <span className="font-semibold text-[var(--dossier-ink)]">
                         {deployments[0].outcomeHighlight}
                       </span>{" "}
@@ -625,38 +607,28 @@ export function OpenAIApplicationPage() {
               </div>
             </motion.article>
 
-            <div className="mt-4 grid gap-4 md:grid-cols-2">
+            <div className="mt-3 grid gap-3 md:grid-cols-2">
               {deployments.slice(1).map((deployment, idx) => (
                 <motion.article
                   key={deployment.title}
-                  initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                  initial={reduceMotion ? false : { opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}
-                  transition={{ duration: 0.6, delay: idx * 0.1, ease: EASE_OUT_STRONG }}
-                  className="relative overflow-hidden rounded-2xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)]"
+                  transition={{ duration: 0.5, delay: idx * 0.08, ease: EASE_OUT_STRONG }}
+                  className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)]"
                 >
-                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--dossier-line)]/80 to-transparent" />
-
-                  <div className="p-5 md:p-6">
-                    <div className="flex items-start justify-between gap-3">
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
-                        Deployment {String(idx + 2).padStart(2, "0")}
-                      </span>
-                      <span className="select-none text-[48px] font-bold leading-none text-[var(--dossier-ink)] opacity-[0.03]" aria-hidden="true">
-                        {String(idx + 2).padStart(2, "0")}
-                      </span>
-                    </div>
-                    <h3 className="mt-1 text-lg font-semibold tracking-tight text-[var(--dossier-ink)]">
+                  <div className="p-5">
+                    <h3 className="text-base font-semibold tracking-tight text-[var(--dossier-ink)]">
                       {deployment.title}
                     </h3>
                     <p className="mt-1 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
                       {deployment.subtitle}
                     </p>
 
-                    <div className="mt-5 flex flex-wrap gap-6 border-t border-[var(--dossier-line)] pt-4">
+                    <div className="mt-4 flex flex-wrap gap-5">
                       {deployment.stats.map((stat) => (
                         <div key={stat.label}>
-                          <p className="text-xl font-semibold tracking-tight text-[#10a37f]">
+                          <p className="text-lg font-semibold tracking-tight text-[var(--dossier-ink)]">
                             {stat.value}
                           </p>
                           <p className="text-[11px] text-[var(--dossier-muted)]">{stat.label}</p>
@@ -664,23 +636,20 @@ export function OpenAIApplicationPage() {
                       ))}
                     </div>
 
-                    <div className="mt-5">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-subtle)]">
+                    <div className="mt-4 border-t border-[var(--dossier-line)] pt-4">
+                      <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-subtle)]">
                         My role
                       </p>
-                      <ul className="mt-2 space-y-1.5 text-[13px] leading-relaxed text-[var(--dossier-body)]">
+                      <ul className="mt-2 space-y-1 text-[13px] leading-relaxed text-[var(--dossier-body)]">
                         {deployment.role.map((item) => (
-                          <li
-                            key={item}
-                            className="relative pl-3.5 before:absolute before:left-0 before:top-[0.62em] before:h-1 before:w-1 before:rounded-full before:bg-[#10a37f]"
-                          >
+                          <li key={item} className="relative pl-3 before:absolute before:left-0 before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:bg-[var(--dossier-subtle)]">
                             {item}
                           </li>
                         ))}
                       </ul>
                     </div>
 
-                    <div className="mt-5 rounded-lg border-l-2 border-[#10a37f] bg-[#10a37f]/[0.04] p-4">
+                    <div className="mt-4 border-t border-[var(--dossier-line)] pt-4">
                       <p className="text-[13px] leading-relaxed text-[var(--dossier-body)]">
                         <span className="font-semibold text-[var(--dossier-ink)]">
                           {deployment.outcomeHighlight}
@@ -720,96 +689,36 @@ export function OpenAIApplicationPage() {
 
         <section className="dossier-section relative z-[2] pt-8">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div className="overflow-hidden rounded-2xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)]">
-              <div className="grid lg:grid-cols-[1fr_240px]">
-                <div className="p-6 md:p-8">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
-                    Deployment framework
-                  </p>
-                  <h2 className="mt-2 text-[clamp(24px,3vw,36px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
-                    The Enterprise AI Deployment Flywheel
-                  </h2>
-                  <p className="mt-2 max-w-[50ch] text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                    I built a toolkit for each stage. It saved me significant time going from zero to deployed across every engagement.
-                  </p>
+            <div className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-5 md:p-7">
+              <h2 className="text-[clamp(22px,2.6vw,30px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
+                How I move from zero to deployed
+              </h2>
+              <p className="mt-1.5 max-w-[55ch] text-[13px] leading-relaxed text-[var(--dossier-muted)]">
+                I built a toolkit for each stage. It compounds across engagements.
+              </p>
 
-                  <div className="mx-auto mt-6 w-full max-w-[520px]">
-                    <svg viewBox="0 0 520 340" className="h-auto w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="260" cy="170" r="120" stroke="#10a37f" strokeWidth="0.8" strokeDasharray="4 3" opacity="0.35" />
-                      <circle cx="260" cy="170" r="48" stroke="#10a37f" strokeWidth="0.6" opacity="0.2" />
-
-                      <text x="260" y="164" textAnchor="middle" fontSize="10" fontWeight="700" className="fill-[var(--dossier-ink)]">Continuous Learning.</text>
-                      <text x="260" y="178" textAnchor="middle" fontSize="10" fontWeight="700" className="fill-[var(--dossier-ink)]">Compounding Impact.</text>
-
-                      <g transform="translate(260, 36)">
-                        <circle r="22" fill="#10a37f" fillOpacity="0.15" />
-                        <text y="5" textAnchor="middle" fontSize="11" fontWeight="700" className="fill-[#10a37f]">01</text>
-                      </g>
-                      <text x="260" y="14" textAnchor="middle" fontSize="11" fontWeight="600" className="fill-[#10a37f]">Discover</text>
-
-                      <g transform="translate(430, 120)">
-                        <circle r="22" fill="#818cf8" fillOpacity="0.15" />
-                        <text y="5" textAnchor="middle" fontSize="11" fontWeight="700" className="fill-[#818cf8]">02</text>
-                      </g>
-                      <text x="430" y="155" textAnchor="middle" fontSize="11" fontWeight="600" className="fill-[#818cf8]">Decide</text>
-
-                      <g transform="translate(370, 290)">
-                        <circle r="22" fill="#818cf8" fillOpacity="0.15" />
-                        <text y="5" textAnchor="middle" fontSize="11" fontWeight="700" className="fill-[#818cf8]">03</text>
-                      </g>
-                      <text x="370" y="325" textAnchor="middle" fontSize="11" fontWeight="600" className="fill-[#818cf8]">Build</text>
-
-                      <g transform="translate(150, 290)">
-                        <circle r="22" fill="#34d399" fillOpacity="0.15" />
-                        <text y="5" textAnchor="middle" fontSize="11" fontWeight="700" className="fill-[#34d399]">04</text>
-                      </g>
-                      <text x="150" y="325" textAnchor="middle" fontSize="11" fontWeight="600" className="fill-[#34d399]">Deploy</text>
-
-                      <g transform="translate(90, 120)">
-                        <circle r="22" fill="#10a37f" fillOpacity="0.15" />
-                        <text y="5" textAnchor="middle" fontSize="11" fontWeight="700" className="fill-[#10a37f]">05</text>
-                      </g>
-                      <text x="90" y="155" textAnchor="middle" fontSize="11" fontWeight="600" className="fill-[#10a37f]">Scale</text>
-
-                      <path d="M 285 42 Q 380 60 420 105" stroke="#10a37f" strokeWidth="1" fill="none" opacity="0.5" />
-                      <path d="M 440 145 Q 430 240 385 275" stroke="#818cf8" strokeWidth="1" fill="none" opacity="0.5" />
-                      <path d="M 345 300 Q 260 325 175 300" stroke="#818cf8" strokeWidth="1" fill="none" opacity="0.5" />
-                      <path d="M 130 275 Q 90 230 85 145" stroke="#34d399" strokeWidth="1" fill="none" opacity="0.5" />
-                      <path d="M 100 105 Q 140 60 235 42" stroke="#10a37f" strokeWidth="1" fill="none" opacity="0.5" />
-                    </svg>
-                  </div>
-                </div>
-
-                <div className="flex flex-col justify-center gap-3 border-t border-[var(--dossier-line)] p-5 lg:border-l lg:border-t-0">
-                  {[
-                    { icon: BriefcaseBusiness, label: "Business", desc: "Value, ownership, ROI", color: "#10a37f" },
-                    { icon: Database, label: "System", desc: "Architecture, security", color: "#818cf8" },
-                    { icon: Users, label: "Adoption", desc: "People, workflows, trust", color: "#34d399" },
-                  ].map((dim) => (
-                    <div key={dim.label} className="flex items-center gap-3">
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: `${dim.color}15` }}>
-                        <dim.icon className="h-4 w-4" style={{ color: dim.color }} />
-                      </div>
-                      <div>
-                        <p className="text-[13px] font-semibold text-[var(--dossier-ink)]">{dim.label}</p>
-                        <p className="text-[11px] text-[var(--dossier-muted)]">{dim.desc}</p>
-                      </div>
+              <div className="mt-6 flex items-center gap-0 overflow-x-auto pb-2">
+                {["Discover", "Decide", "Build", "Deploy", "Scale"].map((stage, i) => (
+                  <React.Fragment key={stage}>
+                    {i > 0 && (
+                      <div className="mx-1 h-px w-6 shrink-0 bg-[var(--dossier-line)] md:mx-2 md:w-10" />
+                    )}
+                    <div className="shrink-0 rounded-lg border border-[var(--dossier-line)] px-4 py-2.5 text-center md:px-6">
+                      <p className="text-[13px] font-semibold text-[var(--dossier-ink)]">{stage}</p>
                     </div>
-                  ))}
-                </div>
+                  </React.Fragment>
+                ))}
               </div>
 
-              <div className="grid grid-cols-5 border-t border-[var(--dossier-line)]">
+              <div className="mt-6 grid gap-4 border-t border-[var(--dossier-line)] pt-5 md:grid-cols-3">
                 {[
-                  { icon: Workflow, title: "Ownership" },
-                  { icon: ArrowUpRight, title: "Speed" },
-                  { icon: BriefcaseBusiness, title: "Business First" },
-                  { icon: Cpu, title: "Builder" },
-                  { icon: ShieldCheck, title: "Impact" },
-                ].map((p, i) => (
-                  <div key={p.title} className={`flex items-center justify-center gap-2 px-3 py-3 ${i < 4 ? "border-r border-[var(--dossier-line)]" : ""}`}>
-                    <p.icon className="h-3.5 w-3.5 text-[#10a37f]" />
-                    <span className="text-[11px] font-medium text-[var(--dossier-muted)]">{p.title}</span>
+                  { label: "Business", desc: "Value, ownership, ROI" },
+                  { label: "System", desc: "Architecture, security, data" },
+                  { label: "Adoption", desc: "People, workflows, trust" },
+                ].map((dim) => (
+                  <div key={dim.label}>
+                    <p className="text-[13px] font-semibold text-[var(--dossier-ink)]">{dim.label}</p>
+                    <p className="mt-0.5 text-[12px] text-[var(--dossier-muted)]">{dim.desc}</p>
                   </div>
                 ))}
               </div>
