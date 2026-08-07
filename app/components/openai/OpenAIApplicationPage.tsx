@@ -526,10 +526,6 @@ export function OpenAIApplicationPage() {
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <div className="grid items-start gap-5 md:grid-cols-[minmax(0,1fr)_minmax(180px,230px)] md:gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(220px,260px)]">
               <div className="max-w-[760px]">
-                <p className="dossier-eyebrow">
-                  <span aria-hidden="true" />
-                  Application page
-                </p>
                 <h1 className="dossier-hero-title max-w-[18ch]" style={{ fontSize: "clamp(34px, 4.4vw, 64px)" }}>
                   Enterprise AI leader, builder and founder.
                 </h1>
