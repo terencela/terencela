@@ -188,7 +188,7 @@ const selectedProjects: SelectedProject[] = [
     description:
       "The human-context layer for communication: decoding tone, personality, culture and relationship dynamics before helping you respond.",
     evidence: "Interactive product prototype",
-    url: "https://vibe.terencela.com",
+    url: "https://vibes.terencela.com",
   },
   {
     name: "AirCompanion",
@@ -477,9 +477,18 @@ export function OpenAIApplicationPage() {
                   I work where pilots either become real workflows or die in procurement. That is
                   where I do my best work.
                 </p>
+                <div className="mt-5 flex flex-wrap items-center gap-3 md:mt-7">
+                  <a
+                    href="mailto:terencela.yt@gmail.com"
+                    className="dossier-button-primary dossier-cta-accent dossier-pressable inline-flex"
+                  >
+                    terencela.yt@gmail.com
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
 
-              <aside className="relative mx-auto hidden w-full max-w-[240px] lg:block lg:mx-0 lg:ml-auto lg:max-w-none">
+              <aside className="relative mx-auto w-full max-w-[200px] sm:max-w-[240px] lg:mx-0 lg:ml-auto lg:max-w-none">
                 <div className="dossier-profile-frame aspect-[4/5] w-full lg:max-w-[240px]">
                   <Image
                     src="/images/terence-la-profile.png"
@@ -785,51 +794,39 @@ export function OpenAIApplicationPage() {
               Seven personal products across AI infrastructure, human intelligence and voice.
             </p>
             <div className="project-grid mt-6">
-              {selectedProjects.map((project, index) => {
-                const inner = (
-                  <>
-                    <div className="card-topline">
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      <span className="stage-badge">{project.stage}</span>
-                    </div>
-                    <ProductVisual type={project.visual} />
-                    <div className="card-copy">
-                      <small>{project.category}</small>
-                      <h3>{project.name}</h3>
-                      <p>{project.description}</p>
-                      <div className="evidence">
-                        <span>Evidence</span>
-                        <b>{project.evidence}</b>
-                      </div>
+              {selectedProjects.map((project, index) => (
+                <div
+                  key={project.name}
+                  className={`project-card accent-${project.accent}`}
+                  style={{ cursor: "default" }}
+                >
+                  <div className="card-topline">
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <span className="stage-badge">{project.stage}</span>
+                  </div>
+                  <ProductVisual type={project.visual} />
+                  <div className="card-copy">
+                    <small>{project.category}</small>
+                    <h3>{project.name}</h3>
+                    <p>{project.description}</p>
+                    <div className="evidence">
+                      <span>Evidence</span>
+                      <b>{project.evidence}</b>
                     </div>
                     {project.url && (
-                      <span className="card-arrow">
-                        <ArrowUpRight className="h-4 w-4" />
-                      </span>
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-medium text-[var(--accent)] transition-opacity duration-150 hover:opacity-80"
+                      >
+                        View project
+                        <ArrowUpRight className="h-3 w-3" />
+                      </a>
                     )}
-                  </>
-                );
-
-                return project.url ? (
-                  <a
-                    key={project.name}
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`project-card accent-${project.accent}`}
-                  >
-                    {inner}
-                  </a>
-                ) : (
-                  <div
-                    key={project.name}
-                    className={`project-card accent-${project.accent}`}
-                    style={{ cursor: "default" }}
-                  >
-                    {inner}
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </div>
         </section>
