@@ -5,6 +5,8 @@ const FORCE_DOSSIER_HOLD = true;
 export const DOSSIER_HOLD_PREVIEW_IMAGE = "/screenshots/compare/openai-v2-scroll-0.png";
 
 export function isDossierOnHold(now = Date.now()): boolean {
+  // Internal/local preview should always show the real page.
+  if (process.env.NODE_ENV !== "production") return false;
   if (FORCE_DOSSIER_HOLD) return true;
   return now < DOSSIER_RELEASE_MS;
 }
