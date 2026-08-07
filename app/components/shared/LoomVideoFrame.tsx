@@ -17,6 +17,7 @@ interface LoomVideoFrameProps {
   loomUrl?: string;
   videoTitle?: string;
   accentColor?: string;
+  showChapters?: boolean;
   chapters?: Array<{
     time: string;
     title: string;
@@ -30,6 +31,7 @@ export function LoomVideoFrame({
   loomUrl,
   videoTitle = `Why I am the right fit for ${companyName}`,
   accentColor = "#10a37f",
+  showChapters = true,
   chapters,
 }: LoomVideoFrameProps) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -59,9 +61,11 @@ export function LoomVideoFrame({
 
   return (
     <div className="dossier-loom-panel overflow-hidden">
-      <div className="grid grid-cols-1 lg:grid-cols-12">
+      <div className={showChapters ? "grid grid-cols-1 lg:grid-cols-12" : "block"}>
         <motion.div
-          className={`relative min-h-[300px] border-b border-[var(--dossier-line-strong)] lg:col-span-7 lg:min-h-[400px] lg:border-b-0 lg:border-r ${
+          className={`relative min-h-[300px] border-b border-[var(--dossier-line-strong)] lg:min-h-[400px] ${
+            showChapters ? "lg:col-span-7 lg:border-b-0 lg:border-r" : "border-b-0"
+          } ${
             isDark ? "bg-[#101116]" : "bg-[#f5f5f2]"
           }`}
           {...(reduceMotion ? {} : dossierLoomVideo)}
@@ -103,9 +107,11 @@ export function LoomVideoFrame({
                   <h4 className="max-w-lg text-xl font-semibold tracking-tight text-[var(--dossier-ink)] md:text-2xl">
                     {videoTitle}
                   </h4>
-                  <p className="mt-2 text-sm text-[var(--dossier-body)]">
-                    A direct pitch for the {roleTitle} role in Zurich.
-                  </p>
+                  {showChapters ? (
+                    <p className="mt-2 text-sm text-[var(--dossier-body)]">
+                      Overview for the {roleTitle} role in Zurich.
+                    </p>
+                  ) : null}
                 </div>
 
                 <button
@@ -126,52 +132,54 @@ export function LoomVideoFrame({
           )}
         </motion.div>
 
-        <div
-          className={`flex flex-col justify-center p-6 lg:col-span-5 lg:p-8 ${
-            isDark ? "bg-[#0f1014]" : "bg-[#faf8f4]"
-          }`}
-        >
-          <p className="mb-4 text-sm text-[var(--dossier-muted)]">Video chapters</p>
-          <motion.div
-            className="space-y-2"
-            variants={reduceMotion ? undefined : dossierLoomChapterStagger}
-            initial={reduceMotion ? false : "hidden"}
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+        {showChapters ? (
+          <div
+            className={`flex flex-col justify-center p-6 lg:col-span-5 lg:p-8 ${
+              isDark ? "bg-[#0f1014]" : "bg-[#faf8f4]"
+            }`}
           >
-            {chapterItems.map((ch, idx) => (
-              <motion.button
-                key={ch.title}
-                type="button"
-                variants={reduceMotion ? undefined : dossierLoomChapterItem}
-                onClick={() => {
-                  setActiveChapter(idx);
-                  setIsPlaying(true);
-                }}
-                className={`dossier-pressable w-full border px-4 py-3.5 text-left transition-colors ${
-                  activeChapter === idx
-                    ? isDark
-                      ? "border-[#2e313a] bg-[#1b1d25] shadow-sm"
-                      : "border-[var(--dossier-line-strong)] bg-white shadow-sm"
-                    : isDark
-                      ? "border-transparent bg-transparent hover:bg-[#171920]"
-                      : "border-[var(--dossier-line)] bg-white/40 hover:bg-white/80"
-                }`}
-                style={
-                  activeChapter === idx
-                    ? { borderLeftColor: accentColor, borderLeftWidth: 3 }
-                    : undefined
-                }
-              >
-                <div className="mb-1 flex items-baseline gap-3 text-xs">
-                  <span style={{ color: accentColor }}>{ch.time}</span>
-                  <span className="font-medium text-[var(--dossier-ink)]">{ch.title}</span>
-                </div>
-                <p className="text-xs leading-relaxed text-[var(--dossier-muted)]">{ch.desc}</p>
-              </motion.button>
-            ))}
-          </motion.div>
-        </div>
+            <p className="mb-4 text-sm text-[var(--dossier-muted)]">Video chapters</p>
+            <motion.div
+              className="space-y-2"
+              variants={reduceMotion ? undefined : dossierLoomChapterStagger}
+              initial={reduceMotion ? false : "hidden"}
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              {chapterItems.map((ch, idx) => (
+                <motion.button
+                  key={ch.title}
+                  type="button"
+                  variants={reduceMotion ? undefined : dossierLoomChapterItem}
+                  onClick={() => {
+                    setActiveChapter(idx);
+                    setIsPlaying(true);
+                  }}
+                  className={`dossier-pressable w-full border px-4 py-3.5 text-left transition-colors ${
+                    activeChapter === idx
+                      ? isDark
+                        ? "border-[#2e313a] bg-[#1b1d25] shadow-sm"
+                        : "border-[var(--dossier-line-strong)] bg-white shadow-sm"
+                      : isDark
+                        ? "border-transparent bg-transparent hover:bg-[#171920]"
+                        : "border-[var(--dossier-line)] bg-white/40 hover:bg-white/80"
+                  }`}
+                  style={
+                    activeChapter === idx
+                      ? { borderLeftColor: accentColor, borderLeftWidth: 3 }
+                      : undefined
+                  }
+                >
+                  <div className="mb-1 flex items-baseline gap-3 text-xs">
+                    <span style={{ color: accentColor }}>{ch.time}</span>
+                    <span className="font-medium text-[var(--dossier-ink)]">{ch.title}</span>
+                  </div>
+                  <p className="text-xs leading-relaxed text-[var(--dossier-muted)]">{ch.desc}</p>
+                </motion.button>
+              ))}
+            </motion.div>
+          </div>
+        ) : null}
       </div>
     </div>
   );

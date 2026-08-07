@@ -115,24 +115,6 @@ const deploymentLessons = [
   "Economic buyers and champions need real decision power.",
 ];
 
-const loomChapters = [
-  {
-    time: "0:00",
-    title: "Context",
-    desc: "What role I play in enterprise AI deployments.",
-  },
-  {
-    time: "0:30",
-    title: "Recent deployments",
-    desc: "Three concrete examples with challenge, role, and outcome.",
-  },
-  {
-    time: "1:00",
-    title: "Day one value",
-    desc: "How I would operate on OpenAI customer projects in Zurich.",
-  },
-];
-
 const selectedProjects: SelectedProject[] = [
   {
     name: "ZRH Insider",
@@ -336,16 +318,13 @@ export function OpenAIApplicationPage() {
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
               90-second walkthrough
             </h2>
-            <p className="mt-3 max-w-[64ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
-              Short video with context, deployments, and how I would contribute in this role.
-            </p>
             <div className="mt-5">
               <LoomVideoFrame
                 companyName="OpenAI"
                 roleTitle="Forward Deployed Engineer (Zurich)"
                 videoTitle="How I deploy AI in enterprise teams"
                 accentColor="#10a37f"
-                chapters={loomChapters}
+                showChapters={false}
               />
             </div>
           </div>
@@ -356,17 +335,22 @@ export function OpenAIApplicationPage() {
             <h2 className="text-[clamp(28px,3.7vw,44px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
               Three recent deployments
             </h2>
-            <div className="mt-6 space-y-5">
-              {deployments.map((deployment) => (
+            <div className="mt-6 space-y-6">
+              {deployments.map((deployment, index) => (
                 <article
                   key={deployment.title}
-                  className="border border-[var(--dossier-line-strong)] bg-white p-6 md:p-7"
+                  className="overflow-hidden border border-[var(--dossier-line-strong)] bg-white shadow-[8px_8px_0_#ece8df]"
                 >
-                  <h3 className="text-xl font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-                    {deployment.title}
-                  </h3>
-                  <div className="mt-5 grid gap-5 md:grid-cols-3">
-                    <div>
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--dossier-line-strong)] bg-[#faf8f4] px-5 py-4 md:px-6">
+                    <h3 className="text-[clamp(24px,2.8vw,36px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
+                      {deployment.title}
+                    </h3>
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
+                      Deployment {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <div className="grid gap-0 md:grid-cols-3">
+                    <div className="border-b border-[var(--dossier-line-strong)] p-5 md:border-b-0 md:border-r md:p-6">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-subtle)]">
                         Challenge
                       </p>
@@ -374,17 +358,22 @@ export function OpenAIApplicationPage() {
                         {deployment.challenge}
                       </p>
                     </div>
-                    <div>
+                    <div className="border-b border-[var(--dossier-line-strong)] p-5 md:border-b-0 md:border-r md:p-6">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-subtle)]">
                         My role
                       </p>
-                      <ul className="mt-2 space-y-1.5 text-sm leading-relaxed text-[var(--dossier-muted)]">
+                      <ul className="mt-2 space-y-2 text-sm leading-relaxed text-[var(--dossier-muted)]">
                         {deployment.role.map((item) => (
-                          <li key={item}>- {item}</li>
+                          <li
+                            key={item}
+                            className="relative pl-4 before:absolute before:left-0 before:top-[0.62em] before:h-1 before:w-1 before:rounded-full before:bg-[#10a37f]"
+                          >
+                            {item}
+                          </li>
                         ))}
                       </ul>
                     </div>
-                    <div>
+                    <div className="p-5 md:p-6">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-subtle)]">
                         Outcome
                       </p>
