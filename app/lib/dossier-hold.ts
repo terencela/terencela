@@ -1,6 +1,6 @@
 /** Zurich time — dossier unlocks at start of August 7, 2026. */
 const DOSSIER_RELEASE_MS = Date.parse("2026-08-07T00:00:00+02:00");
-const FORCE_DOSSIER_HOLD = true;
+const FORCE_DOSSIER_HOLD = false;
 
 export const DOSSIER_HOLD_PREVIEW_IMAGE = "/screenshots/compare/openai-v2-scroll-0.png";
 
