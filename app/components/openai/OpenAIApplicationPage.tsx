@@ -695,7 +695,7 @@ export function OpenAIApplicationPage() {
                 companyName="OpenAI"
                 roleTitle="Forward Deployed Engineer (Zurich)"
                 loomUrl="https://www.loom.com/share/054ec870f2c448928570797160ccc6b0"
-                videoTitle="How I deploy AI in enterprise teams"
+                videoTitle="How I Deploy AI in Enterprise Teams"
                 playInModal
                 accentColor="#10a37f"
                 showChapters={false}

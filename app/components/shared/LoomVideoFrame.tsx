@@ -114,22 +114,32 @@ export function LoomVideoFrame({
               className={`relative mx-auto w-full overflow-hidden ${frameMaxWidth}`}
               style={{ aspectRatio: frameAspectRatio, maxHeight: isPortrait ? "720px" : "480px" }}
             >
+              <div className="absolute inset-0 bg-[#0f1016]" />
               <Image
                 src="/images/terence-la-profile.png"
                 alt="Terence La"
                 fill
                 sizes={isPortrait ? "(max-width: 768px) 100vw, 420px" : "(max-width: 1024px) 100vw, 900px"}
-                className={`dossier-profile-photo object-cover object-[center_18%] ${isDark ? "opacity-58" : "opacity-70"}`}
+                className={`dossier-profile-photo object-cover object-[center_24%] blur-[1.5px] ${isDark ? "opacity-24 scale-[1.03]" : "opacity-28 scale-[1.03]"}`}
               />
               <div
                 className="absolute inset-0"
                 style={{
                   background: isDark
-                    ? `linear-gradient(165deg, rgba(10,11,15,0.12) 0%, rgba(10,11,15,0.74) 68%), radial-gradient(circle at 20% 15%, ${accentColor}22, transparent 52%)`
-                    : `linear-gradient(165deg, rgba(250,250,248,0.35) 0%, rgba(250,250,248,0.88) 68%), radial-gradient(circle at 20% 15%, ${accentColor}18, transparent 52%)`,
+                    ? `linear-gradient(165deg, rgba(10,11,15,0.28) 0%, rgba(10,11,15,0.86) 74%), radial-gradient(circle at 20% 15%, ${accentColor}1f, transparent 52%)`
+                    : `linear-gradient(165deg, rgba(250,250,248,0.42) 0%, rgba(250,250,248,0.9) 74%), radial-gradient(circle at 20% 15%, ${accentColor}18, transparent 52%)`,
                 }}
               />
-              <div className="relative z-10 flex h-full flex-col justify-between p-6 md:p-8">
+              <div className="absolute inset-y-4 right-4 hidden w-[31%] overflow-hidden rounded-lg border border-white/15 bg-[#101116] shadow-[0_24px_60px_rgba(0,0,0,0.45)] md:block">
+                <Image
+                  src="/images/terence-la-profile.png"
+                  alt="Terence La"
+                  fill
+                  sizes="(max-width: 1200px) 30vw, 300px"
+                  className="dossier-profile-photo object-cover object-top"
+                />
+              </div>
+              <div className="relative z-10 flex h-full max-w-full flex-col justify-between p-6 md:max-w-[64%] md:p-8">
                 <div className="flex items-center gap-3 text-xs font-medium" style={{ color: accentColor }}>
                   <span className="inline-flex items-center gap-1.5">
                     <Clock3 className="h-3.5 w-3.5" />
@@ -140,6 +150,9 @@ export function LoomVideoFrame({
                   <h4 className="max-w-lg text-xl font-semibold tracking-tight text-[var(--dossier-ink)] md:text-2xl">
                     {videoTitle}
                   </h4>
+                  <p className="mt-2 text-sm text-[var(--dossier-body)]">
+                    Quick introduction for the {roleTitle} role.
+                  </p>
                 </div>
                 <button
                   type="button"
