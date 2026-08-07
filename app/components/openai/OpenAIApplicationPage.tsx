@@ -229,31 +229,31 @@ const deploymentStages = [
   {
     label: "Discover",
     desc: "Map stakeholders, data boundaries and who can say yes.",
-    runs: "Intake - call arrives, language detect, intent classify",
+    runs: "Stakeholder interviews, data map, success criteria.",
     blocker: "Procurement cycles and too many stakeholders, no single owner.",
   },
   {
     label: "Decide",
     desc: "Align legal, IT and the business on what shipped means.",
-    runs: "Governance - eval criteria, audit trail, sign-off path",
+    runs: "Eval rubric, legal review, go/no-go meeting.",
     blocker: "Legal and IT want different guarantees than the business.",
   },
   {
     label: "Build",
     desc: "Prototype on real traffic, not sandbox demos.",
-    runs: "Orchestration - routing, context load, knowledge retrieval",
+    runs: "Prototype on real calls, test DE/FR/IT edge cases.",
     blocker: "Edge cases in DE, FR and IT break trust before go-live.",
   },
   {
     label: "Deploy",
     desc: "Eval gates, rollback plans, production sign-off.",
-    runs: "Execution - generate, safety filter, voice synthesis",
+    runs: "Production eval gate, rollback plan, ops sign-off.",
     blocker: "Fear of passenger-facing voice AI in a regulated airport.",
   },
   {
     label: "Scale",
     desc: "Handoff, monitoring and ownership inside the org.",
-    runs: "Governance - eval gate, audit log, rollback trigger",
+    runs: "Monitoring, handoff docs, internal owner named.",
     blocker: "Adoption fades without an internal owner after launch.",
   },
 ] as const;
@@ -288,17 +288,42 @@ function DeploymentSystem({
           How I move from zero to deployed
         </h2>
         <p className="mt-2 max-w-[52ch] text-sm text-[var(--dossier-body)]">
-          Five stages. One loop. Tap a stage to see what runs and what usually blocks it.
+          Five stages. Pick one to see what I do there and what usually blocks it.
         </p>
 
-        <div className="mt-5 grid items-start gap-5 lg:mt-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:gap-8">
+        <div className="mt-4 flex flex-wrap gap-2 lg:hidden" role="tablist" aria-label="Deployment stages">
+          {stages.map((stage, i) => {
+            const isActive = i === activeStageIdx;
+            return (
+              <button
+                key={stage.label}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => onStageSelect(i)}
+                className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                  isActive
+                    ? "border border-[#10a37f] bg-[#10a37f] text-white"
+                    : "border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] text-[var(--dossier-ink)]"
+                }`}
+              >
+                {stage.label}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-3 grid items-start gap-3 lg:mt-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:gap-8">
           <motion.div
-            className="relative mx-auto w-full max-w-[min(72vw,300px)] lg:mx-0 lg:max-w-none"
+            className="relative mx-auto w-full max-w-[min(64vw,240px)] lg:mx-0 lg:max-w-none"
             initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: EASE_OUT_STRONG }}
           >
+            <p className="mb-2 text-center text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-muted)] lg:sr-only">
+              Tap a stage
+            </p>
             <svg viewBox="0 0 400 400" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx={cx} cy={cy} r={R} stroke="var(--dossier-line)" strokeWidth="1" />
 
@@ -348,7 +373,7 @@ function DeploymentSystem({
                       y={p.y + 1}
                       textAnchor="middle"
                       dominantBaseline="central"
-                      className={isActive ? "fill-white" : "fill-[var(--dossier-ink)]"}
+                      fill={isActive ? "#ffffff" : "var(--dossier-ink)"}
                       fontSize="10"
                       fontWeight="600"
                     >
@@ -360,48 +385,32 @@ function DeploymentSystem({
             </svg>
           </motion.div>
 
-          <div className="border-t border-[var(--dossier-line)] pt-4 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
+          <div
+            className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-4 lg:rounded-none lg:border-0 lg:border-l lg:border-[var(--dossier-line)] lg:bg-transparent lg:p-0 lg:pl-8"
+            role="tabpanel"
+            aria-live="polite"
+          >
             <p className="text-lg font-semibold tracking-tight text-[var(--dossier-ink)]">
               {active.label}
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-[var(--dossier-body)]">
+            <p className="mt-1.5 text-sm leading-snug text-[var(--dossier-body)]">
               {active.desc}
             </p>
-            <div className="mt-6 space-y-5">
+            <div className="mt-4 space-y-3">
               <div>
                 <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-muted)]">
-                  What runs
+                  What I do
                 </p>
-                <p className="mt-1.5 text-sm text-[var(--dossier-ink)]">{active.runs}</p>
+                <p className="mt-1 text-sm leading-snug text-[var(--dossier-ink)]">{active.runs}</p>
               </div>
               <div>
                 <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-muted)]">
                   What blocks it
                 </p>
-                <p className="mt-1.5 text-sm leading-relaxed text-[var(--dossier-body)]">
+                <p className="mt-1 text-sm leading-snug text-[var(--dossier-body)]">
                   {active.blocker}
                 </p>
               </div>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-2 lg:hidden">
-              {stages.map((stage, i) => {
-                const isActive = i === activeStageIdx;
-                return (
-                  <button
-                    key={stage.label}
-                    type="button"
-                    onClick={() => onStageSelect(i)}
-                    className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
-                      isActive
-                        ? "bg-[var(--dossier-ink)] text-[var(--dossier-panel)]"
-                        : "border border-[var(--dossier-line)] text-[var(--dossier-muted)]"
-                    }`}
-                  >
-                    {stage.label}
-                  </button>
-                );
-              })}
             </div>
           </div>
         </div>
