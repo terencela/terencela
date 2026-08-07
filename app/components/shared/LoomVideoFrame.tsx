@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import { Play, Clock3 } from "lucide-react";
+import { Play, Clock3, X } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   dossierLoomChapterItem,
@@ -19,6 +19,7 @@ interface LoomVideoFrameProps {
   accentColor?: string;
   showChapters?: boolean;
   videoOrientation?: "landscape" | "portrait";
+  playInModal?: boolean;
   chapters?: Array<{
     time: string;
     title: string;
@@ -43,6 +44,7 @@ export function LoomVideoFrame({
   accentColor = "#10a37f",
   showChapters = true,
   videoOrientation = "landscape",
+  playInModal = false,
   chapters,
 }: LoomVideoFrameProps) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -54,6 +56,21 @@ export function LoomVideoFrame({
   const isPortrait = videoOrientation === "portrait";
   const frameAspectRatio = isPortrait ? "9 / 16" : "16 / 9";
   const frameMaxWidth = isPortrait ? "max-w-[420px]" : "max-w-[900px]";
+  const showInlineVideo = Boolean(normalizedLoomUrl && isPlaying && !playInModal);
+
+  useEffect(() => {
+    if (!playInModal || !isPlaying) return;
+    const previousOverflow = document.body.style.overflow;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsPlaying(false);
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isPlaying, playInModal]);
 
   const defaultChapters = [
     {
@@ -81,7 +98,7 @@ export function LoomVideoFrame({
           className={`relative ${isDark ? "bg-[#101116]" : "bg-[#f5f5f2]"}`}
           {...(reduceMotion ? {} : dossierLoomVideo)}
         >
-          {normalizedLoomUrl && isPlaying ? (
+          {showInlineVideo ? (
             <div className={`relative mx-auto w-full ${frameMaxWidth}`}>
               <div className="relative w-full" style={{ aspectRatio: frameAspectRatio }}>
                 <iframe
@@ -141,6 +158,37 @@ export function LoomVideoFrame({
             </div>
           )}
         </motion.div>
+        {normalizedLoomUrl && isPlaying && playInModal && (
+          <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm">
+            <button
+              type="button"
+              onClick={() => setIsPlaying(false)}
+              className="absolute inset-0"
+              aria-label="Close video overlay"
+            />
+            <div className={`relative z-[1] w-full ${isPortrait ? "max-w-[460px]" : "max-w-[1100px]"}`}>
+              <button
+                type="button"
+                onClick={() => setIsPlaying(false)}
+                className="absolute -top-11 right-0 inline-flex items-center gap-1.5 rounded-md border border-white/20 bg-black/40 px-3 py-1.5 text-xs text-white backdrop-blur-sm"
+              >
+                <X className="h-3.5 w-3.5" />
+                Close
+              </button>
+              <div
+                className="relative w-full overflow-hidden rounded-xl border border-white/15 bg-black shadow-[0_28px_100px_rgba(0,0,0,0.65)]"
+                style={{ aspectRatio: frameAspectRatio }}
+              >
+                <iframe
+                  src={normalizedLoomUrl}
+                  className="absolute inset-0 h-full w-full border-0"
+                  allowFullScreen
+                  title={videoTitle}
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
