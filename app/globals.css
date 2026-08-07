@@ -1084,6 +1084,16 @@ html[data-dossier-theme="dark"] .dossier-text-link {
   }
 }
 
+.dossier-openai-hero {
+  min-height: calc(100dvh - 57px);
+}
+
+@media (min-width: 768px) {
+  .dossier-openai-hero .dossier-hero-title {
+    font-size: clamp(42px, 4.8vw, 68px) !important;
+  }
+}
+
 .dossier-demo-chrome {
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: #0a0b0f;

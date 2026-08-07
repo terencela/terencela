@@ -522,17 +522,34 @@ export function OpenAIApplicationPage() {
           accentColor="#10a37f"
         />
 
-        <section className="dossier-section dossier-section-tight relative z-[2] !pb-4 !pt-7 md:!pt-10">
-          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div className="grid items-start gap-5 md:grid-cols-[minmax(0,1fr)_minmax(180px,230px)] md:gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(220px,260px)]">
-              <div className="max-w-[760px]">
+        <section className="dossier-openai-hero relative z-[2] flex min-h-[calc(100dvh-57px)] flex-col">
+          <div className="mx-auto flex w-full max-w-[1200px] flex-1 flex-col justify-center px-4 py-10 md:px-8 md:py-14 lg:py-16">
+            <div className="flex flex-col gap-10 md:grid md:grid-cols-[minmax(0,1fr)_minmax(200px,260px)] md:items-center md:gap-x-14 md:gap-y-0 lg:gap-x-20">
+              <aside className="mx-auto w-full max-w-[172px] shrink-0 md:col-start-2 md:row-start-1 md:mx-0 md:max-w-[220px] lg:max-w-[260px]">
+                <div className="dossier-profile-frame aspect-[4/5] w-full">
+                  <Image
+                    src="/images/terence-la-profile.png"
+                    alt="Terence La profile"
+                    fill
+                    sizes="(max-width: 768px) 172px, 260px"
+                    className="dossier-profile-photo object-cover object-top"
+                    priority
+                  />
+                  <div className="dossier-profile-caption absolute inset-x-0 bottom-0 z-[2] px-5 pb-5 pt-16">
+                    <p className="text-sm font-medium text-white">Terence La</p>
+                    <p className="text-xs text-white/80">AI Lead · Zurich Airport</p>
+                  </div>
+                </div>
+              </aside>
+
+              <div className="max-w-[760px] md:col-start-1 md:row-start-1">
                 <h1 className="dossier-hero-title max-w-[18ch]" style={{ fontSize: "clamp(34px, 4.4vw, 64px)" }}>
                   Enterprise AI leader, builder and founder.
                 </h1>
-                <p className="mt-5 max-w-[56ch] text-base leading-relaxed text-[var(--dossier-body)] md:mt-9">
+                <p className="mt-7 max-w-[56ch] text-base leading-relaxed text-[var(--dossier-body)] md:mt-10 md:text-[17px] md:leading-[1.65]">
                   Turning frontier AI into production across startups and large organisations. AI Lead at Zurich Airport, founder of KI-Unlocked, helping 10+ companies become AI-native. GPT-3 since 2020, with 15+ AI applications built.
                 </p>
-                <div className="mt-5 flex flex-wrap items-center gap-4 md:mt-7">
+                <div className="mt-8 flex flex-wrap items-center gap-4 md:mt-10">
                   <a
                     href="https://about.terencela.com"
                     target="_blank"
@@ -553,31 +570,12 @@ export function OpenAIApplicationPage() {
                   </a>
                 </div>
               </div>
-
-              <aside className="relative mx-auto mt-3 w-full max-w-[138px] md:mx-0 md:mt-0 md:justify-self-end md:max-w-[210px] lg:max-w-[250px]">
-                <div className="dossier-profile-frame aspect-[4/5] w-full">
-                  <Image
-                    src="/images/terence-la-profile.png"
-                    alt="Terence La profile"
-                    fill
-                    sizes="240px"
-                    className="dossier-profile-photo object-cover object-top"
-                    priority
-                  />
-                  <div className="dossier-profile-caption absolute inset-x-0 bottom-0 z-[2] px-5 pb-5 pt-16">
-                    <p className="text-sm font-medium text-white">Terence La</p>
-                    <p className="text-xs text-white/80">AI Lead · Zurich Airport</p>
-                  </div>
-                </div>
-              </aside>
             </div>
           </div>
-        </section>
 
-        <section className="dossier-section-tight relative z-[2] py-5">
-          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div className="border-y border-[var(--dossier-line)] py-4 md:py-5">
-              <div className="flex flex-wrap items-center justify-center gap-2 md:gap-2.5">
+          <div className="mt-auto border-t border-[var(--dossier-line)]">
+            <div className="mx-auto max-w-[1200px] px-4 py-6 md:px-8 md:py-8">
+              <div className="flex flex-wrap items-center justify-center gap-2.5 md:gap-3">
                 {credibilityLogos.map((logo) => (
                   <div
                     key={logo}
