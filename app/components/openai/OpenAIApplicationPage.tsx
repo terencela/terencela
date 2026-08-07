@@ -22,6 +22,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DossierBackground } from "@/app/components/shared/DossierBackground";
 import { SubpageHeader } from "@/app/components/shared/SubpageHeader";
 import { LoomVideoFrame } from "@/app/components/shared/LoomVideoFrame";
+import { ProductVisual } from "@/app/components/shared/ProductVisual";
 import { DossierThemeProvider } from "@/app/lib/dossier-theme";
 
 const EASE_OUT_STRONG = [0.23, 1, 0.32, 1] as const;
@@ -53,13 +54,7 @@ type SelectedProject = {
   category: string;
   stage: string;
   accent: string;
-  graphic:
-    | "employee-app"
-    | "voice-ai"
-    | "proposal-copilot"
-    | "company-brain"
-    | "privacy-layer"
-    | "vibe-translator";
+  visual: string;
   problem: string;
   solution: string;
 };
@@ -163,60 +158,58 @@ const deploymentLessons = [
 
 const selectedProjects: SelectedProject[] = [
   {
-    name: "ZRH Insider",
-    category: "Internal employee app",
-    stage: "Live rebuild",
-    accent: "green",
-    graphic: "employee-app",
-    problem: "The internal employee app needed faster iteration and stronger user retention.",
-    solution: "Rebuilt the foundation in one month so product teams can ship and test faster.",
-  },
-  {
-    name: "Zurich Airport Voice AI Agent",
-    category: "Operations AI",
-    stage: "PoC to tender",
-    accent: "amber",
-    graphic: "voice-ai",
-    problem: "High call volume and long support time in a regulated airport environment.",
-    solution:
-      "Scoped and delivered a Voice AI PoC in two weeks, then moved it into formal tender and governance.",
-  },
-  {
-    name: "Engineering Office Copilot",
-    category: "SME deployment",
+    name: "Engineering Office OS",
+    category: "Enterprise AI",
     stage: "In delivery",
     accent: "blue",
-    graphic: "proposal-copilot",
-    problem: "Proposal preparation was slow because knowledge was scattered across systems.",
-    solution: "Built OCR + RAG + routing workflows to produce proposal-ready drafts much faster.",
+    visual: "knowledge",
+    problem: "Project knowledge scattered across systems. Proposal work is slow and manual.",
+    solution: "AI operating system connecting project history, decisions, documents and expertise.",
   },
   {
-    name: "Company Brain",
-    category: "Knowledge systems",
+    name: "Vibe Decoder",
+    category: "Human intelligence",
     stage: "Building",
-    accent: "sky",
-    graphic: "company-brain",
-    problem: "Teams lose time searching across documents, decisions, and fragmented context.",
-    solution: "Centralize retrieval with source-grounded answers so teams can execute with confidence.",
+    accent: "violet",
+    visual: "messages",
+    problem: "Intent gets lost when language is interpreted without personality and cultural context.",
+    solution: "Decoding tone, personality and relationship dynamics before helping you respond.",
+  },
+  {
+    name: "AirCompanion",
+    category: "Travel AI",
+    stage: "Venture",
+    accent: "cyan",
+    visual: "travel",
+    problem: "Passengers navigate airports with fragmented, static information.",
+    solution: "Contextual AI companion guiding passengers through every stage of their journey.",
+  },
+  {
+    name: "Rehearse",
+    category: "Simulation",
+    stage: "Prototype",
+    accent: "coral",
+    visual: "rehearse",
+    problem: "High-stakes conversations happen without practice or feedback.",
+    solution: "Realistic AI role-play for sales calls, negotiations and difficult conversations.",
   },
   {
     name: "Privacy Layer",
     category: "AI infrastructure",
-    stage: "Prototype",
-    accent: "cyan",
-    graphic: "privacy-layer",
-    problem: "Organizations need usable AI workflows without exposing sensitive operational data.",
-    solution: "Introduce pre-model controls for redaction, routing, and policy enforcement by default.",
+    stage: "Concept",
+    accent: "green",
+    visual: "privacy",
+    problem: "Organizations cannot use AI workflows without exposing sensitive operational data.",
+    solution: "Pre-model controls for redaction, routing and policy enforcement by default.",
   },
   {
-    name: "Vibe Translator",
-    category: "Human context AI",
-    stage: "Prototype",
-    accent: "violet",
-    graphic: "vibe-translator",
-    problem:
-      "Intent often gets lost when language is interpreted without relationship and cultural context.",
-    solution: "Decode communication context before response drafting to reduce social and business friction.",
+    name: "Treasure",
+    category: "Voice AI",
+    stage: "Testing",
+    accent: "amber",
+    visual: "voice",
+    problem: "Family stories disappear when the people who lived them are gone.",
+    solution: "AI voice calls that capture parents' stories and preserve family memories.",
   },
 ];
 
@@ -224,29 +217,6 @@ const accentStyles = {
   "--hero-accent": "#10a37f",
 } as CSSProperties;
 
-const projectAccents: Record<SelectedProject["graphic"], string> = {
-  "employee-app": "rgba(16,163,127,0.12)",
-  "voice-ai": "rgba(242,184,91,0.12)",
-  "proposal-copilot": "rgba(99,118,255,0.12)",
-  "company-brain": "rgba(107,184,255,0.12)",
-  "privacy-layer": "rgba(84,207,234,0.12)",
-  "vibe-translator": "rgba(156,108,255,0.12)",
-};
-
-function ProjectMeaningVisual({
-  graphic,
-}: {
-  graphic: SelectedProject["graphic"];
-}) {
-  const accent = projectAccents[graphic];
-  return (
-    <div
-      className="project-visual relative overflow-hidden"
-      aria-hidden="true"
-      style={{ background: `radial-gradient(circle at 30% 30%, ${accent}, transparent 70%)` }}
-    />
-  );
-}
 
 export function OpenAIApplicationPage() {
   const reduceMotion = useReducedMotion();
@@ -686,7 +656,7 @@ export function OpenAIApplicationPage() {
                   key={project.name}
                   className={`dossier-project-card accent-${project.accent}`}
                 >
-                  <ProjectMeaningVisual graphic={project.graphic} />
+                  <ProductVisual type={project.visual} />
                   <div className="flex flex-col p-6 md:p-7">
                     <div className="mb-3 flex items-center justify-between gap-3">
                       <span className="text-[11px] font-medium" style={{ color: "#10a37f" }}>
