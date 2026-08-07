@@ -228,32 +228,37 @@ const accentStyles = {
 const deploymentStages = [
   {
     label: "Discover",
+    layer: "Intake",
     desc: "Map stakeholders, data boundaries and who can say yes.",
-    runs: "Stakeholder interviews, data map, success criteria.",
+    runs: "Call arrives, language detect, intent classify",
     blocker: "Procurement cycles and too many stakeholders, no single owner.",
   },
   {
     label: "Decide",
+    layer: "Governance",
     desc: "Align legal, IT and the business on what shipped means.",
-    runs: "Eval rubric, legal review, go/no-go meeting.",
+    runs: "Eval criteria, audit trail, sign-off path",
     blocker: "Legal and IT want different guarantees than the business.",
   },
   {
     label: "Build",
+    layer: "Orchestration",
     desc: "Prototype on real traffic, not sandbox demos.",
-    runs: "Prototype on real calls, test DE/FR/IT edge cases.",
+    runs: "Routing, context load, knowledge retrieval",
     blocker: "Edge cases in DE, FR and IT break trust before go-live.",
   },
   {
     label: "Deploy",
+    layer: "Execution",
     desc: "Eval gates, rollback plans, production sign-off.",
-    runs: "Production eval gate, rollback plan, ops sign-off.",
+    runs: "Generate, safety filter, voice synthesis",
     blocker: "Fear of passenger-facing voice AI in a regulated airport.",
   },
   {
     label: "Scale",
+    layer: "Governance",
     desc: "Handoff, monitoring and ownership inside the org.",
-    runs: "Monitoring, handoff docs, internal owner named.",
+    runs: "Eval gate, audit log, rollback trigger",
     blocker: "Adoption fades without an internal owner after launch.",
   },
 ] as const;
@@ -273,7 +278,7 @@ function DeploymentSystem({
   const cx = 200;
   const cy = 200;
   const startAngle = -90;
-  const nodeR = 34;
+  const nodeR = 38;
 
   const positions = stages.map((_, i) => {
     const angle = startAngle + (i * 360) / stages.length;
@@ -288,7 +293,7 @@ function DeploymentSystem({
           How I move from zero to deployed
         </h2>
         <p className="mt-2 max-w-[52ch] text-sm text-[var(--dossier-body)]">
-          Five stages. Pick one to see what I do there and what usually blocks it.
+          Five stages. Pick one to see the layer, what runs, and what blocks it.
         </p>
 
         <div className="mt-4 flex flex-wrap gap-2 lg:hidden" role="tablist" aria-label="Deployment stages">
@@ -313,17 +318,14 @@ function DeploymentSystem({
           })}
         </div>
 
-        <div className="mt-3 grid items-start gap-3 lg:mt-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:gap-8">
+        <div className="mt-4 grid items-center gap-4 lg:mt-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:items-start lg:gap-8">
           <motion.div
-            className="relative mx-auto w-full max-w-[min(64vw,240px)] lg:mx-0 lg:max-w-none"
+            className="relative mx-auto w-full max-w-[380px] lg:mx-0 lg:max-w-none"
             initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: EASE_OUT_STRONG }}
           >
-            <p className="mb-2 text-center text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-muted)] lg:sr-only">
-              Tap a stage
-            </p>
             <svg viewBox="0 0 400 400" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx={cx} cy={cy} r={R} stroke="var(--dossier-line)" strokeWidth="1" />
 
@@ -374,7 +376,7 @@ function DeploymentSystem({
                       textAnchor="middle"
                       dominantBaseline="central"
                       fill={isActive ? "#ffffff" : "var(--dossier-ink)"}
-                      fontSize="10"
+                      fontSize="12"
                       fontWeight="600"
                     >
                       {stage.label}
@@ -393,13 +395,16 @@ function DeploymentSystem({
             <p className="text-lg font-semibold tracking-tight text-[var(--dossier-ink)]">
               {active.label}
             </p>
+            <p className="mt-1 text-sm font-medium text-[#10a37f]">
+              Layer: {active.layer}
+            </p>
             <p className="mt-1.5 text-sm leading-snug text-[var(--dossier-body)]">
               {active.desc}
             </p>
             <div className="mt-4 space-y-3">
               <div>
                 <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-muted)]">
-                  What I do
+                  What runs
                 </p>
                 <p className="mt-1 text-sm leading-snug text-[var(--dossier-ink)]">{active.runs}</p>
               </div>
