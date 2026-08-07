@@ -18,10 +18,13 @@ import {
   Users,
   Workflow,
 } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { DossierBackground } from "@/app/components/shared/DossierBackground";
 import { SubpageHeader } from "@/app/components/shared/SubpageHeader";
 import { LoomVideoFrame } from "@/app/components/shared/LoomVideoFrame";
 import { DossierThemeProvider } from "@/app/lib/dossier-theme";
+
+const EASE_OUT_STRONG = [0.23, 1, 0.32, 1] as const;
 
 type QualificationPillar = {
   icon: typeof BriefcaseBusiness;
@@ -356,6 +359,7 @@ function ProjectMeaningVisual({
 }
 
 export function OpenAIApplicationPage() {
+  const reduceMotion = useReducedMotion();
   return (
     <DossierThemeProvider>
       <main
@@ -529,72 +533,155 @@ export function OpenAIApplicationPage() {
           </div>
         </section>
 
-        <section className="dossier-section relative z-[2] pt-6">
+        <section className="dossier-section relative z-[2] pt-8">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <h2 className="text-[clamp(28px,3.7vw,44px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
+            <motion.h2
+              className="text-[clamp(28px,3.7vw,44px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]"
+              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: EASE_OUT_STRONG }}
+            >
               Three recent deployments
-            </h2>
-            <div className="mt-6 space-y-8">
-              {deployments.map((deployment, index) => (
-                <article
-                  key={deployment.title}
-                  className="overflow-hidden border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)]"
-                >
-                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--dossier-line-strong)] px-5 py-3 md:px-7">
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
-                      Deployment {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
+            </motion.h2>
 
-                  <div className="px-5 pb-2 pt-5 md:px-7 md:pt-6">
-                    <h3 className="text-[clamp(22px,2.6vw,32px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-                      {deployment.title}
+            <motion.article
+              initial={reduceMotion ? false : { opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.08 }}
+              transition={{ duration: 0.7, ease: EASE_OUT_STRONG }}
+              className="relative mt-8 overflow-hidden rounded-2xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)]"
+            >
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#10a37f]/50 to-transparent" />
+
+              <div className="p-6 md:p-8 lg:p-10">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
+                      Deployment 01
+                    </span>
+                    <h3 className="mt-2 text-[clamp(24px,3vw,36px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
+                      {deployments[0].title}
                     </h3>
-                    <p className="mt-1.5 max-w-[60ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
-                      {deployment.subtitle}
+                    <p className="mt-1.5 max-w-[50ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
+                      {deployments[0].subtitle}
                     </p>
                   </div>
+                  <span className="hidden select-none text-[80px] font-bold leading-none text-[var(--dossier-ink)] opacity-[0.03] md:block" aria-hidden="true">
+                    01
+                  </span>
+                </div>
 
-                  <div className="flex flex-wrap gap-4 px-5 py-4 md:gap-6 md:px-7">
-                    {deployment.stats.map((stat) => (
-                      <div key={stat.label} className="flex items-start gap-3">
-                        <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#10a37f]/10">
-                          <div className="h-3.5 w-3.5 rounded-full border-2 border-[#10a37f]" />
-                        </div>
-                        <div>
-                          <p className="text-lg font-semibold tracking-tight text-[var(--dossier-ink)]">
+                <div className="mt-8 flex flex-wrap gap-10 border-y border-[var(--dossier-line)] py-6">
+                  {deployments[0].stats.map((stat, i) => (
+                    <motion.div
+                      key={stat.label}
+                      initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.15 + i * 0.07, ease: EASE_OUT_STRONG }}
+                    >
+                      <p className="text-[clamp(22px,2.5vw,30px)] font-semibold tracking-tight text-[#10a37f]">
+                        {stat.value}
+                      </p>
+                      <p className="mt-0.5 text-xs font-medium text-[var(--dossier-body)]">
+                        {stat.label}
+                      </p>
+                      {stat.sub && (
+                        <p className="text-[11px] text-[var(--dossier-muted)]">{stat.sub}</p>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
+
+                <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_1fr]">
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-subtle)]">
+                      My role
+                    </p>
+                    <ul className="mt-3 space-y-2.5 text-sm leading-relaxed text-[var(--dossier-body)]">
+                      {deployments[0].role.map((item) => (
+                        <li
+                          key={item}
+                          className="relative pl-4 before:absolute before:left-0 before:top-[0.62em] before:h-1.5 before:w-1.5 before:rounded-full before:bg-[#10a37f]"
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="rounded-xl border-l-2 border-[#10a37f] bg-[#10a37f]/[0.04] p-5">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#10a37f]">
+                      Outcome
+                    </p>
+                    <p className="mt-3 text-sm leading-relaxed text-[var(--dossier-body)]">
+                      <span className="font-semibold text-[var(--dossier-ink)]">
+                        {deployments[0].outcomeHighlight}
+                      </span>{" "}
+                      {deployments[0].outcome}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.article>
+
+            <div className="mt-4 grid gap-4 md:grid-cols-2">
+              {deployments.slice(1).map((deployment, idx) => (
+                <motion.article
+                  key={deployment.title}
+                  initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.6, delay: idx * 0.1, ease: EASE_OUT_STRONG }}
+                  className="relative overflow-hidden rounded-2xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)]"
+                >
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--dossier-line)]/80 to-transparent" />
+
+                  <div className="p-5 md:p-6">
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
+                        Deployment {String(idx + 2).padStart(2, "0")}
+                      </span>
+                      <span className="select-none text-[48px] font-bold leading-none text-[var(--dossier-ink)] opacity-[0.03]" aria-hidden="true">
+                        {String(idx + 2).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <h3 className="mt-1 text-lg font-semibold tracking-tight text-[var(--dossier-ink)]">
+                      {deployment.title}
+                    </h3>
+                    <p className="mt-1 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
+                      {deployment.subtitle}
+                    </p>
+
+                    <div className="mt-5 flex flex-wrap gap-6 border-t border-[var(--dossier-line)] pt-4">
+                      {deployment.stats.map((stat) => (
+                        <div key={stat.label}>
+                          <p className="text-xl font-semibold tracking-tight text-[#10a37f]">
                             {stat.value}
                           </p>
-                          <p className="text-xs font-medium text-[var(--dossier-body)]">{stat.label}</p>
-                          {stat.sub && (
-                            <p className="text-[11px] text-[var(--dossier-muted)]">{stat.sub}</p>
-                          )}
+                          <p className="text-[11px] text-[var(--dossier-muted)]">{stat.label}</p>
                         </div>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
 
-                  <div className="grid gap-0 border-t border-[var(--dossier-line-strong)] md:grid-cols-2">
-                    <div className="border-b border-[var(--dossier-line-strong)] p-5 md:border-b-0 md:border-r md:p-7">
+                    <div className="mt-5">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-subtle)]">
                         My role
                       </p>
-                      <ul className="mt-3 space-y-2.5 text-sm leading-relaxed text-[var(--dossier-body)]">
+                      <ul className="mt-2 space-y-1.5 text-[13px] leading-relaxed text-[var(--dossier-body)]">
                         {deployment.role.map((item) => (
                           <li
                             key={item}
-                            className="relative pl-4 before:absolute before:left-0 before:top-[0.62em] before:h-1.5 before:w-1.5 before:rounded-full before:bg-[#10a37f]"
+                            className="relative pl-3.5 before:absolute before:left-0 before:top-[0.62em] before:h-1 before:w-1 before:rounded-full before:bg-[#10a37f]"
                           >
                             {item}
                           </li>
                         ))}
                       </ul>
                     </div>
-                    <div className="p-5 md:p-7">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#10a37f]">
-                        Outcome
-                      </p>
-                      <p className="mt-3 text-sm leading-relaxed text-[var(--dossier-body)]">
+
+                    <div className="mt-5 rounded-lg border-l-2 border-[#10a37f] bg-[#10a37f]/[0.04] p-4">
+                      <p className="text-[13px] leading-relaxed text-[var(--dossier-body)]">
                         <span className="font-semibold text-[var(--dossier-ink)]">
                           {deployment.outcomeHighlight}
                         </span>{" "}
@@ -602,7 +689,7 @@ export function OpenAIApplicationPage() {
                       </p>
                     </div>
                   </div>
-                </article>
+                </motion.article>
               ))}
             </div>
           </div>
