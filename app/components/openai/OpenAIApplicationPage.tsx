@@ -512,113 +512,6 @@ export function OpenAIApplicationPage() {
           </div>
         </section>
 
-        <section className="dossier-section relative z-[2] pt-10">
-          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
-              Deployment framework
-            </p>
-            <h2 className="mt-2 text-[clamp(30px,4vw,52px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
-              The Enterprise AI<br />Deployment Flywheel
-            </h2>
-            <p className="mt-3 max-w-[52ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
-              Along the flywheel, I created a toolkit for each stage. They saved me significant time going from zero to deployed application across every engagement.
-            </p>
-
-            <div className="mt-8 grid items-start gap-6 lg:grid-cols-[1fr_280px]">
-              <div className="relative flex items-center justify-center overflow-hidden rounded-2xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] px-6 py-10 md:py-14">
-                <svg viewBox="0 0 500 500" className="h-auto w-full max-w-[460px]" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="250" cy="250" r="160" stroke="#10a37f" strokeWidth="1" strokeDasharray="4 4" opacity="0.3" />
-                  <circle cx="250" cy="250" r="60" stroke="var(--dossier-line-strong, #2e313a)" strokeWidth="1" />
-
-                  <text x="250" y="240" textAnchor="middle" fontSize="11" fontWeight="700" className="fill-[var(--dossier-ink)]">Continuous Learning.</text>
-                  <text x="250" y="256" textAnchor="middle" fontSize="11" fontWeight="700" className="fill-[var(--dossier-ink)]">Compounding Impact.</text>
-                  <text x="250" y="275" textAnchor="middle" fontSize="9" className="fill-[var(--dossier-muted)]">Every deployment makes</text>
-                  <text x="250" y="286" textAnchor="middle" fontSize="9" className="fill-[var(--dossier-muted)]">the next one faster.</text>
-
-                  <g transform="translate(250, 70)">
-                    <circle r="24" fill="#10a37f" fillOpacity="0.12" />
-                    <text y="-34" textAnchor="middle" fontSize="12" fontWeight="600" className="fill-[#10a37f]">Discover</text>
-                    <text y="4" textAnchor="middle" fontSize="16">
-                      <tspan className="fill-[#10a37f]">&#x1F50D;</tspan>
-                    </text>
-                  </g>
-                  <text x="250" y="120" textAnchor="middle" fontSize="8" className="fill-[var(--dossier-muted)]">Find the right problems</text>
-
-                  <g transform="translate(422, 195)">
-                    <circle r="24" fill="#818cf8" fillOpacity="0.12" />
-                    <text y="-34" textAnchor="middle" fontSize="12" fontWeight="600" className="fill-[#818cf8]">Decide</text>
-                    <text y="5" textAnchor="middle" fontSize="14" fontWeight="700" className="fill-[#818cf8]">02</text>
-                  </g>
-                  <text x="422" y="235" textAnchor="middle" fontSize="8" className="fill-[var(--dossier-muted)]">Prioritize and define</text>
-
-                  <g transform="translate(356, 400)">
-                    <circle r="24" fill="#818cf8" fillOpacity="0.12" />
-                    <text y="-34" textAnchor="middle" fontSize="12" fontWeight="600" className="fill-[#818cf8]">Build</text>
-                    <text y="5" textAnchor="middle" fontSize="14" fontWeight="700" className="fill-[#818cf8]">03</text>
-                  </g>
-                  <text x="356" y="440" textAnchor="middle" fontSize="8" className="fill-[var(--dossier-muted)]">Validate early, learn fast</text>
-
-                  <g transform="translate(144, 400)">
-                    <circle r="24" fill="#34d399" fillOpacity="0.12" />
-                    <text y="-34" textAnchor="middle" fontSize="12" fontWeight="600" className="fill-[#34d399]">Deploy</text>
-                    <text y="5" textAnchor="middle" fontSize="14" fontWeight="700" className="fill-[#34d399]">04</text>
-                  </g>
-                  <text x="144" y="440" textAnchor="middle" fontSize="8" className="fill-[var(--dossier-muted)]">Integrate, secure, roll out</text>
-
-                  <g transform="translate(78, 195)">
-                    <circle r="24" fill="#10a37f" fillOpacity="0.12" />
-                    <text y="-34" textAnchor="middle" fontSize="12" fontWeight="600" className="fill-[#10a37f]">Scale</text>
-                    <text y="5" textAnchor="middle" fontSize="14" fontWeight="700" className="fill-[#10a37f]">05</text>
-                  </g>
-                  <text x="78" y="235" textAnchor="middle" fontSize="8" className="fill-[var(--dossier-muted)]">Drive adoption, maximize</text>
-
-                  <path d="M 280 78 Q 380 100 410 175" stroke="#10a37f" strokeWidth="1" fill="none" opacity="0.4" markerEnd="url(#arrowGreen)" />
-                  <path d="M 430 225 Q 420 340 370 380" stroke="#818cf8" strokeWidth="1" fill="none" opacity="0.4" />
-                  <path d="M 330 415 Q 250 450 170 415" stroke="#818cf8" strokeWidth="1" fill="none" opacity="0.4" />
-                  <path d="M 120 380 Q 80 320 75 225" stroke="#34d399" strokeWidth="1" fill="none" opacity="0.4" />
-                  <path d="M 85 175 Q 120 100 220 78" stroke="#10a37f" strokeWidth="1" fill="none" opacity="0.4" />
-                </svg>
-              </div>
-
-              <div className="flex flex-col gap-3">
-                {[
-                  { icon: BriefcaseBusiness, label: "Business", desc: "Value, ownership, ROI", color: "#10a37f" },
-                  { icon: Database, label: "System", desc: "Data, architecture, security", color: "#818cf8" },
-                  { icon: Users, label: "Adoption", desc: "People, workflows, trust", color: "#34d399" },
-                ].map((dim) => (
-                  <div key={dim.label} className="flex items-start gap-3 rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: `${dim.color}15` }}>
-                      <dim.icon className="h-4.5 w-4.5" style={{ color: dim.color }} />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-[var(--dossier-ink)]">{dim.label}</p>
-                      <p className="text-xs text-[var(--dossier-muted)]">{dim.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-5">
-              {[
-                { icon: Workflow, title: "End-to-end Ownership", desc: "From strategy to impact." },
-                { icon: ArrowUpRight, title: "Speed with Quality", desc: "Ship fast, meet enterprise standards." },
-                { icon: BriefcaseBusiness, title: "Business First", desc: "Every decision tied to real outcomes." },
-                { icon: Cpu, title: "Builder Mindset", desc: "Build, learn, scale." },
-                { icon: ShieldCheck, title: "Impact Over Time", desc: "Measure, iterate, scale continuously." },
-              ].map((principle) => (
-                <div key={principle.title} className="flex items-start gap-2.5 rounded-lg border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-3">
-                  <principle.icon className="mt-0.5 h-4 w-4 shrink-0 text-[#10a37f]" />
-                  <div>
-                    <p className="text-xs font-semibold text-[var(--dossier-ink)]">{principle.title}</p>
-                    <p className="text-[10px] leading-snug text-[var(--dossier-muted)]">{principle.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="dossier-section relative z-[2] pt-6">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
@@ -733,6 +626,105 @@ export function OpenAIApplicationPage() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="dossier-section relative z-[2] pt-8">
+          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
+            <div className="overflow-hidden rounded-2xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)]">
+              <div className="grid lg:grid-cols-[1fr_240px]">
+                <div className="p-6 md:p-8">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
+                    Deployment framework
+                  </p>
+                  <h2 className="mt-2 text-[clamp(24px,3vw,36px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
+                    The Enterprise AI Deployment Flywheel
+                  </h2>
+                  <p className="mt-2 max-w-[50ch] text-[13px] leading-relaxed text-[var(--dossier-muted)]">
+                    I built a toolkit for each stage. It saved me significant time going from zero to deployed across every engagement.
+                  </p>
+
+                  <div className="mx-auto mt-6 w-full max-w-[520px]">
+                    <svg viewBox="0 0 520 340" className="h-auto w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="260" cy="170" r="120" stroke="#10a37f" strokeWidth="0.8" strokeDasharray="4 3" opacity="0.35" />
+                      <circle cx="260" cy="170" r="48" stroke="#10a37f" strokeWidth="0.6" opacity="0.2" />
+
+                      <text x="260" y="164" textAnchor="middle" fontSize="10" fontWeight="700" className="fill-[var(--dossier-ink)]">Continuous Learning.</text>
+                      <text x="260" y="178" textAnchor="middle" fontSize="10" fontWeight="700" className="fill-[var(--dossier-ink)]">Compounding Impact.</text>
+
+                      <g transform="translate(260, 36)">
+                        <circle r="22" fill="#10a37f" fillOpacity="0.15" />
+                        <text y="5" textAnchor="middle" fontSize="11" fontWeight="700" className="fill-[#10a37f]">01</text>
+                      </g>
+                      <text x="260" y="14" textAnchor="middle" fontSize="11" fontWeight="600" className="fill-[#10a37f]">Discover</text>
+
+                      <g transform="translate(430, 120)">
+                        <circle r="22" fill="#818cf8" fillOpacity="0.15" />
+                        <text y="5" textAnchor="middle" fontSize="11" fontWeight="700" className="fill-[#818cf8]">02</text>
+                      </g>
+                      <text x="430" y="155" textAnchor="middle" fontSize="11" fontWeight="600" className="fill-[#818cf8]">Decide</text>
+
+                      <g transform="translate(370, 290)">
+                        <circle r="22" fill="#818cf8" fillOpacity="0.15" />
+                        <text y="5" textAnchor="middle" fontSize="11" fontWeight="700" className="fill-[#818cf8]">03</text>
+                      </g>
+                      <text x="370" y="325" textAnchor="middle" fontSize="11" fontWeight="600" className="fill-[#818cf8]">Build</text>
+
+                      <g transform="translate(150, 290)">
+                        <circle r="22" fill="#34d399" fillOpacity="0.15" />
+                        <text y="5" textAnchor="middle" fontSize="11" fontWeight="700" className="fill-[#34d399]">04</text>
+                      </g>
+                      <text x="150" y="325" textAnchor="middle" fontSize="11" fontWeight="600" className="fill-[#34d399]">Deploy</text>
+
+                      <g transform="translate(90, 120)">
+                        <circle r="22" fill="#10a37f" fillOpacity="0.15" />
+                        <text y="5" textAnchor="middle" fontSize="11" fontWeight="700" className="fill-[#10a37f]">05</text>
+                      </g>
+                      <text x="90" y="155" textAnchor="middle" fontSize="11" fontWeight="600" className="fill-[#10a37f]">Scale</text>
+
+                      <path d="M 285 42 Q 380 60 420 105" stroke="#10a37f" strokeWidth="1" fill="none" opacity="0.5" />
+                      <path d="M 440 145 Q 430 240 385 275" stroke="#818cf8" strokeWidth="1" fill="none" opacity="0.5" />
+                      <path d="M 345 300 Q 260 325 175 300" stroke="#818cf8" strokeWidth="1" fill="none" opacity="0.5" />
+                      <path d="M 130 275 Q 90 230 85 145" stroke="#34d399" strokeWidth="1" fill="none" opacity="0.5" />
+                      <path d="M 100 105 Q 140 60 235 42" stroke="#10a37f" strokeWidth="1" fill="none" opacity="0.5" />
+                    </svg>
+                  </div>
+                </div>
+
+                <div className="flex flex-col justify-center gap-3 border-t border-[var(--dossier-line)] p-5 lg:border-l lg:border-t-0">
+                  {[
+                    { icon: BriefcaseBusiness, label: "Business", desc: "Value, ownership, ROI", color: "#10a37f" },
+                    { icon: Database, label: "System", desc: "Architecture, security", color: "#818cf8" },
+                    { icon: Users, label: "Adoption", desc: "People, workflows, trust", color: "#34d399" },
+                  ].map((dim) => (
+                    <div key={dim.label} className="flex items-center gap-3">
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: `${dim.color}15` }}>
+                        <dim.icon className="h-4 w-4" style={{ color: dim.color }} />
+                      </div>
+                      <div>
+                        <p className="text-[13px] font-semibold text-[var(--dossier-ink)]">{dim.label}</p>
+                        <p className="text-[11px] text-[var(--dossier-muted)]">{dim.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-5 border-t border-[var(--dossier-line)]">
+                {[
+                  { icon: Workflow, title: "Ownership" },
+                  { icon: ArrowUpRight, title: "Speed" },
+                  { icon: BriefcaseBusiness, title: "Business First" },
+                  { icon: Cpu, title: "Builder" },
+                  { icon: ShieldCheck, title: "Impact" },
+                ].map((p, i) => (
+                  <div key={p.title} className={`flex items-center justify-center gap-2 px-3 py-3 ${i < 4 ? "border-r border-[var(--dossier-line)]" : ""}`}>
+                    <p.icon className="h-3.5 w-3.5 text-[#10a37f]" />
+                    <span className="text-[11px] font-medium text-[var(--dossier-muted)]">{p.title}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
