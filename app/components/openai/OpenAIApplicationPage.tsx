@@ -55,8 +55,9 @@ type SelectedProject = {
   stage: string;
   accent: string;
   visual: string;
-  problem: string;
-  solution: string;
+  description: string;
+  evidence: string;
+  url: string;
 };
 
 const qualificationPillars: QualificationPillar[] = [
@@ -158,49 +159,48 @@ const deploymentLessons = [
 
 const selectedProjects: SelectedProject[] = [
   {
-    name: "Engineering Office OS",
-    category: "Enterprise AI",
-    stage: "In delivery",
-    accent: "blue",
-    visual: "knowledge",
-    problem: "Project knowledge scattered across systems. Proposal work is slow and manual.",
-    solution: "AI operating system connecting project history, decisions, documents and expertise.",
+    name: "PrivacyLayer",
+    category: "AI infrastructure",
+    stage: "Live",
+    accent: "green",
+    visual: "privacy",
+    description:
+      "A control layer that strips personal data from AI prompts in the browser before it reaches any model. Zero bytes sent to any server.",
+    evidence: "Live product with Chrome extension",
+    url: "https://privacy.terencela.com",
   },
   {
-    name: "Vibe Decoder",
+    name: "Vibe Translator",
     category: "Human intelligence",
     stage: "Building",
     accent: "violet",
     visual: "messages",
-    problem: "Intent gets lost when language is interpreted without personality and cultural context.",
-    solution: "Decoding tone, personality and relationship dynamics before helping you respond.",
+    description:
+      "The human-context layer for communication: decoding tone, personality, culture and relationship dynamics before helping you respond.",
+    evidence: "Interactive product prototype",
+    url: "https://vibe.terencela.com",
   },
   {
-    name: "AirCompanion",
-    category: "Travel AI",
-    stage: "Venture",
-    accent: "cyan",
-    visual: "travel",
-    problem: "Passengers navigate airports with fragmented, static information.",
-    solution: "Contextual AI companion guiding passengers through every stage of their journey.",
+    name: "Asia Bridge",
+    category: "Cultural intelligence",
+    stage: "Concept",
+    accent: "red",
+    visual: "culture",
+    description:
+      "Duolingo meets Grammarly for the invisible rules, communication styles and social nuances of Asian cultures.",
+    evidence: "Product thesis developed",
+    url: "https://asia.terencela.com",
   },
   {
     name: "Rehearse",
     category: "Simulation",
-    stage: "Prototype",
+    stage: "Live",
     accent: "coral",
     visual: "rehearse",
-    problem: "High-stakes conversations happen without practice or feedback.",
-    solution: "Realistic AI role-play for sales calls, negotiations and difficult conversations.",
-  },
-  {
-    name: "Privacy Layer",
-    category: "AI infrastructure",
-    stage: "Concept",
-    accent: "green",
-    visual: "privacy",
-    problem: "Organizations cannot use AI workflows without exposing sensitive operational data.",
-    solution: "Pre-model controls for redaction, routing and policy enforcement by default.",
+    description:
+      "Practice sales calls, negotiations and difficult conversations with realistic AI role-play and targeted feedback.",
+    evidence: "Interactive rehearsal flow",
+    url: "https://rehearse-roleplay.vercel.app",
   },
   {
     name: "Treasure",
@@ -208,8 +208,10 @@ const selectedProjects: SelectedProject[] = [
     stage: "Testing",
     accent: "amber",
     visual: "voice",
-    problem: "Family stories disappear when the people who lived them are gone.",
-    solution: "AI voice calls that capture parents' stories and preserve family memories.",
+    description:
+      "AI voice calls that capture parents' stories, preserve family memories and keep generations connected.",
+    evidence: "Voice-first experience built",
+    url: "https://treasures-bowl.vercel.app",
   },
 ];
 
@@ -648,40 +650,35 @@ export function OpenAIApplicationPage() {
               Selected projects
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-[var(--dossier-muted)]">
-              Six selected projects with concise problem and solution framing.
+              Five personal products across AI infrastructure, human intelligence and voice.
             </p>
-            <div className="dossier-project-grid mt-6">
+            <div className="project-grid mt-6">
               {selectedProjects.map((project, index) => (
-                <article
+                <a
                   key={project.name}
-                  className={`dossier-project-card accent-${project.accent}`}
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`project-card accent-${project.accent}`}
                 >
-                  <ProductVisual type={project.visual} />
-                  <div className="flex flex-col p-6 md:p-7">
-                    <div className="mb-3 flex items-center justify-between gap-3">
-                      <span className="text-[11px] font-medium" style={{ color: "#10a37f" }}>
-                        {project.category}
-                      </span>
-                      <span className="text-[11px] text-[var(--dossier-muted)]">
-                        {project.stage}
-                      </span>
-                    </div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-subtle)]">
-                      {String(index + 1).padStart(2, "0")}
-                    </p>
-                    <h3 className="mt-2 text-xl font-semibold tracking-tight text-[var(--dossier-ink)]">
-                      {project.name}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-[var(--dossier-body)]">
-                      <span className="font-medium text-[var(--dossier-ink)]">Problem:</span>{" "}
-                      {project.problem}
-                    </p>
-                    <p className="mt-2 border-t border-[var(--dossier-line-strong)] pt-3 text-sm leading-relaxed text-[var(--dossier-body)]">
-                      <span className="font-medium text-[var(--dossier-ink)]">Solution:</span>{" "}
-                      {project.solution}
-                    </p>
+                  <div className="card-topline">
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <span className="stage-badge">{project.stage}</span>
                   </div>
-                </article>
+                  <ProductVisual type={project.visual} />
+                  <div className="card-copy">
+                    <small>{project.category}</small>
+                    <h3>{project.name}</h3>
+                    <p>{project.description}</p>
+                    <div className="evidence">
+                      <span>Evidence</span>
+                      <b>{project.evidence}</b>
+                    </div>
+                  </div>
+                  <span className="card-arrow">
+                    <ArrowUpRight className="h-4 w-4" />
+                  </span>
+                </a>
               ))}
             </div>
           </div>
