@@ -1,7 +1,6 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import type { LucideIcon } from "lucide-react";
 import Image from "next/image";
 import {
   ArrowUpRight,
@@ -38,9 +37,13 @@ type SelectedProject = {
   category: string;
   stage: string;
   accent: string;
-  visualIcon: LucideIcon;
-  visualTitle: string;
-  visualNote: string;
+  graphic:
+    | "employee-app"
+    | "voice-ai"
+    | "proposal-copilot"
+    | "company-brain"
+    | "privacy-layer"
+    | "vibe-translator";
   problem: string;
   solution: string;
 };
@@ -121,9 +124,7 @@ const selectedProjects: SelectedProject[] = [
     category: "Internal employee app",
     stage: "Live rebuild",
     accent: "green",
-    visualIcon: Building2,
-    visualTitle: "App foundation rebuild",
-    visualNote: "One shared base for faster releases and retention work.",
+    graphic: "employee-app",
     problem: "The internal employee app needed faster iteration and stronger user retention.",
     solution: "Rebuilt the foundation in one month so product teams can ship and test faster.",
   },
@@ -132,9 +133,7 @@ const selectedProjects: SelectedProject[] = [
     category: "Operations AI",
     stage: "PoC to tender",
     accent: "amber",
-    visualIcon: Mic,
-    visualTitle: "Voice AI workflow",
-    visualNote: "Call routing, escalation logic, and stakeholder governance.",
+    graphic: "voice-ai",
     problem: "High call volume and long support time in a regulated airport environment.",
     solution:
       "Scoped and delivered a Voice AI PoC in two weeks, then moved it into formal tender and governance.",
@@ -144,9 +143,7 @@ const selectedProjects: SelectedProject[] = [
     category: "SME deployment",
     stage: "In delivery",
     accent: "blue",
-    visualIcon: FileText,
-    visualTitle: "Proposal copilot",
-    visualNote: "OCR, retrieval, and model routing for proposal prep.",
+    graphic: "proposal-copilot",
     problem: "Proposal preparation was slow because knowledge was scattered across systems.",
     solution: "Built OCR + RAG + routing workflows to produce proposal-ready drafts much faster.",
   },
@@ -155,9 +152,7 @@ const selectedProjects: SelectedProject[] = [
     category: "Knowledge systems",
     stage: "Building",
     accent: "sky",
-    visualIcon: Database,
-    visualTitle: "Knowledge retrieval",
-    visualNote: "One trusted layer across docs, decisions, and context.",
+    graphic: "company-brain",
     problem: "Teams lose time searching across documents, decisions, and fragmented context.",
     solution: "Centralize retrieval with source-grounded answers so teams can execute with confidence.",
   },
@@ -166,9 +161,7 @@ const selectedProjects: SelectedProject[] = [
     category: "AI infrastructure",
     stage: "Prototype",
     accent: "cyan",
-    visualIcon: ShieldCheck,
-    visualTitle: "Policy layer",
-    visualNote: "Redaction, routing, and guardrails before model calls.",
+    graphic: "privacy-layer",
     problem: "Organizations need usable AI workflows without exposing sensitive operational data.",
     solution: "Introduce pre-model controls for redaction, routing, and policy enforcement by default.",
   },
@@ -177,9 +170,7 @@ const selectedProjects: SelectedProject[] = [
     category: "Human context AI",
     stage: "Prototype",
     accent: "violet",
-    visualIcon: MessageSquareText,
-    visualTitle: "Context-aware messaging",
-    visualNote: "Interpret intent before drafting responses.",
+    graphic: "vibe-translator",
     problem:
       "Intent often gets lost when language is interpreted without relationship and cultural context.",
     solution: "Decode communication context before response drafting to reduce social and business friction.",
@@ -191,21 +182,133 @@ const accentStyles = {
 } as CSSProperties;
 
 function ProjectMeaningVisual({
-  icon: Icon,
-  title,
-  note,
+  graphic,
 }: {
-  icon: LucideIcon;
-  title: string;
-  note: string;
+  graphic: SelectedProject["graphic"];
 }) {
-  return (
-    <div className="project-visual flex flex-col justify-between p-6 md:p-7" aria-hidden="true">
-      <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--dossier-subtle)]">
-        <Icon className="h-4 w-4" style={{ color: "var(--accent)" }} />
-        <span>{title}</span>
+  if (graphic === "employee-app") {
+    return (
+      <div className="project-visual relative overflow-hidden p-6 md:p-7" aria-hidden="true">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(16,163,127,0.2),transparent_58%)]" />
+        <div className="relative flex h-full items-center justify-center gap-4">
+          <div className="h-36 w-20 rounded-[18px] border border-black/10 bg-white/80 p-2 shadow-[0_10px_22px_rgba(0,0,0,0.12)]">
+            <div className="mx-auto mt-1 h-1.5 w-9 rounded-full bg-black/20" />
+            <div className="mt-4 space-y-2">
+              <div className="h-2 rounded bg-[#10a37f40]" />
+              <div className="h-2 rounded bg-black/10" />
+              <div className="h-2 w-4/5 rounded bg-black/10" />
+            </div>
+            <div className="mt-4 h-12 rounded-lg border border-[#10a37f33] bg-[#10a37f1f]" />
+          </div>
+          <div className="h-28 w-28 rounded-2xl border border-black/10 bg-white/70 p-3 shadow-[0_8px_18px_rgba(0,0,0,0.08)]">
+            <Building2 className="h-5 w-5 text-[#10a37f]" />
+            <div className="mt-3 space-y-2">
+              <div className="h-1.5 rounded bg-black/15" />
+              <div className="h-1.5 rounded bg-black/10" />
+              <div className="h-1.5 w-2/3 rounded bg-black/10" />
+            </div>
+          </div>
+        </div>
       </div>
-      <p className="max-w-[20ch] text-sm leading-relaxed text-[var(--dossier-body)]">{note}</p>
+    );
+  }
+
+  if (graphic === "voice-ai") {
+    return (
+      <div className="project-visual relative overflow-hidden p-6 md:p-7" aria-hidden="true">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_20%,rgba(242,184,91,0.26),transparent_56%)]" />
+        <div className="relative flex h-full items-center justify-center">
+          <div className="flex items-end gap-1.5">
+            {[24, 38, 52, 66, 52, 38, 24].map((height) => (
+              <span
+                key={height}
+                className="w-1.5 rounded-full bg-[#f2b85b]"
+                style={{ height: `${height}px` }}
+              />
+            ))}
+          </div>
+          <div className="absolute bottom-5 right-5 rounded-full border border-[#f2b85b66] bg-white/70 p-2">
+            <Mic className="h-4 w-4 text-[#d99121]" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (graphic === "proposal-copilot") {
+    return (
+      <div className="project-visual relative overflow-hidden p-6 md:p-7" aria-hidden="true">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_75%,rgba(99,118,255,0.18),transparent_55%)]" />
+        <div className="relative mx-auto h-full max-w-[180px]">
+          <div className="absolute left-5 top-3 h-[150px] w-[110px] -rotate-6 rounded-lg border border-black/10 bg-white/70" />
+          <div className="absolute left-10 top-8 h-[150px] w-[110px] rounded-lg border border-black/15 bg-white/85 p-3 shadow-[0_12px_20px_rgba(0,0,0,0.08)]">
+            <FileText className="h-4 w-4 text-[#6376ff]" />
+            <div className="mt-3 space-y-2">
+              <div className="h-1.5 rounded bg-black/20" />
+              <div className="h-1.5 rounded bg-black/10" />
+              <div className="h-1.5 w-4/5 rounded bg-black/10" />
+            </div>
+            <div className="mt-4 grid grid-cols-2 gap-1.5">
+              <span className="h-7 rounded border border-[#6376ff55] bg-[#6376ff1f]" />
+              <span className="h-7 rounded border border-[#6376ff55] bg-[#6376ff1f]" />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (graphic === "company-brain") {
+    return (
+      <div className="project-visual relative overflow-hidden p-6 md:p-7" aria-hidden="true">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(107,184,255,0.2),transparent_58%)]" />
+        <div className="relative h-full w-full">
+          <span className="absolute left-[20%] top-[30%] h-px w-16 rotate-[22deg] bg-[#6bb8ff88]" />
+          <span className="absolute left-[47%] top-[42%] h-px w-16 -rotate-[24deg] bg-[#6bb8ff88]" />
+          <span className="absolute left-[33%] top-[63%] h-px w-14 rotate-[-8deg] bg-[#6bb8ff88]" />
+          <div className="absolute left-[15%] top-[25%] flex h-11 w-11 items-center justify-center rounded-full border border-[#6bb8ff99] bg-white/75">
+            <Database className="h-4 w-4 text-[#58a7f0]" />
+          </div>
+          <div className="absolute right-[18%] top-[35%] h-9 w-9 rounded-full border border-[#6bb8ff99] bg-white/75" />
+          <div className="absolute left-[42%] bottom-[16%] h-10 w-10 rounded-full border border-[#6bb8ff99] bg-white/75" />
+        </div>
+      </div>
+    );
+  }
+
+  if (graphic === "privacy-layer") {
+    return (
+      <div className="project-visual relative overflow-hidden p-6 md:p-7" aria-hidden="true">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(84,207,234,0.2),transparent_55%)]" />
+        <div className="relative flex h-full items-center justify-center gap-4">
+          <div className="rounded-2xl border border-[#54cfea66] bg-white/80 p-4 shadow-[0_10px_22px_rgba(0,0,0,0.08)]">
+            <ShieldCheck className="h-12 w-12 text-[#2eaecd]" />
+          </div>
+          <div className="space-y-2">
+            <div className="h-2 w-20 rounded bg-black/20" />
+            <div className="h-2 w-16 rounded bg-black/12" />
+            <div className="h-2 w-24 rounded bg-black/12" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="project-visual relative overflow-hidden p-6 md:p-7" aria-hidden="true">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_15%,rgba(156,108,255,0.2),transparent_56%)]" />
+      <div className="relative flex h-full items-center justify-center gap-4">
+        <div className="max-w-[120px] rounded-2xl border border-black/10 bg-white/80 p-3 shadow-[0_8px_16px_rgba(0,0,0,0.08)]">
+          <MessageSquareText className="h-4 w-4 text-[#9c6cff]" />
+          <div className="mt-2 h-1.5 rounded bg-black/20" />
+          <div className="mt-1.5 h-1.5 w-4/5 rounded bg-black/10" />
+        </div>
+        <div className="max-w-[120px] rounded-2xl border border-black/10 bg-white/75 p-3">
+          <div className="h-1.5 rounded bg-black/15" />
+          <div className="mt-1.5 h-1.5 w-3/4 rounded bg-black/10" />
+          <div className="mt-3 h-6 rounded-lg border border-[#9c6cff55] bg-[#9c6cff1f]" />
+        </div>
+      </div>
     </div>
   );
 }
@@ -425,11 +528,7 @@ export function OpenAIApplicationPage() {
                   key={project.name}
                   className={`dossier-project-card accent-${project.accent}`}
                 >
-                  <ProjectMeaningVisual
-                    icon={project.visualIcon}
-                    title={project.visualTitle}
-                    note={project.visualNote}
-                  />
+                  <ProjectMeaningVisual graphic={project.graphic} />
                   <div className="flex flex-col p-6 md:p-7">
                     <div className="mb-3 flex items-center justify-between gap-3">
                       <span className="text-[11px] font-medium" style={{ color: "#10a37f" }}>
