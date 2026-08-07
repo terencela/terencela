@@ -851,22 +851,24 @@ export function OpenAIApplicationPage() {
               <p className="mt-4 max-w-[68ch] text-sm leading-relaxed text-[var(--dossier-muted)] md:text-[15px]">
                 I am already doing Forward Deployed work across regulated enterprises in Zurich. If OpenAI wants someone who gets enterprise AI from pilot to adoption, let&apos;s talk.
               </p>
-              <div className="mt-6 flex flex-wrap items-center gap-3">
+              <div className="mt-6 flex flex-wrap items-center gap-4">
                 <a
-                  href="mailto:terencela.yt@gmail.com"
+                  href="https://www.linkedin.com/in/terencela"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="dossier-button-primary dossier-cta-accent dossier-pressable inline-flex"
                 >
-                  terencela.yt@gmail.com
-                  <ArrowUpRight className="h-4 w-4" />
+                  Get in touch
+                  <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
                   href="https://xp.terencela.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border border-[var(--dossier-line-strong)] px-5 py-2.5 text-[13px] font-medium text-[var(--dossier-ink)] transition-colors duration-200 hover:bg-[rgba(255,255,255,0.04)]"
+                  className="inline-flex items-center gap-1.5 text-[13px] text-[var(--dossier-muted)] transition-colors duration-200 hover:text-[var(--dossier-ink)]"
                 >
-                  See my portfolio on Windows XP
-                  <ArrowUpRight className="h-3.5 w-3.5" />
+                  See TerenceXP
+                  <ArrowUpRight className="h-3 w-3" />
                 </a>
               </div>
             </div>
