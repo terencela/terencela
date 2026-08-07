@@ -1556,53 +1556,9 @@ html[data-dossier-theme="dark"] .dossier-footer-copy {
   }
 }
 
-@keyframes openai-marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.openai-marquee {
-  overflow: hidden;
-}
-
-.openai-marquee-track {
-  display: flex;
-  width: max-content;
-  gap: 18px;
-  animation: openai-marquee-scroll 24s linear infinite;
-}
-
-.openai-marquee-group {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  flex: 0 0 auto;
-}
-
-.openai-marquee-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 14px;
-  border: 1px solid var(--dossier-line-strong);
-  background: #ffffff;
-  color: var(--dossier-ink);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transform: rotate(-20deg);
-}
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
-  .openai-marquee-track {
-    animation: none !important;
-  }
   .dossier-pressable:active {
     transform: none;
   }
