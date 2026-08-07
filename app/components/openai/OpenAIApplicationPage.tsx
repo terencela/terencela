@@ -482,8 +482,17 @@ export function OpenAIApplicationPage() {
                     href="mailto:terencela.yt@gmail.com"
                     className="dossier-button-primary dossier-cta-accent dossier-pressable inline-flex"
                   >
-                    terencela.yt@gmail.com
-                    <ArrowUpRight className="h-4 w-4" />
+                    Get in touch
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                  <a
+                    href="https://xp.terencela.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 border border-[var(--dossier-line-strong)] px-5 py-2.5 text-[13px] font-medium text-[var(--dossier-ink)] transition-colors duration-200 hover:bg-[rgba(255,255,255,0.04)]"
+                  >
+                    See my portfolio
+                    <ArrowUpRight className="h-3.5 w-3.5" />
                   </a>
                 </div>
               </div>
