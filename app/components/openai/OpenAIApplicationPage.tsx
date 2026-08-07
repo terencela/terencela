@@ -415,7 +415,7 @@ export function OpenAIApplicationPage() {
                 {credibilityLogos.map((logo) => (
                   <div
                     key={logo}
-                    className="rounded-full border border-black/[0.06] px-3.5 py-1.5 text-[13px] font-normal tracking-[-0.005em] text-black/30"
+                    className="rounded-full border border-[var(--dossier-line)] px-3.5 py-1.5 text-[13px] font-normal tracking-[-0.005em] text-[var(--dossier-subtle)]"
                   >
                     {logo}
                   </div>
@@ -434,7 +434,7 @@ export function OpenAIApplicationPage() {
               My approach to enterprise AI delivery.
             </h2>
             <div className="mt-6 grid gap-4 md:grid-cols-3">
-              <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-white p-6 pb-7">
+              <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 pb-7">
                 <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#10a37f]/[0.08]">
                   <Workflow className="h-6 w-6 text-[#10a37f]" />
                 </div>
@@ -459,13 +459,13 @@ export function OpenAIApplicationPage() {
                         </span>
                         <span className="text-[9px] font-medium text-[var(--dossier-muted)]">{step.label}</span>
                       </div>
-                      {i < 4 && <ArrowRight className="mx-0.5 mt-[-10px] h-3 w-3 shrink-0 text-black/20" />}
+                      {i < 4 && <ArrowRight className="mx-0.5 mt-[-10px] h-3 w-3 shrink-0 text-[var(--dossier-subtle)]" />}
                     </React.Fragment>
                   ))}
                 </div>
               </article>
 
-              <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-white p-6 pb-7">
+              <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 pb-7">
                 <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#10a37f]/[0.08]">
                   <Cpu className="h-6 w-6 text-[#10a37f]" />
                 </div>
@@ -487,7 +487,7 @@ export function OpenAIApplicationPage() {
                 </div>
               </article>
 
-              <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-white p-6 pb-7">
+              <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 pb-7">
                 <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#10a37f]/[0.08]">
                   <Users className="h-6 w-6 text-[#10a37f]" />
                 </div>
@@ -499,9 +499,9 @@ export function OpenAIApplicationPage() {
                 </p>
                 <div className="mt-auto pt-6">
                   <svg viewBox="0 0 200 72" className="h-[64px] w-full max-w-[200px]" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <text x="8" y="12" fontSize="11" fontWeight="600" fill="currentColor" className="text-[var(--dossier-ink)]">Business</text>
-                    <text x="132" y="12" fontSize="11" fontWeight="600" fill="currentColor" className="text-[var(--dossier-ink)]">Engineering</text>
-                    <text x="78" y="68" fontSize="11" fontWeight="600" fill="currentColor" className="text-[var(--dossier-ink)]">User</text>
+                    <text x="8" y="12" fontSize="11" fontWeight="600" className="fill-[var(--dossier-ink)]">Business</text>
+                    <text x="132" y="12" fontSize="11" fontWeight="600" className="fill-[var(--dossier-ink)]">Engineering</text>
+                    <text x="78" y="68" fontSize="11" fontWeight="600" className="fill-[var(--dossier-ink)]">User</text>
                     <line x1="55" y1="16" x2="130" y2="16" stroke="#10a37f" strokeWidth="1.2" />
                     <line x1="45" y1="18" x2="88" y2="54" stroke="#10a37f" strokeWidth="1.2" />
                     <line x1="155" y1="18" x2="105" y2="54" stroke="#10a37f" strokeWidth="1.2" />
@@ -538,7 +538,7 @@ export function OpenAIApplicationPage() {
               {deployments.map((deployment, index) => (
                 <article
                   key={deployment.title}
-                  className="overflow-hidden border border-[var(--dossier-line-strong)] bg-white"
+                  className="overflow-hidden border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)]"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--dossier-line-strong)] px-5 py-3 md:px-7">
                     <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
@@ -613,7 +613,7 @@ export function OpenAIApplicationPage() {
             <h2 className="text-[clamp(26px,3.2vw,36px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
               Lessons I&apos;ve learned from deploying AI in companies
             </h2>
-            <div className="mt-5 border border-[var(--dossier-line-strong)] bg-white p-6">
+            <div className="mt-5 border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] p-6">
               <div className="grid gap-5 md:grid-cols-[0.95fr_1.05fr]">
                 <p className="text-sm leading-relaxed text-[var(--dossier-muted)]">
                   The model is rarely the bottleneck. Trust, ownership, and alignment are usually
@@ -678,7 +678,7 @@ export function OpenAIApplicationPage() {
 
         <section className="dossier-section relative z-[2] pb-20 pt-8">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div className="border border-[var(--dossier-line-strong)] bg-white p-7 md:p-9">
+            <div className="border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] p-7 md:p-9">
               <h2 className="text-[clamp(30px,4vw,48px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
                 I would love to join as Forward Deployed Engineer.
               </h2>
