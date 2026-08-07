@@ -684,37 +684,93 @@ export function OpenAIApplicationPage() {
         <section className="dossier-section relative z-[2] pt-8">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <div className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-5 md:p-7">
-              <h2 className="text-[clamp(22px,2.6vw,30px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-                How I move from zero to deployed
-              </h2>
-              <p className="mt-1.5 max-w-[55ch] text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                I built a toolkit for each stage. It compounds across engagements.
-              </p>
+              <div className="grid items-center gap-6 lg:grid-cols-[1fr_1fr]">
+                <div>
+                  <h2 className="text-[clamp(22px,2.6vw,30px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
+                    How I move from zero to deployed
+                  </h2>
+                  <p className="mt-1.5 max-w-[40ch] text-[13px] leading-relaxed text-[var(--dossier-muted)]">
+                    I built a toolkit for each stage. It compounds across engagements.
+                  </p>
 
-              <div className="mt-6 flex items-center gap-0 overflow-x-auto pb-2">
-                {["Discover", "Decide", "Build", "Deploy", "Scale"].map((stage, i) => (
-                  <React.Fragment key={stage}>
-                    {i > 0 && (
-                      <div className="mx-1 h-px w-6 shrink-0 bg-[var(--dossier-line)] md:mx-2 md:w-10" />
-                    )}
-                    <div className="shrink-0 rounded-lg border border-[var(--dossier-line)] px-4 py-2.5 text-center md:px-6">
-                      <p className="text-[13px] font-semibold text-[var(--dossier-ink)]">{stage}</p>
-                    </div>
-                  </React.Fragment>
-                ))}
-              </div>
-
-              <div className="mt-6 grid gap-4 border-t border-[var(--dossier-line)] pt-5 md:grid-cols-3">
-                {[
-                  { label: "Business", desc: "Value, ownership, ROI" },
-                  { label: "System", desc: "Architecture, security, data" },
-                  { label: "Adoption", desc: "People, workflows, trust" },
-                ].map((dim) => (
-                  <div key={dim.label}>
-                    <p className="text-[13px] font-semibold text-[var(--dossier-ink)]">{dim.label}</p>
-                    <p className="mt-0.5 text-[12px] text-[var(--dossier-muted)]">{dim.desc}</p>
+                  <div className="mt-5 grid gap-3 border-t border-[var(--dossier-line)] pt-5 sm:grid-cols-3">
+                    {[
+                      { label: "Business", desc: "Value, ownership, ROI" },
+                      { label: "System", desc: "Architecture, security, data" },
+                      { label: "Adoption", desc: "People, workflows, trust" },
+                    ].map((dim) => (
+                      <div key={dim.label}>
+                        <p className="text-[13px] font-semibold text-[var(--dossier-ink)]">{dim.label}</p>
+                        <p className="mt-0.5 text-[12px] text-[var(--dossier-muted)]">{dim.desc}</p>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+
+                <motion.div
+                  className="relative mx-auto aspect-square w-full max-w-[320px]"
+                  initial={reduceMotion ? false : { opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, ease: EASE_OUT_STRONG }}
+                >
+                  <svg viewBox="0 0 340 340" className="mx-auto block h-full w-full" fill="none">
+                    <motion.circle
+                      cx={170} cy={170} r={100}
+                      stroke="var(--dossier-line)"
+                      strokeWidth="1"
+                      strokeDasharray={628}
+                      initial={reduceMotion ? { strokeDashoffset: 0 } : { strokeDashoffset: 628 }}
+                      whileInView={{ strokeDashoffset: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+                    />
+                    {[
+                      { x: 228.8, y: 89.1, r: 36 },
+                      { x: 265.1, y: 200.9, r: 108 },
+                      { x: 170, y: 270, r: 180 },
+                      { x: 74.9, y: 200.9, r: 252 },
+                      { x: 111.2, y: 89.1, r: 324 },
+                    ].map((arrow, i) => (
+                      <motion.g
+                        key={i}
+                        transform={`translate(${arrow.x}, ${arrow.y}) rotate(${arrow.r})`}
+                        initial={reduceMotion ? false : { opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: 1.0 + i * 0.06, ease: EASE_OUT_STRONG }}
+                      >
+                        <path d="M -3.5 -2.5 L 1.5 0 L -3.5 2.5" stroke="var(--dossier-subtle)" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                      </motion.g>
+                    ))}
+                  </svg>
+
+                  {[
+                    { label: "Discover", top: "11.8%", left: "50%" },
+                    { label: "Decide", top: "38.2%", left: "86.4%" },
+                    { label: "Build", top: "80.9%", left: "72.5%" },
+                    { label: "Deploy", top: "80.9%", left: "27.5%" },
+                    { label: "Scale", top: "38.2%", left: "13.6%" },
+                  ].map((stage, i) => (
+                    <motion.p
+                      key={stage.label}
+                      className="absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[13px] font-semibold text-[var(--dossier-ink)]"
+                      style={{ top: stage.top, left: stage.left }}
+                      initial={reduceMotion ? false : { opacity: 0, y: 6 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.4 + i * 0.1, ease: EASE_OUT_STRONG }}
+                    >
+                      {stage.label}
+                    </motion.p>
+                  ))}
+
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <p className="text-center text-[11px] leading-tight text-[var(--dossier-muted)]">
+                      Continuous<br />Learning
+                    </p>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </div>
