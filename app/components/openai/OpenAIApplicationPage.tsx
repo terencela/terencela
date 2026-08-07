@@ -369,15 +369,12 @@ export function OpenAIApplicationPage() {
 
         <section className="dossier-section-tight relative z-[2] py-5">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div className="overflow-hidden border border-[#10322c] bg-[linear-gradient(120deg,#0d1416_10%,#16544c_100%)] px-5 py-6 shadow-[0_12px_34px_rgba(0,0,0,0.2)] md:px-8 md:py-8">
-              <p className="text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-white/75">
-                Trusted experience across enterprise and institutions
-              </p>
-              <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-3 md:mt-6 md:grid-cols-4 lg:grid-cols-7">
+            <div className="border-y border-[var(--dossier-line-strong)] py-5 md:py-6">
+              <div className="flex flex-wrap items-center justify-center gap-2.5 md:gap-3">
                 {credibilityLogos.map((logo) => (
                   <div
                     key={logo}
-                    className="flex min-h-[40px] items-center justify-center border border-white/12 bg-black/10 px-3 text-center text-sm font-semibold tracking-[0.02em] text-white/92"
+                    className="rounded-full border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] px-4 py-2 text-sm font-semibold tracking-[-0.01em] text-[var(--dossier-body)]"
                   >
                     {logo}
                   </div>
