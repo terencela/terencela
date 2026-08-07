@@ -17,6 +17,11 @@ interface LoomVideoFrameProps {
   loomUrl?: string;
   videoTitle?: string;
   accentColor?: string;
+  chapters?: Array<{
+    time: string;
+    title: string;
+    desc: string;
+  }>;
 }
 
 export function LoomVideoFrame({
@@ -25,6 +30,7 @@ export function LoomVideoFrame({
   loomUrl,
   videoTitle = `Why I am the right fit for ${companyName}`,
   accentColor = "#10a37f",
+  chapters,
 }: LoomVideoFrameProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeChapter, setActiveChapter] = useState(0);
@@ -32,7 +38,7 @@ export function LoomVideoFrame({
   const { theme } = useDossierTheme();
   const isDark = theme === "dark";
 
-  const chapters = [
+  const defaultChapters = [
     {
       time: "0:00",
       title: "The unconventional fit",
@@ -49,6 +55,7 @@ export function LoomVideoFrame({
       desc: "Evals, handoffs, and what I'd do in week one on a Zurich account.",
     },
   ];
+  const chapterItems = chapters ?? defaultChapters;
 
   return (
     <div className="dossier-loom-panel overflow-hidden">
@@ -132,7 +139,7 @@ export function LoomVideoFrame({
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            {chapters.map((ch, idx) => (
+            {chapterItems.map((ch, idx) => (
               <motion.button
                 key={ch.title}
                 type="button"

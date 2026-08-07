@@ -1,11 +1,25 @@
+"use client";
+
 import type { CSSProperties } from "react";
+import type { LucideIcon } from "lucide-react";
 import Image from "next/image";
-import { ArrowUpRight, BriefcaseBusiness, Cpu, Users } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  ArrowUpRight,
+  BriefcaseBusiness,
+  Building2,
+  Cpu,
+  Database,
+  FileText,
+  MessageSquareText,
+  Mic,
+  ShieldCheck,
+  Users,
+} from "lucide-react";
 import { DossierBackground } from "@/app/components/shared/DossierBackground";
 import { SubpageHeader } from "@/app/components/shared/SubpageHeader";
+import { LoomVideoFrame } from "@/app/components/shared/LoomVideoFrame";
 import { DossierThemeProvider } from "@/app/lib/dossier-theme";
-import { CredibilityStrip } from "@/app/components/shared/CredibilityStrip";
-import { ProductVisual } from "@/app/components/shared/ProductVisual";
 
 type QualificationPillar = {
   icon: typeof BriefcaseBusiness;
@@ -20,12 +34,19 @@ type DeploymentExample = {
   outcome: string;
 };
 
+type CredibilityScriptItem = {
+  name: string;
+  detail: string;
+};
+
 type SelectedProject = {
   name: string;
   category: string;
   stage: string;
   accent: string;
-  visual: string;
+  visualIcon: LucideIcon;
+  visualTitle: string;
+  visualNote: string;
   problem: string;
   solution: string;
 };
@@ -46,6 +67,15 @@ const qualificationPillars: QualificationPillar[] = [
     title: "Business x Engineering",
     detail: "I translate between executives, engineers, and end users to keep projects moving.",
   },
+];
+
+const credibilityScript: CredibilityScriptItem[] = [
+  { name: "Zurich Airport", detail: "AI Lead" },
+  { name: "Credit Suisse", detail: "Chairman's Office" },
+  { name: "PwC", detail: "Transfer pricing" },
+  { name: "Forbes", detail: "30 Under 30 DACH" },
+  { name: "TEDx", detail: "2x speaker" },
+  { name: "HSG", detail: "Master's degree" },
 ];
 
 const deployments: DeploymentExample[] = [
@@ -90,12 +120,30 @@ const deployments: DeploymentExample[] = [
   },
 ];
 
-const commonIssues = [
-  "Lack of trust",
-  "Weak stakeholder alignment",
-  "Fear of risk",
-  "Many edge cases",
-  "Low empowerment for the economic buyer and champion",
+const deploymentLessons = [
+  "Trust has to be designed, not assumed.",
+  "Weak stakeholder alignment kills momentum fast.",
+  "Fear of risk often blocks even good technical work.",
+  "Edge cases decide whether a deployment survives.",
+  "Economic buyers and champions need real decision power.",
+];
+
+const loomChapters = [
+  {
+    time: "0:00",
+    title: "Context",
+    desc: "What role I play in enterprise AI deployments.",
+  },
+  {
+    time: "0:30",
+    title: "Recent deployments",
+    desc: "Three concrete examples with challenge, role, and outcome.",
+  },
+  {
+    time: "1:00",
+    title: "Day one value",
+    desc: "How I would operate on OpenAI customer projects in Zurich.",
+  },
 ];
 
 const selectedProjects: SelectedProject[] = [
@@ -104,7 +152,9 @@ const selectedProjects: SelectedProject[] = [
     category: "Internal employee app",
     stage: "Live rebuild",
     accent: "green",
-    visual: "knowledge",
+    visualIcon: Building2,
+    visualTitle: "App foundation rebuild",
+    visualNote: "One shared base for faster releases and retention work.",
     problem: "The internal employee app needed faster iteration and stronger user retention.",
     solution: "Rebuilt the foundation in one month so product teams can ship and test faster.",
   },
@@ -113,16 +163,21 @@ const selectedProjects: SelectedProject[] = [
     category: "Operations AI",
     stage: "PoC to tender",
     accent: "amber",
-    visual: "voice",
+    visualIcon: Mic,
+    visualTitle: "Voice AI workflow",
+    visualNote: "Call routing, escalation logic, and stakeholder governance.",
     problem: "High call volume and long support time in a regulated airport environment.",
-    solution: "Scoped and delivered a Voice AI PoC in two weeks, then moved it into formal tender and governance.",
+    solution:
+      "Scoped and delivered a Voice AI PoC in two weeks, then moved it into formal tender and governance.",
   },
   {
     name: "Engineering Office Copilot",
     category: "SME deployment",
     stage: "In delivery",
     accent: "blue",
-    visual: "gtm",
+    visualIcon: FileText,
+    visualTitle: "Proposal copilot",
+    visualNote: "OCR, retrieval, and model routing for proposal prep.",
     problem: "Proposal preparation was slow because knowledge was scattered across systems.",
     solution: "Built OCR + RAG + routing workflows to produce proposal-ready drafts much faster.",
   },
@@ -131,7 +186,9 @@ const selectedProjects: SelectedProject[] = [
     category: "Knowledge systems",
     stage: "Building",
     accent: "sky",
-    visual: "twin",
+    visualIcon: Database,
+    visualTitle: "Knowledge retrieval",
+    visualNote: "One trusted layer across docs, decisions, and context.",
     problem: "Teams lose time searching across documents, decisions, and fragmented context.",
     solution: "Centralize retrieval with source-grounded answers so teams can execute with confidence.",
   },
@@ -140,7 +197,9 @@ const selectedProjects: SelectedProject[] = [
     category: "AI infrastructure",
     stage: "Prototype",
     accent: "cyan",
-    visual: "privacy",
+    visualIcon: ShieldCheck,
+    visualTitle: "Policy layer",
+    visualNote: "Redaction, routing, and guardrails before model calls.",
     problem: "Organizations need usable AI workflows without exposing sensitive operational data.",
     solution: "Introduce pre-model controls for redaction, routing, and policy enforcement by default.",
   },
@@ -149,8 +208,11 @@ const selectedProjects: SelectedProject[] = [
     category: "Human context AI",
     stage: "Prototype",
     accent: "violet",
-    visual: "messages",
-    problem: "Intent often gets lost when language is interpreted without relationship and cultural context.",
+    visualIcon: MessageSquareText,
+    visualTitle: "Context-aware messaging",
+    visualNote: "Interpret intent before drafting responses.",
+    problem:
+      "Intent often gets lost when language is interpreted without relationship and cultural context.",
     solution: "Decode communication context before response drafting to reduce social and business friction.",
   },
 ];
@@ -159,7 +221,29 @@ const accentStyles = {
   "--hero-accent": "#10a37f",
 } as CSSProperties;
 
+function ProjectMeaningVisual({
+  icon: Icon,
+  title,
+  note,
+}: {
+  icon: LucideIcon;
+  title: string;
+  note: string;
+}) {
+  return (
+    <div className="project-visual flex flex-col justify-between p-6 md:p-7" aria-hidden="true">
+      <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--dossier-subtle)]">
+        <Icon className="h-4 w-4" style={{ color: "var(--accent)" }} />
+        <span>{title}</span>
+      </div>
+      <p className="max-w-[20ch] text-sm leading-relaxed text-[var(--dossier-body)]">{note}</p>
+    </div>
+  );
+}
+
 export function OpenAIApplicationPage() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <DossierThemeProvider>
       <main
@@ -187,6 +271,10 @@ export function OpenAIApplicationPage() {
                   working systems across regulated environments and bridge business and engineering
                   in delivery-critical projects.
                 </p>
+                <p className="mt-4 max-w-[64ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
+                  I work where pilots either become real workflows or die in procurement. That is
+                  where I do my best work.
+                </p>
               </div>
 
               <aside className="relative mx-auto w-full max-w-[260px] sm:max-w-[280px] lg:mx-0 lg:ml-auto lg:max-w-none">
@@ -206,45 +294,47 @@ export function OpenAIApplicationPage() {
                 </div>
               </aside>
             </div>
-
-            <div className="dossier-hero-metrics mt-7" aria-label="Key metrics">
-              <div>
-                <b className="dossier-metric-stat" style={{ color: "#10a37f" }}>
-                  32M+
-                </b>
-                <span className="dossier-metric-label">Passengers served in operational scope</span>
-                <p className="mt-1 text-[10px] leading-snug text-[var(--dossier-muted)]">
-                  Zurich Airport enterprise context.
-                </p>
-              </div>
-              <div>
-                <b className="dossier-metric-stat">35k</b>
-                <span className="dossier-metric-label">Employees on ZRH Insider app</span>
-                <p className="mt-1 text-[10px] leading-snug text-[var(--dossier-muted)]">
-                  Internal deployment and product rebuild ownership.
-                </p>
-              </div>
-              <div>
-                <b className="dossier-metric-stat">15+</b>
-                <span className="dossier-metric-label">AI products launched since 2020</span>
-                <p className="mt-1 text-[10px] leading-snug text-[var(--dossier-muted)]">
-                  Agents, RAG, voice AI, enterprise knowledge, eval loops.
-                </p>
-              </div>
-            </div>
           </div>
         </section>
 
-        <CredibilityStrip />
+        <section className="dossier-section-tight relative z-[2] py-5">
+          <div className="overflow-hidden border-y border-[var(--dossier-line-strong)] bg-white/85 py-5">
+            <motion.div
+              className="flex w-max gap-4"
+              animate={reduceMotion ? undefined : { x: ["0%", "-50%"] }}
+              transition={
+                reduceMotion ? undefined : { duration: 28, ease: "linear", repeat: Infinity }
+              }
+            >
+              {[0, 1].map((copy) => (
+                <div key={copy} className="flex shrink-0 items-center gap-4">
+                  {credibilityScript.map((item) => (
+                    <span
+                      key={`${copy}-${item.name}`}
+                      className="inline-flex items-center gap-2 border border-[var(--dossier-line-strong)] bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--dossier-ink)]"
+                      style={{ transform: "rotate(-12deg)" }}
+                    >
+                      <span>{item.name}</span>
+                      <span className="text-[10px] normal-case tracking-normal text-[var(--dossier-muted)]">
+                        {item.detail}
+                      </span>
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
 
         <section className="dossier-section relative z-[2] pt-9">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <div className="dossier-fit-featured">
               <div className="dossier-fit-featured-copy">
-                <h2 className="dossier-hero-title !text-[clamp(30px,4vw,52px)]">Why I am qualified</h2>
+                <h2 className="dossier-hero-title !text-[clamp(30px,4vw,52px)]">
+                  How I work in enterprise AI deployments
+                </h2>
                 <p className="mt-4 text-base leading-relaxed text-[var(--dossier-body)]">
-                  Built in Swiss enterprise settings where deployment quality, stakeholder alignment,
-                  and governance have to work together.
+                  Swiss enterprise context, regulated environments, and cross-functional delivery.
                 </p>
               </div>
               <div className="dossier-fit-stack">
@@ -268,13 +358,19 @@ export function OpenAIApplicationPage() {
         <section className="dossier-section relative z-[2] pt-6">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
-              Loom video
+              90-second walkthrough
             </h2>
-            <div className="mt-5 border border-[var(--dossier-line-strong)] bg-white p-6 md:p-8">
-              <p className="text-sm leading-relaxed text-[var(--dossier-muted)]">
-                Simple 90-second video overview. I will place the final Loom link here and keep this
-                section minimal.
-              </p>
+            <p className="mt-3 max-w-[64ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
+              Short video with context, deployments, and how I would contribute in this role.
+            </p>
+            <div className="mt-5">
+              <LoomVideoFrame
+                companyName="OpenAI"
+                roleTitle="Forward Deployed Engineer (Zurich)"
+                videoTitle="How I deploy AI in enterprise teams"
+                accentColor="#10a37f"
+                chapters={loomChapters}
+              />
             </div>
           </div>
         </section>
@@ -330,16 +426,16 @@ export function OpenAIApplicationPage() {
         <section className="dossier-section relative z-[2] pt-6">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <h2 className="text-[clamp(26px,3.2vw,36px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-              Common issue I keep seeing
+              Lessons I&apos;ve learned from deploying AI in companies
             </h2>
             <div className="mt-5 border border-[var(--dossier-line-strong)] bg-white p-6">
               <div className="grid gap-5 md:grid-cols-[0.95fr_1.05fr]">
                 <p className="text-sm leading-relaxed text-[var(--dossier-muted)]">
-                  Across deployments, model quality is rarely the only blocker. Delivery usually
-                  slows down because stakeholders lose alignment under risk pressure.
+                  The model is rarely the bottleneck. Trust, ownership, and alignment are usually
+                  the real blockers.
                 </p>
                 <ul className="space-y-2 text-sm leading-relaxed text-[var(--dossier-body)]">
-                  {commonIssues.map((issue) => (
+                  {deploymentLessons.map((issue) => (
                     <li key={issue} className="border-b border-[var(--dossier-line-strong)] pb-2">
                       {issue}
                     </li>
@@ -364,7 +460,11 @@ export function OpenAIApplicationPage() {
                   key={project.name}
                   className={`dossier-project-card accent-${project.accent}`}
                 >
-                  <ProductVisual type={project.visual} />
+                  <ProjectMeaningVisual
+                    icon={project.visualIcon}
+                    title={project.visualTitle}
+                    note={project.visualNote}
+                  />
                   <div className="flex flex-col p-6 md:p-7">
                     <div className="mb-3 flex items-center justify-between gap-3">
                       <span className="text-[11px] font-medium" style={{ color: "#10a37f" }}>
