@@ -434,68 +434,77 @@ export function OpenAIApplicationPage() {
               My approach to enterprise AI delivery.
             </h2>
             <div className="mt-6 grid gap-4 md:grid-cols-3">
-              <article className="flex flex-col rounded-lg border border-[var(--dossier-line)] bg-white p-6">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-[#10a37f]/20 bg-[#10a37f]/[0.07]">
-                  <Workflow className="h-5.5 w-5.5 text-[#10a37f]" />
+              <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-white p-6 pb-7">
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#10a37f]/[0.08]">
+                  <Workflow className="h-6 w-6 text-[#10a37f]" />
                 </div>
-                <h3 className="text-base font-semibold tracking-tight text-[var(--dossier-ink)]">
+                <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
                   Enterprise deployment
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-[var(--dossier-muted)]">
+                <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
                   From discovery to production, adoption and governance.
                 </p>
-                <div className="mt-auto flex items-center gap-1.5 pt-5">
-                  {["Discover", "Build", "Deploy", "Adopt", "Govern"].map((step, i) => (
-                    <React.Fragment key={step}>
-                      <span className="flex h-7 w-7 items-center justify-center rounded-md bg-[#10a37f]/10 text-[9px] font-semibold text-[#10a37f]">
-                        {step.charAt(0)}
-                      </span>
-                      {i < 4 && <ArrowRight className="h-3 w-3 shrink-0 text-[var(--dossier-muted)]/50" />}
+                <div className="mt-auto flex items-center gap-1 pt-6">
+                  {[
+                    { icon: Search, label: "Discover" },
+                    { icon: Building2, label: "Build" },
+                    { icon: ArrowUpRight, label: "Deploy" },
+                    { icon: Users, label: "Adopt" },
+                    { icon: ShieldCheck, label: "Govern" },
+                  ].map((step, i) => (
+                    <React.Fragment key={step.label}>
+                      <div className="flex flex-col items-center gap-1">
+                        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#10a37f]/[0.08]">
+                          <step.icon className="h-4 w-4 text-[#10a37f]" />
+                        </span>
+                        <span className="text-[9px] font-medium text-[var(--dossier-muted)]">{step.label}</span>
+                      </div>
+                      {i < 4 && <ArrowRight className="mx-0.5 mt-[-10px] h-3 w-3 shrink-0 text-black/20" />}
                     </React.Fragment>
                   ))}
                 </div>
               </article>
 
-              <article className="flex flex-col rounded-lg border border-[var(--dossier-line)] bg-white p-6">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-[#10a37f]/20 bg-[#10a37f]/[0.07]">
-                  <Cpu className="h-5.5 w-5.5 text-[#10a37f]" />
+              <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-white p-6 pb-7">
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#10a37f]/[0.08]">
+                  <Cpu className="h-6 w-6 text-[#10a37f]" />
                 </div>
-                <h3 className="text-base font-semibold tracking-tight text-[var(--dossier-ink)]">
+                <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
                   AI builder
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-[var(--dossier-muted)]">
+                <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
                   15+ products across agents, RAG, voice AI, company knowledge and eval loops.
                 </p>
-                <div className="mt-auto flex items-center gap-3 pt-5">
-                  {[Bot, Mic, Database, Search, MessageSquareText].map((Icon, i) => (
+                <div className="mt-auto flex items-center gap-3 pt-6">
+                  {[Bot, FileText, Mic, Database, MessageSquareText].map((Icon, i) => (
                     <span
                       key={i}
-                      className="flex h-7 w-7 items-center justify-center rounded-md bg-[var(--dossier-panel)] text-[var(--dossier-muted)]"
+                      className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#10a37f]/[0.08]"
                     >
-                      <Icon className="h-3.5 w-3.5" />
+                      <Icon className="h-4 w-4 text-[#10a37f]" />
                     </span>
                   ))}
                 </div>
               </article>
 
-              <article className="flex flex-col rounded-lg border border-[var(--dossier-line)] bg-white p-6">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-[#10a37f]/20 bg-[#10a37f]/[0.07]">
-                  <Users className="h-5.5 w-5.5 text-[#10a37f]" />
+              <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-white p-6 pb-7">
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#10a37f]/[0.08]">
+                  <Users className="h-6 w-6 text-[#10a37f]" />
                 </div>
-                <h3 className="text-base font-semibold tracking-tight text-[var(--dossier-ink)]">
+                <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
                   Business x Engineering
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-[var(--dossier-muted)]">
+                <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
                   Translate between executives, engineers and end users to keep projects moving.
                 </p>
-                <div className="mt-auto pt-5">
-                  <svg viewBox="0 0 180 60" className="h-[52px] w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <text x="10" y="16" fontSize="10" fontWeight="600" fill="var(--dossier-ink)">Business</text>
-                    <text x="130" y="16" fontSize="10" fontWeight="600" fill="var(--dossier-ink)">Engineering</text>
-                    <text x="72" y="56" fontSize="10" fontWeight="600" fill="var(--dossier-ink)">User</text>
-                    <line x1="42" y1="20" x2="82" y2="44" stroke="#10a37f" strokeWidth="1.5" strokeDasharray="3 2" />
-                    <line x1="140" y1="20" x2="100" y2="44" stroke="#10a37f" strokeWidth="1.5" strokeDasharray="3 2" />
-                    <line x1="50" y1="14" x2="128" y2="14" stroke="#10a37f" strokeWidth="1.5" strokeDasharray="3 2" />
+                <div className="mt-auto pt-6">
+                  <svg viewBox="0 0 200 72" className="h-[64px] w-full max-w-[200px]" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="8" y="12" fontSize="11" fontWeight="600" fill="currentColor" className="text-[var(--dossier-ink)]">Business</text>
+                    <text x="132" y="12" fontSize="11" fontWeight="600" fill="currentColor" className="text-[var(--dossier-ink)]">Engineering</text>
+                    <text x="78" y="68" fontSize="11" fontWeight="600" fill="currentColor" className="text-[var(--dossier-ink)]">User</text>
+                    <line x1="55" y1="16" x2="130" y2="16" stroke="#10a37f" strokeWidth="1.2" />
+                    <line x1="45" y1="18" x2="88" y2="54" stroke="#10a37f" strokeWidth="1.2" />
+                    <line x1="155" y1="18" x2="105" y2="54" stroke="#10a37f" strokeWidth="1.2" />
                   </svg>
                 </div>
               </article>
