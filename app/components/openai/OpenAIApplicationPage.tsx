@@ -14,6 +14,7 @@ import {
   Mic,
   Search,
   ShieldCheck,
+  Sparkles,
   Users,
   Workflow,
 } from "lucide-react";
@@ -25,6 +26,35 @@ import { ProductVisual } from "@/app/components/shared/ProductVisual";
 import { DossierThemeProvider } from "@/app/lib/dossier-theme";
 
 const EASE_OUT_STRONG = [0.23, 1, 0.32, 1] as const;
+
+const TERENCE_AI_URL = "https://about.terencela.com";
+
+function TerenceAIAskBar() {
+  const handleAsk = () => {
+    window.location.href = TERENCE_AI_URL;
+  };
+
+  return (
+    <div className="dossier-terenceai-ask mt-4">
+      <label className="dossier-terenceai-ask__field">
+        <span className="dossier-terenceai-ask__icon" aria-hidden="true">
+          <Search className="h-5 w-5" strokeWidth={2.25} />
+          <Sparkles className="dossier-terenceai-ask__sparkle h-3.5 w-3.5" />
+        </span>
+        <input
+          type="text"
+          name="terenceai-ask"
+          placeholder="Ask TerenceAI anything"
+          autoComplete="off"
+          onInput={(event) => {
+            if (event.currentTarget.value.trim().length > 0) handleAsk();
+          }}
+          className="dossier-terenceai-ask__input"
+        />
+      </label>
+    </div>
+  );
+}
 
 type DeploymentStat = {
   value: string;
@@ -684,7 +714,7 @@ export function OpenAIApplicationPage() {
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
               90-second walkthrough
             </h2>
-            <div className="mt-5">
+            <div className="mt-4">
               <LoomVideoFrame
                 companyName="OpenAI"
                 roleTitle="Forward Deployed Engineer (Zurich)"
@@ -695,6 +725,7 @@ export function OpenAIApplicationPage() {
                 accentColor="#10a37f"
                 showChapters={false}
               />
+              <TerenceAIAskBar />
             </div>
           </div>
         </section>
@@ -882,7 +913,7 @@ export function OpenAIApplicationPage() {
         <section className="dossier-section relative z-[2] pt-6">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
-              Selected projects
+              Selected projects I created from scratch this year
             </h2>
             <p className="mt-2 text-sm text-[var(--dossier-muted)]">
               Personal products. AI infrastructure, voice, human intelligence.

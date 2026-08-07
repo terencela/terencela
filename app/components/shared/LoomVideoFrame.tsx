@@ -95,11 +95,8 @@ export function LoomVideoFrame({
 
   if (!showChapters) {
     return (
-      <div className="dossier-loom-panel overflow-hidden">
-        <motion.div
-          className={`relative ${isDark ? "bg-[#101116]" : "bg-[#f5f5f2]"}`}
-          {...(reduceMotion ? {} : dossierLoomVideo)}
-        >
+      <div className="dossier-loom-panel dossier-loom-panel-compact overflow-hidden">
+        <motion.div className="relative" {...(reduceMotion ? {} : dossierLoomVideo)}>
           {showInlineVideo ? (
             <div className={`relative mx-auto w-full ${frameMaxWidth}`}>
               <div className="relative w-full" style={{ aspectRatio: frameAspectRatio }}>
@@ -112,63 +109,46 @@ export function LoomVideoFrame({
               </div>
             </div>
           ) : (
-            <div
-              className={`relative mx-auto w-full overflow-hidden ${frameMaxWidth}`}
-              style={{ aspectRatio: frameAspectRatio, maxHeight: isPortrait ? "720px" : "480px" }}
-            >
-              <div className="absolute inset-0 bg-[#0f1016]" />
-              <Image
-                src="/images/terence-la-profile.png"
-                alt="Terence La"
-                fill
-                sizes={isPortrait ? "(max-width: 768px) 100vw, 420px" : "(max-width: 1024px) 100vw, 900px"}
-                className={`dossier-profile-photo object-cover object-[center_24%] blur-[1.5px] ${isDark ? "opacity-24 scale-[1.03]" : "opacity-28 scale-[1.03]"}`}
-              />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: isDark
-                    ? `linear-gradient(165deg, rgba(10,11,15,0.28) 0%, rgba(10,11,15,0.86) 74%), radial-gradient(circle at 20% 15%, ${accentColor}1f, transparent 52%)`
-                    : `linear-gradient(165deg, rgba(250,250,248,0.42) 0%, rgba(250,250,248,0.9) 74%), radial-gradient(circle at 20% 15%, ${accentColor}18, transparent 52%)`,
-                }}
-              />
-              <div className="absolute inset-y-4 right-4 hidden w-[31%] overflow-hidden rounded-lg border border-white/15 bg-[#101116] shadow-[0_24px_60px_rgba(0,0,0,0.45)] md:block">
-                <Image
-                  src="/images/terence-la-profile.png"
-                  alt="Terence La"
-                  fill
-                  sizes="(max-width: 1200px) 30vw, 300px"
-                  className="dossier-profile-photo object-cover object-top"
-                />
-              </div>
-              <div className="relative z-10 flex h-full max-w-full flex-col justify-between p-6 md:max-w-[64%] md:p-8">
-                <div className="flex items-center gap-3 text-xs font-medium" style={{ color: accentColor }}>
-                  <span className="inline-flex items-center gap-1.5">
-                    <Clock3 className="h-3.5 w-3.5" />
-                    90 seconds
-                  </span>
-                </div>
-                <div className="py-6">
-                  <h4 className="max-w-lg text-xl font-semibold tracking-tight text-[var(--dossier-ink)] md:text-2xl">
-                    {videoTitle}
-                  </h4>
-                  <p className="mt-2 text-sm text-[var(--dossier-body)]">
-                    {videoSubtitle ?? `Quick introduction for the ${roleTitle} role.`}
-                  </p>
-                </div>
+            <div className="relative flex min-h-[132px] items-stretch sm:min-h-[148px] md:min-h-[156px]">
+              <div className="dossier-loom-pattern absolute inset-0" aria-hidden="true" />
+              <div className="relative z-10 flex flex-1 items-center gap-4 p-4 md:gap-5 md:p-5">
                 <button
                   type="button"
                   onClick={() => setIsPlaying(true)}
-                  className="dossier-pressable inline-flex h-14 w-14 items-center justify-center rounded-full md:h-16 md:w-16"
+                  className="dossier-pressable inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full md:h-12 md:w-12"
                   style={{
                     backgroundColor: accentColor,
                     color: "#1a1a1a",
-                    boxShadow: `0 14px 48px ${accentColor}44`,
+                    boxShadow: `0 10px 28px ${accentColor}33`,
                   }}
                   aria-label="Play video pitch"
                 >
-                  <Play className="h-6 w-6 translate-x-0.5 fill-current md:h-7 md:w-7" />
+                  <Play className="h-5 w-5 translate-x-0.5 fill-current" />
                 </button>
+                <div className="min-w-0 flex-1">
+                  <div
+                    className="mb-1 flex items-center gap-1.5 text-[11px] font-medium"
+                    style={{ color: accentColor }}
+                  >
+                    <Clock3 className="h-3.5 w-3.5" />
+                    90 seconds
+                  </div>
+                  <h4 className="text-base font-semibold tracking-tight text-[var(--dossier-ink)] md:text-lg">
+                    {videoTitle}
+                  </h4>
+                  <p className="mt-0.5 text-xs text-[var(--dossier-body)] md:text-[13px]">
+                    {videoSubtitle ?? `Quick introduction for the ${roleTitle} role.`}
+                  </p>
+                </div>
+                <div className="relative hidden h-[88px] w-[68px] shrink-0 overflow-hidden border border-[var(--dossier-line-strong)] bg-[#101116] sm:block md:h-[96px] md:w-[76px]">
+                  <Image
+                    src="/images/terence-la-profile.png"
+                    alt="Terence La"
+                    fill
+                    sizes="76px"
+                    className="dossier-profile-photo object-cover object-top"
+                  />
+                </div>
               </div>
             </div>
           )}

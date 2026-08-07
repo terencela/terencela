@@ -1474,6 +1474,91 @@ html[data-dossier-theme="dark"] .dossier-text-link {
   box-shadow: 12px 12px 0 #e0dcd3;
 }
 
+.dossier-loom-panel-compact {
+  box-shadow: 8px 8px 0 #e0dcd3;
+}
+
+html[data-dossier-theme="dark"] .dossier-loom-panel-compact {
+  box-shadow: 8px 8px 0 #1a1b22;
+}
+
+.dossier-loom-pattern {
+  background-color: var(--dossier-panel);
+  background-image:
+    linear-gradient(90deg, color-mix(in srgb, var(--dossier-line) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in srgb, var(--dossier-line) 55%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+html[data-dossier-theme="dark"] .dossier-loom-pattern {
+  background-color: #101116;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+}
+
+.dossier-terenceai-ask__field {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border: 2px solid #101114;
+  border-radius: 9999px;
+  background: #fff;
+  transition: box-shadow 0.2s ease;
+}
+
+.dossier-terenceai-ask__field:focus-within {
+  box-shadow: 0 0 0 3px color-mix(in srgb, #101114 12%, transparent);
+}
+
+.dossier-terenceai-ask__icon {
+  position: relative;
+  display: inline-flex;
+  shrink: 0;
+  color: #101114;
+}
+
+.dossier-terenceai-ask__sparkle {
+  position: absolute;
+  top: -3px;
+  right: -5px;
+  color: #101114;
+}
+
+.dossier-terenceai-ask__input {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #101114;
+  font-size: 1rem;
+  line-height: 1.4;
+  outline: none;
+}
+
+.dossier-terenceai-ask__input::placeholder {
+  color: #4b4f58;
+}
+
+html[data-dossier-theme="dark"] .dossier-terenceai-ask__field {
+  border-color: #f2f0ea;
+  background: #0a0b0f;
+}
+
+html[data-dossier-theme="dark"] .dossier-terenceai-ask__icon,
+html[data-dossier-theme="dark"] .dossier-terenceai-ask__sparkle {
+  color: #f2f0ea;
+}
+
+html[data-dossier-theme="dark"] .dossier-terenceai-ask__input {
+  color: #f2f0ea;
+}
+
+html[data-dossier-theme="dark"] .dossier-terenceai-ask__input::placeholder {
+  color: #9a9ea8;
+}
+
 .dossier-loom-panel .dossier-profile-photo {
   filter: grayscale(100%);
 }
