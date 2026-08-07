@@ -102,11 +102,14 @@ const deployments: DeploymentExample[] = [
     stats: [
       { value: "~85K", label: "calls/year" },
       { value: "8 FTE", label: "call center" },
+      { value: "Regulated", label: "environment" },
     ],
     role: [
-      "Discovery and use-case prioritisation",
+      "Discovery",
+      "Use-case prioritisation",
       "Architecture and prototype",
-      "Vendor evaluation and governance",
+      "Vendor evaluation",
+      "Governance",
     ],
     outcomeHighlight: "Working PoC in two weeks.",
     outcome:
@@ -136,7 +139,8 @@ const deployments: DeploymentExample[] = [
     challenge:
       "Scattered project data, no prep time before sales meetings, manual proposal work.",
     stats: [
-      { value: "~40%", label: "time saved per proposal" },
+      { value: "98%", label: "accuracy rate" },
+      { value: "60%", label: "time saved per proposal" },
     ],
     role: [
       "Designed a PoC before the first sales meeting",
