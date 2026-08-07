@@ -522,10 +522,10 @@ export function OpenAIApplicationPage() {
           accentColor="#10a37f"
         />
 
-        <section className="dossier-openai-hero relative z-[2] flex min-h-[calc(100dvh-57px)] flex-col">
-          <div className="mx-auto flex w-full max-w-[1200px] flex-1 flex-col justify-center px-4 py-10 md:px-8 md:py-14 lg:py-16">
-            <div className="flex flex-col gap-10 md:grid md:grid-cols-[minmax(0,1fr)_minmax(200px,260px)] md:items-center md:gap-x-14 md:gap-y-0 lg:gap-x-20">
-              <aside className="mx-auto w-full max-w-[172px] shrink-0 md:col-start-2 md:row-start-1 md:mx-0 md:max-w-[220px] lg:max-w-[260px]">
+        <section className="dossier-openai-hero relative z-[2] flex min-h-[calc(100dvh-57px)] flex-col md:min-h-[calc(100dvh-57px)]">
+          <div className="dossier-openai-hero__main mx-auto flex w-full max-w-[1200px] flex-1 flex-col justify-start px-4 py-5 md:justify-center md:px-8 md:py-14 lg:py-16">
+            <div className="flex flex-col gap-6 md:grid md:grid-cols-[minmax(0,1fr)_minmax(200px,260px)] md:items-center md:gap-x-14 md:gap-y-0 lg:gap-x-20">
+              <aside className="dossier-openai-hero__photo w-full max-w-[min(11.5rem,42vw)] shrink-0 md:col-start-2 md:row-start-1 md:mx-0 md:max-w-[220px] lg:max-w-[260px]">
                 <div className="dossier-profile-frame aspect-[4/5] w-full">
                   <Image
                     src="/images/terence-la-profile.png"
@@ -543,13 +543,13 @@ export function OpenAIApplicationPage() {
               </aside>
 
               <div className="max-w-[760px] md:col-start-1 md:row-start-1">
-                <h1 className="dossier-hero-title max-w-[18ch]" style={{ fontSize: "clamp(34px, 4.4vw, 64px)" }}>
+                <h1 className="dossier-hero-title max-w-[18ch]" style={{ fontSize: "clamp(30px, 8.2vw, 64px)" }}>
                   Enterprise AI leader, builder and founder.
                 </h1>
-                <p className="mt-7 max-w-[56ch] text-base leading-relaxed text-[var(--dossier-body)] md:mt-10 md:text-[17px] md:leading-[1.65]">
+                <p className="mt-5 max-w-[56ch] text-[15px] leading-relaxed text-[var(--dossier-body)] md:mt-10 md:text-[17px] md:leading-[1.65]">
                   Turning frontier AI into production across startups and large organisations. AI Lead at Zurich Airport, founder of KI-Unlocked, helping 10+ companies become AI-native. GPT-3 since 2020, with 15+ AI applications built.
                 </p>
-                <div className="mt-8 flex flex-wrap items-center gap-4 md:mt-10">
+                <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 md:mt-10">
                   <a
                     href="https://about.terencela.com"
                     target="_blank"
@@ -573,9 +573,9 @@ export function OpenAIApplicationPage() {
             </div>
           </div>
 
-          <div className="mt-auto border-t border-[var(--dossier-line)]">
-            <div className="mx-auto max-w-[1200px] px-4 py-6 md:px-8 md:py-8">
-              <div className="flex flex-wrap items-center justify-center gap-2.5 md:gap-3">
+          <div className="dossier-openai-hero__logos mt-auto shrink-0 border-t border-[var(--dossier-line)]">
+            <div className="mx-auto max-w-[1200px] px-4 py-4 md:px-8 md:py-8">
+              <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3">
                 {credibilityLogos.map((logo) => (
                   <div
                     key={logo}

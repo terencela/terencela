@@ -1088,6 +1088,27 @@ html[data-dossier-theme="dark"] .dossier-text-link {
   min-height: calc(100dvh - 57px);
 }
 
+@media (max-width: 767px) {
+  .dossier-openai-hero {
+    height: calc(100dvh - 57px);
+    max-height: calc(100dvh - 57px);
+  }
+
+  .dossier-openai-hero__main {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .dossier-openai-hero__logos {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  .dossier-openai-hero__logos .rounded-full {
+    font-size: 12px;
+    padding: 0.3rem 0.65rem;
+  }
+}
+
 @media (min-width: 768px) {
   .dossier-openai-hero .dossier-hero-title {
     font-size: clamp(42px, 4.8vw, 68px) !important;
