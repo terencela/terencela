@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, type CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
 import Image from "next/image";
 import {
   ArrowRight,
@@ -241,204 +241,50 @@ const accentStyles = {
 } as CSSProperties;
 
 const flywheelStages = [
-  {
-    label: "Discover",
-    desc: "Map the real problem, stakeholders, and constraints before writing a line of code.",
-    angle: -90,
-  },
-  {
-    label: "Decide",
-    desc: "Pick the deployment path, align budget owners, and define what 'shipped' means.",
-    angle: -18,
-  },
-  {
-    label: "Build",
-    desc: "Prototype fast, validate with real users, iterate on evidence not assumptions.",
-    angle: 54,
-  },
-  {
-    label: "Deploy",
-    desc: "Ship into production with eval gates, data boundaries, and rollback plans.",
-    angle: 126,
-  },
-  {
-    label: "Scale",
-    desc: "Expand to new teams, harden monitoring, and feed learnings back into the next cycle.",
-    angle: 198,
-  },
+  { label: "Discover", desc: "Map the real problem, stakeholders, and constraints before writing a line of code." },
+  { label: "Decide", desc: "Pick the deployment path, align budget owners, and define what 'shipped' means." },
+  { label: "Build", desc: "Prototype fast, validate with real users, iterate on evidence not assumptions." },
+  { label: "Deploy", desc: "Ship into production with eval gates, data boundaries, and rollback plans." },
+  { label: "Scale", desc: "Expand to new teams, harden monitoring, and feed learnings back into the next cycle." },
 ];
 
 function DeploymentFlywheel({ reduceMotion }: { reduceMotion: boolean | null }) {
-  const [active, setActive] = useState<number | null>(null);
-  const r = 110;
-  const cx = 180;
-  const cy = 180;
-  const circumference = 2 * Math.PI * r;
-  const arcLen = circumference / 5;
-
   return (
     <section className="dossier-section relative z-[2] pt-8">
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-        <div className="overflow-hidden rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)]">
-          <div className="grid items-stretch lg:grid-cols-[1fr_1fr]">
-            <div className="p-6 md:p-8">
-              <h2 className="text-[clamp(22px,2.6vw,30px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-                How I move from zero to deployed
-              </h2>
-              <p className="mt-1.5 max-w-[40ch] text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                I built a toolkit for each stage. It compounds across engagements.
-              </p>
+        <h2 className="text-[clamp(22px,2.6vw,30px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
+          How I move from zero to deployed
+        </h2>
+        <p className="mt-1.5 max-w-[50ch] text-[13px] leading-relaxed text-[var(--dossier-muted)]">
+          Five stages. Each compounds across engagements.
+        </p>
 
-              <div className="mt-6 space-y-0 border-t border-[var(--dossier-line)]">
-                {flywheelStages.map((stage, i) => (
-                  <button
-                    key={stage.label}
-                    type="button"
-                    className="group flex w-full items-start gap-4 border-b border-[var(--dossier-line)] px-1 py-4 text-left"
-                    style={{
-                      transition: "background 200ms cubic-bezier(0.23,1,0.32,1)",
-                      background: active === i ? "rgba(255,255,255,0.03)" : "transparent",
-                    }}
-                    onMouseEnter={() => setActive(i)}
-                    onMouseLeave={() => setActive(null)}
-                  >
-                    <span
-                      className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-bold"
-                      style={{
-                        transition: "all 200ms cubic-bezier(0.23,1,0.32,1)",
-                        background: active === i ? "#10a37f" : "transparent",
-                        color: active === i ? "#fff" : "var(--dossier-muted)",
-                        border: active === i ? "1px solid #10a37f" : "1px solid var(--dossier-line)",
-                      }}
-                    >
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <p
-                        className="text-[14px] font-semibold"
-                        style={{
-                          transition: "color 200ms cubic-bezier(0.23,1,0.32,1)",
-                          color: active === i ? "var(--dossier-ink)" : "var(--dossier-subtle)",
-                        }}
-                      >
-                        {stage.label}
-                      </p>
-                      <p
-                        className="mt-0.5 text-[12px] leading-relaxed"
-                        style={{
-                          transition: "opacity 200ms cubic-bezier(0.23,1,0.32,1), transform 200ms cubic-bezier(0.23,1,0.32,1)",
-                          opacity: active === i ? 1 : 0,
-                          transform: active === i ? "translateY(0)" : "translateY(-4px)",
-                          color: "var(--dossier-muted)",
-                          maxHeight: active === i ? "60px" : "0",
-                          overflow: "hidden",
-                        }}
-                      >
-                        {stage.desc}
-                      </p>
-                    </div>
-                  </button>
-                ))}
+        <div className="mt-6 grid gap-px border border-[var(--dossier-line)] bg-[var(--dossier-line)] sm:grid-cols-5">
+          {flywheelStages.map((stage, i) => (
+            <motion.div
+              key={stage.label}
+              className="relative flex flex-col bg-[var(--dossier-panel)] p-5"
+              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.06, ease: EASE_OUT_STRONG }}
+            >
+              <div className="mb-3 flex items-center gap-2.5">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#10a37f] text-[10px] font-bold text-white">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {i < 4 && (
+                  <ArrowRight className="hidden h-3 w-3 text-[var(--dossier-subtle)] sm:block" style={{ position: "absolute", right: -7, top: "50%", transform: "translateY(-50%)", zIndex: 1 }} />
+                )}
               </div>
-            </div>
-
-            <div className="relative flex items-center justify-center border-t border-[var(--dossier-line)] p-8 lg:border-l lg:border-t-0">
-              <motion.div
-                className="relative aspect-square w-full max-w-[320px]"
-                initial={reduceMotion ? false : { opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: EASE_OUT_STRONG }}
-              >
-                <svg viewBox="0 0 360 360" className="block h-full w-full" fill="none">
-                  <circle cx={cx} cy={cy} r={r} stroke="var(--dossier-line)" strokeWidth="1" />
-
-                  {flywheelStages.map((stage, i) => {
-                    const isActive = active === i;
-                    const offset = circumference - arcLen;
-                    const rotation = -90 + i * 72;
-                    return (
-                      <circle
-                        key={stage.label}
-                        cx={cx}
-                        cy={cy}
-                        r={r}
-                        stroke={isActive ? "#10a37f" : "transparent"}
-                        strokeWidth={isActive ? 2.5 : 1}
-                        strokeDasharray={`${arcLen} ${offset}`}
-                        strokeLinecap="round"
-                        transform={`rotate(${rotation} ${cx} ${cy})`}
-                        style={{
-                          transition: "stroke 250ms cubic-bezier(0.23,1,0.32,1), stroke-width 250ms cubic-bezier(0.23,1,0.32,1)",
-                          filter: isActive ? "drop-shadow(0 0 6px rgba(16,163,127,0.4))" : "none",
-                        }}
-                      />
-                    );
-                  })}
-
-                  {flywheelStages.map((stage, i) => {
-                    const midAngle = (-90 + i * 72 + 36) * (Math.PI / 180);
-                    const arrowX = cx + (r) * Math.cos(midAngle);
-                    const arrowY = cy + (r) * Math.sin(midAngle);
-                    const tangentDeg = (midAngle * 180) / Math.PI + 90;
-                    return (
-                      <motion.g
-                        key={`arrow-${i}`}
-                        transform={`translate(${arrowX}, ${arrowY}) rotate(${tangentDeg})`}
-                        initial={reduceMotion ? false : { opacity: 0 }}
-                        whileInView={{ opacity: 0.5 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: 1.0 + i * 0.06, ease: EASE_OUT_STRONG }}
-                      >
-                        <path d="M -3 -2.5 L 2 0 L -3 2.5" stroke="var(--dossier-subtle)" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                      </motion.g>
-                    );
-                  })}
-                </svg>
-
-                {flywheelStages.map((stage, i) => {
-                  const labelR = r + 32;
-                  const angle = (-90 + i * 72) * (Math.PI / 180);
-                  const x = cx + labelR * Math.cos(angle);
-                  const y = cy + labelR * Math.sin(angle);
-                  const isActive = active === i;
-                  return (
-                    <motion.p
-                      key={stage.label}
-                      className="absolute -translate-x-1/2 -translate-y-1/2 cursor-default whitespace-nowrap text-[13px] font-semibold"
-                      style={{
-                        top: `${(y / 360) * 100}%`,
-                        left: `${(x / 360) * 100}%`,
-                        transition: "color 200ms cubic-bezier(0.23,1,0.32,1), transform 200ms cubic-bezier(0.23,1,0.32,1)",
-                        color: isActive ? "#10a37f" : "var(--dossier-ink)",
-                        transform: `translate(-50%, -50%) scale(${isActive ? 1.08 : 1})`,
-                      }}
-                      initial={reduceMotion ? false : { opacity: 0, y: 6 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.4 + i * 0.1, ease: EASE_OUT_STRONG }}
-                      onMouseEnter={() => setActive(i)}
-                      onMouseLeave={() => setActive(null)}
-                    >
-                      {stage.label}
-                    </motion.p>
-                  );
-                })}
-
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <p
-                    className="text-center text-[11px] leading-tight"
-                    style={{
-                      transition: "color 200ms cubic-bezier(0.23,1,0.32,1)",
-                      color: active !== null ? "#10a37f" : "var(--dossier-muted)",
-                    }}
-                  >
-                    Continuous<br />Learning
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </div>
+              <p className="text-[14px] font-semibold text-[var(--dossier-ink)]">
+                {stage.label}
+              </p>
+              <p className="mt-1.5 text-[12px] leading-relaxed text-[var(--dossier-muted)]">
+                {stage.desc}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
