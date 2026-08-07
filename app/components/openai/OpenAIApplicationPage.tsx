@@ -1,9 +1,11 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
 import Image from "next/image";
 import {
+  ArrowRight,
   ArrowUpRight,
+  Bot,
   BriefcaseBusiness,
   Building2,
   Cpu,
@@ -11,8 +13,10 @@ import {
   FileText,
   MessageSquareText,
   Mic,
+  Search,
   ShieldCheck,
   Users,
+  Workflow,
 } from "lucide-react";
 import { DossierBackground } from "@/app/components/shared/DossierBackground";
 import { SubpageHeader } from "@/app/components/shared/SubpageHeader";
@@ -411,7 +415,7 @@ export function OpenAIApplicationPage() {
                 {credibilityLogos.map((logo) => (
                   <div
                     key={logo}
-                    className="rounded-full border border-[var(--dossier-line)] bg-[var(--dossier-panel)]/85 px-3.5 py-1.5 text-[13px] font-medium tracking-[-0.005em] text-[var(--dossier-muted)]"
+                    className="rounded-full border border-black/[0.06] px-3.5 py-1.5 text-[13px] font-normal tracking-[-0.005em] text-black/30"
                   >
                     {logo}
                   </div>
@@ -423,29 +427,78 @@ export function OpenAIApplicationPage() {
 
         <section className="dossier-section relative z-[2] pt-9">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div className="dossier-fit-featured">
-              <div className="dossier-fit-featured-copy">
-                <h2 className="dossier-hero-title !text-[clamp(30px,4vw,52px)]">
-                  How I work in enterprise AI deployments
-                </h2>
-                <p className="mt-4 text-base leading-relaxed text-[var(--dossier-body)]">
-                  Swiss enterprise context, regulated environments, and cross-functional delivery.
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
+              How I work
+            </p>
+            <h2 className="mt-2 text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
+              My approach to enterprise AI delivery.
+            </h2>
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              <article className="flex flex-col rounded-lg border border-[var(--dossier-line)] bg-white p-6">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-[#10a37f]/20 bg-[#10a37f]/[0.07]">
+                  <Workflow className="h-5.5 w-5.5 text-[#10a37f]" />
+                </div>
+                <h3 className="text-base font-semibold tracking-tight text-[var(--dossier-ink)]">
+                  Enterprise deployment
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--dossier-muted)]">
+                  From discovery to production, adoption and governance.
                 </p>
-              </div>
-              <div className="dossier-fit-stack">
-                {qualificationPillars.map((pillar) => {
-                  const Icon = pillar.icon;
-                  return (
-                    <article key={pillar.title} className="dossier-fit-point">
-                      <div className="mb-2 flex items-center gap-2">
-                        <Icon className="h-4 w-4" style={{ color: "#10a37f" }} />
-                        <h3>{pillar.title}</h3>
-                      </div>
-                      <p>{pillar.detail}</p>
-                    </article>
-                  );
-                })}
-              </div>
+                <div className="mt-auto flex items-center gap-1.5 pt-5">
+                  {["Discover", "Build", "Deploy", "Adopt", "Govern"].map((step, i) => (
+                    <React.Fragment key={step}>
+                      <span className="flex h-7 w-7 items-center justify-center rounded-md bg-[#10a37f]/10 text-[9px] font-semibold text-[#10a37f]">
+                        {step.charAt(0)}
+                      </span>
+                      {i < 4 && <ArrowRight className="h-3 w-3 shrink-0 text-[var(--dossier-muted)]/50" />}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </article>
+
+              <article className="flex flex-col rounded-lg border border-[var(--dossier-line)] bg-white p-6">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-[#10a37f]/20 bg-[#10a37f]/[0.07]">
+                  <Cpu className="h-5.5 w-5.5 text-[#10a37f]" />
+                </div>
+                <h3 className="text-base font-semibold tracking-tight text-[var(--dossier-ink)]">
+                  AI builder
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--dossier-muted)]">
+                  15+ products across agents, RAG, voice AI, company knowledge and eval loops.
+                </p>
+                <div className="mt-auto flex items-center gap-3 pt-5">
+                  {[Bot, Mic, Database, Search, MessageSquareText].map((Icon, i) => (
+                    <span
+                      key={i}
+                      className="flex h-7 w-7 items-center justify-center rounded-md bg-[var(--dossier-panel)] text-[var(--dossier-muted)]"
+                    >
+                      <Icon className="h-3.5 w-3.5" />
+                    </span>
+                  ))}
+                </div>
+              </article>
+
+              <article className="flex flex-col rounded-lg border border-[var(--dossier-line)] bg-white p-6">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-[#10a37f]/20 bg-[#10a37f]/[0.07]">
+                  <Users className="h-5.5 w-5.5 text-[#10a37f]" />
+                </div>
+                <h3 className="text-base font-semibold tracking-tight text-[var(--dossier-ink)]">
+                  Business x Engineering
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--dossier-muted)]">
+                  Translate between executives, engineers and end users to keep projects moving.
+                </p>
+                <div className="mt-auto pt-5">
+                  <svg viewBox="0 0 180 60" className="h-[52px] w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="10" y="16" fontSize="10" fontWeight="600" fill="var(--dossier-ink)">Business</text>
+                    <text x="130" y="16" fontSize="10" fontWeight="600" fill="var(--dossier-ink)">Engineering</text>
+                    <text x="72" y="56" fontSize="10" fontWeight="600" fill="var(--dossier-ink)">User</text>
+                    <line x1="42" y1="20" x2="82" y2="44" stroke="#10a37f" strokeWidth="1.5" strokeDasharray="3 2" />
+                    <line x1="140" y1="20" x2="100" y2="44" stroke="#10a37f" strokeWidth="1.5" strokeDasharray="3 2" />
+                    <line x1="50" y1="14" x2="128" y2="14" stroke="#10a37f" strokeWidth="1.5" strokeDasharray="3 2" />
+                  </svg>
+                </div>
+              </article>
             </div>
           </div>
         </section>
