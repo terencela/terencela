@@ -6,7 +6,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   Bot,
-  BriefcaseBusiness,
   Building2,
   Cpu,
   Database,
@@ -26,12 +25,6 @@ import { ProductVisual } from "@/app/components/shared/ProductVisual";
 import { DossierThemeProvider } from "@/app/lib/dossier-theme";
 
 const EASE_OUT_STRONG = [0.23, 1, 0.32, 1] as const;
-
-type QualificationPillar = {
-  icon: typeof BriefcaseBusiness;
-  title: string;
-  detail: string;
-};
 
 type DeploymentStat = {
   value: string;
@@ -59,24 +52,6 @@ type SelectedProject = {
   evidence: string;
   url?: string;
 };
-
-const qualificationPillars: QualificationPillar[] = [
-  {
-    icon: BriefcaseBusiness,
-    title: "Enterprise deployment",
-    detail: "POCs to production to adoption to governance. I own the full path.",
-  },
-  {
-    icon: Cpu,
-    title: "AI builder",
-    detail: "15+ products across agents, RAG, voice AI, company knowledge, and eval loops.",
-  },
-  {
-    icon: Users,
-    title: "Business x Engineering",
-    detail: "I translate between executives, engineers, and end users to keep projects moving.",
-  },
-];
 
 const credibilityLogos = [
   "Zurich Airport",
@@ -142,14 +117,6 @@ const deployments: DeploymentExample[] = [
     outcomeHighlight: "Won trust before the first meeting.",
     outcome: "Knowledge base live. Proposal automation next.",
   },
-];
-
-const deploymentLessons = [
-  "Trust has to be designed, not assumed.",
-  "Weak stakeholder alignment kills momentum fast.",
-  "Fear of risk often blocks even good technical work.",
-  "Edge cases decide whether a deployment survives.",
-  "Economic buyers and champions need real decision power.",
 ];
 
 const selectedProjects: SelectedProject[] = [
@@ -236,6 +203,14 @@ const flywheelStages = [
   { label: "Scale", desc: "New teams, monitoring, feed learnings back." },
 ];
 
+const stageSystemLinks = [
+  { layerId: "intake", blocker: "Weak stakeholder alignment." },
+  { layerId: "governance", blocker: "Low decision power from buyers and champions." },
+  { layerId: "orchestration", blocker: "Edge cases break trust fast." },
+  { layerId: "execution", blocker: "Fear of risk blocks go-live." },
+  { layerId: "governance", blocker: "Trust and adoption decay without ownership." },
+];
+
 const archLayers = [
   {
     id: "intake",
@@ -263,11 +238,21 @@ const archLayers = [
   },
 ];
 
-function DeploymentArchitecture({ reduceMotion }: { reduceMotion: boolean | null }) {
-  const [activeLayer, setActiveLayer] = useState<string | null>(null);
+function DeploymentArchitecture({
+  reduceMotion,
+  activeStageIdx,
+  onStageSelect,
+}: {
+  reduceMotion: boolean | null;
+  activeStageIdx: number;
+  onStageSelect: (idx: number) => void;
+}) {
+  const activeLink = stageSystemLinks[activeStageIdx] ?? stageSystemLinks[0];
+  const activeStage = flywheelStages[activeStageIdx] ?? flywheelStages[0];
+  const activeLayer = archLayers.find((layer) => layer.id === activeLink.layerId) ?? archLayers[0];
 
   return (
-    <section className="dossier-section relative z-[2] pt-8">
+    <section className="dossier-section relative z-[2] pt-6">
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
         <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
           Under the hood
@@ -276,12 +261,24 @@ function DeploymentArchitecture({ reduceMotion }: { reduceMotion: boolean | null
           How I architect a deployment
         </h2>
         <p className="mt-1.5 text-[13px] text-[var(--dossier-muted)]">
-          Voice AI at Zurich Airport. Four layers, each with eval gates.
+          Tap a stage - this layer and blocker update.
         </p>
 
-        <div className="mt-6 grid gap-3 sm:grid-cols-4">
+        <div className="mt-4 grid gap-2 rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-3 text-[11px] md:grid-cols-3 md:items-center">
+          <div className="rounded-md border border-[#10a37f]/30 bg-[#10a37f]/[0.06] px-3 py-2 text-[#10a37f]">
+            Stage: <span className="font-semibold">{activeStage.label}</span>
+          </div>
+          <div className="rounded-md border border-[var(--dossier-line)] px-3 py-2 text-[var(--dossier-ink)]">
+            Layer: <span className="font-semibold">{activeLayer.label}</span>
+          </div>
+          <div className="rounded-md border border-[var(--dossier-line)] px-3 py-2 text-[var(--dossier-body)]">
+            Blocker: <span className="font-semibold text-[var(--dossier-ink)]">{activeLink.blocker}</span>
+          </div>
+        </div>
+
+        <div className="mt-4 grid gap-3 sm:grid-cols-4">
           {archLayers.map((layer, li) => {
-            const isActive = activeLayer === layer.id;
+            const isActive = activeLayer.id === layer.id;
             return (
               <motion.button
                 key={layer.id}
@@ -291,7 +288,10 @@ function DeploymentArchitecture({ reduceMotion }: { reduceMotion: boolean | null
                     ? "border-[#10a37f]/40 bg-[#10a37f]/[0.06]"
                     : "border-[var(--dossier-line)] bg-[var(--dossier-panel)] hover:border-[#10a37f]/20"
                 }`}
-                onClick={() => setActiveLayer(isActive ? null : layer.id)}
+                onClick={() => {
+                  const mappedIdx = stageSystemLinks.findIndex((item) => item.layerId === layer.id);
+                  if (mappedIdx >= 0) onStageSelect(mappedIdx);
+                }}
                 initial={reduceMotion ? false : { opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -327,27 +327,24 @@ function DeploymentArchitecture({ reduceMotion }: { reduceMotion: boolean | null
             );
           })}
         </div>
-
-        <div className="mt-4 flex items-center justify-center gap-1">
-          {archLayers.map((_, i) => (
-            <React.Fragment key={i}>
-              <span className="h-2 w-2 rounded-full bg-[#10a37f]/30" />
-              {i < archLayers.length - 1 && (
-                <span className="h-px w-8 bg-[#10a37f]/20" />
-              )}
-            </React.Fragment>
-          ))}
-          <span className="ml-2 text-[9px] font-medium tracking-wide text-[var(--dossier-subtle)]">
-            DATA FLOW
-          </span>
-        </div>
       </div>
     </section>
   );
 }
 
-function DeploymentFlywheel({ reduceMotion }: { reduceMotion: boolean | null }) {
-  const [activeIdx, setActiveIdx] = useState<number | null>(null);
+function DeploymentFlywheel({
+  reduceMotion,
+  activeStageIdx,
+  onStageSelect,
+  activeLayerLabel,
+  activeBlocker,
+}: {
+  reduceMotion: boolean | null;
+  activeStageIdx: number;
+  onStageSelect: (idx: number) => void;
+  activeLayerLabel: string;
+  activeBlocker: string;
+}) {
   const stages = flywheelStages;
   const R = 140;
   const cx = 200;
@@ -361,16 +358,16 @@ function DeploymentFlywheel({ reduceMotion }: { reduceMotion: boolean | null }) 
     return { x: cx + R * Math.cos(rad), y: cy + R * Math.sin(rad) };
   });
 
-  const active = activeIdx !== null ? stages[activeIdx] : null;
+  const active = stages[activeStageIdx] ?? stages[0];
 
   return (
-    <section className="dossier-section relative z-[2] pt-8">
+    <section className="dossier-section relative z-[2] pt-6">
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
         <h2 className="text-center text-[clamp(22px,2.6vw,30px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
           How I move from zero to deployed
         </h2>
         <p className="mx-auto mt-1.5 max-w-[40ch] text-center text-[13px] text-[var(--dossier-muted)]">
-          Five stages. Tap any stage.
+          Tap a stage to inspect layer and blocker.
         </p>
 
         <motion.div
@@ -419,16 +416,16 @@ function DeploymentFlywheel({ reduceMotion }: { reduceMotion: boolean | null }) 
 
             {stages.map((stage, i) => {
               const p = positions[i];
-              const isActive = activeIdx === i;
+              const isActive = activeStageIdx === i;
               return (
                 <g
                   key={stage.label}
-                  onClick={() => setActiveIdx(isActive ? null : i)}
+                  onClick={() => onStageSelect(i)}
                   className="cursor-pointer"
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") setActiveIdx(isActive ? null : i);
+                    if (e.key === "Enter" || e.key === " ") onStageSelect(i);
                   }}
                 >
                   <circle
@@ -466,31 +463,41 @@ function DeploymentFlywheel({ reduceMotion }: { reduceMotion: boolean | null }) 
               );
             })}
 
-            <foreignObject x={cx - 80} y={cy - 36} width="160" height="72">
-              <div className="flex h-full flex-col items-center justify-center text-center" xmlns="http://www.w3.org/1999/xhtml">
-                {active ? (
-                  <>
-                    <p className="text-[14px] font-bold tracking-tight text-[var(--dossier-ink)]">
-                      {active.label}
-                    </p>
-                    <p className="mt-1 text-[8.5px] leading-[1.4] text-[var(--dossier-muted)]">
-                      {active.desc}
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p className="text-[13px] font-bold tracking-tight text-[var(--dossier-ink)]">
-                      Flywheel
-                    </p>
-                    <p className="mt-0.5 text-[8.5px] text-[var(--dossier-muted)]">
-                      Each cycle compounds
-                    </p>
-                  </>
-                )}
+            <foreignObject x={cx - 90} y={cy - 44} width="180" height="88">
+              <div className="flex h-full flex-col items-center justify-center text-center">
+                <p className="text-[13px] font-bold tracking-tight text-[var(--dossier-ink)]">
+                  {active.label}
+                </p>
+                <p className="mt-0.5 text-[8px] text-[#10a37f]">
+                  {activeLayerLabel}
+                </p>
+                <p className="mt-0.5 text-[8px] leading-[1.35] text-[var(--dossier-muted)]">
+                  {activeBlocker}
+                </p>
               </div>
             </foreignObject>
           </svg>
         </motion.div>
+
+        <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5 sm:hidden">
+          {stages.map((stage, i) => {
+            const isActive = i === activeStageIdx;
+            return (
+              <button
+                key={stage.label}
+                type="button"
+                onClick={() => onStageSelect(i)}
+                className={`rounded-full px-2.5 py-1 text-[10px] ${
+                  isActive
+                    ? "bg-[#10a37f] text-white"
+                    : "border border-[var(--dossier-line)] text-[var(--dossier-muted)]"
+                }`}
+              >
+                {String(i + 1).padStart(2, "0")} {stage.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
@@ -498,6 +505,10 @@ function DeploymentFlywheel({ reduceMotion }: { reduceMotion: boolean | null }) 
 
 export function OpenAIApplicationPage() {
   const reduceMotion = useReducedMotion();
+  const [activeStageIdx, setActiveStageIdx] = useState(0);
+  const activeLink = stageSystemLinks[activeStageIdx] ?? stageSystemLinks[0];
+  const activeLayer = archLayers.find((layer) => layer.id === activeLink.layerId) ?? archLayers[0];
+
   return (
     <DossierThemeProvider>
       <main
@@ -820,31 +831,54 @@ export function OpenAIApplicationPage() {
           </div>
         </section>
 
-        <DeploymentArchitecture reduceMotion={reduceMotion} />
+        <DeploymentFlywheel
+          reduceMotion={reduceMotion}
+          activeStageIdx={activeStageIdx}
+          onStageSelect={setActiveStageIdx}
+          activeLayerLabel={activeLayer.label}
+          activeBlocker={activeLink.blocker}
+        />
 
-        <section className="dossier-section relative z-[2] pt-6">
+        <DeploymentArchitecture
+          reduceMotion={reduceMotion}
+          activeStageIdx={activeStageIdx}
+          onStageSelect={setActiveStageIdx}
+        />
+
+        <section className="dossier-section relative z-[2] pt-5">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <h2 className="text-[clamp(26px,3.2vw,36px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-              What actually blocks deployment
+              What blocks each stage
             </h2>
-            <div className="mt-5 border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] p-6">
-              <div className="grid gap-5 md:grid-cols-[0.95fr_1.05fr]">
-                <p className="text-sm leading-relaxed text-[var(--dossier-muted)]">
-                  The model is rarely the bottleneck.
-                </p>
-                <ul className="space-y-2 text-sm leading-relaxed text-[var(--dossier-body)]">
-                  {deploymentLessons.map((issue) => (
-                    <li key={issue} className="border-b border-[var(--dossier-line-strong)] pb-2">
-                      {issue}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <p className="mt-1.5 text-[13px] text-[var(--dossier-muted)]">
+              Same control model. Tap to switch all views.
+            </p>
+            <div className="mt-4 grid gap-2 sm:grid-cols-5">
+              {flywheelStages.map((stage, i) => {
+                const isActive = i === activeStageIdx;
+                return (
+                  <button
+                    key={stage.label}
+                    type="button"
+                    onClick={() => setActiveStageIdx(i)}
+                    className={`rounded-xl border p-3 text-left transition-colors duration-200 ${
+                      isActive
+                        ? "border-[#10a37f]/40 bg-[#10a37f]/[0.06]"
+                        : "border-[var(--dossier-line)] bg-[var(--dossier-panel)] hover:border-[#10a37f]/20"
+                    }`}
+                  >
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#10a37f]">
+                      {String(i + 1).padStart(2, "0")} {stage.label}
+                    </p>
+                    <p className="mt-1 text-[11px] leading-relaxed text-[var(--dossier-body)]">
+                      {stageSystemLinks[i].blocker}
+                    </p>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </section>
-
-        <DeploymentFlywheel reduceMotion={reduceMotion} />
 
         <section className="dossier-section relative z-[2] pt-6">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
