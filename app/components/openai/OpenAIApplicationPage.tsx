@@ -545,12 +545,12 @@ export function OpenAIApplicationPage() {
                     <ArrowRight className="h-4 w-4" />
                   </a>
                   <a
-                    href="https://xp.terencela.com"
+                    href="https://about.terencela.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-[13px] text-[var(--dossier-muted)] transition-colors duration-200 hover:text-[var(--dossier-ink)]"
                   >
-                    See TerenceXP
+                    Chat with TerenceAI
                     <ArrowUpRight className="h-3 w-3" />
                   </a>
                 </div>
