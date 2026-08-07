@@ -3,7 +3,6 @@
 import type { CSSProperties } from "react";
 import type { LucideIcon } from "lucide-react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowUpRight,
   BriefcaseBusiness,
@@ -32,11 +31,6 @@ type DeploymentExample = {
   challenge: string;
   role: string[];
   outcome: string;
-};
-
-type CredibilityScriptItem = {
-  name: string;
-  detail: string;
 };
 
 type SelectedProject = {
@@ -69,14 +63,7 @@ const qualificationPillars: QualificationPillar[] = [
   },
 ];
 
-const credibilityScript: CredibilityScriptItem[] = [
-  { name: "Zurich Airport", detail: "AI Lead" },
-  { name: "Credit Suisse", detail: "Chairman's Office" },
-  { name: "PwC", detail: "Transfer pricing" },
-  { name: "Forbes", detail: "30 Under 30 DACH" },
-  { name: "TEDx", detail: "2x speaker" },
-  { name: "HSG", detail: "Master's degree" },
-];
+const credibilityLogos = ["Zurich Airport", "UBS", "Credit Suisse", "PwC", "Forbes", "TEDx", "HSG"] as const;
 
 const deployments: DeploymentExample[] = [
   {
@@ -242,8 +229,6 @@ function ProjectMeaningVisual({
 }
 
 export function OpenAIApplicationPage() {
-  const reduceMotion = useReducedMotion();
-
   return (
     <DossierThemeProvider>
       <main
@@ -298,31 +283,22 @@ export function OpenAIApplicationPage() {
         </section>
 
         <section className="dossier-section-tight relative z-[2] py-5">
-          <div className="overflow-hidden border-y border-[var(--dossier-line-strong)] bg-white/85 py-5">
-            <motion.div
-              className="flex w-max gap-4"
-              animate={reduceMotion ? undefined : { x: ["0%", "-50%"] }}
-              transition={
-                reduceMotion ? undefined : { duration: 28, ease: "linear", repeat: Infinity }
-              }
-            >
-              {[0, 1].map((copy) => (
-                <div key={copy} className="flex shrink-0 items-center gap-4">
-                  {credibilityScript.map((item) => (
-                    <span
-                      key={`${copy}-${item.name}`}
-                      className="inline-flex items-center gap-2 border border-[var(--dossier-line-strong)] bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--dossier-ink)]"
-                      style={{ transform: "rotate(-12deg)" }}
-                    >
-                      <span>{item.name}</span>
-                      <span className="text-[10px] normal-case tracking-normal text-[var(--dossier-muted)]">
-                        {item.detail}
-                      </span>
-                    </span>
-                  ))}
-                </div>
-              ))}
-            </motion.div>
+          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
+            <div className="overflow-hidden border border-[#10322c] bg-[linear-gradient(120deg,#0d1416_10%,#16544c_100%)] px-5 py-6 shadow-[0_12px_34px_rgba(0,0,0,0.2)] md:px-8 md:py-8">
+              <p className="text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-white/75">
+                Trusted experience across enterprise and institutions
+              </p>
+              <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-3 md:mt-6 md:grid-cols-4 lg:grid-cols-7">
+                {credibilityLogos.map((logo) => (
+                  <div
+                    key={logo}
+                    className="flex min-h-[40px] items-center justify-center border border-white/12 bg-black/10 px-3 text-center text-sm font-semibold tracking-[0.02em] text-white/92"
+                  >
+                    {logo}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
