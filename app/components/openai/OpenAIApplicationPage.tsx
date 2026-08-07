@@ -96,62 +96,56 @@ const credibilityLogos = [
 const deployments: DeploymentExample[] = [
   {
     title: "Zurich Airport - Voice AI Agent",
-    subtitle: "Building a voice AI agent for the airport's call center from concept to formal tender.",
+    subtitle: "Voice AI for the airport call center, from discovery through formal tender.",
     challenge:
-      "Large enterprise setup, many stakeholders, regulated environment, and clear trust constraints.",
+      "Large enterprise, many stakeholders, regulated environment, trust constraints.",
     stats: [
-      { value: "~85K", label: "calls per year", sub: "~150K minutes handled" },
-      { value: "8 FTE", label: "capacity", sub: "in the call center" },
-      { value: "Enterprise", label: "environment", sub: "Highly regulated & trust-critical" },
+      { value: "~85K", label: "calls/year" },
+      { value: "8 FTE", label: "call center" },
     ],
     role: [
-      "Discovery",
-      "Use-case prioritisation",
-      "Architecture",
-      "Prototype",
-      "Vendor evaluation",
-      "Governance",
+      "Discovery and use-case prioritisation",
+      "Architecture and prototype",
+      "Vendor evaluation and governance",
     ],
-    outcomeHighlight: "Delivered a working PoC in two weeks",
+    outcomeHighlight: "Working PoC in two weeks.",
     outcome:
-      "and moved it into a formal tender. Strengthened stakeholder trust and alignment. Procurement process is ongoing.",
+      "Moved into a formal tender. Built stakeholder trust across the organization. Procurement ongoing.",
   },
   {
     title: "ZRH Insider - Employee App Rebuild",
-    subtitle: "Rebuilding the internal airport app to create a solid foundation for future features and engagement.",
+    subtitle: "Merging three fragmented codebases into one foundation for 35K airport employees.",
     challenge:
-      "Three fragmented codebases for Android and iOS slowed delivery and experimentation for 35,000 employees.",
+      "Fragmented Android/iOS codebases slowed delivery and experimentation.",
     stats: [
-      { value: "35K", label: "employees", sub: "active on the app" },
-      { value: "2", label: "codebases", sub: "successfully merged" },
-      { value: "1 month", label: "rebuild", sub: "from foundation to rollout" },
+      { value: "35K", label: "employees" },
+      { value: "3 to 1", label: "codebases merged" },
     ],
     role: [
       "Rebuilt the app foundation in one month",
       "Consolidated architecture for faster rollout",
-      "Focused roadmap on engagement and retention loops",
+      "Designed retention and engagement loops",
     ],
-    outcomeHighlight: "Shipped a production-ready rebuild",
+    outcomeHighlight: "Production rebuild shipped.",
     outcome:
-      "that was externally quoted at CHF 350k, and created a faster, scalable base for future features.",
+      "Externally quoted at CHF 350K. Created a scalable base for future features and engagement.",
   },
   {
-    title: "Engineering Office LAJO - Proposal Copilot",
-    subtitle: "Designing an AI copilot to draft proposals from scattered project data.",
+    title: "Engineering Office LAJO - AI-Native Operations",
+    subtitle: "Building a company knowledge base as foundation for proposals, project intelligence, and automation.",
     challenge:
-      "Very little prep time for proposals and scattered information across systems before sales meetings.",
+      "Scattered project data, no prep time before sales meetings, manual proposal work.",
     stats: [
-      { value: "95-98%", label: "retrieval accuracy", sub: "on scoped tests" },
-      { value: "~40%", label: "time savings", sub: "per proposal expected" },
+      { value: "~40%", label: "time saved per proposal" },
     ],
     role: [
-      "Designed PoC before the first sales meeting",
-      "Set up OCR + model routing + RAG retrieval",
-      "Secured a workshop and moved into delivery",
+      "Designed a PoC before the first sales meeting",
+      "Built knowledge base with OCR and model routing",
+      "Secured a paid workshop and moved into delivery",
     ],
-    outcomeHighlight: "Impressed stakeholders before the first meeting",
+    outcomeHighlight: "Impressed stakeholders before the first meeting.",
     outcome:
-      "and secured a paid workshop. Now delivering the deployment with high retrieval accuracy and measurable time savings.",
+      "Knowledge base is the first layer. Proposals are the first use case. Workflow automation is next.",
   },
 ];
 
