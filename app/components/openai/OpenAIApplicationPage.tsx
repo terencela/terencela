@@ -1,6 +1,6 @@
 "use client";
 
-import React, { type CSSProperties } from "react";
+import React, { useState, type CSSProperties } from "react";
 import Image from "next/image";
 import {
   ArrowRight,
@@ -92,9 +92,9 @@ const credibilityLogos = [
 const deployments: DeploymentExample[] = [
   {
     title: "Zurich Airport - Voice AI Agent",
-    subtitle: "Voice AI for the airport call center, from discovery through formal tender.",
+    subtitle: "Voice AI for 85K annual calls. Discovery through formal tender.",
     challenge:
-      "Large enterprise, many stakeholders, regulated environment, trust constraints.",
+      "Regulated environment, multi-stakeholder, trust constraints.",
     stats: [
       { value: "~85K", label: "calls/year" },
       { value: "8 FTE", label: "call center" },
@@ -107,45 +107,40 @@ const deployments: DeploymentExample[] = [
       "Vendor evaluation",
       "Governance",
     ],
-    outcomeHighlight: "Working PoC in two weeks.",
-    outcome:
-      "Moved into a formal tender. Built stakeholder trust across the organization. Procurement ongoing.",
+    outcomeHighlight: "PoC in two weeks.",
+    outcome: "Formal tender initiated. Procurement ongoing.",
   },
   {
     title: "ZRH Insider - Employee App Rebuild",
-    subtitle: "Merging three fragmented codebases into one foundation for 35K airport employees.",
-    challenge:
-      "Fragmented Android/iOS codebases slowed delivery and experimentation.",
+    subtitle: "Three codebases merged into one foundation for 35K employees.",
+    challenge: "Fragmented Android/iOS slowed delivery.",
     stats: [
       { value: "35K", label: "employees" },
       { value: "3 to 1", label: "codebases merged" },
     ],
     role: [
-      "Rebuilt the app foundation in one month",
+      "Rebuilt app foundation in one month",
       "Consolidated architecture for faster rollout",
-      "Designed retention and engagement loops",
+      "Designed engagement loops",
     ],
-    outcomeHighlight: "Production rebuild shipped.",
-    outcome:
-      "Externally quoted at CHF 350K. Created a scalable base for future features and engagement.",
+    outcomeHighlight: "Shipped.",
+    outcome: "Externally quoted at CHF 350K. Scalable base for future features.",
   },
   {
     title: "Engineering Office LAJO - AI-Native Operations",
-    subtitle: "Building a company knowledge base as foundation for proposals, project intelligence, and automation.",
-    challenge:
-      "Scattered project data, no prep time before sales meetings, manual proposal work.",
+    subtitle: "Company knowledge base powering proposals and project intelligence.",
+    challenge: "Scattered data, manual proposal work, zero prep time.",
     stats: [
       { value: "98%", label: "accuracy rate" },
       { value: "60%", label: "time saved per proposal" },
     ],
     role: [
-      "Designed a PoC before the first sales meeting",
-      "Built knowledge base with OCR and model routing",
-      "Secured a paid workshop and moved into delivery",
+      "PoC ready before first sales meeting",
+      "OCR + model routing + RAG pipeline",
+      "Secured paid workshop, now in delivery",
     ],
-    outcomeHighlight: "Impressed stakeholders before the first meeting.",
-    outcome:
-      "Knowledge base is the first layer. Proposals are the first use case. Workflow automation is next.",
+    outcomeHighlight: "Won trust before the first meeting.",
+    outcome: "Knowledge base live. Proposal automation next.",
   },
 ];
 
@@ -164,8 +159,7 @@ const selectedProjects: SelectedProject[] = [
     stage: "Live",
     accent: "green",
     visual: "privacy",
-    description:
-      "A control layer that strips personal data from AI prompts in the browser before it reaches any model. Zero bytes sent to any server.",
+    description: "Browser-side PII stripping before prompts reach any model. Zero bytes to any server.",
     evidence: "Live product with Chrome extension",
     url: "https://privacy.terencela.com",
   },
@@ -175,8 +169,7 @@ const selectedProjects: SelectedProject[] = [
     stage: "In delivery",
     accent: "blue",
     visual: "knowledge",
-    description:
-      "An AI operating system that connects project history, decisions, documents and expertise across engineering offices.",
+    description: "RAG + OCR pipeline connecting project history, decisions and expertise across offices.",
     evidence: "Vertical system designed",
   },
   {
@@ -185,8 +178,7 @@ const selectedProjects: SelectedProject[] = [
     stage: "Building",
     accent: "violet",
     visual: "messages",
-    description:
-      "The human-context layer for communication: decoding tone, personality, culture and relationship dynamics before helping you respond.",
+    description: "Context layer decoding tone, personality and culture before generating responses.",
     evidence: "Interactive product prototype",
     url: "https://vibes.terencela.com",
   },
@@ -196,8 +188,7 @@ const selectedProjects: SelectedProject[] = [
     stage: "Venture",
     accent: "cyan",
     visual: "travel",
-    description:
-      "A contextual AI companion guiding passengers through the airport journey before, during and after travel.",
+    description: "Contextual AI companion for the full airport journey. Real-time, location-aware.",
     evidence: "Product system designed",
     url: "https://app.aircompanion.app",
   },
@@ -207,8 +198,7 @@ const selectedProjects: SelectedProject[] = [
     stage: "Concept",
     accent: "red",
     visual: "culture",
-    description:
-      "Duolingo meets Grammarly for the invisible rules, communication styles and social nuances of Asian cultures.",
+    description: "Communication rules and social nuances of Asian cultures. Duolingo meets Grammarly.",
     evidence: "Product thesis developed",
     url: "https://asia.terencela.com",
   },
@@ -218,8 +208,7 @@ const selectedProjects: SelectedProject[] = [
     stage: "Live",
     accent: "coral",
     visual: "rehearse",
-    description:
-      "Practice sales calls, negotiations and difficult conversations with realistic AI role-play and targeted feedback.",
+    description: "AI role-play for sales, negotiations and difficult conversations. Real-time feedback.",
     evidence: "Interactive rehearsal flow",
     url: "https://rehearse-roleplay.vercel.app",
   },
@@ -229,8 +218,7 @@ const selectedProjects: SelectedProject[] = [
     stage: "Testing",
     accent: "amber",
     visual: "voice",
-    description:
-      "AI voice calls that capture parents' stories, preserve family memories and keep generations connected.",
+    description: "Voice AI that captures family stories and preserves them across generations.",
     evidence: "Voice-first experience built",
     url: "https://treasures-bowl.vercel.app",
   },
@@ -241,12 +229,122 @@ const accentStyles = {
 } as CSSProperties;
 
 const flywheelStages = [
-  { label: "Discover", desc: "Map the real problem, stakeholders, and constraints before writing a line of code." },
-  { label: "Decide", desc: "Pick the deployment path, align budget owners, and define what 'shipped' means." },
-  { label: "Build", desc: "Prototype fast, validate with real users, iterate on evidence not assumptions." },
-  { label: "Deploy", desc: "Ship into production with eval gates, data boundaries, and rollback plans." },
-  { label: "Scale", desc: "Expand to new teams, harden monitoring, and feed learnings back into the next cycle." },
+  { label: "Discover", desc: "Map the problem, stakeholders and constraints." },
+  { label: "Decide", desc: "Align budget owners, define what 'shipped' means." },
+  { label: "Build", desc: "Prototype fast, validate with real users." },
+  { label: "Deploy", desc: "Eval gates, data boundaries, rollback plans." },
+  { label: "Scale", desc: "New teams, monitoring, feed learnings back." },
 ];
+
+const archLayers = [
+  {
+    id: "intake",
+    label: "Intake",
+    nodes: ["Call arrives", "Language detect", "Intent classify"],
+    color: "#10a37f",
+  },
+  {
+    id: "orchestration",
+    label: "Orchestration",
+    nodes: ["Route to agent", "Context load", "Knowledge retrieval"],
+    color: "#10a37f",
+  },
+  {
+    id: "execution",
+    label: "Execution",
+    nodes: ["Generate response", "Safety filter", "Voice synthesis"],
+    color: "#10a37f",
+  },
+  {
+    id: "governance",
+    label: "Governance",
+    nodes: ["Eval gate", "Audit log", "Rollback trigger"],
+    color: "#10a37f",
+  },
+];
+
+function DeploymentArchitecture({ reduceMotion }: { reduceMotion: boolean | null }) {
+  const [activeLayer, setActiveLayer] = useState<string | null>(null);
+
+  return (
+    <section className="dossier-section relative z-[2] pt-8">
+      <div className="mx-auto max-w-[1200px] px-4 md:px-8">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
+          Under the hood
+        </p>
+        <h2 className="mt-2 text-[clamp(22px,2.6vw,30px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
+          How I architect a deployment
+        </h2>
+        <p className="mt-1.5 text-[13px] text-[var(--dossier-muted)]">
+          Voice AI at Zurich Airport. Four layers, each with eval gates.
+        </p>
+
+        <div className="mt-6 grid gap-3 sm:grid-cols-4">
+          {archLayers.map((layer, li) => {
+            const isActive = activeLayer === layer.id;
+            return (
+              <motion.button
+                key={layer.id}
+                type="button"
+                className={`group relative rounded-xl border p-5 text-left transition-colors duration-200 ${
+                  isActive
+                    ? "border-[#10a37f]/40 bg-[#10a37f]/[0.06]"
+                    : "border-[var(--dossier-line)] bg-[var(--dossier-panel)] hover:border-[#10a37f]/20"
+                }`}
+                onClick={() => setActiveLayer(isActive ? null : layer.id)}
+                initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: li * 0.07, ease: EASE_OUT_STRONG }}
+              >
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-[#10a37f]">
+                    L{li + 1}
+                  </span>
+                  <span
+                    className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                      isActive ? "bg-[#10a37f]" : "bg-[var(--dossier-subtle)]"
+                    }`}
+                  />
+                </div>
+                <p className="text-[14px] font-semibold text-[var(--dossier-ink)]">
+                  {layer.label}
+                </p>
+                <ul className={`mt-3 space-y-1.5 overflow-hidden transition-all duration-300 ${
+                  isActive ? "max-h-40 opacity-100" : "max-h-0 opacity-0 sm:max-h-40 sm:opacity-60"
+                }`}>
+                  {layer.nodes.map((node) => (
+                    <li
+                      key={node}
+                      className="flex items-center gap-2 text-[11px] text-[var(--dossier-muted)]"
+                    >
+                      <span className="h-px w-3 bg-[#10a37f]/40" />
+                      {node}
+                    </li>
+                  ))}
+                </ul>
+              </motion.button>
+            );
+          })}
+        </div>
+
+        <div className="mt-4 flex items-center justify-center gap-1">
+          {archLayers.map((_, i) => (
+            <React.Fragment key={i}>
+              <span className="h-2 w-2 rounded-full bg-[#10a37f]/30" />
+              {i < archLayers.length - 1 && (
+                <span className="h-px w-8 bg-[#10a37f]/20" />
+              )}
+            </React.Fragment>
+          ))}
+          <span className="ml-2 text-[9px] font-medium tracking-wide text-[var(--dossier-subtle)]">
+            DATA FLOW
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function DeploymentFlywheel({ reduceMotion }: { reduceMotion: boolean | null }) {
   const stages = flywheelStages;
@@ -415,13 +513,8 @@ export function OpenAIApplicationPage() {
                   Application page
                 </p>
                 <h1 className="dossier-hero-title">I turn enterprise AI from idea into adoption.</h1>
-                <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-[var(--dossier-body)] md:mt-6">
-                  I lead AI at Zurich Airport, build and deploy AI systems through KI Unlocked, and
-                  work across business, engineering and governance to get projects shipped.
-                </p>
-                <p className="mt-2 max-w-[64ch] text-sm leading-relaxed text-[var(--dossier-muted)] md:mt-4">
-                  I work where pilots either become real workflows or die in procurement. That is
-                  where I do my best work.
+                <p className="mt-4 max-w-[60ch] text-base leading-relaxed text-[var(--dossier-body)] md:mt-6">
+                  AI lead at Zurich Airport. Builder at KI Unlocked. I ship where pilots die in procurement.
                 </p>
                 <div className="mt-5 flex flex-wrap items-center gap-4 md:mt-7">
                   <a
@@ -499,7 +592,7 @@ export function OpenAIApplicationPage() {
                   Enterprise deployment
                 </h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                  From discovery to production, adoption and governance.
+                  Discovery to production to governance. Full path.
                 </p>
                 <div className="mt-auto flex flex-wrap items-center gap-x-1.5 gap-y-2 pt-6">
                   {[
@@ -530,7 +623,7 @@ export function OpenAIApplicationPage() {
                   AI builder
                 </h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                  15+ products across agents, RAG, voice AI, company knowledge and eval loops.
+                  15+ products. Agents, RAG, voice AI, eval loops.
                 </p>
                 <div className="mt-auto flex items-center gap-3 pt-6">
                   {[Bot, FileText, Mic, Database, MessageSquareText].map((Icon, i) => (
@@ -720,16 +813,17 @@ export function OpenAIApplicationPage() {
           </div>
         </section>
 
+        <DeploymentArchitecture reduceMotion={reduceMotion} />
+
         <section className="dossier-section relative z-[2] pt-6">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <h2 className="text-[clamp(26px,3.2vw,36px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-              Lessons I&apos;ve learned from deploying AI in companies
+              What actually blocks deployment
             </h2>
             <div className="mt-5 border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] p-6">
               <div className="grid gap-5 md:grid-cols-[0.95fr_1.05fr]">
                 <p className="text-sm leading-relaxed text-[var(--dossier-muted)]">
-                  The model is rarely the bottleneck. Trust, ownership, and alignment are usually
-                  the real blockers.
+                  The model is rarely the bottleneck.
                 </p>
                 <ul className="space-y-2 text-sm leading-relaxed text-[var(--dossier-body)]">
                   {deploymentLessons.map((issue) => (
@@ -750,8 +844,8 @@ export function OpenAIApplicationPage() {
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
               Selected projects
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-[var(--dossier-muted)]">
-              Seven personal products across AI infrastructure, human intelligence and voice.
+            <p className="mt-2 text-sm text-[var(--dossier-muted)]">
+              Personal products. AI infrastructure, voice, human intelligence.
             </p>
             <div className="project-grid mt-6">
               {selectedProjects.map((project, index) => (
@@ -795,10 +889,10 @@ export function OpenAIApplicationPage() {
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <div className="border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] p-7 md:p-9">
               <h2 className="text-[clamp(30px,4vw,48px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
-                Ready to start.
+                I&apos;d rather show you than tell you.
               </h2>
-              <p className="mt-4 max-w-[68ch] text-sm leading-relaxed text-[var(--dossier-muted)] md:text-[15px]">
-                I am already doing Forward Deployed work across regulated enterprises in Zurich. If OpenAI wants someone who gets enterprise AI from pilot to adoption, let&apos;s talk.
+              <p className="mt-3 max-w-[52ch] text-sm leading-relaxed text-[var(--dossier-muted)] md:text-[15px]">
+                30 minutes. I&apos;ll walk you through a live deployment, the decisions behind it, and where I think OpenAI&apos;s enterprise play should go next.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-4">
                 <a
