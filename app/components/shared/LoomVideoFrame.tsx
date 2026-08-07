@@ -16,6 +16,7 @@ interface LoomVideoFrameProps {
   roleTitle: string;
   loomUrl?: string;
   videoTitle?: string;
+  videoSubtitle?: string;
   accentColor?: string;
   showChapters?: boolean;
   videoOrientation?: "landscape" | "portrait";
@@ -41,6 +42,7 @@ export function LoomVideoFrame({
   roleTitle,
   loomUrl,
   videoTitle = `Why I am the right fit for ${companyName}`,
+  videoSubtitle,
   accentColor = "#10a37f",
   showChapters = true,
   videoOrientation = "landscape",
@@ -151,7 +153,7 @@ export function LoomVideoFrame({
                     {videoTitle}
                   </h4>
                   <p className="mt-2 text-sm text-[var(--dossier-body)]">
-                    Quick introduction for the {roleTitle} role.
+                    {videoSubtitle ?? `Quick introduction for the ${roleTitle} role.`}
                   </p>
                 </div>
                 <button
@@ -251,7 +253,7 @@ export function LoomVideoFrame({
                     {videoTitle}
                   </h4>
                   <p className="mt-2 text-sm text-[var(--dossier-body)]">
-                    Overview for the {roleTitle} role in Zurich.
+                    {videoSubtitle ?? `Overview for the ${roleTitle} role in Zurich.`}
                   </p>
                 </div>
                 <button
