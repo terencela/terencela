@@ -485,12 +485,26 @@ html[data-dossier-theme="dark"] .dossier-grain {
 }
 
 html[data-dossier-theme="dark"] .dossier-dot-grid {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  opacity: 0.25;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  opacity: 0.6;
 }
 
 html[data-dossier-theme="dark"] .dossier-mesh-gradient {
   opacity: 0.5;
+}
+
+html[data-dossier-theme="dark"] .card-copy h3 {
+  color: #f4f2ec;
+}
+
+html[data-dossier-theme="dark"] .card-copy p {
+  color: #9a9ba4;
+}
+
+html[data-dossier-theme="dark"] .evidence b {
+  color: #cccbd2;
 }
 
 html[data-dossier-theme="dark"] .dossier-credibility-list li:hover,
@@ -523,6 +537,23 @@ html[data-dossier-theme="dark"] .dossier-page .project-visual .book-lines,
 html[data-dossier-theme="dark"] .dossier-page .project-visual .avatar-ring span {
   background: #1a1b22;
   color: var(--dossier-ink);
+}
+
+html[data-dossier-theme="dark"] .dossier-page .project-visual .node-map b {
+  background: #181a21;
+  color: #f4f2ec;
+  border-color: var(--accent);
+}
+
+html[data-dossier-theme="dark"] .dossier-page .project-visual .ui-answer {
+  background: #14151b;
+  border-color: #292b35;
+  color: #cccbd2;
+}
+
+html[data-dossier-theme="dark"] .dossier-page .project-visual .culture-chat {
+  background: #1a1b22;
+  color: #e8e6e0;
 }
 
 html[data-dossier-theme="dark"] .dossier-page .project-visual .culture-meaning {
@@ -608,10 +639,11 @@ html[data-dossier-theme="dark"] .dossier-text-link {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.35;
-  background-image: radial-gradient(rgba(26, 26, 26, 0.07) 1px, transparent 1px);
-  background-size: 28px 28px;
-  mask-image: radial-gradient(ellipse 85% 55% at 50% 0%, black 15%, transparent 72%);
+  opacity: 0.4;
+  background-image:
+    linear-gradient(rgba(26, 26, 26, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 26, 26, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 .dossier-mesh-gradient {
