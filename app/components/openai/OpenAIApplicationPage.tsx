@@ -554,15 +554,18 @@ export function OpenAIApplicationPage() {
                 <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
                   Translate between executives, engineers and end users to keep projects moving.
                 </p>
-                <div className="mt-auto flex items-center gap-2 pt-6">
-                  {["Executives", "Engineers", "End users"].map((role, i) => (
-                    <React.Fragment key={role}>
-                      <span className="rounded-md border border-[var(--dossier-line)] px-2.5 py-1 text-[10px] font-medium text-[var(--dossier-ink)]">
-                        {role}
-                      </span>
-                      {i < 2 && <span className="text-[10px] text-[#10a37f]">&#8596;</span>}
-                    </React.Fragment>
-                  ))}
+                <div className="mt-auto pt-6">
+                  <svg viewBox="0 0 220 90" className="w-full max-w-[220px]" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="48" y1="22" x2="172" y2="22" stroke="#10a37f" strokeWidth="1" opacity="0.5" />
+                    <line x1="40" y1="24" x2="110" y2="76" stroke="#10a37f" strokeWidth="1" opacity="0.5" />
+                    <line x1="180" y1="24" x2="110" y2="76" stroke="#10a37f" strokeWidth="1" opacity="0.5" />
+                    <circle cx="40" cy="20" r="4" fill="#10a37f" opacity="0.8" />
+                    <circle cx="180" cy="20" r="4" fill="#10a37f" opacity="0.8" />
+                    <circle cx="110" cy="78" r="4" fill="#10a37f" opacity="0.8" />
+                    <text x="18" y="12" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">Business</text>
+                    <text x="148" y="12" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">Engineering</text>
+                    <text x="92" y="89" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">User</text>
+                  </svg>
                 </div>
               </article>
             </div>
