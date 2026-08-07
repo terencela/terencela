@@ -536,21 +536,21 @@ export function OpenAIApplicationPage() {
                 </p>
                 <div className="mt-5 flex flex-wrap items-center gap-4 md:mt-7">
                   <a
-                    href="https://www.linkedin.com/in/terencela"
+                    href="https://about.terencela.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="dossier-button-primary dossier-cta-accent dossier-pressable inline-flex"
                   >
-                    Get in touch
+                    Chat with TerenceAI
                     <ArrowRight className="h-4 w-4" />
                   </a>
                   <a
-                    href="https://about.terencela.com"
+                    href="https://xp.terencela.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-[13px] text-[var(--dossier-muted)] transition-colors duration-200 hover:text-[var(--dossier-ink)]"
                   >
-                    Chat with TerenceAI
+                    Discover TerenceXP
                     <ArrowUpRight className="h-3 w-3" />
                   </a>
                 </div>
