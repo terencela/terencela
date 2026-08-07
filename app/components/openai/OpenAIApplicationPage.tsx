@@ -249,42 +249,142 @@ const flywheelStages = [
 ];
 
 function DeploymentFlywheel({ reduceMotion }: { reduceMotion: boolean | null }) {
+  const stages = flywheelStages;
+  const R = 160;
+  const cx = 200;
+  const cy = 200;
+  const startAngle = -90;
+
+  const positions = stages.map((_, i) => {
+    const angle = startAngle + (i * 360) / stages.length;
+    const rad = (angle * Math.PI) / 180;
+    return { x: cx + R * Math.cos(rad), y: cy + R * Math.sin(rad), angle };
+  });
+
   return (
     <section className="dossier-section relative z-[2] pt-8">
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-        <h2 className="text-[clamp(22px,2.6vw,30px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-          How I move from zero to deployed
-        </h2>
-        <p className="mt-1.5 max-w-[50ch] text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-          Five stages. Each compounds across engagements.
-        </p>
+        <div className="grid items-center gap-8 lg:grid-cols-[1fr_1fr]">
+          <div>
+            <h2 className="text-[clamp(22px,2.6vw,30px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
+              How I move from zero to deployed
+            </h2>
+            <p className="mt-1.5 max-w-[50ch] text-[13px] leading-relaxed text-[var(--dossier-muted)]">
+              Five stages. Each compounds across engagements.
+            </p>
+            <ul className="mt-6 space-y-4">
+              {stages.map((stage, i) => (
+                <motion.li
+                  key={stage.label}
+                  className="flex gap-4"
+                  initial={reduceMotion ? false : { opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.35, delay: i * 0.06, ease: EASE_OUT_STRONG }}
+                >
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#10a37f] text-[10px] font-bold text-white">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <p className="text-[14px] font-semibold text-[var(--dossier-ink)]">{stage.label}</p>
+                    <p className="mt-0.5 text-[12px] leading-relaxed text-[var(--dossier-muted)]">{stage.desc}</p>
+                  </div>
+                </motion.li>
+              ))}
+            </ul>
+          </div>
 
-        <div className="mt-6 grid gap-px border border-[var(--dossier-line)] bg-[var(--dossier-line)] sm:grid-cols-5">
-          {flywheelStages.map((stage, i) => (
-            <motion.div
-              key={stage.label}
-              className="relative flex flex-col bg-[var(--dossier-panel)] p-5"
-              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.06, ease: EASE_OUT_STRONG }}
-            >
-              <div className="mb-3 flex items-center gap-2.5">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#10a37f] text-[10px] font-bold text-white">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                {i < 4 && (
-                  <ArrowRight className="hidden h-3 w-3 text-[var(--dossier-subtle)] sm:block" style={{ position: "absolute", right: -7, top: "50%", transform: "translateY(-50%)", zIndex: 1 }} />
-                )}
-              </div>
-              <p className="text-[14px] font-semibold text-[var(--dossier-ink)]">
-                {stage.label}
-              </p>
-              <p className="mt-1.5 text-[12px] leading-relaxed text-[var(--dossier-muted)]">
-                {stage.desc}
-              </p>
-            </motion.div>
-          ))}
+          <motion.div
+            className="relative mx-auto w-full max-w-[400px]"
+            initial={reduceMotion ? false : { opacity: 0, scale: 0.92 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: EASE_OUT_STRONG }}
+          >
+            <svg viewBox="0 0 400 400" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx={cx} cy={cy} r={R} stroke="var(--dossier-line)" strokeWidth="1" />
+
+              <motion.circle
+                cx={cx}
+                cy={cy}
+                r={R}
+                stroke="#10a37f"
+                strokeWidth="2"
+                strokeDasharray={`${2 * Math.PI * R}`}
+                strokeDashoffset={2 * Math.PI * R}
+                strokeLinecap="round"
+                style={{ transformOrigin: `${cx}px ${cy}px`, rotate: "-90deg" }}
+                initial={reduceMotion ? { strokeDashoffset: 0 } : undefined}
+                whileInView={reduceMotion ? undefined : { strokeDashoffset: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.8, ease: [0.23, 1, 0.32, 1] }}
+              />
+
+              {stages.map((stage, i) => {
+                const p = positions[i];
+                return (
+                  <g key={stage.label}>
+                    <circle cx={p.x} cy={p.y} r="28" fill="var(--dossier-panel)" stroke="#10a37f" strokeWidth="1.5" />
+                    <text
+                      x={p.x}
+                      y={p.y + 1}
+                      textAnchor="middle"
+                      dominantBaseline="central"
+                      className="fill-[var(--dossier-ink)]"
+                      fontSize="9"
+                      fontWeight="600"
+                      letterSpacing="0.03em"
+                    >
+                      {stage.label}
+                    </text>
+                  </g>
+                );
+              })}
+
+              <text
+                x={cx}
+                y={cy - 8}
+                textAnchor="middle"
+                dominantBaseline="central"
+                className="fill-[var(--dossier-ink)]"
+                fontSize="13"
+                fontWeight="700"
+                letterSpacing="-0.02em"
+              >
+                Flywheel
+              </text>
+              <text
+                x={cx}
+                y={cy + 10}
+                textAnchor="middle"
+                dominantBaseline="central"
+                className="fill-[var(--dossier-muted)]"
+                fontSize="8.5"
+              >
+                Each cycle compounds
+              </text>
+
+              {positions.map((p, i) => {
+                const next = positions[(i + 1) % positions.length];
+                const mx = (p.x + next.x) / 2;
+                const my = (p.y + next.y) / 2;
+                const dx = next.x - p.x;
+                const dy = next.y - p.y;
+                const len = Math.sqrt(dx * dx + dy * dy);
+                const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
+                if (len < 1) return null;
+                return (
+                  <polygon
+                    key={`arrow-${i}`}
+                    points="0,-3 7,0 0,3"
+                    fill="#10a37f"
+                    opacity="0.7"
+                    transform={`translate(${mx},${my}) rotate(${angle})`}
+                  />
+                );
+              })}
+            </svg>
+          </motion.div>
         </div>
       </div>
     </section>
