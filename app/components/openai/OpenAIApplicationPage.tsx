@@ -66,7 +66,16 @@ const qualificationPillars: QualificationPillar[] = [
   },
 ];
 
-const credibilityLogos = ["Zurich Airport", "UBS", "Credit Suisse", "PwC", "Forbes", "TEDx", "HSG"] as const;
+const credibilityLogos = [
+  "Zurich Airport",
+  "UBS",
+  "PwC",
+  "World Economic Forum",
+  "SAP",
+  "Forbes",
+  "TEDx",
+  "HSG",
+] as const;
 
 const deployments: DeploymentExample[] = [
   {
@@ -368,12 +377,12 @@ export function OpenAIApplicationPage() {
 
         <section className="dossier-section-tight relative z-[2] py-5">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div className="border-y border-[var(--dossier-line-strong)] py-5 md:py-6">
-              <div className="flex flex-wrap items-center justify-center gap-2.5 md:gap-3">
+            <div className="border-y border-[var(--dossier-line)] py-4 md:py-5">
+              <div className="flex flex-wrap items-center justify-center gap-2 md:gap-2.5">
                 {credibilityLogos.map((logo) => (
                   <div
                     key={logo}
-                    className="rounded-full border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] px-4 py-2 text-sm font-semibold tracking-[-0.01em] text-[var(--dossier-body)]"
+                    className="rounded-full border border-[var(--dossier-line)] bg-[var(--dossier-panel)]/85 px-3.5 py-1.5 text-[13px] font-medium tracking-[-0.005em] text-[var(--dossier-muted)]"
                   >
                     {logo}
                   </div>
