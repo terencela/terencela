@@ -622,17 +622,17 @@ export function OpenAIApplicationPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.08 }}
               transition={{ duration: 0.6, ease: EASE_OUT_STRONG }}
-              className="mt-6 rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)]"
+              className="mt-4 rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)]"
             >
-              <div className="p-5 md:p-7">
-                <h3 className="text-[clamp(20px,2.4vw,28px)] font-semibold tracking-[-0.02em] text-[var(--dossier-ink)]">
+              <div className="p-4 md:p-5">
+                <h3 className="text-[clamp(18px,2.2vw,24px)] font-semibold tracking-[-0.02em] text-[var(--dossier-ink)]">
                   {deployments[0].title}
                 </h3>
-                <p className="mt-1 max-w-[55ch] text-[13px] leading-relaxed text-[var(--dossier-muted)]">
+                <p className="mt-0.5 max-w-[55ch] text-[12px] leading-snug text-[var(--dossier-muted)]">
                   {deployments[0].subtitle}
                 </p>
 
-                <div className="mt-5 flex flex-wrap gap-8">
+                <div className="mt-2.5 flex flex-wrap gap-x-5 gap-y-1">
                   {deployments[0].stats.map((stat, i) => (
                     <motion.div
                       key={stat.label}
@@ -641,34 +641,30 @@ export function OpenAIApplicationPage() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: 0.1 + i * 0.06, ease: EASE_OUT_STRONG }}
                     >
-                      <p className="text-xl font-semibold tracking-tight text-[var(--dossier-ink)]">
+                      <p className="text-base font-semibold tracking-tight text-[var(--dossier-ink)]">
                         {stat.value}
                       </p>
-                      <p className="text-[11px] text-[var(--dossier-muted)]">
+                      <p className="text-[10px] text-[var(--dossier-muted)]">
                         {stat.label}
                       </p>
                     </motion.div>
                   ))}
                 </div>
 
-                <div className="mt-6 grid gap-5 border-t border-[var(--dossier-line)] pt-5 lg:grid-cols-[1fr_1fr]">
+                <div className="mt-3 grid gap-2.5 border-t border-[var(--dossier-line)] pt-3 sm:grid-cols-2 sm:gap-4">
                   <div>
-                    <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-subtle)]">
+                    <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-subtle)]">
                       My role
                     </p>
-                    <ul className="mt-2.5 space-y-1.5 text-[13px] leading-relaxed text-[var(--dossier-body)]">
-                      {deployments[0].role.map((item) => (
-                        <li key={item} className="relative pl-3 before:absolute before:left-0 before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:bg-[var(--dossier-subtle)]">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+                    <p className="mt-1 text-[12px] leading-snug text-[var(--dossier-body)]">
+                      {deployments[0].role.join(" · ")}
+                    </p>
                   </div>
                   <div>
-                    <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-subtle)]">
+                    <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-subtle)]">
                       Outcome
                     </p>
-                    <p className="mt-2.5 text-[13px] leading-relaxed text-[var(--dossier-body)]">
+                    <p className="mt-1 text-[12px] leading-snug text-[var(--dossier-body)]">
                       <span className="font-semibold text-[var(--dossier-ink)]">
                         {deployments[0].outcomeHighlight}
                       </span>{" "}
@@ -679,7 +675,7 @@ export function OpenAIApplicationPage() {
               </div>
             </motion.article>
 
-            <div className="mt-3 grid gap-3 md:grid-cols-2">
+            <div className="mt-2.5 grid gap-2.5 md:grid-cols-2">
               {deployments.slice(1).map((deployment, idx) => (
                 <motion.article
                   key={deployment.title}
@@ -689,45 +685,45 @@ export function OpenAIApplicationPage() {
                   transition={{ duration: 0.5, delay: idx * 0.08, ease: EASE_OUT_STRONG }}
                   className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)]"
                 >
-                  <div className="p-5">
-                    <h3 className="text-base font-semibold tracking-tight text-[var(--dossier-ink)]">
+                  <div className="p-3.5">
+                    <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
                       {deployment.title}
                     </h3>
-                    <p className="mt-1 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
+                    <p className="mt-0.5 text-[12px] leading-snug text-[var(--dossier-muted)]">
                       {deployment.subtitle}
                     </p>
 
-                    <div className="mt-4 flex flex-wrap gap-5">
+                    <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
                       {deployment.stats.map((stat) => (
                         <div key={stat.label}>
-                          <p className="text-lg font-semibold tracking-tight text-[var(--dossier-ink)]">
+                          <p className="text-sm font-semibold tracking-tight text-[var(--dossier-ink)]">
                             {stat.value}
                           </p>
-                          <p className="text-[11px] text-[var(--dossier-muted)]">{stat.label}</p>
+                          <p className="text-[10px] text-[var(--dossier-muted)]">{stat.label}</p>
                         </div>
                       ))}
                     </div>
 
-                    <div className="mt-4 border-t border-[var(--dossier-line)] pt-4">
-                      <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-subtle)]">
-                        My role
-                      </p>
-                      <ul className="mt-2 space-y-1 text-[13px] leading-relaxed text-[var(--dossier-body)]">
-                        {deployment.role.map((item) => (
-                          <li key={item} className="relative pl-3 before:absolute before:left-0 before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:bg-[var(--dossier-subtle)]">
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="mt-4 border-t border-[var(--dossier-line)] pt-4">
-                      <p className="text-[13px] leading-relaxed text-[var(--dossier-body)]">
-                        <span className="font-semibold text-[var(--dossier-ink)]">
-                          {deployment.outcomeHighlight}
-                        </span>{" "}
-                        {deployment.outcome}
-                      </p>
+                    <div className="mt-2.5 grid gap-2 border-t border-[var(--dossier-line)] pt-2.5 sm:grid-cols-2 sm:gap-3">
+                      <div>
+                        <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-subtle)]">
+                          My role
+                        </p>
+                        <p className="mt-0.5 text-[12px] leading-snug text-[var(--dossier-body)]">
+                          {deployment.role.join(" · ")}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-subtle)]">
+                          Outcome
+                        </p>
+                        <p className="mt-0.5 text-[12px] leading-snug text-[var(--dossier-body)]">
+                          <span className="font-semibold text-[var(--dossier-ink)]">
+                            {deployment.outcomeHighlight}
+                          </span>{" "}
+                          {deployment.outcome}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </motion.article>
