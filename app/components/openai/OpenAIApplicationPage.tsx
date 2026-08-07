@@ -530,9 +530,11 @@ export function OpenAIApplicationPage() {
                   <span aria-hidden="true" />
                   Application page
                 </p>
-                <h1 className="dossier-hero-title">I turn enterprise AI from idea into adoption.</h1>
+                <h1 className="dossier-hero-title">
+                  Enterprise AI leader, builder and founder - turning frontier AI into production across startups and large organisations.
+                </h1>
                 <p className="mt-5 max-w-[56ch] text-base leading-relaxed text-[var(--dossier-body)] md:mt-8">
-                  AI Lead at Zurich Airport. Founder and builder at KI Unlocked. Helped 5+ companies become AI-native (2+ years as AI Lead) and built 15+ products.
+                  AI Lead at Zurich Airport, Founder of KI-Unlocked, turning 10+ companies AI-native. GPT-3 since 2020 with 15+ AI applications built.
                 </p>
                 <div className="mt-5 flex flex-wrap items-center gap-4 md:mt-7">
                   <a
