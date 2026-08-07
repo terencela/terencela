@@ -20,14 +20,16 @@ type DossierThemeContextValue = {
 };
 
 const DossierThemeContext = createContext<DossierThemeContextValue>({
-  theme: "light",
+  theme: "dark",
   setTheme: () => undefined,
   toggleTheme: () => undefined,
 });
 
 function getInitialTheme(): DossierTheme {
-  if (typeof window === "undefined") return "light";
-  return window.localStorage.getItem(STORAGE_KEY) === "dark" ? "dark" : "light";
+  if (typeof window === "undefined") return "dark";
+  const stored = window.localStorage.getItem(STORAGE_KEY);
+  if (stored === "light") return "light";
+  return "dark";
 }
 
 function applyThemeToDocument(theme: DossierTheme) {
