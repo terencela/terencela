@@ -225,50 +225,40 @@ const accentStyles = {
   "--hero-accent": "#10a37f",
 } as CSSProperties;
 
-const flywheelStages = [
-  { label: "Discover", desc: "Map the problem, stakeholders and constraints." },
-  { label: "Decide", desc: "Align budget owners, define what 'shipped' means." },
-  { label: "Build", desc: "Prototype fast, validate with real users." },
-  { label: "Deploy", desc: "Eval gates, data boundaries, rollback plans." },
-  { label: "Scale", desc: "New teams, monitoring, feed learnings back." },
-];
+const deploymentStages = [
+  {
+    label: "Discover",
+    desc: "Map stakeholders, data boundaries and who can say yes.",
+    runs: "Intake - call arrives, language detect, intent classify",
+    blocker: "Procurement cycles and too many stakeholders, no single owner.",
+  },
+  {
+    label: "Decide",
+    desc: "Align legal, IT and the business on what shipped means.",
+    runs: "Governance - eval criteria, audit trail, sign-off path",
+    blocker: "Legal and IT want different guarantees than the business.",
+  },
+  {
+    label: "Build",
+    desc: "Prototype on real traffic, not sandbox demos.",
+    runs: "Orchestration - routing, context load, knowledge retrieval",
+    blocker: "Edge cases in DE, FR and IT break trust before go-live.",
+  },
+  {
+    label: "Deploy",
+    desc: "Eval gates, rollback plans, production sign-off.",
+    runs: "Execution - generate, safety filter, voice synthesis",
+    blocker: "Fear of passenger-facing voice AI in a regulated airport.",
+  },
+  {
+    label: "Scale",
+    desc: "Handoff, monitoring and ownership inside the org.",
+    runs: "Governance - eval gate, audit log, rollback trigger",
+    blocker: "Adoption fades without an internal owner after launch.",
+  },
+] as const;
 
-const stageSystemLinks = [
-  { layerId: "intake", blocker: "Weak stakeholder alignment." },
-  { layerId: "governance", blocker: "Low decision power from buyers and champions." },
-  { layerId: "orchestration", blocker: "Edge cases break trust fast." },
-  { layerId: "execution", blocker: "Fear of risk blocks go-live." },
-  { layerId: "governance", blocker: "Trust and adoption decay without ownership." },
-];
-
-const archLayers = [
-  {
-    id: "intake",
-    label: "Intake",
-    nodes: ["Call arrives", "Language detect", "Intent classify"],
-    color: "#10a37f",
-  },
-  {
-    id: "orchestration",
-    label: "Orchestration",
-    nodes: ["Route to agent", "Context load", "Knowledge retrieval"],
-    color: "#10a37f",
-  },
-  {
-    id: "execution",
-    label: "Execution",
-    nodes: ["Generate response", "Safety filter", "Voice synthesis"],
-    color: "#10a37f",
-  },
-  {
-    id: "governance",
-    label: "Governance",
-    nodes: ["Eval gate", "Audit log", "Rollback trigger"],
-    color: "#10a37f",
-  },
-];
-
-function DeploymentArchitecture({
+function DeploymentSystem({
   reduceMotion,
   activeStageIdx,
   onStageSelect,
@@ -277,110 +267,13 @@ function DeploymentArchitecture({
   activeStageIdx: number;
   onStageSelect: (idx: number) => void;
 }) {
-  const activeLink = stageSystemLinks[activeStageIdx] ?? stageSystemLinks[0];
-  const activeStage = flywheelStages[activeStageIdx] ?? flywheelStages[0];
-  const activeLayer = archLayers.find((layer) => layer.id === activeLink.layerId) ?? archLayers[0];
-
-  return (
-    <section className="dossier-section relative z-[2] pt-6">
-      <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
-          Under the hood
-        </p>
-        <h2 className="mt-2 text-[clamp(22px,2.6vw,30px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-          How I architect a deployment
-        </h2>
-        <p className="mt-1.5 text-[13px] text-[var(--dossier-muted)]">
-          Tap a stage - this layer and blocker update.
-        </p>
-
-        <div className="mt-4 grid gap-2 rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-3 text-[11px] md:grid-cols-3 md:items-center">
-          <div className="rounded-md border border-[#10a37f]/30 bg-[#10a37f]/[0.06] px-3 py-2 text-[#10a37f]">
-            Stage: <span className="font-semibold">{activeStage.label}</span>
-          </div>
-          <div className="rounded-md border border-[var(--dossier-line)] px-3 py-2 text-[var(--dossier-ink)]">
-            Layer: <span className="font-semibold">{activeLayer.label}</span>
-          </div>
-          <div className="rounded-md border border-[var(--dossier-line)] px-3 py-2 text-[var(--dossier-body)]">
-            Blocker: <span className="font-semibold text-[var(--dossier-ink)]">{activeLink.blocker}</span>
-          </div>
-        </div>
-
-        <div className="mt-4 grid gap-3 sm:grid-cols-4">
-          {archLayers.map((layer, li) => {
-            const isActive = activeLayer.id === layer.id;
-            return (
-              <motion.button
-                key={layer.id}
-                type="button"
-                className={`group relative rounded-xl border p-5 text-left transition-colors duration-200 ${
-                  isActive
-                    ? "border-[#10a37f]/40 bg-[#10a37f]/[0.06]"
-                    : "border-[var(--dossier-line)] bg-[var(--dossier-panel)] hover:border-[#10a37f]/20"
-                }`}
-                onClick={() => {
-                  const mappedIdx = stageSystemLinks.findIndex((item) => item.layerId === layer.id);
-                  if (mappedIdx >= 0) onStageSelect(mappedIdx);
-                }}
-                initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: li * 0.07, ease: EASE_OUT_STRONG }}
-              >
-                <div className="mb-3 flex items-center justify-between">
-                  <span className="text-[10px] font-bold text-[#10a37f]">
-                    L{li + 1}
-                  </span>
-                  <span
-                    className={`h-1.5 w-1.5 rounded-full transition-colors ${
-                      isActive ? "bg-[#10a37f]" : "bg-[var(--dossier-subtle)]"
-                    }`}
-                  />
-                </div>
-                <p className="text-[14px] font-semibold text-[var(--dossier-ink)]">
-                  {layer.label}
-                </p>
-                <ul className={`mt-3 space-y-1.5 overflow-hidden transition-all duration-300 ${
-                  isActive ? "max-h-40 opacity-100" : "max-h-0 opacity-0 sm:max-h-40 sm:opacity-60"
-                }`}>
-                  {layer.nodes.map((node) => (
-                    <li
-                      key={node}
-                      className="flex items-center gap-2 text-[11px] text-[var(--dossier-muted)]"
-                    >
-                      <span className="h-px w-3 bg-[#10a37f]/40" />
-                      {node}
-                    </li>
-                  ))}
-                </ul>
-              </motion.button>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function DeploymentFlywheel({
-  reduceMotion,
-  activeStageIdx,
-  onStageSelect,
-  activeLayerLabel,
-  activeBlocker,
-}: {
-  reduceMotion: boolean | null;
-  activeStageIdx: number;
-  onStageSelect: (idx: number) => void;
-  activeLayerLabel: string;
-  activeBlocker: string;
-}) {
-  const stages = flywheelStages;
+  const stages = deploymentStages;
+  const active = stages[activeStageIdx] ?? stages[0];
   const R = 140;
   const cx = 200;
   const cy = 200;
   const startAngle = -90;
-  const nodeR = 32;
+  const nodeR = 34;
 
   const positions = stages.map((_, i) => {
     const angle = startAngle + (i * 360) / stages.length;
@@ -388,145 +281,129 @@ function DeploymentFlywheel({
     return { x: cx + R * Math.cos(rad), y: cy + R * Math.sin(rad) };
   });
 
-  const active = stages[activeStageIdx] ?? stages[0];
-
   return (
     <section className="dossier-section relative z-[2] pt-6">
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-        <h2 className="text-center text-[clamp(22px,2.6vw,30px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
+        <h2 className="text-[clamp(24px,3vw,34px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
           How I move from zero to deployed
         </h2>
-        <p className="mx-auto mt-1.5 max-w-[40ch] text-center text-[13px] text-[var(--dossier-muted)]">
-          Tap a stage to inspect layer and blocker.
+        <p className="mt-2 max-w-[52ch] text-sm text-[var(--dossier-body)]">
+          Five stages. One loop. Tap a stage to see what runs and what usually blocks it.
         </p>
 
-        <motion.div
-          className="relative mx-auto mt-6 w-full max-w-[380px]"
-          initial={reduceMotion ? false : { opacity: 0, scale: 0.92 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: EASE_OUT_STRONG }}
-        >
-          <svg viewBox="0 0 400 400" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx={cx} cy={cy} r={R} stroke="var(--dossier-line)" strokeWidth="1" />
+        <div className="mt-8 grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:gap-12">
+          <motion.div
+            className="relative mx-auto w-full max-w-[380px] lg:mx-0 lg:max-w-none"
+            initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: EASE_OUT_STRONG }}
+          >
+            <svg viewBox="0 0 400 400" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx={cx} cy={cy} r={R} stroke="var(--dossier-line)" strokeWidth="1" />
 
-            <motion.circle
-              cx={cx}
-              cy={cy}
-              r={R}
-              stroke="#10a37f"
-              strokeWidth="2"
-              strokeDasharray={`${2 * Math.PI * R}`}
-              strokeDashoffset={2 * Math.PI * R}
-              strokeLinecap="round"
-              style={{ transformOrigin: `${cx}px ${cy}px`, rotate: "-90deg" }}
-              initial={reduceMotion ? { strokeDashoffset: 0 } : undefined}
-              whileInView={reduceMotion ? undefined : { strokeDashoffset: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.8, ease: [0.23, 1, 0.32, 1] }}
-            />
-
-            {positions.map((p, i) => {
-              const next = positions[(i + 1) % positions.length];
-              const mx = (p.x + next.x) / 2;
-              const my = (p.y + next.y) / 2;
-              const dx = next.x - p.x;
-              const dy = next.y - p.y;
-              const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
-              return (
-                <polygon
-                  key={`arrow-${i}`}
-                  points="0,-3 7,0 0,3"
-                  fill="#10a37f"
-                  opacity="0.5"
-                  transform={`translate(${mx},${my}) rotate(${angle})`}
-                />
-              );
-            })}
-
-            {stages.map((stage, i) => {
-              const p = positions[i];
-              const isActive = activeStageIdx === i;
-              return (
-                <g
-                  key={stage.label}
-                  onClick={() => onStageSelect(i)}
-                  className="cursor-pointer"
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") onStageSelect(i);
-                  }}
-                >
-                  <circle
-                    cx={p.x}
-                    cy={p.y}
-                    r={nodeR}
-                    fill={isActive ? "#10a37f" : "var(--dossier-panel)"}
-                    stroke="#10a37f"
-                    strokeWidth={isActive ? "2.5" : "1.5"}
-                    className="transition-all duration-200"
+              {positions.map((p, i) => {
+                const next = positions[(i + 1) % positions.length];
+                const mx = (p.x + next.x) / 2;
+                const my = (p.y + next.y) / 2;
+                const dx = next.x - p.x;
+                const dy = next.y - p.y;
+                const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
+                return (
+                  <polygon
+                    key={`arrow-${stages[i].label}`}
+                    points="0,-2.5 5,0 0,2.5"
+                    fill="var(--dossier-subtle)"
+                    transform={`translate(${mx},${my}) rotate(${angle})`}
                   />
-                  <text
-                    x={p.x}
-                    y={p.y - 5}
-                    textAnchor="middle"
-                    dominantBaseline="central"
-                    fill={isActive ? "#fff" : "#10a37f"}
-                    fontSize="8"
-                    fontWeight="700"
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </text>
-                  <text
-                    x={p.x}
-                    y={p.y + 8}
-                    textAnchor="middle"
-                    dominantBaseline="central"
-                    className={isActive ? "fill-white" : "fill-[var(--dossier-ink)]"}
-                    fontSize="9"
-                    fontWeight="600"
-                  >
-                    {stage.label}
-                  </text>
-                </g>
-              );
-            })}
+                );
+              })}
 
-            <foreignObject x={cx - 90} y={cy - 44} width="180" height="88">
-              <div className="flex h-full flex-col items-center justify-center text-center">
-                <p className="text-[13px] font-bold tracking-tight text-[var(--dossier-ink)]">
-                  {active.label}
+              {stages.map((stage, i) => {
+                const p = positions[i];
+                const isActive = activeStageIdx === i;
+                return (
+                  <g
+                    key={stage.label}
+                    onClick={() => onStageSelect(i)}
+                    className="cursor-pointer"
+                    role="button"
+                    tabIndex={0}
+                    aria-pressed={isActive}
+                    aria-label={`${stage.label}: ${stage.desc}`}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") onStageSelect(i);
+                    }}
+                  >
+                    <circle
+                      cx={p.x}
+                      cy={p.y}
+                      r={nodeR}
+                      fill={isActive ? "#10a37f" : "var(--dossier-panel)"}
+                      stroke={isActive ? "#10a37f" : "var(--dossier-line-strong)"}
+                      strokeWidth={isActive ? "2" : "1"}
+                    />
+                    <text
+                      x={p.x}
+                      y={p.y + 1}
+                      textAnchor="middle"
+                      dominantBaseline="central"
+                      className={isActive ? "fill-white" : "fill-[var(--dossier-ink)]"}
+                      fontSize="10"
+                      fontWeight="600"
+                    >
+                      {stage.label}
+                    </text>
+                  </g>
+                );
+              })}
+            </svg>
+          </motion.div>
+
+          <div className="border-t border-[var(--dossier-line)] pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
+            <p className="text-lg font-semibold tracking-tight text-[var(--dossier-ink)]">
+              {active.label}
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-[var(--dossier-body)]">
+              {active.desc}
+            </p>
+            <div className="mt-6 space-y-5">
+              <div>
+                <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-muted)]">
+                  What runs
                 </p>
-                <p className="mt-0.5 text-[8px] text-[#10a37f]">
-                  {activeLayerLabel}
+                <p className="mt-1.5 text-sm text-[var(--dossier-ink)]">{active.runs}</p>
+              </div>
+              <div>
+                <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-muted)]">
+                  What blocks it
                 </p>
-                <p className="mt-0.5 text-[8px] leading-[1.35] text-[var(--dossier-muted)]">
-                  {activeBlocker}
+                <p className="mt-1.5 text-sm leading-relaxed text-[var(--dossier-body)]">
+                  {active.blocker}
                 </p>
               </div>
-            </foreignObject>
-          </svg>
-        </motion.div>
+            </div>
 
-        <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5 sm:hidden">
-          {stages.map((stage, i) => {
-            const isActive = i === activeStageIdx;
-            return (
-              <button
-                key={stage.label}
-                type="button"
-                onClick={() => onStageSelect(i)}
-                className={`rounded-full px-2.5 py-1 text-[10px] ${
-                  isActive
-                    ? "bg-[#10a37f] text-white"
-                    : "border border-[var(--dossier-line)] text-[var(--dossier-muted)]"
-                }`}
-              >
-                {String(i + 1).padStart(2, "0")} {stage.label}
-              </button>
-            );
-          })}
+            <div className="mt-8 flex flex-wrap gap-2 lg:hidden">
+              {stages.map((stage, i) => {
+                const isActive = i === activeStageIdx;
+                return (
+                  <button
+                    key={stage.label}
+                    type="button"
+                    onClick={() => onStageSelect(i)}
+                    className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                      isActive
+                        ? "bg-[var(--dossier-ink)] text-[var(--dossier-panel)]"
+                        : "border border-[var(--dossier-line)] text-[var(--dossier-muted)]"
+                    }`}
+                  >
+                    {stage.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -536,8 +413,6 @@ function DeploymentFlywheel({
 export function OpenAIApplicationPage() {
   const reduceMotion = useReducedMotion();
   const [activeStageIdx, setActiveStageIdx] = useState(0);
-  const activeLink = stageSystemLinks[activeStageIdx] ?? stageSystemLinks[0];
-  const activeLayer = archLayers.find((layer) => layer.id === activeLink.layerId) ?? archLayers[0];
 
   return (
     <DossierThemeProvider>
@@ -861,54 +736,11 @@ export function OpenAIApplicationPage() {
           </div>
         </section>
 
-        <DeploymentFlywheel
-          reduceMotion={reduceMotion}
-          activeStageIdx={activeStageIdx}
-          onStageSelect={setActiveStageIdx}
-          activeLayerLabel={activeLayer.label}
-          activeBlocker={activeLink.blocker}
-        />
-
-        <DeploymentArchitecture
+        <DeploymentSystem
           reduceMotion={reduceMotion}
           activeStageIdx={activeStageIdx}
           onStageSelect={setActiveStageIdx}
         />
-
-        <section className="dossier-section relative z-[2] pt-5">
-          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <h2 className="text-[clamp(26px,3.2vw,36px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-              What blocks each stage
-            </h2>
-            <p className="mt-1.5 text-[13px] text-[var(--dossier-muted)]">
-              Same control model. Tap to switch all views.
-            </p>
-            <div className="mt-4 grid gap-2 sm:grid-cols-5">
-              {flywheelStages.map((stage, i) => {
-                const isActive = i === activeStageIdx;
-                return (
-                  <button
-                    key={stage.label}
-                    type="button"
-                    onClick={() => setActiveStageIdx(i)}
-                    className={`rounded-xl border p-3 text-left transition-colors duration-200 ${
-                      isActive
-                        ? "border-[#10a37f]/40 bg-[#10a37f]/[0.06]"
-                        : "border-[var(--dossier-line)] bg-[var(--dossier-panel)] hover:border-[#10a37f]/20"
-                    }`}
-                  >
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#10a37f]">
-                      {String(i + 1).padStart(2, "0")} {stage.label}
-                    </p>
-                    <p className="mt-1 text-[11px] leading-relaxed text-[var(--dossier-body)]">
-                      {stageSystemLinks[i].blocker}
-                    </p>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </section>
 
         <section className="dossier-section relative z-[2] pt-6">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
