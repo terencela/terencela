@@ -524,14 +524,14 @@ export function OpenAIApplicationPage() {
 
         <section className="dossier-section dossier-section-tight relative z-[2] !pb-4 !pt-7 md:!pt-10">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(200px,240px)] lg:gap-8">
-              <div>
+            <div className="grid items-start gap-5 md:grid-cols-[minmax(0,1fr)_minmax(180px,230px)] md:gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(220px,260px)]">
+              <div className="max-w-[760px]">
                 <p className="dossier-eyebrow">
                   <span aria-hidden="true" />
                   Application page
                 </p>
                 <h1 className="dossier-hero-title">I turn enterprise AI from idea into adoption.</h1>
-                <p className="mt-4 max-w-[60ch] text-base leading-relaxed text-[var(--dossier-body)] md:mt-6">
+                <p className="mt-4 max-w-[56ch] text-base leading-relaxed text-[var(--dossier-body)] md:mt-6">
                   AI lead at Zurich Airport. Builder at KI Unlocked. I ship where pilots die in procurement.
                 </p>
                 <div className="mt-5 flex flex-wrap items-center gap-4 md:mt-7">
@@ -556,8 +556,8 @@ export function OpenAIApplicationPage() {
                 </div>
               </div>
 
-              <aside className="relative mx-auto w-full max-w-[200px] sm:max-w-[240px] lg:mx-0 lg:ml-auto lg:max-w-none">
-                <div className="dossier-profile-frame aspect-[4/5] w-full lg:max-w-[240px]">
+              <aside className="relative mx-auto mt-1 w-full max-w-[180px] sm:max-w-[210px] md:mx-0 md:mt-0 md:justify-self-end lg:max-w-[250px]">
+                <div className="dossier-profile-frame aspect-[4/5] w-full">
                   <Image
                     src="/images/terence-la-profile.png"
                     alt="Terence La profile"
