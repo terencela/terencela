@@ -57,7 +57,7 @@ type SelectedProject = {
   visual: string;
   description: string;
   evidence: string;
-  url: string;
+  url?: string;
 };
 
 const qualificationPillars: QualificationPillar[] = [
@@ -170,6 +170,16 @@ const selectedProjects: SelectedProject[] = [
     url: "https://privacy.terencela.com",
   },
   {
+    name: "Engineering Office OS",
+    category: "Enterprise AI",
+    stage: "In delivery",
+    accent: "blue",
+    visual: "knowledge",
+    description:
+      "An AI operating system that connects project history, decisions, documents and expertise across engineering offices.",
+    evidence: "Vertical system designed",
+  },
+  {
     name: "Vibe Translator",
     category: "Human intelligence",
     stage: "Building",
@@ -179,6 +189,17 @@ const selectedProjects: SelectedProject[] = [
       "The human-context layer for communication: decoding tone, personality, culture and relationship dynamics before helping you respond.",
     evidence: "Interactive product prototype",
     url: "https://vibe.terencela.com",
+  },
+  {
+    name: "AirCompanion",
+    category: "Travel",
+    stage: "Venture",
+    accent: "cyan",
+    visual: "travel",
+    description:
+      "A contextual AI companion guiding passengers through the airport journey before, during and after travel.",
+    evidence: "Product system designed",
+    url: "https://app.aircompanion.app",
   },
   {
     name: "Asia Bridge",
@@ -650,36 +671,54 @@ export function OpenAIApplicationPage() {
               Selected projects
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-[var(--dossier-muted)]">
-              Five personal products across AI infrastructure, human intelligence and voice.
+              Seven personal products across AI infrastructure, human intelligence and voice.
             </p>
             <div className="project-grid mt-6">
-              {selectedProjects.map((project, index) => (
-                <a
-                  key={project.name}
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`project-card accent-${project.accent}`}
-                >
-                  <div className="card-topline">
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <span className="stage-badge">{project.stage}</span>
-                  </div>
-                  <ProductVisual type={project.visual} />
-                  <div className="card-copy">
-                    <small>{project.category}</small>
-                    <h3>{project.name}</h3>
-                    <p>{project.description}</p>
-                    <div className="evidence">
-                      <span>Evidence</span>
-                      <b>{project.evidence}</b>
+              {selectedProjects.map((project, index) => {
+                const inner = (
+                  <>
+                    <div className="card-topline">
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <span className="stage-badge">{project.stage}</span>
                     </div>
+                    <ProductVisual type={project.visual} />
+                    <div className="card-copy">
+                      <small>{project.category}</small>
+                      <h3>{project.name}</h3>
+                      <p>{project.description}</p>
+                      <div className="evidence">
+                        <span>Evidence</span>
+                        <b>{project.evidence}</b>
+                      </div>
+                    </div>
+                    {project.url && (
+                      <span className="card-arrow">
+                        <ArrowUpRight className="h-4 w-4" />
+                      </span>
+                    )}
+                  </>
+                );
+
+                return project.url ? (
+                  <a
+                    key={project.name}
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`project-card accent-${project.accent}`}
+                  >
+                    {inner}
+                  </a>
+                ) : (
+                  <div
+                    key={project.name}
+                    className={`project-card accent-${project.accent}`}
+                    style={{ cursor: "default" }}
+                  >
+                    {inner}
                   </div>
-                  <span className="card-arrow">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </span>
-                </a>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
