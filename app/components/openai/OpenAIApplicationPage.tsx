@@ -347,143 +347,150 @@ function DeploymentArchitecture({ reduceMotion }: { reduceMotion: boolean | null
 }
 
 function DeploymentFlywheel({ reduceMotion }: { reduceMotion: boolean | null }) {
+  const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const stages = flywheelStages;
-  const R = 160;
+  const R = 140;
   const cx = 200;
   const cy = 200;
   const startAngle = -90;
+  const nodeR = 32;
 
   const positions = stages.map((_, i) => {
     const angle = startAngle + (i * 360) / stages.length;
     const rad = (angle * Math.PI) / 180;
-    return { x: cx + R * Math.cos(rad), y: cy + R * Math.sin(rad), angle };
+    return { x: cx + R * Math.cos(rad), y: cy + R * Math.sin(rad) };
   });
+
+  const active = activeIdx !== null ? stages[activeIdx] : null;
 
   return (
     <section className="dossier-section relative z-[2] pt-8">
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-        <div className="grid items-center gap-8 lg:grid-cols-[1fr_1fr]">
-          <div>
-            <h2 className="text-[clamp(22px,2.6vw,30px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-              How I move from zero to deployed
-            </h2>
-            <p className="mt-1.5 max-w-[50ch] text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-              Five stages. Each compounds across engagements.
-            </p>
-            <ul className="mt-6 space-y-4">
-              {stages.map((stage, i) => (
-                <motion.li
+        <h2 className="text-center text-[clamp(22px,2.6vw,30px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
+          How I move from zero to deployed
+        </h2>
+        <p className="mx-auto mt-1.5 max-w-[40ch] text-center text-[13px] text-[var(--dossier-muted)]">
+          Five stages. Tap any stage.
+        </p>
+
+        <motion.div
+          className="relative mx-auto mt-6 w-full max-w-[380px]"
+          initial={reduceMotion ? false : { opacity: 0, scale: 0.92 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: EASE_OUT_STRONG }}
+        >
+          <svg viewBox="0 0 400 400" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx={cx} cy={cy} r={R} stroke="var(--dossier-line)" strokeWidth="1" />
+
+            <motion.circle
+              cx={cx}
+              cy={cy}
+              r={R}
+              stroke="#10a37f"
+              strokeWidth="2"
+              strokeDasharray={`${2 * Math.PI * R}`}
+              strokeDashoffset={2 * Math.PI * R}
+              strokeLinecap="round"
+              style={{ transformOrigin: `${cx}px ${cy}px`, rotate: "-90deg" }}
+              initial={reduceMotion ? { strokeDashoffset: 0 } : undefined}
+              whileInView={reduceMotion ? undefined : { strokeDashoffset: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.8, ease: [0.23, 1, 0.32, 1] }}
+            />
+
+            {positions.map((p, i) => {
+              const next = positions[(i + 1) % positions.length];
+              const mx = (p.x + next.x) / 2;
+              const my = (p.y + next.y) / 2;
+              const dx = next.x - p.x;
+              const dy = next.y - p.y;
+              const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
+              return (
+                <polygon
+                  key={`arrow-${i}`}
+                  points="0,-3 7,0 0,3"
+                  fill="#10a37f"
+                  opacity="0.5"
+                  transform={`translate(${mx},${my}) rotate(${angle})`}
+                />
+              );
+            })}
+
+            {stages.map((stage, i) => {
+              const p = positions[i];
+              const isActive = activeIdx === i;
+              return (
+                <g
                   key={stage.label}
-                  className="flex gap-4"
-                  initial={reduceMotion ? false : { opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: i * 0.06, ease: EASE_OUT_STRONG }}
+                  onClick={() => setActiveIdx(isActive ? null : i)}
+                  className="cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") setActiveIdx(isActive ? null : i);
+                  }}
                 >
-                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#10a37f] text-[10px] font-bold text-white">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <p className="text-[14px] font-semibold text-[var(--dossier-ink)]">{stage.label}</p>
-                    <p className="mt-0.5 text-[12px] leading-relaxed text-[var(--dossier-muted)]">{stage.desc}</p>
-                  </div>
-                </motion.li>
-              ))}
-            </ul>
-          </div>
-
-          <motion.div
-            className="relative mx-auto w-full max-w-[400px]"
-            initial={reduceMotion ? false : { opacity: 0, scale: 0.92 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: EASE_OUT_STRONG }}
-          >
-            <svg viewBox="0 0 400 400" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx={cx} cy={cy} r={R} stroke="var(--dossier-line)" strokeWidth="1" />
-
-              <motion.circle
-                cx={cx}
-                cy={cy}
-                r={R}
-                stroke="#10a37f"
-                strokeWidth="2"
-                strokeDasharray={`${2 * Math.PI * R}`}
-                strokeDashoffset={2 * Math.PI * R}
-                strokeLinecap="round"
-                style={{ transformOrigin: `${cx}px ${cy}px`, rotate: "-90deg" }}
-                initial={reduceMotion ? { strokeDashoffset: 0 } : undefined}
-                whileInView={reduceMotion ? undefined : { strokeDashoffset: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.8, ease: [0.23, 1, 0.32, 1] }}
-              />
-
-              {stages.map((stage, i) => {
-                const p = positions[i];
-                return (
-                  <g key={stage.label}>
-                    <circle cx={p.x} cy={p.y} r="28" fill="var(--dossier-panel)" stroke="#10a37f" strokeWidth="1.5" />
-                    <text
-                      x={p.x}
-                      y={p.y + 1}
-                      textAnchor="middle"
-                      dominantBaseline="central"
-                      className="fill-[var(--dossier-ink)]"
-                      fontSize="9"
-                      fontWeight="600"
-                      letterSpacing="0.03em"
-                    >
-                      {stage.label}
-                    </text>
-                  </g>
-                );
-              })}
-
-              <text
-                x={cx}
-                y={cy - 8}
-                textAnchor="middle"
-                dominantBaseline="central"
-                className="fill-[var(--dossier-ink)]"
-                fontSize="13"
-                fontWeight="700"
-                letterSpacing="-0.02em"
-              >
-                Flywheel
-              </text>
-              <text
-                x={cx}
-                y={cy + 10}
-                textAnchor="middle"
-                dominantBaseline="central"
-                className="fill-[var(--dossier-muted)]"
-                fontSize="8.5"
-              >
-                Each cycle compounds
-              </text>
-
-              {positions.map((p, i) => {
-                const next = positions[(i + 1) % positions.length];
-                const mx = (p.x + next.x) / 2;
-                const my = (p.y + next.y) / 2;
-                const dx = next.x - p.x;
-                const dy = next.y - p.y;
-                const len = Math.sqrt(dx * dx + dy * dy);
-                const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
-                if (len < 1) return null;
-                return (
-                  <polygon
-                    key={`arrow-${i}`}
-                    points="0,-3 7,0 0,3"
-                    fill="#10a37f"
-                    opacity="0.7"
-                    transform={`translate(${mx},${my}) rotate(${angle})`}
+                  <circle
+                    cx={p.x}
+                    cy={p.y}
+                    r={nodeR}
+                    fill={isActive ? "#10a37f" : "var(--dossier-panel)"}
+                    stroke="#10a37f"
+                    strokeWidth={isActive ? "2.5" : "1.5"}
+                    className="transition-all duration-200"
                   />
-                );
-              })}
-            </svg>
-          </motion.div>
-        </div>
+                  <text
+                    x={p.x}
+                    y={p.y - 5}
+                    textAnchor="middle"
+                    dominantBaseline="central"
+                    fill={isActive ? "#fff" : "#10a37f"}
+                    fontSize="8"
+                    fontWeight="700"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </text>
+                  <text
+                    x={p.x}
+                    y={p.y + 8}
+                    textAnchor="middle"
+                    dominantBaseline="central"
+                    className={isActive ? "fill-white" : "fill-[var(--dossier-ink)]"}
+                    fontSize="9"
+                    fontWeight="600"
+                  >
+                    {stage.label}
+                  </text>
+                </g>
+              );
+            })}
+
+            <foreignObject x={cx - 80} y={cy - 36} width="160" height="72">
+              <div className="flex h-full flex-col items-center justify-center text-center" xmlns="http://www.w3.org/1999/xhtml">
+                {active ? (
+                  <>
+                    <p className="text-[14px] font-bold tracking-tight text-[var(--dossier-ink)]">
+                      {active.label}
+                    </p>
+                    <p className="mt-1 text-[8.5px] leading-[1.4] text-[var(--dossier-muted)]">
+                      {active.desc}
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-[13px] font-bold tracking-tight text-[var(--dossier-ink)]">
+                      Flywheel
+                    </p>
+                    <p className="mt-0.5 text-[8.5px] text-[var(--dossier-muted)]">
+                      Each cycle compounds
+                    </p>
+                  </>
+                )}
+              </div>
+            </foreignObject>
+          </svg>
+        </motion.div>
       </div>
     </section>
   );
