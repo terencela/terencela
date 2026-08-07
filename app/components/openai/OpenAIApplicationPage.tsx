@@ -454,15 +454,15 @@ export function OpenAIApplicationPage() {
                 <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
                   Translate between executives, engineers and end users to keep projects moving.
                 </p>
-                <div className="mt-auto pt-6">
-                  <svg viewBox="0 0 200 72" className="h-[64px] w-full max-w-[200px]" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <text x="8" y="12" fontSize="11" fontWeight="600" className="fill-[var(--dossier-ink)]">Business</text>
-                    <text x="132" y="12" fontSize="11" fontWeight="600" className="fill-[var(--dossier-ink)]">Engineering</text>
-                    <text x="78" y="68" fontSize="11" fontWeight="600" className="fill-[var(--dossier-ink)]">User</text>
-                    <line x1="55" y1="16" x2="130" y2="16" stroke="#10a37f" strokeWidth="1.2" />
-                    <line x1="45" y1="18" x2="88" y2="54" stroke="#10a37f" strokeWidth="1.2" />
-                    <line x1="155" y1="18" x2="105" y2="54" stroke="#10a37f" strokeWidth="1.2" />
-                  </svg>
+                <div className="mt-auto flex items-center gap-2 pt-6">
+                  {["Executives", "Engineers", "End users"].map((role, i) => (
+                    <React.Fragment key={role}>
+                      <span className="rounded-md border border-[var(--dossier-line)] px-2.5 py-1 text-[10px] font-medium text-[var(--dossier-ink)]">
+                        {role}
+                      </span>
+                      {i < 2 && <span className="text-[10px] text-[#10a37f]">&#8596;</span>}
+                    </React.Fragment>
+                  ))}
                 </div>
               </article>
             </div>
