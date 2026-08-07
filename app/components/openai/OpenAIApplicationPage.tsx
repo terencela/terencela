@@ -282,7 +282,7 @@ function DeploymentSystem({
   });
 
   return (
-    <section className="dossier-section relative z-[2] pt-6">
+    <section className="dossier-section-tight relative z-[2] !pt-0 !pb-6">
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
         <h2 className="text-[clamp(24px,3vw,34px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
           How I move from zero to deployed
@@ -291,9 +291,9 @@ function DeploymentSystem({
           Five stages. One loop. Tap a stage to see what runs and what usually blocks it.
         </p>
 
-        <div className="mt-8 grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:gap-12">
+        <div className="mt-5 grid items-start gap-5 lg:mt-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:gap-8">
           <motion.div
-            className="relative mx-auto w-full max-w-[380px] lg:mx-0 lg:max-w-none"
+            className="relative mx-auto w-full max-w-[min(72vw,300px)] lg:mx-0 lg:max-w-none"
             initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -360,7 +360,7 @@ function DeploymentSystem({
             </svg>
           </motion.div>
 
-          <div className="border-t border-[var(--dossier-line)] pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
+          <div className="border-t border-[var(--dossier-line)] pt-4 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
             <p className="text-lg font-semibold tracking-tight text-[var(--dossier-ink)]">
               {active.label}
             </p>
@@ -605,7 +605,7 @@ export function OpenAIApplicationPage() {
           </div>
         </section>
 
-        <section className="dossier-section relative z-[2] pt-8">
+        <section className="dossier-section relative z-[2] !pb-5">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <motion.h2
               className="text-[clamp(28px,3.7vw,44px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]"
@@ -742,7 +742,7 @@ export function OpenAIApplicationPage() {
           onStageSelect={setActiveStageIdx}
         />
 
-        <section className="dossier-section relative z-[2] pt-6">
+        <section className="dossier-section-tight relative z-[2] !pt-0">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
               Selected projects I created from scratch this year
