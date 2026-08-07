@@ -477,9 +477,11 @@ export function OpenAIApplicationPage() {
                   I work where pilots either become real workflows or die in procurement. That is
                   where I do my best work.
                 </p>
-                <div className="mt-5 flex flex-wrap items-center gap-3 md:mt-7">
+                <div className="mt-5 flex flex-wrap items-center gap-4 md:mt-7">
                   <a
-                    href="mailto:terencela.yt@gmail.com"
+                    href="https://www.linkedin.com/in/terencela"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="dossier-button-primary dossier-cta-accent dossier-pressable inline-flex"
                   >
                     Get in touch
@@ -489,10 +491,10 @@ export function OpenAIApplicationPage() {
                     href="https://xp.terencela.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 border border-[var(--dossier-line-strong)] px-5 py-2.5 text-[13px] font-medium text-[var(--dossier-ink)] transition-colors duration-200 hover:bg-[rgba(255,255,255,0.04)]"
+                    className="inline-flex items-center gap-1.5 text-[13px] text-[var(--dossier-muted)] transition-colors duration-200 hover:text-[var(--dossier-ink)]"
                   >
-                    See my portfolio
-                    <ArrowUpRight className="h-3.5 w-3.5" />
+                    See TerenceXP
+                    <ArrowUpRight className="h-3 w-3" />
                   </a>
                 </div>
               </div>

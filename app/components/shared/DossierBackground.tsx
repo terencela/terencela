@@ -19,6 +19,13 @@ export function DossierBackground({ accentColor }: DossierBackgroundProps) {
       />
       <div className="dossier-grain" aria-hidden="true" />
       <div className="dossier-dot-grid" aria-hidden="true" />
+      <div
+        className={`dossier-mesh-gradient${reduceMotion ? "" : " dossier-mesh-animate"}`}
+        aria-hidden="true"
+        style={{
+          "--mesh-accent": accentColor,
+        } as React.CSSProperties}
+      />
       <motion.div
         className={`dossier-accent-orb${reduceMotion ? "" : " dossier-accent-orb-float"}`}
         aria-hidden="true"

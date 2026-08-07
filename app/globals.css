@@ -489,6 +489,10 @@ html[data-dossier-theme="dark"] .dossier-dot-grid {
   opacity: 0.25;
 }
 
+html[data-dossier-theme="dark"] .dossier-mesh-gradient {
+  opacity: 0.5;
+}
+
 html[data-dossier-theme="dark"] .dossier-credibility-list li:hover,
 html[data-dossier-theme="dark"] .dossier-proof-row:hover,
 html[data-dossier-theme="dark"] .dossier-career-step:hover,
@@ -608,6 +612,35 @@ html[data-dossier-theme="dark"] .dossier-text-link {
   background-image: radial-gradient(rgba(26, 26, 26, 0.07) 1px, transparent 1px);
   background-size: 28px 28px;
   mask-image: radial-gradient(ellipse 85% 55% at 50% 0%, black 15%, transparent 72%);
+}
+
+.dossier-mesh-gradient {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.35;
+  background:
+    radial-gradient(ellipse 50% 40% at 20% 10%, color-mix(in srgb, var(--mesh-accent, #10a37f) 12%, transparent), transparent),
+    radial-gradient(ellipse 40% 35% at 75% 5%, color-mix(in srgb, var(--mesh-accent, #10a37f) 8%, transparent), transparent),
+    radial-gradient(ellipse 55% 30% at 50% 25%, rgba(99, 118, 255, 0.06), transparent);
+  mask-image: linear-gradient(to bottom, black 0%, transparent 55%);
+}
+
+.dossier-mesh-animate {
+  animation: dossier-mesh-shift 20s ease-in-out infinite;
+}
+
+@keyframes dossier-mesh-shift {
+  0%, 100% {
+    background-position: 0% 0%, 100% 0%, 50% 0%;
+  }
+  33% {
+    background-position: 30% 5%, 70% 10%, 40% 5%;
+  }
+  66% {
+    background-position: 10% 8%, 85% 3%, 60% 8%;
+  }
 }
 
 .dossier-accent-orb {
@@ -1571,7 +1604,8 @@ html[data-dossier-theme="dark"] .dossier-footer-copy {
   }
   .dossier-grain,
   .dossier-accent-orb-float,
-  .dossier-accent-orb-float-alt {
+  .dossier-accent-orb-float-alt,
+  .dossier-mesh-animate {
     animation: none !important;
     opacity: 0.03;
   }
