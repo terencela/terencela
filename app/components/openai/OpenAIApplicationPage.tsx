@@ -335,11 +335,10 @@ export function OpenAIApplicationPage() {
                   <span aria-hidden="true" />
                   Application page
                 </p>
-                <h1 className="dossier-hero-title">Forward Deployed Engineer, Zurich.</h1>
+                <h1 className="dossier-hero-title">I turn enterprise AI from idea into adoption.</h1>
                 <p className="mt-6 max-w-[68ch] text-base leading-relaxed text-[var(--dossier-body)]">
-                  I lead enterprise AI deployment at Zurich Airport and through KI Unlocked. I build
-                  working systems across regulated environments and bridge business and engineering
-                  in delivery-critical projects.
+                  I lead AI at Zurich Airport, build and deploy AI systems through KI Unlocked, and
+                  work across business, engineering and governance to get projects shipped.
                 </p>
                 <p className="mt-4 max-w-[64ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
                   I work where pilots either become real workflows or die in procurement. That is
