@@ -109,48 +109,68 @@ export function LoomVideoFrame({
               </div>
             </div>
           ) : (
-            <div className="relative flex min-h-[132px] items-stretch sm:min-h-[148px] md:min-h-[156px]">
+            <button
+              type="button"
+              onClick={() => setIsPlaying(true)}
+              className="dossier-pressable relative flex w-full min-h-[210px] items-stretch text-left sm:min-h-[230px] md:min-h-[270px]"
+              aria-label="Play video pitch"
+            >
               <div className="dossier-loom-pattern absolute inset-0" aria-hidden="true" />
-              <div className="relative z-10 flex flex-1 items-center gap-4 p-4 md:gap-5 md:p-5">
-                <button
-                  type="button"
-                  onClick={() => setIsPlaying(true)}
-                  className="dossier-pressable inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full md:h-12 md:w-12"
-                  style={{
-                    backgroundColor: accentColor,
-                    color: "#1a1a1a",
-                    boxShadow: `0 10px 28px ${accentColor}33`,
-                  }}
-                  aria-label="Play video pitch"
+              <div className="relative z-10 flex flex-1 flex-col justify-between p-5 md:p-7">
+                <div
+                  className="inline-flex w-fit items-center gap-1.5 text-xs font-medium md:text-[13px]"
+                  style={{ color: accentColor }}
                 >
-                  <Play className="h-5 w-5 translate-x-0.5 fill-current" />
-                </button>
-                <div className="min-w-0 flex-1">
-                  <div
-                    className="mb-1 flex items-center gap-1.5 text-[11px] font-medium"
-                    style={{ color: accentColor }}
-                  >
-                    <Clock3 className="h-3.5 w-3.5" />
-                    90 seconds
-                  </div>
-                  <h4 className="text-base font-semibold tracking-tight text-[var(--dossier-ink)] md:text-lg">
-                    {videoTitle}
-                  </h4>
-                  <p className="mt-0.5 text-xs text-[var(--dossier-body)] md:text-[13px]">
-                    {videoSubtitle ?? `Quick introduction for the ${roleTitle} role.`}
-                  </p>
+                  <Clock3 className="h-4 w-4" />
+                  90 seconds
                 </div>
-                <div className="relative hidden h-[88px] w-[68px] shrink-0 overflow-hidden border border-[var(--dossier-line-strong)] bg-[#101116] sm:block md:h-[96px] md:w-[76px]">
-                  <Image
-                    src="/images/terence-la-profile.png"
-                    alt="Terence La"
-                    fill
-                    sizes="76px"
-                    className="dossier-profile-photo object-cover object-top"
-                  />
+                <div>
+                  <div className="flex items-center gap-4 md:gap-5">
+                    <span
+                      className="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-full md:h-[4.5rem] md:w-[4.5rem]"
+                      style={{
+                        backgroundColor: accentColor,
+                        color: "#1a1a1a",
+                        boxShadow: `0 14px 40px ${accentColor}44`,
+                      }}
+                    >
+                      <Play className="h-7 w-7 translate-x-0.5 fill-current md:h-8 md:w-8" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-muted)]">
+                        Watch video
+                      </p>
+                      <h4 className="mt-1 text-lg font-semibold tracking-tight text-[var(--dossier-ink)] md:text-2xl">
+                        {videoTitle}
+                      </h4>
+                      <p className="mt-1 text-sm text-[var(--dossier-body)] md:text-[15px]">
+                        {videoSubtitle ?? `Quick introduction for the ${roleTitle} role.`}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+              <div className="relative w-[38%] max-w-[240px] min-w-[112px] shrink-0 border-l border-[var(--dossier-line-strong)] bg-[#101116] sm:min-w-[132px] md:min-w-[180px]">
+                <Image
+                  src="/images/terence-la-profile.png"
+                  alt="Terence La"
+                  fill
+                  sizes="(max-width: 768px) 38vw, 240px"
+                  className="dossier-profile-photo object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-black/20" aria-hidden="true" />
+                <div
+                  className="pointer-events-none absolute inset-0 flex items-center justify-center md:hidden"
+                  aria-hidden="true"
+                >
+                  <span
+                    className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-black/45 text-white backdrop-blur-[2px]"
+                  >
+                    <Play className="h-5 w-5 translate-x-0.5 fill-current" />
+                  </span>
+                </div>
+              </div>
+            </button>
           )}
         </motion.div>
         {normalizedLoomUrl && isPlaying && playInModal && (
