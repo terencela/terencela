@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import { Play, Clock3 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
@@ -18,11 +18,21 @@ interface LoomVideoFrameProps {
   videoTitle?: string;
   accentColor?: string;
   showChapters?: boolean;
+  videoOrientation?: "landscape" | "portrait";
   chapters?: Array<{
     time: string;
     title: string;
     desc: string;
   }>;
+}
+
+function normalizeLoomUrl(url?: string) {
+  if (!url) return url;
+  if (url.includes("/embed/")) return url;
+  const match = url.match(/loom\.com\/share\/([a-zA-Z0-9]+)/);
+  if (!match) return url;
+  const [, id] = match;
+  return `https://www.loom.com/embed/${id}`;
 }
 
 export function LoomVideoFrame({
@@ -32,6 +42,7 @@ export function LoomVideoFrame({
   videoTitle = `Why I am the right fit for ${companyName}`,
   accentColor = "#10a37f",
   showChapters = true,
+  videoOrientation = "landscape",
   chapters,
 }: LoomVideoFrameProps) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -39,6 +50,10 @@ export function LoomVideoFrame({
   const reduceMotion = useReducedMotion();
   const { theme } = useDossierTheme();
   const isDark = theme === "dark";
+  const normalizedLoomUrl = useMemo(() => normalizeLoomUrl(loomUrl), [loomUrl]);
+  const isPortrait = videoOrientation === "portrait";
+  const frameAspectRatio = isPortrait ? "9 / 16" : "16 / 9";
+  const frameMaxWidth = isPortrait ? "max-w-[420px]" : "max-w-[900px]";
 
   const defaultChapters = [
     {
@@ -66,11 +81,11 @@ export function LoomVideoFrame({
           className={`relative ${isDark ? "bg-[#101116]" : "bg-[#f5f5f2]"}`}
           {...(reduceMotion ? {} : dossierLoomVideo)}
         >
-          {loomUrl && isPlaying ? (
-            <div className="relative mx-auto w-full max-w-[900px]">
-              <div className="relative w-full" style={{ aspectRatio: "16 / 9" }}>
+          {normalizedLoomUrl && isPlaying ? (
+            <div className={`relative mx-auto w-full ${frameMaxWidth}`}>
+              <div className="relative w-full" style={{ aspectRatio: frameAspectRatio }}>
                 <iframe
-                  src={loomUrl}
+                  src={normalizedLoomUrl}
                   className="absolute inset-0 h-full w-full border-0"
                   allowFullScreen
                   title={videoTitle}
@@ -78,12 +93,15 @@ export function LoomVideoFrame({
               </div>
             </div>
           ) : (
-            <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16 / 9", maxHeight: "480px" }}>
+            <div
+              className={`relative mx-auto w-full overflow-hidden ${frameMaxWidth}`}
+              style={{ aspectRatio: frameAspectRatio, maxHeight: isPortrait ? "720px" : "480px" }}
+            >
               <Image
                 src="/images/terence-la-profile.png"
                 alt="Terence La"
                 fill
-                sizes="(max-width: 1024px) 100vw, 900px"
+                sizes={isPortrait ? "(max-width: 768px) 100vw, 420px" : "(max-width: 1024px) 100vw, 900px"}
                 className={`dossier-profile-photo object-cover object-[center_18%] ${isDark ? "opacity-58" : "opacity-70"}`}
               />
               <div
@@ -136,9 +154,9 @@ export function LoomVideoFrame({
           }`}
           {...(reduceMotion ? {} : dossierLoomVideo)}
         >
-          {loomUrl && isPlaying ? (
+          {normalizedLoomUrl && isPlaying ? (
             <iframe
-              src={loomUrl}
+              src={normalizedLoomUrl}
               className="absolute inset-0 h-full w-full border-0"
               allowFullScreen
               title={videoTitle}

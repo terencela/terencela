@@ -524,17 +524,17 @@ export function OpenAIApplicationPage() {
 
         <section className="dossier-section dossier-section-tight relative z-[2] !pb-4 !pt-7 md:!pt-10">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div className="grid items-start gap-5 sm:grid-cols-[minmax(0,1fr)_minmax(120px,168px)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(180px,230px)] md:gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(220px,260px)]">
-              <div className="max-w-[760px] sm:pr-2">
+            <div className="grid items-start gap-5 md:grid-cols-[minmax(0,1fr)_minmax(180px,230px)] md:gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(220px,260px)]">
+              <div className="max-w-[760px]">
                 <p className="dossier-eyebrow">
                   <span aria-hidden="true" />
                   Application page
                 </p>
-                <h1 className="dossier-hero-title">
-                  Enterprise AI leader, builder and founder - turning frontier AI into production across startups and large organisations.
+                <h1 className="dossier-hero-title max-w-[18ch]" style={{ fontSize: "clamp(34px, 4.4vw, 64px)" }}>
+                  Enterprise AI leader, builder and founder.
                 </h1>
-                <p className="mt-5 max-w-[56ch] text-base leading-relaxed text-[var(--dossier-body)] md:mt-8">
-                  AI Lead at Zurich Airport, Founder of KI-Unlocked, turning 10+ companies AI-native. GPT-3 since 2020 with 15+ AI applications built.
+                <p className="mt-5 max-w-[56ch] text-base leading-relaxed text-[var(--dossier-body)] md:mt-9">
+                  Turning frontier AI into production across startups and large organisations. AI Lead at Zurich Airport, founder of KI-Unlocked, helping 10+ companies become AI-native. GPT-3 since 2020, with 15+ AI applications built.
                 </p>
                 <div className="mt-5 flex flex-wrap items-center gap-4 md:mt-7">
                   <a
@@ -558,7 +558,7 @@ export function OpenAIApplicationPage() {
                 </div>
               </div>
 
-              <aside className="relative mx-auto mt-3 w-full max-w-[148px] sm:mx-0 sm:mt-1 sm:justify-self-end sm:max-w-[168px] md:mt-0 md:max-w-[210px] lg:max-w-[250px]">
+              <aside className="relative mx-auto mt-3 w-full max-w-[138px] md:mx-0 md:mt-0 md:justify-self-end md:max-w-[210px] lg:max-w-[250px]">
                 <div className="dossier-profile-frame aspect-[4/5] w-full">
                   <Image
                     src="/images/terence-la-profile.png"
@@ -694,7 +694,9 @@ export function OpenAIApplicationPage() {
               <LoomVideoFrame
                 companyName="OpenAI"
                 roleTitle="Forward Deployed Engineer (Zurich)"
+                loomUrl="https://www.loom.com/share/054ec870f2c448928570797160ccc6b0"
                 videoTitle="How I deploy AI in enterprise teams"
+                videoOrientation="portrait"
                 accentColor="#10a37f"
                 showChapters={false}
               />
