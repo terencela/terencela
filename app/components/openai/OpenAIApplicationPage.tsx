@@ -25,11 +25,20 @@ type QualificationPillar = {
   detail: string;
 };
 
+type DeploymentStat = {
+  value: string;
+  label: string;
+  sub?: string;
+};
+
 type DeploymentExample = {
   title: string;
+  subtitle: string;
   challenge: string;
+  stats: DeploymentStat[];
   role: string[];
   outcome: string;
+  outcomeHighlight: string;
 };
 
 type SelectedProject = {
@@ -80,8 +89,14 @@ const credibilityLogos = [
 const deployments: DeploymentExample[] = [
   {
     title: "Zurich Airport - Voice AI Agent",
+    subtitle: "Building a voice AI agent for the airport's call center from concept to formal tender.",
     challenge:
-      "Around 85,000 calls and around 150,000 minutes per year handled by around 8 FTE in the call center. Large enterprise setup, many stakeholders, regulated environment, and trust constraints.",
+      "Large enterprise setup, many stakeholders, regulated environment, and clear trust constraints.",
+    stats: [
+      { value: "~85K", label: "calls per year", sub: "~150K minutes handled" },
+      { value: "8 FTE", label: "capacity", sub: "in the call center" },
+      { value: "Enterprise", label: "environment", sub: "Highly regulated & trust-critical" },
+    ],
     role: [
       "Discovery",
       "Use-case prioritisation",
@@ -90,32 +105,46 @@ const deployments: DeploymentExample[] = [
       "Vendor evaluation",
       "Governance",
     ],
+    outcomeHighlight: "Delivered a working PoC in two weeks",
     outcome:
-      "Delivered a PoC in two weeks, moved it into a formal tender, and accelerated stakeholder trust and alignment. Procurement timelines are still in progress.",
+      "and moved it into a formal tender. Strengthened stakeholder trust and alignment. Procurement process is ongoing.",
   },
   {
     title: "ZRH Insider - Employee App Rebuild",
+    subtitle: "Rebuilding the internal airport app to create a solid foundation for future features and engagement.",
     challenge:
-      "The internal airport app serves 35,000 employees and had fragmented mobile foundations, which slowed delivery and experimentation.",
+      "Three fragmented codebases for Android and iOS slowed delivery and experimentation for 35,000 employees.",
+    stats: [
+      { value: "35K", label: "employees", sub: "active on the app" },
+      { value: "2", label: "codebases", sub: "successfully merged" },
+      { value: "1 month", label: "rebuild", sub: "from foundation to rollout" },
+    ],
     role: [
       "Rebuilt the app foundation in one month",
       "Consolidated architecture for faster rollout",
       "Focused roadmap on engagement and retention loops",
     ],
+    outcomeHighlight: "Shipped a production-ready rebuild",
     outcome:
-      "Shipped a production-ready rebuild that was externally quoted at CHF 350k, and created a base that is faster to extend.",
+      "that was externally quoted at CHF 350k, and created a faster, scalable base for future features.",
   },
   {
     title: "Engineering Office LAJO - Proposal Copilot",
+    subtitle: "Designing an AI copilot to draft proposals from scattered project data.",
     challenge:
-      "Very little prep time for proposals and scattered information before sales meetings.",
+      "Very little prep time for proposals and scattered information across systems before sales meetings.",
+    stats: [
+      { value: "95-98%", label: "retrieval accuracy", sub: "on scoped tests" },
+      { value: "~40%", label: "time savings", sub: "per proposal expected" },
+    ],
     role: [
       "Designed PoC before the first sales meeting",
       "Set up OCR + model routing + RAG retrieval",
       "Secured a workshop and moved into delivery",
     ],
+    outcomeHighlight: "Impressed stakeholders before the first meeting",
     outcome:
-      "Current retrieval accuracy is 95-98% on scoped tests. Expected time savings for proposal and project work: around 40%.",
+      "and secured a paid workshop. Now delivering the deployment with high retrieval accuracy and measurable time savings.",
   },
 ];
 
@@ -443,49 +472,70 @@ export function OpenAIApplicationPage() {
             <h2 className="text-[clamp(28px,3.7vw,44px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
               Three recent deployments
             </h2>
-            <div className="mt-6 space-y-6">
+            <div className="mt-6 space-y-8">
               {deployments.map((deployment, index) => (
                 <article
                   key={deployment.title}
-                  className="overflow-hidden border border-[var(--dossier-line-strong)] bg-white shadow-[8px_8px_0_#ece8df]"
+                  className="overflow-hidden border border-[var(--dossier-line-strong)] bg-white"
                 >
-                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--dossier-line-strong)] bg-[#faf8f4] px-5 py-4 md:px-6">
-                    <h3 className="text-[clamp(24px,2.8vw,36px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-                      {deployment.title}
-                    </h3>
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--dossier-line-strong)] px-5 py-3 md:px-7">
                     <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
                       Deployment {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <div className="grid gap-0 md:grid-cols-3">
-                    <div className="border-b border-[var(--dossier-line-strong)] p-5 md:border-b-0 md:border-r md:p-6">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-subtle)]">
-                        Challenge
-                      </p>
-                      <p className="mt-2 text-sm leading-relaxed text-[var(--dossier-muted)]">
-                        {deployment.challenge}
-                      </p>
-                    </div>
-                    <div className="border-b border-[var(--dossier-line-strong)] p-5 md:border-b-0 md:border-r md:p-6">
+
+                  <div className="px-5 pb-2 pt-5 md:px-7 md:pt-6">
+                    <h3 className="text-[clamp(22px,2.6vw,32px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
+                      {deployment.title}
+                    </h3>
+                    <p className="mt-1.5 max-w-[60ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
+                      {deployment.subtitle}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-4 px-5 py-4 md:gap-6 md:px-7">
+                    {deployment.stats.map((stat) => (
+                      <div key={stat.label} className="flex items-start gap-3">
+                        <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#10a37f]/10">
+                          <div className="h-3.5 w-3.5 rounded-full border-2 border-[#10a37f]" />
+                        </div>
+                        <div>
+                          <p className="text-lg font-semibold tracking-tight text-[var(--dossier-ink)]">
+                            {stat.value}
+                          </p>
+                          <p className="text-xs font-medium text-[var(--dossier-body)]">{stat.label}</p>
+                          {stat.sub && (
+                            <p className="text-[11px] text-[var(--dossier-muted)]">{stat.sub}</p>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="grid gap-0 border-t border-[var(--dossier-line-strong)] md:grid-cols-2">
+                    <div className="border-b border-[var(--dossier-line-strong)] p-5 md:border-b-0 md:border-r md:p-7">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-subtle)]">
                         My role
                       </p>
-                      <ul className="mt-2 space-y-2 text-sm leading-relaxed text-[var(--dossier-muted)]">
+                      <ul className="mt-3 space-y-2.5 text-sm leading-relaxed text-[var(--dossier-body)]">
                         {deployment.role.map((item) => (
                           <li
                             key={item}
-                            className="relative pl-4 before:absolute before:left-0 before:top-[0.62em] before:h-1 before:w-1 before:rounded-full before:bg-[#10a37f]"
+                            className="relative pl-4 before:absolute before:left-0 before:top-[0.62em] before:h-1.5 before:w-1.5 before:rounded-full before:bg-[#10a37f]"
                           >
                             {item}
                           </li>
                         ))}
                       </ul>
                     </div>
-                    <div className="p-5 md:p-6">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-subtle)]">
+                    <div className="p-5 md:p-7">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#10a37f]">
                         Outcome
                       </p>
-                      <p className="mt-2 text-sm leading-relaxed text-[var(--dossier-muted)]">
+                      <p className="mt-3 text-sm leading-relaxed text-[var(--dossier-body)]">
+                        <span className="font-semibold text-[var(--dossier-ink)]">
+                          {deployment.outcomeHighlight}
+                        </span>{" "}
                         {deployment.outcome}
                       </p>
                     </div>
