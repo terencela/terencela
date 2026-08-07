@@ -460,32 +460,32 @@ export function OpenAIApplicationPage() {
           accentColor="#10a37f"
         />
 
-        <section className="dossier-section dossier-section-tight relative z-[2] !pb-5 !pt-10 md:!pt-14">
+        <section className="dossier-section dossier-section-tight relative z-[2] !pb-4 !pt-7 md:!pt-10">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(220px,280px)] lg:gap-10">
+            <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(200px,240px)] lg:gap-8">
               <div>
                 <p className="dossier-eyebrow">
                   <span aria-hidden="true" />
                   Application page
                 </p>
                 <h1 className="dossier-hero-title">I turn enterprise AI from idea into adoption.</h1>
-                <p className="mt-6 max-w-[68ch] text-base leading-relaxed text-[var(--dossier-body)]">
+                <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-[var(--dossier-body)] md:mt-6">
                   I lead AI at Zurich Airport, build and deploy AI systems through KI Unlocked, and
                   work across business, engineering and governance to get projects shipped.
                 </p>
-                <p className="mt-4 max-w-[64ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
+                <p className="mt-2 max-w-[64ch] text-sm leading-relaxed text-[var(--dossier-muted)] md:mt-4">
                   I work where pilots either become real workflows or die in procurement. That is
                   where I do my best work.
                 </p>
               </div>
 
-              <aside className="relative mx-auto w-full max-w-[260px] sm:max-w-[280px] lg:mx-0 lg:ml-auto lg:max-w-none">
-                <div className="dossier-profile-frame aspect-[4/5] w-full lg:max-w-[280px]">
+              <aside className="relative mx-auto hidden w-full max-w-[240px] lg:block lg:mx-0 lg:ml-auto lg:max-w-none">
+                <div className="dossier-profile-frame aspect-[4/5] w-full lg:max-w-[240px]">
                   <Image
                     src="/images/terence-la-profile.png"
                     alt="Terence La profile"
                     fill
-                    sizes="280px"
+                    sizes="240px"
                     className="dossier-profile-photo object-cover object-top"
                     priority
                   />
@@ -519,10 +519,10 @@ export function OpenAIApplicationPage() {
         <section className="dossier-section relative z-[2] pt-9">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
-              How I work
+              Why me
             </p>
             <h2 className="mt-2 text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
-              My approach to enterprise AI delivery.
+              What I bring to OpenAI on day one.
             </h2>
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 pb-7">
@@ -843,13 +843,24 @@ export function OpenAIApplicationPage() {
               <p className="mt-4 max-w-[68ch] text-sm leading-relaxed text-[var(--dossier-muted)] md:text-[15px]">
                 I am already doing Forward Deployed work across regulated enterprises in Zurich. If OpenAI wants someone who gets enterprise AI from pilot to adoption, let&apos;s talk.
               </p>
-              <a
-                href="mailto:terencela.yt@gmail.com"
-                className="dossier-button-primary dossier-cta-accent dossier-pressable mt-6 inline-flex"
-              >
-                terencela.yt@gmail.com
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <a
+                  href="mailto:terencela.yt@gmail.com"
+                  className="dossier-button-primary dossier-cta-accent dossier-pressable inline-flex"
+                >
+                  terencela.yt@gmail.com
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+                <a
+                  href="https://xp.terencela.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 border border-[var(--dossier-line-strong)] px-5 py-2.5 text-[13px] font-medium text-[var(--dossier-ink)] transition-colors duration-200 hover:bg-[rgba(255,255,255,0.04)]"
+                >
+                  See my portfolio on Windows XP
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
             </div>
           </div>
         </section>
